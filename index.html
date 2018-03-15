@@ -1,1 +1,118 @@
-../public_html/index.html
+<!doctype html>
+<html lang="en">
+    <head>
+      <!-- Global site tag (gtag.js) - Google Analytics -->
+      <script async src="https://www.googletagmanager.com/gtag/js?id=UA-112098198-1"></script>
+      <script>
+	window.dataLayer = window.dataLayer || [];
+	function gtag(){dataLayer.push(arguments);}
+	gtag('js', new Date());
+	
+	gtag('config', 'UA-112098198-1');
+      </script>
+
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+        <!-- Bootstrap CSS -->
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.3/css/bootstrap.min.css" integrity="sha384-Zug+QiDoJOrZ5t4lssLdxGhVrurbmBWopoEl+M6BdEfwnCJZtKxi1KgxUyJq13dy" crossorigin="anonymous">
+
+        <title>Venkat Arun</title>
+    </head>
+
+    <body>
+        <div class="row justify-content-md-center">
+            <div class="col-md-auto">
+                <img class="rounded-circle" src="pic.jpg" alt="Photo">
+            </div>
+            <div class="col-md-auto">
+                <dl class="row">
+                    <dt class="col-sm-1"></dt>
+                    <dd class="col-sm-11"><h1>Venkat Arun</h1></dd>
+
+                    <dt class="col-sm-1">Email</dt>
+                    <dd class="col-sm-11"><tt>venkatar at mit dot edu</tt></dd>
+
+                    <dt class="col-sm-1">Address</dt>
+                    <dd class="col-sm-11"><address>
+                        32-G978A, The Stata Center<br/>
+                        32 Vassar Street<br/>
+                        Cambridge, MA, 02139, USA
+                    </address></dd>
+                </dl>
+            </div>
+        </div>
+        <br/>
+        <div class="container">
+            <!-- <div class="card">
+                 <div class="card-body">
+                 <h3 class="card-title">About Me</h3> -->
+            <h3>About Me</h3>
+            <p>I am a PhD student at the <a href="http://nms.csail.mit.edu">Networks and Mobile Systems group</a> at CSAIL, MIT. I am advised by Prof. <a href="http://nms.csail.mit.edu/~hari/">Hari Balakrishnan</a> and Prof. <a href="https://people.csail.mit.edu/alizadeh/">Mohammad Alizadeh</a>. I am broadly interested in computer systems, networking and cryptography. Previously I did my B.Tech in computer science from IIT Guwahati.</p>
+            <!-- </div> -->
+            <!-- </div> -->
+
+            <dl class="row">
+                <dt class="col-sm-2">Technical Musings:</dt>
+                <dd class="col-sm-10"><a href="https://venkatarun.wordpress.com">venkatarun.wordpress.com</a></dd>
+
+                <dt class="col-sm-2">Other Links:</dt>
+                <dd class="col-sm-10"><a href="cv.pdf" class="badge badge-pill badge-secondary">CV</a> <a href="https://github.com/venkatarun95" class="badge badge-pill badge-secondary">GitHub</a> <a href="https://www.linkedin.com/in/venkat-arun-11a9047b/" class="badge badge-pill badge-secondary">LinkedIn</a> </dd>
+            </dl>
+
+            <br/>
+
+            <h3>Publications</h3>
+            <div class="card">
+                <div class="card-body">
+                    <h5 class="card-title">Copa: Congestion Control Combining Objective Optimization with Simple Window Adjustments</h5>
+                    <h6 class="card-subtitle mb-2 text-muted">Venkat Arun, Hari Balakrishnan</h6>
+                    <div class="card-subtitle text-muted"><a href="https://www.usenix.org/conference/nsdi18/">USENIX NSDI'18</a></div>
+                    <a href="copa.pdf"><span class="badge badge-secondary">Paper PDF</span></a>
+                    <details>
+                        <summary>Show Abstract</summary>
+                        <p>This paper introduces Copa, an end-to-end congestion control algorithm that uses three ideas. First, it shows that a <em>target rate</em> equal to <em>1/(&delta; d<sub>q</sub>)</em>, where <em>d<sub>q</sub></em> is the (measured) queueing delay, optimizes a natural function of throughput and delay under a Markovian packet arrival model. Second, it adjusts its congestion window in the direction of this target rate, converging quickly to the correct fair rates even in the face of significant flow churn. These two ideas enable a group of Copa flows to maintain high utilization with low queuing delay. However, when the bottleneck is shared with loss-based congestion-controlled flows that fill up buffers, Copa, like other delay-sensitive schemes, achieves low throughput. To combat this problem, Copa uses a third idea: detect the presence of buffer-fillers by observing the delay evolution, and respond with additive-increase/multiplicative decrease on the &delta; parameter. Experimental results show that Copa outperforms Cubic (similar throughput, much lower delay, fairer with diverse RTTs), BBR and PCC (significantly fairer, lower delay), and co-exists well with Cubic unlike BBR and PCC. Copa is also robust to non-congestive loss and large bottleneck buffers, and outperforms other schemes on long-RTT paths.</p>
+                    </details>
+                </div>
+
+                <div class="card-body">
+                    <h5 class="card-title">Language-Directed Hardware Design for Network Performance Monitoring</h5>
+                    <h6 class="card-subtitle mb-2 text-muted">Srinivas Narayana, Anirudh Sivaraman, Vikram Nathan, Prateesh Goyal, Venkat Arun, Mohammad Alizadeh, Vimalkumar Jeyakumar, and Changhoon Kim</h6>
+                    <div class="card-subtitle text-muted"><a href="http://conferences.sigcomm.org/sigcomm/2017/">ACM SIGCOMM'17</a></div>
+                    <b style="color:#D01919;">Best Paper Award</b>
+                    <br/>
+                    <a href="http://web.mit.edu/~alephtwo/www/papers/marple-sigcomm17.pdf"><span class="badge badge-secondary">Paper PDF</span></a>
+                    <a href="http://web.mit.edu/marple/"><span class="badge badge-secondary">Project Page</span></a>
+                    <a href="http://web.mit.edu/~alephtwo/www/talks/marple-sigcomm17.pdf"><span class="badge badge-secondary">Slides</span></a>
+                    <a href="http://news.mit.edu/2017/monitoring-network-traffic-more-efficiently-0823"><span class="badge badge-secondary">MIT News</span></a>
+                    <details>
+                        <summary>Show Abstract</summary>
+                        <p>Network performance monitoring today is restricted by existing
+                            switch support for measurement, forcing operators to rely heavily on
+                            endpoints with poor visibility into the network core. Switch vendors
+                            have added progressively more monitoring features to switches, but
+                            the current trajectory of adding specific features is unsustainable
+                            given the ever-changing demands of network operators. Instead,
+                            we ask what switch hardware primitives are required to support an
+                            expressive language of network performance questions. We believe
+                            that  the  resulting  switch  hardware  design  could  address  a  wide
+                            variety of current and future performance monitoring needs.</p>
+                            <p>We present a performance query language, Marple, modeled on familiar functional constructs like map, filter, groupby, and zip. Marple
+                            is  backed  by  a  new  programmable  key-value  store  primitive  on
+                            switch hardware. The key-value store performs flexible aggregations
+                            at line rate (e.g., a moving average of queueing latencies per flow),
+                            and scales to millions of keys. We present a Marple compiler that
+                            targets a P4-programmable software switch and a simulator for high-
+                            speed programmable switches. Marple can express switch queries
+                            that could previously run only on end hosts, while Marple queries
+                            only occupy a modest fraction of a switch’s hardware resources.</p>
+                    </details>
+                </div>
+            </div>
+
+        </div>
+        <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.3/js/bootstrap.min.js" integrity="sha384-a5N7Y/aK3qNeh15eJKGWxsqtnX/wWdSZSKp+81YjTmS15nvnvxKHuzaWwXHDli+4" crossorigin="anonymous"></script>
+    </body>
+</html>
