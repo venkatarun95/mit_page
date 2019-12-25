@@ -4,11 +4,11 @@
       <!-- Global site tag (gtag.js) - Google Analytics -->
       <script async src="https://www.googletagmanager.com/gtag/js?id=UA-112098198-1"></script>
       <script>
-	window.dataLayer = window.dataLayer || [];
-	function gtag(){dataLayer.push(arguments);}
-	gtag('js', new Date());
-	
-	gtag('config', 'UA-112098198-1');
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-112098198-1');
       </script>
 
         <meta charset="utf-8">
@@ -48,7 +48,7 @@
                  <div class="card-body">
                  <h3 class="card-title">About Me</h3> -->
             <h3>About Me</h3>
-            <p>I am a PhD student at the <a href="http://nms.csail.mit.edu">Networks and Mobile Systems group</a> at CSAIL, MIT. I am advised by Prof. <a href="http://nms.csail.mit.edu/~hari/">Hari Balakrishnan</a> and Prof. <a href="https://people.csail.mit.edu/alizadeh/">Mohammad Alizadeh</a>. I am broadly interested in computer systems, networking and cryptography. Previously I did my B.Tech in computer science from IIT Guwahati.</p>
+            <p>I am a PhD student at the <a href="http://nms.csail.mit.edu">Networks and Mobile Systems group</a> at CSAIL, MIT. I am advised by Prof. <a href="http://nms.csail.mit.edu/~hari/">Hari Balakrishnan</a> and Prof. <a href="https://people.csail.mit.edu/alizadeh/">Mohammad Alizadeh</a>. I am broadly interested in computer systems and have worked on wireless communication, congestion control and applied cryptography. Previously I did my undergrad in computer science from IIT Guwahati.</p>
             <!-- </div> -->
             <!-- </div> -->
 
@@ -63,24 +63,60 @@
             <br/>
 
             <h3>Publications</h3>
+
             <div class="card">
                 <div class="card-body">
+                    <a href="https://web.mit.edu/copa/#facebook"><b style="color:#D01919;">Being used in production at Facebook</b></a>
                     <h5 class="card-title">Copa: Congestion Control Combining Objective Optimization with Simple Window Adjustments</h5>
                     <h6 class="card-subtitle mb-2 text-muted">Venkat Arun, Hari Balakrishnan</h6>
                     <div class="card-subtitle text-muted"><a href="https://www.usenix.org/conference/nsdi18/">USENIX NSDI'18</a></div>
                     <a href="copa.pdf"><span class="badge badge-secondary">Paper PDF</span></a>
+                    <a href="https://web.mit.edu/copa/"><span class="badge badge-secondary">Project Page</span></a>
+                    <a href="https://www.youtube.com/watch?v=FDAzVFmuVUY"><span class="badge badge-secondary">Talk</span></a>
+                    <a href="https://www.usenix.org/sites/default/files/conference/protected-files/nsdi18_slides_arun.pdf"><span class="badge badge-secondary">Slides</span></a>
                     <details>
                         <summary>Show Abstract</summary>
                         <p>This paper introduces Copa, an end-to-end congestion control algorithm that uses three ideas. First, it shows that a <em>target rate</em> equal to <em>1/(&delta; d<sub>q</sub>)</em>, where <em>d<sub>q</sub></em> is the (measured) queueing delay, optimizes a natural function of throughput and delay under a Markovian packet arrival model. Second, it adjusts its congestion window in the direction of this target rate, converging quickly to the correct fair rates even in the face of significant flow churn. These two ideas enable a group of Copa flows to maintain high utilization with low queuing delay. However, when the bottleneck is shared with loss-based congestion-controlled flows that fill up buffers, Copa, like other delay-sensitive schemes, achieves low throughput. To combat this problem, Copa uses a third idea: detect the presence of buffer-fillers by observing the delay evolution, and respond with additive-increase/multiplicative decrease on the &delta; parameter. Experimental results show that Copa outperforms Cubic (similar throughput, much lower delay, fairer with diverse RTTs), BBR and PCC (significantly fairer, lower delay), and co-exists well with Cubic unlike BBR and PCC. Copa is also robust to non-congestive loss and large bottleneck buffers, and outperforms other schemes on long-RTT paths.</p>
                     </details>
                 </div>
+            </div>
 
+            <div class="card">
                 <div class="card-body">
+                    <h5 class="card-title">RFocus: Practical Beamforming for Small Devices</h5>
+                    <h6 class="card-subtitle mb-2 text-muted">Venkat Arun, Hari Balakrishnan</h6>
+                    <div class="card-subtitle text-muted"><a href="https://www.usenix.org/conference/nsdi20">USENIX NSDI'20</a></div>
+                    <a href="https://arxiv.org/abs/1905.05130"><span class="badge badge-secondary">Paper PDF</span></a>
+                    <details>
+                        <summary>Show Abstract</summary>
+                        <p>To reduce transmit power, increase throughput, and improve range, radio systems benefit from the ability to direct more of the transmitted power toward the intended receiver. Many modern systems beamform with antenna arrays for this purpose. However, a radio's ability to direct its signal is fundamentally limited by its size. Because radios on IoT and mobile devices must be small and inexpensive, they do not benefit from beamforming.</p>
+
+                        <p>To address this problem, we introduce <em>RFocus</em>, which moves beamforming functions from the radio endpoints to the environment. RFocus includes a two-dimensional surface with a rectangular array of simple RF switch elements. Each switch element either lets the signal through or reflects it. The surface does not emit any power of its own. The state of the elements is set by a software controller to maximize the signal strength at a receiver, with a novel optimization algorithm that uses signal strength measurements from the receiver. The RFocus surface can be manufactured as an inexpensive thin "wallpaper", requiring no wiring. Our prototype implementation improves the median signal strength by 9.5&times;, and the median channel capacity by 2.0&times; inside an office building.</p>
+                    </details>
+                </div>
+            </div>
+
+            <div class="card">
+                <div class="card-body">
+                    <h5 class="card-title">Finding Safety in Numbers with Secure Allegation Escrows</h5>
+                    <h6 class="card-subtitle mb-2 text-muted">Venkat Arun, Aniket Kate, Deepak Garg, Peter Druschel, Bobby Bhattacharjee</h6>
+                    <div class="card-subtitle text-muted"><a href="https://www.ndss-symposium.org/ndss2020/">NDSS'20</a></div>
+                    <a href="https://arxiv.org/pdf/1810.10123.pdf"><span class="badge badge-secondary">Paper PDF</span></a>
+                    <details>
+                        <summary>Show Abstract</summary>
+                        <p>  For fear of retribution, the victim of a crime may be willing to report it only if other victims of the same perpetrator also step forward. Common examples include 1) identifying oneself as the victim of sexual harassment, especially by a person in a position of authority or 2) accusing an influential politician, an authoritarian government or ones own employer of corruption. To handle such situations, legal literature has proposed the concept of an <em>allegation escrow</em>: a neutral third-party that collects allegations anonymously, matches them against each other, and de-anonymizes allegers only after de-anonymity thresholds (in terms of number of co-allegers), pre-specified by the allegers, are reached.</p>
+
+                        <p>An allegation escrow can be realized as a single trusted third party; however, this party must be trusted to keep the identity of the alleger and content of the allegation private. To address this problem, this paper introduces Secure Allegation Escrows (SAE, pronounced "say"). A SAE is a group of parties with independent interests and motives, acting <em>jointly</em> as an escrow for collecting allegations from individuals, matching the allegations, and de-anonymizing the allegations when designated thresholds are reached. By design, SAEs provide a very strong property: No less than a majority of parties constituting a SAE can de-anonymize or disclose the content of an allegation without a sufficient number of matching allegations (even in collusion with any number of other allegers). Once a sufficient number of matching allegations exist, all parties can simultaneously disclose the allegation with a verifiable proof of the allegers' identities.  We describe how SAEs can be constructed using a novel authentication protocol and a novel allegation matching and bucketing algorithm, provide formal proofs of the security of our constructions, and provide an evaluation of a prototype implementation, demonstrating feasibility in practice.</p>
+                    </details>
+                </div>
+            </div>
+
+            <div class="card">
+                <div class="card-body">
+                    <b style="color:#D01919;">Best Paper Award</b>
                     <h5 class="card-title">Language-Directed Hardware Design for Network Performance Monitoring</h5>
                     <h6 class="card-subtitle mb-2 text-muted">Srinivas Narayana, Anirudh Sivaraman, Vikram Nathan, Prateesh Goyal, Venkat Arun, Mohammad Alizadeh, Vimalkumar Jeyakumar, and Changhoon Kim</h6>
                     <div class="card-subtitle text-muted"><a href="http://conferences.sigcomm.org/sigcomm/2017/">ACM SIGCOMM'17</a></div>
-                    <b style="color:#D01919;">Best Paper Award</b>
-                    <br/>
                     <a href="http://web.mit.edu/~alephtwo/www/papers/marple-sigcomm17.pdf"><span class="badge badge-secondary">Paper PDF</span></a>
                     <a href="http://web.mit.edu/marple/"><span class="badge badge-secondary">Project Page</span></a>
                     <a href="http://web.mit.edu/~alephtwo/www/talks/marple-sigcomm17.pdf"><span class="badge badge-secondary">Slides</span></a>
@@ -109,6 +145,7 @@
                     </details>
                 </div>
             </div>
+        </div>
 
         </div>
         <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
