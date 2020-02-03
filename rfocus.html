@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+        <!-- Bootstrap CSS -->
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+        <link href="open-iconic/font/css/open-iconic-bootstrap.css" rel="stylesheet">
+        <title>Precise Beamforming with Smart Surfaces</title>
+    </head>
+
+    <body>
+        <div class="jumbotron">
+            <div class="container">
+                <blockquote class="blockquote text-right">
+                    <h2 class="mb-0"><span class="text-danger">RFocus:</span> Precise Beamforming with Smart Surfaces</h2>
+                    <h4 class="text-muted">Venkat Arun and Hari Balakrishnan (CSAIL, MIT)</h4>
+                    <h4 class="text-muted">USENIX NSDI 2020</h4>
+                </blockquote>
+            </div>
+        </div>
+
+        <div class="container">
+            <div class="row">
+                <p class="lead">
+                    When radios communicate with each other, the transmitter spreads its signal in all directions. Hence only a small fraction of what is transmitted is 'heard' by the receiver. Radios with multiple antennas can direct their signal so more of it reaches the receiver. This is called beamforming. How precisely a radio can beamform is dependent on its size; a larger radio with more antennas can direct its signal better than smaller radios. This is a fundamental physical limit. Unfortunately, practical concerns prevent us from making radios too big.
+                </p>
+
+                <p class="lead">
+                    To address this challenge, we introduce RFocus. Rather than make the radios bigger, RFocus adds more antennas to the environment. They are arranged as a 2D surface, where each antenna is a simple backscatter reflector, similar to a passive RFID tag. They do not emit any signal of their own; instead they simply reflect signal incident from the transmitter in a controlled way. They are inexpensive because a) they don't process the signal and hence don't need expensive electronics and b) they aren't connected to the transmitter via expensive high-speed wires. We realize a prototype with 3200 elements. This configuration may well be the largest published number of antennas ever used for a single communication link.
+                </p>
+
+                <p class="lead">
+                    Each antenna can be in one of two states. When 'off', the antenna is 'transparent' and lets signals through. When 'on', it becomes opaque and reflects the signal. By appropriately setting the states of the antennas, a controller makes the surface act as a mirror/lens that focusses signals from the transmitter to the receiver. Our prototype implementation improves median signal strength by 9.5x for locations spread throughout a floor of our lab.
+                </p>
+
+                <p>
+                    Our paper can be found at <a href="https://arxiv.org/abs/1905.05130">arxiv.org/abs/1905.05130</a>. It will appear in <a href="https://www.usenix.org/conference/nsdi20">NSDI 2020</a>.
+                </p>
+            </div>
+        </div>
+
+        <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+    </body>
+</html>
