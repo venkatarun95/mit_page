@@ -1,0 +1,13 @@
+pic.jpg filter=lfs diff=lfs merge=lfs -text
+rfocus-highres-venkat.jpg filter=lfs diff=lfs merge=lfs -text
+rfocus-highres.jpg filter=lfs diff=lfs merge=lfs -text
+rfocus-lowres.jpg filter=lfs diff=lfs merge=lfs -text
+rfocus-medres.jpg filter=lfs diff=lfs merge=lfs -text
+rfocus-reflect.gif filter=lfs diff=lfs merge=lfs -text
+rfocus-sim-reflect.gif filter=lfs diff=lfs merge=lfs -text
+rfocus-sim-transmit.gif filter=lfs diff=lfs merge=lfs -text
+rfocus-sim-wall.gif filter=lfs diff=lfs merge=lfs -text
+rfocus-wall.gif filter=lfs diff=lfs merge=lfs -text
+sim-talk-reflect.gif filter=lfs diff=lfs merge=lfs -text
+sim-talk-transmit.gif filter=lfs diff=lfs merge=lfs -text
+sim-talk-wall.gif filter=lfs diff=lfs merge=lfs -text
