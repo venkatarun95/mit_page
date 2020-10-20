@@ -11,3 +11,4 @@ rfocus-wall.gif filter=lfs diff=lfs merge=lfs -text
 sim-talk-reflect.gif filter=lfs diff=lfs merge=lfs -text
 sim-talk-transmit.gif filter=lfs diff=lfs merge=lfs -text
 sim-talk-wall.gif filter=lfs diff=lfs merge=lfs -text
+rfocus-slides.pptx filter=lfs diff=lfs merge=lfs -text

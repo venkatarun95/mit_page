@@ -7,7 +7,7 @@
         <!-- Bootstrap CSS -->
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
         <link href="open-iconic/font/css/open-iconic-bootstrap.css" rel="stylesheet">
-        <title>Precise Beamforming with Smart Surfaces</title>
+        <title>RFocus: Beamforming Using Thousands of Passive Antennas</title>
 
         <style>
             .carousel-control-prev-icon {
@@ -38,7 +38,7 @@
             <div class="container">
                 <div class="row">
                     <div class="col-md text-right">
-                        <h2 class="mb-0"><span class="text-danger">RFocus:</span> Precise Beamforming with Smart Surfaces</h2>
+                        <h2 class="mb-0"><span class="text-danger">RFocus:</span>Beamforming Using Thousands of Passive Antennas</h2>
                         <h4 class="text-muted">Venkat Arun and Hari Balakrishnan (CSAIL, MIT)</h4>
                         <h4 class="text-muted">USENIX NSDI 2020</h4>
                     </div>
@@ -72,8 +72,8 @@
                                     <div class="carousel-caption d-none d-md-block border bg-white rounded">
                                           <h5>RFocus as a Mirror</h5>
                                           <p>
-                                              The simulations show how a pulse from a source is reflected from a wall (left) and RFocus (right)
-                                              respectively. RFocus is a wall which can programmatically make parts of itself transparent. By
+                                              The simulations show how a pulse from a source is reflected from a wall (left) and RFocus (right).
+                                              RFocus is a wall which can programmatically make parts of itself transparent. By
                                               strategically choosing which parts are transparent, we can make the reflection focus on
                                               any arbitrary point.
                                           </p>
@@ -90,8 +90,8 @@
                                     <div class="carousel-caption d-none d-md-block border bg-white rounded">
                                           <h5>RFocus as a Lens</h5>
                                           <p>
-                                              The simulations show how a pulse from a source is reflected from a wall (left) and RFocus (right)
-                                              respectively. RFocus is a wall which can programmatically make parts of itself transparent. By
+                                              The simulations show how a pulse from a source is reflected from a wall (left) and RFocus (right).
+                                              RFocus is a wall which can programmatically make parts of itself transparent. By
                                               strategically choosing which parts are transparent, we can make the reflection focus on
                                               any arbitrary point.
                                           </p>
@@ -119,6 +119,15 @@
                     </div>
                 </center>
             </div>
+	    <div class="row justify-content-center mt-5 mb-5">
+	      <div class="col-md-auto">
+		<div class="btn-group" role="group">
+		  <a class="btn btn-outline-primary" href="https://www.usenix.org/system/files/nsdi20-paper-arun.pdf">Paper PDF</a>
+		  <a class="btn btn-outline-primary" href="https://www.youtube.com/watch?v=BV0vITB54H0">Talk</a>
+		  <a class="btn btn-outline-primary" href="rfocus-slides.pptx">Slides</a>
+		</div>
+	      </div>
+	    </div>
             <div class="row">
                 <p class="lead">
                     When radios communicate with each other, the transmitter spreads its signal in all directions. Hence only a small fraction of what is transmitted is 'heard' by the receiver. Radios with multiple antennas can direct their signal so more of it reaches the receiver. This is called beamforming. How precisely a radio can beamform is dependent on its size; a larger radio with more antennas can direct its signal better than smaller radios. This is a fundamental physical limit. Unfortunately, practical concerns prevent us from making radios too big.
@@ -141,7 +150,7 @@
             <div class="embed-responsive embed-responsive-16by9 col-md-6">
                 <iframe class="embed-responsive-item" src="https://www.youtube-nocookie.com/embed/BV0vITB54H0" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
             </div>
-        </dif>
+        </div>
 
 
         <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
