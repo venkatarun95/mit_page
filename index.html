@@ -64,6 +64,19 @@
 
             <div class="card">
                 <div class="card-body">
+                    <h5 class="card-title">Formally Verifying Congestion Control Performance</h5>
+                    <h6 class="card-subtitle mb-2 text-muted">Venkat Arun, Mina Arashloo, Ahmed Saeed, Mohammad Alizadeh, Hari Balakrishnan</h6>
+                    <div class="card-subtitle text-muted"><a href="https://conferences.sigcomm.org/sigcomm/2021/">ACM SIGCOMM'21</a></div>
+		    <div class="card-subtitle text-muted">(PDF coming soon)</div>
+                    <details>
+                        <summary>Show Abstract</summary>
+                        <p>The diversity of paths on the Internet makes it difficult for designers and operators to confidently deploy new congestion control algorithms (CCAs) without extensive real-world experiments, but such capabilities are not available to most of the networking community. And even when they are available, understanding why a CCA under-performs by trawling through massive amounts of statistical data from network connections can be extremely challenging. The history of congestion control is replete with many examples of surprising and unanticipated behaviors when a CCA moves from simulation to prototype implementation to large-scale deployment. The set of possible link and path vagaries is not only numerous, but they compose in complicated ways across links on a path. In this paper, we propose a step toward mitigating these issues. We have developed Congestion Control Anxiety Controller (CCAC), a tool that uses formal verification to establish performance properties of CCAs. It is able to formally prove performance properties of CCAs and generate counter-examples for invalid hypotheses. With CCAC, a designer can not only gain greater confidence prior to deployment to avoid unpleasant surprises, but can also use the counter-examples to iteratively improve their algorithm. We model AIMD, Copa, and BBR with CCAC, and report on some surprising results from the exercise.</p>
+                    </details>
+                </div>
+            </div>
+
+            <div class="card">
+                <div class="card-body">
                     <a href="https://web.mit.edu/copa/#facebook"><b style="color:#D01919;">Being used in production at Facebook</b></a>
                     <h5 class="card-title">Copa: Congestion Control Combining Objective Optimization with Simple Window Adjustments</h5>
                     <h6 class="card-subtitle mb-2 text-muted">Venkat Arun, Hari Balakrishnan</h6>
@@ -146,8 +159,24 @@
                     </details>
                 </div>
             </div>
-        </div>
 
+	    <div class="card">
+                <div class="card-body">
+                    <h5 class="card-title">Throughput-Fairness Tradeoffs in Mobility Platforms</h5>
+                    <h6 class="card-subtitle mb-2 text-muted">Arjun Balasingam,  Karthik Gopalakrishnan,  Radhika Mittal, Venkat Arun,  Ahmed Saeed,  Mohammad Alizadeh, Hamsa Balakrishnan, Hari Balakrishnan</h6>
+                    <div class="card-subtitle text-muted"><a href="https://www.sigmobile.org/mobisys/2021/">ACM MOBISYS'21</a></div>
+		    <div class="card-subtitle text-muted">PDF Coming Soon</div>
+                    <details>
+                        <summary>Show Abstract</summary>
+                        <p>This paper studies the problem of allocating tasks from differentcustomers to vehicles in mobility platforms, which are used for ap-plications like food and package delivery, ridesharing, and mobile sensing. A mobility platform should allocate tasks to vehicles and schedule them in order to optimize both throughput and fairness across customers. However, existing approaches to scheduling tasks in mobility platforms ignore fairness.</p>
+			<p>We introduce Mobius, a system that uses guided optimization to achieve both high throughput and fairness across customers. Mobius supports spatiotemporally diverse and dynamic customer demands. It provides a principled method to navigate inherent tradeoffs between fairness and throughput caused by shared mobility. Our evaluation demonstrates these properties, along with the versatility and scalability of Mobius, using traces gathered from ridesharing and aerial sensing applications. Our ridesharing case study shows that Mobius can schedule more than 16,000 tasks across 40 customers and 200 vehicles in an online manner.</p>
+                    </details>
+                </div>
+            </div>
+
+	    <p><a href="http://accessibility.mit.edu">Accessibility</a></p>
+        </div>
+		 
         </div>
         <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
