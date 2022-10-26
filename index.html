@@ -17,6 +17,16 @@
         <!-- Bootstrap CSS -->
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.3/css/bootstrap.min.css" integrity="sha384-Zug+QiDoJOrZ5t4lssLdxGhVrurbmBWopoEl+M6BdEfwnCJZtKxi1KgxUyJq13dy" crossorigin="anonymous">
 
+	<style>
+	  .card-body {
+	      padding: 0.25rem;
+	  }
+	  .text-muted {
+	      font-weight: 300;
+	      color: #000 !important;
+	  }
+	</style>
+
         <title>Venkat Arun</title>
     </head>
 
@@ -36,7 +46,7 @@
 
                     <dt class="col-sm-1">Address</dt>
                     <dd class="col-sm-11"><address>
-                        32-G978A, The Stata Center<br/>
+                        32-G982, The Stata Center<br/>
                         32 Vassar Street<br/>
                         Cambridge, MA, 02139, USA
                     </address></dd>
@@ -49,9 +59,9 @@
                  <div class="card-body">
                  <h3 class="card-title">About Me</h3> -->
             <h3>About Me</h3>
-		 <p>I am a fifth year PhD student at the <a href="http://nms.csail.mit.edu">Networks and Mobile Systems group</a> at CSAIL, MIT. I work with Profs. Hari Balakrishnan and Momammad Alizadeh. Previously I did my undergrad from IIT Guwahati. I have worked on:</p>
+		 <p>I am a sixth year PhD student at CSAIL, MIT. I am on the faculty and industry research job market! I work with Profs. Hari Balakrishnan and Momammad Alizadeh. I did my undergrad from IIT Guwahati. I have worked on:</p>
 		 <ul>
-		   <li> Congestion control (CC) for the wide internet. I seek simplicity and formalism in CC designs. Our protocol Copa (NSDI'18), is currently being used in production at Facebook. We created a framework (CCAC) for formally verifying congestion control behavior (SIGCOMM'21). We used this framework to prove a surprising impossibility result in congestion control (SIGCOMM'22).</li>
+		   <li> Congestion control (CC) for the wide internet. I seek simplicity and formalism in CC designs. Our protocol Copa (NSDI'18), is currently being used in production at Facebook. Next, we created a framework (CCAC) for formally verifying congestion control behavior (SIGCOMM'21). We used this framework to prove a surprising impossibility result in congestion control (SIGCOMM'22).</li>
 		   <li> Verifying the performance of heuristics other than congestion control using ideas we developed in CCAC.</li>
 		   <li> RFocus (NSDI'20), a system we designed that makes it practical to have single communication links use thousands of antennas by moving beamforming functions from the endpoints to the environment. Each "antenna" here is passive and emits no power of its own. Their simplicity enables the scale.</li>
 		 </ul>
@@ -70,9 +80,15 @@
 
 	    <div class="card">
                 <div class="card-body">
+		    <b style="color:#D01919;">Best Student Paper Award</b>
                     <h5 class="card-title">Starvation in End-to-End Congestion Control</h5>
                     <h6 class="card-subtitle mb-2 text-muted"><b>Venkat Arun</b>, Mohammad Alizadeh, Hari Balakrishnan</h6>
-                    <div class="card-subtitle text-muted"><a href="https://conferences.sigcomm.org/sigcomm/2022/">To appear in ACM SIGCOMM'22</a></div>
+                    <div class="card-subtitle text-muted"><a href="https://conferences.sigcomm.org/sigcomm/2022/">ACM SIGCOMM'22</a></div>
+		    <a href="http://people.csail.mit.edu/venkatar/cc-starvation.pdf"><span class="badge badge-secondary">Paper PDF</span></a>
+		    <a href="https://mitprod-my.sharepoint.com/:p:/g/personal/venkatar_mit_edu/EeYvMC_IBwpHomFnX5ASauwB5fjsOIJsRJe4E2HJTVUuzA?e=cfG2wv"><span class="badge badge-secondary">Slides</span></a>
+		    <a href="https://www.youtube.com/watch?v=XXozY3W_u4s"><span class="badge badge-secondary">Talk Video</span></a>
+		    <a href="https://spectrum.ieee.org/internet-congestion-control"><span class="badge badge-secondary">IEEE Spectrum Article</span></a>
+		    <a href="https://news.mit.edu/2022/algorithm-computer-network-bandwidth-0804"><span class="badge badge-secondary">MIT News Article</span></a>
                     <details>
                         <summary>Show Abstract</summary>
                         <p>To overcome weaknesses in traditional loss-based congestion control algorithms (CCAs), over the last ten years researchers have developed and deployed several delay-bounding CCAs that achieve high utilization without bloating delays (e.g., BBR, PCC, Copa). All these CCAs converge to a small delay range in equilibrium when run on a path with a fixed bottleneck rate, achieving high utilization. This paper proves a surprising result: although designed to be cooperative and achieve reasonable fairness, current methods to develop delay-bounding CCAs cannot avoid starvation, an extreme form of unfairness. Starvation occurs when the CCA runs on paths where non-congestive network delay variations due to real-world factors such as ACK aggregation and end-host scheduling exceed double the delay range that the CCA converges to in equilibrium. In addition to proving this result, we use insights from our proof to show empirical scenarios where two flows obtain throughputs that differ by 10&times; for BBR, PCC Vivace, and Copa. We discuss the implications of this result and posit that to avoid starvation an efficient delay-bounding CCA should design for a certain amount of non-congestive jitter and ensure that its equilibrium delay oscillations are at least one-half of this jitter.</p>
