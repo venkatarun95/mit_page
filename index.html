@@ -147,7 +147,7 @@
                     <div class="card-subtitle text-muted"><a href="https://www.usenix.org/conference/nsdi18/">USENIX NSDI'18</a></div>
                     <a href="copa.pdf"><span class="badge badge-secondary">Paper PDF</span></a>
                     <a href="https://web.mit.edu/copa/"><span class="badge badge-secondary">Project Page</span></a>
-                    <a href="https://www.youtube.com/watch?v=FDAzVFmuVUY"><span class="badge badge-secondary">Talk</span></a>
+                    <a href="https://www.youtube.com/watch?v=FDAzVFmuVUY"><span class="badge badge-secondary">Talk Video</span></a>
                     <a href="https://www.usenix.org/sites/default/files/conference/protected-files/nsdi18_slides_arun.pdf"><span class="badge badge-secondary">Slides</span></a>
                     <details>
                         <summary>Show Abstract</summary>
@@ -164,7 +164,7 @@
                     <div class="card-subtitle text-muted"><a href="https://www.usenix.org/conference/nsdi20">USENIX NSDI'20</a></div>
                     <a href="https://www.usenix.org/system/files/nsdi20-paper-arun.pdf"><span class="badge badge-secondary">Paper PDF</span></a>
                     <a href="rfocus.html"><span class="badge badge-secondary">Project Page</span></a>
-                    <a href="https://www.youtube.com/watch?v=BV0vITB54H0"><span class="badge badge-secondary">Talk</span></a>
+                    <a href="https://www.youtube.com/watch?v=BV0vITB54H0"><span class="badge badge-secondary">Talk Video</span></a>
 		    <a href="rfocus-slides.pptx"><span class="badge badge-secondary">Slides</span></a>
                     <details>
                         <summary>Show Abstract</summary>
@@ -227,10 +227,28 @@
 
 	    <div class="card">
                 <div class="card-body">
+                    <h5 class="card-title">Automating Network Heuristic Design and Analysis</h5>
+                    <h6 class="card-subtitle mb-2 text-muted">Anup Agarwal, <b>Venkat Arun</b>, Devdeep Ray, Ruben Martins, Srini Seshan</h6>
+		    <div class="card-subtitle text-muted"><a href="https://conferences.sigcomm.org/hotnets/2022/">ACM SIGCOMM HotNets'22</a></div>
+                    <a href="https://conferences.sigcomm.org/hotnets/2022/papers/hotnets22_agarwal.pdf"><span class="badge badge-secondary">Paper PDF</span></a>
+		    <a href="https://www.youtube.com/watch?v=TRn7usW78ow"><span class="badge badge-secondary">Talk Video</span></a>
+                    <details>
+                      <summary>Show Abstract</summary>
+                        <p>Heuristics are ubiquitous in computer systems. Examples include congestion control, adaptive bit rate streaming, schedul-
+ing, load balancing, and caching. In some domains, theoretical proofs have provided clarity on the conditions where a heuristic is guaranteed to work well. This has not been possible in all domains because proving such guarantees can involve combinatorial reasoning making it hard, cumbersome and
+error-prone. In this paper we argue that computers should help humans with the combinatorial part of reasoning. We model reasoning questions as &exist;&forall; formulas and solve them using the counterexample guided inductive synthesis (CEGIS) framework. As preliminary evidence, we prototype CCmatic, a tool that semi-automatically synthesizes congestion control algorithms that are provably robust. It rediscovered a recent congestion control algorithm that provably achieves high utilization and bounded delay under a challenging network model. It also found previously unknown variants of the algorithm that achieve different throughput-delay trade-offs.</p>
+                    </details>
+                </div>
+            </div>
+	    
+	    <div class="card">
+                <div class="card-body">
                     <h5 class="card-title">Privid: Practical, Privacy-Preserving Video Analytics Queries</h5>
                     <h6 class="card-subtitle mb-2 text-muted">Frank Cangialosi, Neil Agarwal, <b>Venkat Arun</b>, Junchen Jiang, Srinivas Narayana, Anand Sarwate, Ravi Netravali</h6>
 		    <div class="card-subtitle text-muted"><a href="https://www.usenix.org/conference/nsdi22">USENIX NSDI'22</a></div>
                     <a href="https://arxiv.org/pdf/2106.12083.pdf"><span class="badge badge-secondary">Paper PDF</span></a>
+		    <a href="https://youtu.be/Sg9GmZPDXJQ"><span class="badge badge-secondary">Talk Video</span></a>
+		    <a href="https://news.mit.edu/2022/privid-security-tool-guarantees-privacy-surveillance-footage-0328"><span class="badge badge-secondary">MIT News</span></a>
                     <details>
                       <summary>Show Abstract</summary>
 		      <p>Analytics on video recorded by cameras in public areas have the potential to fuel many exciting applications, but also pose the risk of intruding on individuals' privacy. Unfortunately, existing solutions fail to practically resolve this tension between utility and privacy, relying on perfect detection of all private information in each video frame--an elusive requirement. This paper presents: (1) a new notion of differential privacy (DP) for video analytics, (&#x03C1, K, &#x03B5)-event-duration privacy, which protects all private information visible for less than a particular duration, rather than relying on perfect detections of that information, and (2) a practical system called Privid that enforces duration-based privacy even with the (untrusted) analyst-provided deep neural networks that are commonplace for video analytics today. Across a variety of videos and queries, we show that Privid achieves accuracies within 79-99% of a non-private system.</p>
@@ -246,11 +264,35 @@
                     <a href="https://people.csail.mit.edu/arjunvb/pubs/mobius-mobisys21-paper.pdf"><span class="badge badge-secondary">Paper PDF</span></a>
 		    <a href="https://arxiv.org/pdf/2105.11999.pdf"><span class="badge badge-secondary">Extended Version</span></a>
 		    <a href="http://mobius.csail.mit.edu"><span class="badge badge-secondary">Project Page</span></a>
-		    <a href="https://www.youtube.com/watch?v=2Sntdpk_0xg"><span class="badge badge-secondary">Talk</span></a>
+		    <a href="https://www.youtube.com/watch?v=2Sntdpk_0xg"><span class="badge badge-secondary">Talk Video</span></a>
                     <details>
                         <summary>Show Abstract</summary>
                         <p>This paper studies the problem of allocating tasks from differentcustomers to vehicles in mobility platforms, which are used for ap-plications like food and package delivery, ridesharing, and mobile sensing. A mobility platform should allocate tasks to vehicles and schedule them in order to optimize both throughput and fairness across customers. However, existing approaches to scheduling tasks in mobility platforms ignore fairness.</p>
 			<p>We introduce Mobius, a system that uses guided optimization to achieve both high throughput and fairness across customers. Mobius supports spatiotemporally diverse and dynamic customer demands. It provides a principled method to navigate inherent tradeoffs between fairness and throughput caused by shared mobility. Our evaluation demonstrates these properties, along with the versatility and scalability of Mobius, using traces gathered from ridesharing and aerial sensing applications. Our ridesharing case study shows that Mobius can schedule more than 16,000 tasks across 40 customers and 200 vehicles in an online manner.</p>
+                    </details>
+                </div>
+            </div>
+	    <div class="card">
+                <div class="card-body">
+                    <h5 class="card-title">Enabling High Quality Real-Time Communications with Adaptive Frame-Rate</h5>
+                    <h6 class="card-subtitle mb-2 text-muted">Zili Meng, Tingfeng Wang, Yixin Shen, Bo Wang, Mingwei Xu, Rui Han, Honghao Liu, <b>Venkat Arun</b>, Hongxin Hu, Xue Wei</h6>
+                    <div class="card-subtitle text-muted"><a href="https://www.usenix.org/conference/nsdi23">USENIX NSDI'23</a></div>
+                    <details>
+                        <summary>Show Abstract</summary>
+                        <p>Emerging high quality real-time communication (RTC) applications stream ultra-high-definition (UHD) videos with high frame rate (HFR). They use edge computing, which enables high bandwidth and low latency streaming. Our measurements, from the cloud gaming platform of one of the largest gaming companies, show that, in this setting, the client-side decoder is often the cause for high latency that hurts user's experience. We therefore propose an Adaptive Frame Rate (AFR) controller that helps achieve ultra-low latency by coordinating the frame rate with network fluctuation and decoder capacity. AFR's design addresses two key challenges: (1) queue measurements do not provide timely feedback for the control loop and (2) multiple factors control the decoder queue, and different actions must be taken depending on why the queue accumulates. Trace-driven simulations and large-scale deployments in the wild demonstrate that AFR can reduce the tail queuing delay by up to 7.4× and the stuttering events measured by end-to-end delay by 34% on average. AFR has been deployed in production in our cloud gaming service for over one year.</p>
+                    </details>
+                </div>
+            </div>
+	    <div class="card">
+                <div class="card-body">
+                    <h5 class="card-title">The Case for an Internet Primitive for Fault Localization</h5>
+                    <h6 class="card-subtitle mb-2 text-muted">Will Sussman, Emily Marx, <b>Venkat Arun</b>, Akshay Narayan, Mohammad Alizadeh, Hari Balakrishnan, Aurojit Panda, Scott Shenker</h6>
+                    <div class="card-subtitle text-muted"><a href="https://www.usenix.org/conference/nsdi23">USENIX NSDI'23</a></div>
+		    <a href="https://conferences.sigcomm.org/hotnets/2022/papers/hotnets22_sussman.pdf"><span class="badge badge-secondary">Paper PDF</span></a>
+		    <a href="https://www.youtube.com/watch?v=Mcpbtn-1HBU"><span class="badge badge-secondary">Talk Video</span></a>
+                    <details>
+                        <summary>Show Abstract</summary>
+                        <p>Modern distributed applications run across numerous microservices and components deployed in cloud datacenters, using shared cloud services for computing and storage, edge services such as content distribution networks, network functions such as rate limiters and firewalls, security infrastructures, network routers, and physical links. When a user-visible fault occurs, the first step toward diagnosis is localization to determine where the fault has occurred. However, because application delivery spans different layers and different organizations, no entity has complete visibility or access to the information required to localize faults quickly. This paper proposes a cross-layer, cross-domain, and cross-application fault localization primitive with a simple and standardized information interface for the Internet.</p>
                     </details>
                 </div>
             </div>
