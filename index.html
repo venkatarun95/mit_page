@@ -32,8 +32,11 @@
 
     <body style="background-color: #bf5700">
       <div class="container" style="background-color: #fff">
-        <div class="row" style="padding-top: 30px">
-            <div class="col-md-8">
+        <div class="row" style="padding-top: 30px; background-color: #bf570030">
+            <div class="col-md-3">
+                <img class="rounded-circle" src="venkat_pic_2023.jpg" alt="Photo" width="180px" height="240px">
+            </div>
+            <div class="col-md-9">
               <h1>Venkat Arun</h1>
 	      <p>Assistant Professor<br/>
 	      Computer Science, UT Austin</p>
@@ -55,9 +58,6 @@
                         32 Vassar Street<br/>
                         Cambridge, MA, 02139, USA
                     </address></dd>-->
-            </div>
-            <div class="col-md-4">
-                <img class="rounded-circle" src="venkat_pic_2023.jpg" alt="Photo" width="180px" height="240px">
             </div>
         </div>
         <br/>
@@ -82,11 +82,12 @@
                <div class="card-body">
                <h3 class="card-title">About Me</h3> -->
                <h3>About Me</h3>
-	       <p> I am developing <I>performance verification</I>, a set of mathematical and automated tools to design networked systems that perform reliably. Today, we build systems with hundreds of heuristic control algorithms whose emergent behaviors we do not fully understand. These algorithms provision compute resources, choose network routes, allocate bandwidth and storage resources, schedule tasks etc. These tasks are central to the performance and reliability of networked systems, making it crucual for the algorithms to make correct decisions. Designing such algorithms is hard because they operate in the face of incomplete information, uncertainty about the future and constraints on decision-making latency. Thus, a lot of effort goes into their design, based largely on empirical trial-and-error. Today, we lack principled ways to reason about their performance. Performance verification seeks to address this gap. </p>
+	       <p> I am developing <I>Performance Verification</I>, a set of mathematical and automated tools to design networked systems that perform reliably [<abbr title="Toward formally verifying congestion control behavior. Venkat Arun, Mina T. Arashloo, Ahmed Saeed, Mohammad Alizadeh, Hari Balakrishnan. In ACM SIGCOMM 2021.">CCAC</abbr>, <abbr title="Starvation in end-to-end congestion control. Venkat Arun, Mohammad Alizadeh, Hari Balakrishnan. In ACM SIGCOMM 2023.">Starvation</abbr>, <abbr title="Automating network heuristic design and analysis. Anup Agarwal, Venkat Arun, Devdeep Ray, Ruben Martins, Srinivasan Seshan. In ACM SIGCOMM HotNets 2022">CCMatic</abbr>, <abbr title="Quantitative Verification of Scheduling Heuristics. Saksham Goel, Ben Mikek, Jehad Aly, Venkat Arun, Ahmed Saeed, Aditya Akella. In Arxiv 2301.04205">Verilay</abbr>]. Today, we build systems with hundreds of heuristic control algorithms whose emergent behaviors we do not fully understand. These algorithms provision compute resources, choose network routes, allocate bandwidth and storage resources, schedule tasks etc. These tasks are central to the performance and reliability of networked systems, making it crucual for the algorithms to make correct decisions. Designing such algorithms is hard because they operate in the face of incomplete information, uncertainty about the future and constraints on decision-making latency. Thus, a lot of effort goes into their design, based largely on empirical trial-and-error. Today, we lack principled ways to reason about their performance. Performance Verification seeks to address this gap. </p>
 	       <!--<p> In the past, I have worked on internet congestion control, video streaming, privacy-preserving computation, wireless networks, and mobile systems. Across these areas, a unifying theme of my work is to bridge between heuristics that systems use in practice and proofs of how well they work. I have shown that current heuristics fail to provide performance guarantees, and I have used proofs to design more robust systems. My principal contribution is a set of tools and techniques to prove performance properties of real-world heuristics running in real-world conditions.</p>-->
-	       <p>These methods have sparked interest among researchers, with groups from CMU, UT Austin, Georgia Tech, MIT, Microsoft Research, and Waterloo all working on related projects. I am collaborating with several of them. It has also impacted industrial practice. For instance, we proposed a modification to BBR, a widely deployed CCA developed by Google. Facebook uses this modification for a vast majority of their user-facing traffic. In addition, for live video uploads, Facebook uses my algorithm, Copa.</p>
-	       <p>In addition to performance verification, I am broadly interested in networked systems. In the past, I have worked on  internet congestion control, video streaming, privacy-preserving computation, wireless networks, and mobile systems. For instance, one line of my work examines the new applications enabled by having thousands of radio-frequency antennas, made inexpensive through meta-surfaces. RFocus is such a surface that improves the signal strength between a pair of endpoints by 10&times;. To our knowledge, it is the largest published number of antennas ever used for a single communication link.</p>
-	       <p>I did my PhD at MIT with Hari Balakrishnan and Momammad Alizadeh. I did my undergrad from IIT Guwahati.</p>
+	       <p>These methods have sparked interest among researchers, with groups from CMU, UT Austin, Georgia Tech, MIT, Microsoft Research, and Waterloo all working on related projects. I am collaborating with several of them. It has also impacted industrial practice. For instance, we proposed a modification to BBR [<abbr title="Toward formally verifying congestion control behavior. Venkat Arun, Mina T. Arashloo, Ahmed Saeed, Mohammad Alizadeh, Hari Balakrishnan. In ACM SIGCOMM 2021.">CCAC</abbr>], a widely deployed CCA developed by Google. Facebook uses this modification for a vast majority of their user-facing traffic. In addition, for live video uploads, Facebook uses my algorithm, <abbr title="Copa: practical delay-based congestion control for the internet. Venkat Arun, Hari Balakrishnan. In NSDI 2018.">Copa</abbr>.</p>
+	       <p>In addition to Performance Verification, I am broadly interested in networked systems. In the past, I have worked on  internet congestion control, video streaming, privacy-preserving computation, wireless networks, and mobile systems. For instance, one line of my work examines the new applications enabled by having thousands of radio-frequency antennas, made inexpensive through meta-surfaces. <abbr title="RFocus: Beamforming with thousands of inexpensive antennas. Venkat Arun, Hari Balakrishnan. In NSDI 2020">RFocus</abbr> is such a surface that improves the signal strength between a pair of endpoints by 10&times;. To our knowledge, it is the largest published number of antennas ever used for a single communication link.</p>
+	       <p><b>I am hiring PhD students this cycle.</b></p>
+	       <p>I finished my PhD at MIT in 2023 with Hari Balakrishnan and Momammad Alizadeh, and my undergrad at IIT Guwahati in 2017.</p>
 
 	  <!--<ul>
 	    <li> Congestion control (CC) for the wide internet. I seek simplicity and formalism in CC designs. Our protocol Copa (NSDI'18), is currently being used in production at Facebook. Next, we created a framework (CCAC) for formally verifying congestion control behavior (SIGCOMM'21). We used this framework to prove a surprising impossibility result in congestion control (SIGCOMM'22).</li>
@@ -96,6 +97,32 @@
 
             <br/>
 
+	    <h3>Teaching</h3>
+	    I am developing a <a href="performance_analysis_of_networked_systems.html">seminar course (CS 395T)</a> on the role that theoretical performance analysis has had in informing the design of real-world systems. Here is my planned teaching schedule:
+	    <ul>
+	      <li> Spring 2024: <a href="performance_analysis_of_networked_systems.html">Performance Analysis of Networked Systems (CS 395T)</a></li>
+	      <li> Fall 2024: Computer Networks (CS 356) - Introduction to computer networking</li>
+	      <li> Spring 2025: <a href="performance_analysis_of_networked_systems.html">Performance Analysis of Networked Systems (CS 395T)</a></li>
+	    </ul>
+	    
+	    <br/>
+
+	    <h3>Awards and Honors</h3>
+	    <ul>
+	      <li>Marconi Society Young Scholar Award 2023 </li>
+	      <li>ACM SIGCOMM best paper awards for:
+		<ul>
+		  <li> 2022: "Starvation in end-to-end congestion control". Venkat Arun, Mohammad Alizadeh, Hari Balakrishnan</li>
+		  <li> 2017: "Language-Directed Hardware Design for Network Performance Monitoring". Srinivas Narayana, Anirudh Sivaraman, Vikram Nathan, Prateesh Goyal, Venkat Arun, Mohammad Alizadeh, Vi-
+		    malkumar Jeyakumar, and Changhoon Kim</li>
+		</ul>
+	      <li>Jacobs Presidential Fellowship, 2017</li>
+	      <li>President of India Gold Medal (IIT Guwahati), 2017</li>
+	      <li>KVPY Government of India Scholarship, 2013</li>
+	    </ul>
+
+	    <br/>
+	    
             <h3>Publications</h3>
 
 	    <div class="card">
@@ -305,9 +332,20 @@ error-prone. In this paper we argue that computers should help humans with the c
                 </div>
             </div>
 
+	    <br/>	    
+    
+	    <h3>Service</h3>
+	    <ul>
+	      <li>ACM SIGCOMM 2024 program committee member</li>
+	      <li>USENIX ATC 2024 light program committee member</li>
+	      <li>Applied Networking Research Prize (ANRP) 2024 award committee member</li>
+	      <li>ACM SIGCOMM HotNets 2023 publication chair</li>
+	    </ul>
+	    
+            <br/>
+	</div>	       
         </div>
-        </div>
-        <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+        <script src="https://code.jquery.com/jquery-3.7.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.3/js/bootstrap.min.js" integrity="sha384-a5N7Y/aK3qNeh15eJKGWxsqtnX/wWdSZSKp+81YjTmS15nvnvxKHuzaWwXHDli+4" crossorigin="anonymous"></script>
     </body>
