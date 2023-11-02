@@ -30,41 +30,34 @@
         <title>Venkat Arun</title>
     </head>
 
-    <body>
-      <div class="container">
-        <div class="row">
-            <div class="col-md-auto">
-                <img class="rounded-circle" src="venkat_pic_2023.jpg" alt="Photo" width="120px" height="160px">
-            </div>
-            <div class="col-md-auto">
-                <dl class="row" style="display: inline-block;">
-                  <dt class="col-sm-1"></dt>
-		  <!-- For Google profile verification -->
-                    <dd class="col-sm-11"><h1>Venkat Arun</h1></dd>
-
-                    <dt class="col-sm-1">Email</dt>
-                    <dd class="col-sm-11"><tt>venkatar@mit.edu</tt></dd>
-
-		  <dt class="col-sm-1">Links</dt>
-		  <!--<dd class="col-sm-11">-->
-	          <dd class="col-sm-11">
-		    <div style="padding:10px">
-		      <a href="https://scholar.google.com/citations?user=2L4RkXMAAAAJ&hl=en"><img src="google-scholar-logo.svg" alt="Google Scholar" width="32" height="32"></a>
-		      <a href="https://venkatarun.wordpress.com"><img src="blog-icon.svg" alt="Blog" width="32" height="32"></a>
-		      <a href="https://github.com/venkatarun95"><img src="github-logo.svg" alt="GitHub" width="32" height="32"></a>
-		      <a href="https://twitter.com/VenkatArun95"><img src="twitter-logo.svg" alt="Twitter" width="32" height="32"></a>
-		      <a href="https://www.linkedin.com/in/venkat-arun-11a9047b/"><img src="linkedin-logo.svg" alt="LinkedIn" width="32" height="32"></a>
-		    </div>
-		  </dd>
-		  <dd class="col-sm-11" style="text-align: center;"><a href="thesis.pdf"><span class="badge badge-primary" style="font-size:16px;">Thesis PDF</span></a></dd>
-		  
+    <body style="background-color: #bf5700">
+      <div class="container" style="background-color: #fff">
+        <div class="row" style="padding-top: 30px">
+            <div class="col-md-8">
+              <h1>Venkat Arun</h1>
+	      <p>Assistant Professor<br/>
+	      Computer Science, UT Austin</p>
+	      <p>Email: <tt>venkat@utexas.edu</tt></p>
+	      <p>Address: GDC 6.726, UT Austin</p>
+		
+	      <p><div style="padding:10px">
+		  <a href="cv.pdf" data-bs-toggle="tooltip" data-bs-html="true" title="CV"><img src="cv-icon.png" alt="CV" width="32" height="32"></a>
+		  <a href="https://scholar.google.com/citations?user=2L4RkXMAAAAJ&hl=en" data-bs-toggle="tooltip" data-bs-html="true" title="Publication List"><img src="google-scholar-logo.svg" alt="Google Scholar" width="32" height="32"></a>
+		  <a href="https://venkatarun.wordpress.com" data-bs-toggle="tooltip" data-bs-html="true" title="Blog"><img src="blog-icon.svg" alt="Blog" width="32" height="32"></a>
+		  <a href="https://github.com/venkatarun95" data-bs-toggle="tooltip" data-bs-html="true" title="Github"><img src="github-logo.svg" alt="GitHub" width="32" height="32"></a>
+		  <a href="https://twitter.com/VenkatArun95" data-bs-toggle="tooltip" data-bs-html="true" title="Twitter"><img src="twitter-logo.svg" alt="Twitter" width="32" height="32"></a>
+		  <a href="https://www.linkedin.com/in/venkat-arun-11a9047b/" data-bs-toggle="tooltip" data-bs-html="true" title="LinkedIn"><img src="linkedin-logo.svg" alt="LinkedIn" width="32" height="32"></a>
+		</div>
+	      </p>
                     <!--<dt class="col-sm-1">Address</dt>
                     <dd class="col-sm-11"><address>
                         32-G982, The Stata Center<br/>
                         32 Vassar Street<br/>
                         Cambridge, MA, 02139, USA
                     </address></dd>-->
-                </dl>
+            </div>
+            <div class="col-md-4">
+                <img class="rounded-circle" src="venkat_pic_2023.jpg" alt="Photo" width="180px" height="240px">
             </div>
         </div>
         <br/>
@@ -89,10 +82,11 @@
                <div class="card-body">
                <h3 class="card-title">About Me</h3> -->
                <h3>About Me</h3>
-	       <p> I am now an assistant professor at UT Austin.</p>
-	       <p> During my PhD, my work spanned internet congestion control, video streaming, privacy-preserving computation, wireless networks, and mobile systems. Across these areas, a unifying theme of my work is to bridge between heuristics that systems use in practice and proofs of how well they work. I have shown that current heuristics fail to provide performance guarantees, and I have used proofs to design more robust systems. My principal contribution is a set of tools and techniques to prove performance properties of real-world heuristics running in real-world conditions.</p>
-	       <p>The methods I developed to prove performance properties of network algorithms and protocols have sparked interest among researchers, with groups from CMU, UT Austin, Georgia Tech, MIT, Microsoft Research, and Waterloo all working on related projects. I am collaborating with several of them. It has also impacted industrial practice. For instance, the CCAC paper proposed a modification to BBR, a widely deployed CCA developed by Google. Facebook uses this modification for a vast majority of their user-facing traffic. In addition, for live video uploads, Facebook uses Copa.</p>
-	       <p>I am a sixth year PhD candidate at CSAIL, MIT working with Hari Balakrishnan and Momammad Alizadeh. I did my undergrad from IIT Guwahati.</p>
+	       <p> I am developing <I>performance verification</I>, a set of mathematical and automated tools to design networked systems that perform reliably. Today, we build systems with hundreds of heuristic control algorithms whose emergent behaviors we do not fully understand. These algorithms provision compute resources, choose network routes, allocate bandwidth and storage resources, schedule tasks etc. These tasks are central to the performance and reliability of networked systems, making it crucual for the algorithms to make correct decisions. Designing such algorithms is hard because they operate in the face of incomplete information, uncertainty about the future and constraints on decision-making latency. Thus, a lot of effort goes into their design, based largely on empirical trial-and-error. Today, we lack principled ways to reason about their performance. Performance verification seeks to address this gap. </p>
+	       <!--<p> In the past, I have worked on internet congestion control, video streaming, privacy-preserving computation, wireless networks, and mobile systems. Across these areas, a unifying theme of my work is to bridge between heuristics that systems use in practice and proofs of how well they work. I have shown that current heuristics fail to provide performance guarantees, and I have used proofs to design more robust systems. My principal contribution is a set of tools and techniques to prove performance properties of real-world heuristics running in real-world conditions.</p>-->
+	       <p>These methods have sparked interest among researchers, with groups from CMU, UT Austin, Georgia Tech, MIT, Microsoft Research, and Waterloo all working on related projects. I am collaborating with several of them. It has also impacted industrial practice. For instance, we proposed a modification to BBR, a widely deployed CCA developed by Google. Facebook uses this modification for a vast majority of their user-facing traffic. In addition, for live video uploads, Facebook uses my algorithm, Copa.</p>
+	       <p>In addition to performance verification, I am broadly interested in networked systems. In the past, I have worked on  internet congestion control, video streaming, privacy-preserving computation, wireless networks, and mobile systems. For instance, one line of my work examines the new applications enabled by having thousands of radio-frequency antennas, made inexpensive through meta-surfaces. RFocus is such a surface that improves the signal strength between a pair of endpoints by 10&times;. To our knowledge, it is the largest published number of antennas ever used for a single communication link.</p>
+	       <p>I did my PhD at MIT with Hari Balakrishnan and Momammad Alizadeh. I did my undergrad from IIT Guwahati.</p>
 
 	  <!--<ul>
 	    <li> Congestion control (CC) for the wide internet. I seek simplicity and formalism in CC designs. Our protocol Copa (NSDI'18), is currently being used in production at Facebook. Next, we created a framework (CCAC) for formally verifying congestion control behavior (SIGCOMM'21). We used this framework to prove a surprising impossibility result in congestion control (SIGCOMM'22).</li>
@@ -310,7 +304,7 @@ error-prone. In this paper we argue that computers should help humans with the c
                     </details>
                 </div>
             </div>
-	    <p><a href="http://accessibility.mit.edu">Accessibility</a></p>
+
         </div>
         </div>
         <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
