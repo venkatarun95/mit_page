@@ -1,0 +1,6 @@
+--2023-11-09 10:40:49--  https://www.hpl.hp.com/techreports/Compaq-DEC/SRC-TN-1998-002.pdf
+Resolving www.hpl.hp.com (www.hpl.hp.com)... 15.73.144.188
+Connecting to www.hpl.hp.com (www.hpl.hp.com)|15.73.144.188|:443... connected.
+ERROR: cannot verify www.hpl.hp.com's certificate, issued by ‘CN=DigiCert Global G2 TLS RSA SHA256 2020 CA1,O=DigiCert Inc,C=US’:
+  Unable to locally verify the issuer's authority.
+To connect to www.hpl.hp.com insecurely, use `--no-check-certificate'.

@@ -1,0 +1,14 @@
+--2023-11-09 10:50:07--  http://tiny-tera.stanford.edu/~nickm/papers/HotNetsIII.pdf
+Resolving tiny-tera.stanford.edu (tiny-tera.stanford.edu)... 171.64.74.58
+Connecting to tiny-tera.stanford.edu (tiny-tera.stanford.edu)|171.64.74.58|:80... connected.
+HTTP request sent, awaiting response... 200 OK
+Length: 180600 (176K) [application/pdf]
+Saving to: ‘HotNetsIII.pdf’
+
+     0K .......... .......... .......... .......... .......... 28%  583K 0s
+    50K .......... .......... .......... .......... .......... 56% 1.13M 0s
+   100K .......... .......... .......... .......... .......... 85%  158M 0s
+   150K .......... .......... ......                          100%  125M=0.1s
+
+2023-11-09 10:50:08 (1.33 MB/s) - ‘HotNetsIII.pdf’ saved [180600/180600]
+
