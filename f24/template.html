@@ -42,27 +42,11 @@
 	    </button>
 	    <div class="collapse navbar-collapse" id="navbarSupportedContent">
 	      <ul class="navbar-nav mr-auto">
-		
-		<li class="nav-item  active ">
-		  <a class="nav-link" aria-current="page" href="index.html">Home</a>
+		{% for item in navigation %}
+		<li class="nav-item {% if item.active %} active {% endif %}">
+		  <a class="nav-link" aria-current="page" href="{{item.url}}">{{item.name}}</a>
 		</li>
-		
-		<li class="nav-item ">
-		  <a class="nav-link" aria-current="page" href="schedule.html">Schedule</a>
-		</li>
-		
-		<li class="nav-item ">
-		  <a class="nav-link" aria-current="page" href="asignments.html">Assignments</a>
-		</li>
-		
-		<li class="nav-item ">
-		  <a class="nav-link" aria-current="page" href="https://edstem.org/us/courses/62463">Ed Discussion</a>
-		</li>
-		
-		<li class="nav-item ">
-		  <a class="nav-link" aria-current="page" href="https://utexas.instructure.com/courses/1401747">Canvas</a>
-		</li>
-		
+		{% endfor %}
 	      </ul>
 	    </div>
 	  </div>
@@ -70,29 +54,7 @@
 
 	<br/><br/>
 	
-		<h3>About</h3>
-	This is an introductory course in computer networks that is suitable for undergraduate and beginning graduate students. The course will cover the foundational ideas, architecture, protocols and software that constitute the internet. It includes a hands-on component to familiarize students with how the internet works today. We expect students to be familiar with programming, algorithms, and basic probability. The course has three goals:
-
-	<ol>
-	  <li>How does the internet work today?</li>
-	  <li>Why has it been designed this way?</li>
-	  <li>How can we use, program and write applications for the internet?</li>
-	</ol>
-
-	We will use the <a href="https://book.systemsapproach.org/">Computer Systems: Systems Approach</a> textbook by Larry Peterson and Bruce Davie
-
-	<h3>Syllabus</h3>
-
-	Design requirements and principles behind the internet, physical and link layer protocols, naming and addressing, routing, transport and application layer protocols, content distribution networks, </h3>
-
-	<h3>Policies</h3>
-	<p>Students will form groups of one or two people for programming assignments.</p>
-
-	<p>All code and results you submit must be the original work of your group. Cheating and plagiarism will not be tolerated and will be dealt with in accordance with the <a href="https://deanofstudents.utexas.edu/conduct/index.php">University of Texas policies and procedures</a>.</p>
-
-	<h3>Academic honesty policy</h3>
-	Assignments wi
-
+	{{ content }}
 
       </div>
     </body>
