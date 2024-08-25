@@ -26,6 +26,9 @@
 	  }
 	</style>
 
+	{% block header %}
+	{% endblock %}
+
         <title>CS 356: Computer Networks Fall 2024</title>
     </head>
 
@@ -54,7 +57,7 @@
 
 	<br/><br/>
 	
-	{{ content }}
+	{% block content %} {% endblock %}
 
       </div>
     </body>
