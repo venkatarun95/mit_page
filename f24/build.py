@@ -50,7 +50,7 @@ def prep_schedule():
     ]
     
     schedule = [
-        {"name": "Introduction", "notes": None},
+        {"name": "Introduction", "notes": "assets/slides/lec1-intro.pdf"},
         {"name": "Overview of the internet", "notes": None},
         {"name": "Naming and addressing", "notes": None},
         {"name": "Physical layer design considerations", "notes": None},

@@ -30,7 +30,7 @@
         <th scope="row">{{ item.number }}</th>
 	<td style="border:none;">{{ item.date }}</td>
 	<td>{{ item.name }}</td>
-	<td>{% if item.notes == none %} -- {% else %} {{ item.notes }} {% endif %}</td>
+	<td>{% if item.notes == none %} -- {% else %} <a href="{{ item.notes }}">slides</a> {% endif %}</td>
       </tr>
     {% endfor %}
   </tbody>
