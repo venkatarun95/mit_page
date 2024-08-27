@@ -27,7 +27,15 @@
 	</style>
 
 	
-	
+<style>
+  td {
+      border: none;
+  }
+  th {
+      border: none;
+  }
+</style>
+
 
         <title>CS 356: Computer Networks Fall 2024</title>
     </head>
@@ -46,7 +54,7 @@
 	    <div class="collapse navbar-collapse" id="navbarSupportedContent">
 	      <ul class="navbar-nav mr-auto">
 		
-		<li class="nav-item  active ">
+		<li class="nav-item ">
 		  <a class="nav-link" aria-current="page" href="index.html">Home</a>
 		</li>
 		
@@ -54,7 +62,7 @@
 		  <a class="nav-link" aria-current="page" href="schedule.html">Schedule</a>
 		</li>
 		
-		<li class="nav-item ">
+		<li class="nav-item  active ">
 		  <a class="nav-link" aria-current="page" href="assignments.html">Assignments</a>
 		</li>
 		
@@ -74,43 +82,57 @@
 	<br/><br/>
 	
 	
+<h3>Assignment Logistics</h3>
 
-<h3>Quick Information</h3>
+<p>Assignments will be performed in groups of one or two. You may use the group finding feature of Canvas to find a partner. The goal for the assignments is to introduce you to tools and concepts commonly used in computer networks. We have tried to make the installation and setup of the environment as minimal and flexible as possible. There are five assignments, all of which require some programming. The assignments expect familiarity with Python programming and the Linux/Unix command line interface. </p>
 
-<p><b>Who?</b> <a href="https://www.cs.utexas.edu/~venkatar/">Venkat Arun</a> (instructor), <a href="https://kyoungjunpark.github.io/">Kyounjun Park</a> (TA) </p>
+<p>You should pick your own group members for your projects, but you may use the Ed discussion to find group members. You can just switch group members between projects, but please check with the instructor and TA first (send us a private message via Ed). Completing a project individually requires the instructor’s prior approval.</p>
 
-<p><b>Where?</b> <a href="https://utdirect.utexas.edu/apps/campus/buildings/nlogon/facilities/utm/cba/">CBA 4.328</a></p>
+<p>Prior experience has shown that students who begin projects shortly after they are assigned are more likely to succeed. You have up to 5 free late days which can be allocated across the assignments per your discretion (any delay beyond the due date and time counts as a late day). After this, we will deduct 50% points for every additional late day.</p>
 
-<p><b>When?</b> Tuesdays and Thursdays from 12:30-2:00 PM</p>
+<p><b>Use of LLMs:</b> You are allowed, and encouraged, to use large language models (LLMs) such as ChatGPT to help with your assignments as a substitute for searching the internet to fix issues. They have become a powerful tool that we should all learn to use effectively. However, it is not acceptable to simply copy paste its outputs for your assignments. Importantly, you are responsible for <i>understanding</i> everything you submit. We may quiz you at our discretion at any time. When in doubt about what constitutes cheating, please reach out to us through Ed Discussion with either a post or as a private message.</p>
 
-<p><b>Pre-requisites:</b> CS 439 (Principles of Computer Systems) or equivalent, programming experience</p>
+<p>All code and results you submit must be the original work of your group. Cheating and plagiarism will not be tolerated and will be dealt with in accordance with the <a href="https://deanofstudents.utexas.edu/conduct/index.php">University of Texas policies and procedures</a>.</p>
 
-<p><b>Final Exam:</b> Thursday, Dec 12, 1-3 PM at  <a href="https://utdirect.utexas.edu/apps/campus/buildings/nlogon/facilities/utm/utc/">UTC 3.122</a></p>
+<h3>The assignments</h3>
 
-<h3>Course Content</h3>
+<table class="table table-hover">
+  <thead>
+    <tr>
+      <th scope="col"></th>
+      <th scope="col">Due Date</th>
+      <th scope="col">Assignment</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>1</th>
+      <td>Fri, Sep 6</td>
+      <td><a href="assets/assignment-intro.pdf">Introduction to network programming</a></td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>TBD</td>
+      <td>Routing</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>TBD</td>
+      <td>Transport layer reliability</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>TBD</td>
+      <td>Congestion collapse and control</td>
+    </tr>
+    <tr>
+      <th>5</th>
+      <td>TBD</td>
+      <td>Secure network communication</td>
+    </tr>
+  </tbody>
+</table>
 
-<p>This is an introductory course in computer networks that is suitable for undergraduate and beginning graduate students. The course will cover the foundational ideas, architecture, protocols and software that constitute the internet. It includes a hands-on component to familiarize students with how the internet works today. We expect students to be familiar with programming, algorithms, and basic probability. The course has three goals:</p>
-
-<ol>
-  <li>How does the internet work today?</li>
-  <li>Why has it been designed this way?</li>
-  <li>How can we use, program and write applications for the internet?</li>
-</ol>
-
-<p>We will use the <a href="https://book.systemsapproach.org/">Computer Systems: Systems Approach</a> textbook by Larry Peterson and Bruce Davie. It is open source and available online.</p>
-
-<p><b>Syllabus:</b> Design requirements and principles behind the internet, physical and link layer protocols, naming and addressing (incl DNS, DHCP), inter- and intra-domain routing, and transport and application layer protocols. Advanced topics: content distribution networks, virtual private networks, overlay networks, methods to tackle the scarcity of addresses, network security</p>
-
-<h3>Grading</h3>
-
-<ul>
-  <li>Programming assignments (45%)</li>
-  <li>Two quizzes (30%)</li>
-  <li>Final exam (30%)</li>
-  <li>Class participation (5%)</li>
-</ul>
-
-<br/>
 <br/>
 
 

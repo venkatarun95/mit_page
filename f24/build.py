@@ -6,7 +6,7 @@ def prep_navigation(active: str):
     navigation = [
         {"name": "Home", "url": "index.html"},
         {"name": "Schedule", "url": "schedule.html"},
-        {"name": "Assignments", "url": "asignments.html"},
+        {"name": "Assignments", "url": "assignments.html"},
         {"name": "Ed Discussion", "url": "https://edstem.org/us/courses/62463"},
         {"name": "Canvas", "url": "https://utexas.instructure.com/courses/1401747"}
     ]
@@ -106,6 +106,10 @@ if __name__ == "__main__":
 
     with open("schedule.html", "w") as schedule_file:
         schedule_template = env.get_template("schedule.html")
-        rendered = schedule_template.render(schedule=prep_schedule(), navigation=prep_navigation("schedule"))
+        rendered = schedule_template.render(schedule=prep_schedule(), navigation=prep_navigation("Schedule"))
         schedule_file.write(rendered)
 
+    with open("assignments.html", "w") as assignments_file:
+        assignments_template = env.get_template("assignments.html")
+        rendered = assignments_template.render(navigation=prep_navigation("Assignments"))
+        assignments_file.write(rendered)
