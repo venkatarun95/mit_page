@@ -51,7 +51,7 @@ def prep_schedule():
     
     schedule = [
         {"name": "Introduction", "notes": "assets/slides/lec1-intro.pdf"},
-        {"name": "Overview of the internet", "notes": None},
+        {"name": "Overview of the internet", "notes": "assets/slides/lec2-architecture.pdf"},
         {"name": "Naming and addressing", "notes": None},
         {"name": "Physical layer design considerations", "notes": None},
         {"name": "Physical layer data encoding and multiplexing", "notes": None},
