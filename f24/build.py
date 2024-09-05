@@ -53,7 +53,7 @@ def prep_schedule():
         {"name": "Introduction", "notes": "assets/slides/lec1-intro.pdf"},
         {"name": "Overview of the internet", "notes": "assets/slides/lec2-architecture.pdf"},
         {"name": "Naming and addressing", "notes": "assets/slides/lec3-names.pdf"},
-        {"name": "Spanning tree routing", "notes": None},
+        {"name": "Spanning tree routing", "notes": "assets/slides/lec4-routing-1.pdf"},
         {"name": "Distance vector and link state routing", "notes": None},
         {"name": "Inter domain routing", "notes": None},
         {"name": "Inter domain routing continued", "notes": None},
