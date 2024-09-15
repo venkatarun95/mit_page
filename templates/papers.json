@@ -1,0 +1,109 @@
+{
+    "ccac": {
+	"title": "Toward formally verifying congestion control behavior",
+	"authors": "Venkat Arun, Mina T. Arashloo, Ahmed Saeed, Mohammad Alizadeh, and Hari Balakrishnan",
+	"short_name": "CCAC",
+	"conf": "ACM SIGCOMM",
+	"year": 2021
+    },
+    "starvation": {
+	"title": "Starvation in end-to-end congestion control",
+	"authors": "Venkat Arun, Mohammad Alizadeh, and Hari Balakrishnan",
+	"short_name": "Starvation",
+	"conf": "ACM SIGCOMM",
+	"year": 2023
+    },    
+    "ccmatic_hotnets": {
+        "title": "Automating network heuristic design and analysis",
+        "authors": "Anup Agarwal, Venkat Arun, Devdeep Ray, Ruben Martins, and Srinivasan Seshan",
+        "short_name": "CCMatic",
+        "conf": "ACM SIGCOMM HotNets",
+        "year": 2022
+    },
+    "ccmatic": {
+        "title": "Towards provably performant congestion control",
+        "authors": "Anup Agarwal, Venkat Arun, Devdeep Ray, Ruben Martins, and Srinivasan Seshan",
+        "short_name": "CCMatic",
+        "conf": "USENIX NSDI",
+        "year": 2024
+    },
+    "hairpin": {
+        "title": "Hairpin: Rethinking packet loss recovery in edge-based interactive video streaming",
+        "authors": "Zili Meng, Xiao Kong, Jing Chen, Bo Wang, Mingwei Xu, Rui Han, Honghao Liu, Venkat Arun, Hongxin Hu, and Xue Wei",
+        "short_name": "hairpin",
+        "conf": "USENIX NSDI",
+        "year": 2024
+    },
+    "marple": {
+        "title": "Language-directed hardware design for network performance monitoring",
+        "authors": "Srinivas Narayana, Anirudh Sivaraman, Vikram Nathan, Prateesh Goyal, Venkat Arun, Mohammad Alizadeh, Vimalkumar Jeyakumar, and Changhoon Kim",
+        "short_name": "Marple",
+        "conf": "ACM SIGCOMM",
+        "year": 2017
+    },
+    "copa": {
+        "title": "Copa: Practical Delay-Based Congestion Control for the Internet",
+        "authors": "Venkat Arun and Hari Balakrishnan",
+        "short_name": "Copa",
+        "conf": "USENIX NSDI",
+        "year": 2018
+    },
+    "sched-verif": {
+        "title": "Quantitative Verification of Scheduling Heuristics",
+        "authors": "Saksham Goel, Benjamin Mikek, Jehad Aly, Venkat Arun, Ahmed Saeed, and Aditya Akella",
+        "short_name": "Verilay",
+        "conf": "Arxiv 2301.04205",
+        "year": 2023,
+        "url": "https://arxiv.org/abs/2301.04205"
+    },
+    "rfocus": {
+        "title": "RFocus: Beamforming Using Thousands of Passive Antennas",
+        "authors": "Venkat Arun and Hari Balakrishnan",
+        "short_name": "RFocus",
+        "conf": "USENIX NSDI",
+        "year": 2020
+    },
+    "privid": {
+        "title": "Privid: Practical, Privacy-Preserving Video Analytics Queries",
+        "authors": "Frank Cangialosi, Neil Agarwal, Venkat Arun, Srinivas Narayana, Anand Sarwate, and Ravi Netravali",
+        "short_name": "Privid",
+        "conf": "USENIX NSDI",
+        "year": 2022
+    },
+    "drones": {
+        "title": "Throughput-fairness tradeoffs in mobility platforms",
+        "authors": "Arjun Balasingam, Karthik Gopalakrishnan, Radhika Mittal, Venkat Arun, Ahmed Saeed, Mohammad Alizadeh, Hamsa Balakrishnan, and Hari Balakrishnan",
+        "short_name": "Drones",
+        "conf": "ACM MobiSys",
+        "year": 2021
+    },
+    "sae": {
+        "title": "Finding safety in numbers with secure allegation escrows",
+        "authors": "Venkat Arun, Aniket Kate, Deepak Garg, Peter Druschel, and Bobby Bhattacharjee",
+        "short_name": "SAE",
+        "conf": "NDSS Symposium",
+        "year": 2020
+    },
+    "wtf": {
+        "title": "The case for an internet primitive for fault localization",
+        "authors": "William Sussman, Emily Marx, Venkat Arun, Akshay Narayan, Mohammad Alizadeh, Hari Balakrishnan, Aurojit Panda, and Scott Shenker",
+        "short_name": "WTF",
+        "conf": "ACM SIGCOMM HotNets",
+        "year": 2022
+    },
+    "afr": {
+        "title": "Enabling High Quality Real-Time Communications with Adaptive Frame-Rate",
+        "authors": "Zili Meng, Tingfeng Wang, Yixin Shen, Bo Wang, Mingwei Xu, Rui Han, Honghao Liu, Venkat Arun, Hongxin Hu, and Xue Wei",
+        "short_name": "AFR",
+        "conf": "USENIX NSDI",
+        "year": 2023
+    },
+    "copafb": {
+        "title": "Evaluating COPA congestion control for improved video performance",
+        "authors": "Nitin Garg",
+        "short_name": "Copa-at-FB",
+        "conf": "Facebook Engineering Blog",
+        "year": 2019,
+        "url": "https://engineering.fb.com/2019/11/17/video-engineering/copa/"
+    }
+}

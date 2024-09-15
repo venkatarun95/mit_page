@@ -1,0 +1,96 @@
+<!doctype html>
+<html lang="en">
+   <head>
+     <meta charset="utf-8">
+     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+     <link rel="icon" type="image/png" href="assets/img/favicon-32x32.png"/>
+
+     <!-- Bootstrap CSS -->
+     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.12.9/dist/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+     <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+     
+     <style>
+       .card-body {
+	   padding: 0.25rem;
+       }
+       .text-muted {
+	   font-weight: 300;
+	   color: #000 !important;
+       }
+
+       .top-icon {
+	   padding: 4px;
+       }
+
+       .navbar-bg {
+	   background-color: #f5f5f5;
+       }
+       .navbar-bg a {
+	   color: #384F63;
+       }
+       .navbar-bg a:hover {
+	   color: #bf5700;
+       } 
+     </style>
+
+     {% block head %} {% endblock %}
+     
+     <title>Venkat Arun</title>
+   </head>
+
+   <body style="background-color: #bf5700">
+     <div class="container" style="background-color: #fff">
+       <div class="row" style="padding-top: 30px;">
+         <div class="col-md-3">
+           <img class="rounded-circle" src="venkat_pic_2023.jpg" alt="Photo" width="180px" height="240px">
+         </div>
+         <div class="col-md-9">
+           <h1>Venkat Arun</h1>
+	   <p>Assistant Professor<br/>
+	     Computer Science, UT Austin</p>
+	   <p>Email: <tt>venkat@utexas.edu</tt></p>
+	   <p>Office: GDC 6.726</p>
+	   
+	   <p><div style="padding:10px">
+	       <a href="cv.pdf" data-bs-toggle="tooltip" data-bs-html="true" title="CV" class="top-icon"><img src="cv-icon.png" alt="CV" width="32" height="32"></a>
+	       <a href="https://scholar.google.com/citations?user=2L4RkXMAAAAJ&hl=en" data-bs-toggle="tooltip" data-bs-html="true" title="Publication List" class="top-icon"><img src="google-scholar-logo.svg" alt="Google Scholar" width="32" height="32"></a>
+	       <a href="https://venkatarun.wordpress.com" data-bs-toggle="tooltip" data-bs-html="true" title="Blog" class="top-icon"><img src="blog-icon.svg" alt="Blog" width="32" height="32"></a>
+	       <a href="https://github.com/venkatarun95" data-bs-toggle="tooltip" data-bs-html="true" title="Github" class="top-icon"><img src="github-logo.svg" alt="GitHub" width="32" height="32"></a>
+	       <a href="https://twitter.com/VenkatArun95" data-bs-toggle="tooltip" data-bs-html="true" title="Twitter" class="top-icon"><img src="twitter-logo.svg" alt="Twitter" width="32" height="32"></a>
+	       <a href="https://www.linkedin.com/in/venkat-arun-11a9047b/" data-bs-toggle="tooltip" data-bs-html="true" title="LinkedIn" class="top-icon"><img src="linkedin-logo.svg" alt="LinkedIn" width="32" height="32"></a>
+	     </div>
+	   </p>
+         </div>
+        </div>
+       <!-- <hr style="border-width: 2px; border-color: #bf570099"/> -->
+
+       <nav class="navbar navbar-expand-lg navbar-bg">
+	 <div class="container-fluid">
+	   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+	     <!--<span class="navbar-toggler-icon"></span>-->
+	     <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-list" viewBox="0 0 16 16">
+	       <path fill-rule="evenodd" d="M2.5 12a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5m0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5m0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5"/>
+	     </svg>
+	   </button>
+	   <div class="collapse navbar-collapse" id="navbarSupportedContent">
+	     <ul class="navbar-nav mr-auto">
+	       {% for item in navigation %}
+	       <li class="nav-item">
+		 {% if item.active %} <b> {% endif %}
+		   <a class="nav-link" aria-current="page" href="{{item.url}}">{{item.name}}</a>
+		 {% if item.active %} </b> {% endif %}
+	       </li>
+	       {% endfor %}
+	     </ul>
+	   </div>
+	 </div>
+       </nav>
+       
+       <br/><br/>
+
+       {% block content %} {% endblock %}
+
+   </body>
+</html>
