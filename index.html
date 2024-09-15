@@ -1,86 +1,158 @@
 <!doctype html>
 <html lang="en">
-    <head>
-      <!-- Global site tag (gtag.js) - Google Analytics -->
-      <script async src="https://www.googletagmanager.com/gtag/js?id=UA-112098198-1"></script>
-      <script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
+   <head>
+     <meta charset="utf-8">
+     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+     <link rel="icon" type="image/png" href="assets/img/favicon-32x32.png"/>
 
-  gtag('config', 'UA-112098198-1');
-      </script>
+     <!-- Bootstrap CSS -->
+     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.12.9/dist/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+     <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+     
+     <style>
+       .card-body {
+	   padding: 0.25rem;
+       }
+       .text-muted {
+	   font-weight: 300;
+	   color: #000 !important;
+       }
 
-        <meta charset="utf-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+       .top-icon {
+	   padding: 4px;
+       }
 
-        <!-- Bootstrap CSS -->
-        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.3/css/bootstrap.min.css" integrity="sha384-Zug+QiDoJOrZ5t4lssLdxGhVrurbmBWopoEl+M6BdEfwnCJZtKxi1KgxUyJq13dy" crossorigin="anonymous">
+       .navbar-bg {
+	   background-color: #f5f5f5;
+       }
+       .navbar-bg a {
+	   color: #384F63;
+       }
+       .navbar-bg a:hover {
+	   color: #bf5700;
+       } 
+     </style>
 
-	<style>
-	  .card-body {
-	      padding: 0.25rem;
-	  }
-	  .text-muted {
-	      font-weight: 300;
-	      color: #000 !important;
-	  }
-	</style>
+      
+     
+     <title>Venkat Arun</title>
+   </head>
 
-        <title>Venkat Arun</title>
-    </head>
-
-    <body style="background-color: #bf5700">
-      <div class="container" style="background-color: #fff">
-        <div class="row" style="padding-top: 30px;">
-            <div class="col-md-3">
-                <img class="rounded-circle" src="venkat_pic_2023.jpg" alt="Photo" width="180px" height="240px">
-            </div>
-            <div class="col-md-9">
-              <h1>Venkat Arun</h1>
-	      <p>Assistant Professor<br/>
-	      Computer Science, UT Austin</p>
-	      <p>Email: <tt>venkat@utexas.edu</tt></p>
-	      <p>Office: GDC 6.726</p>
-		
-	      <p><div style="padding:10px">
-		  <a href="cv.pdf" data-bs-toggle="tooltip" data-bs-html="true" title="CV"><img src="cv-icon.png" alt="CV" width="32" height="32"></a>
-		  <a href="https://scholar.google.com/citations?user=2L4RkXMAAAAJ&hl=en" data-bs-toggle="tooltip" data-bs-html="true" title="Publication List"><img src="google-scholar-logo.svg" alt="Google Scholar" width="32" height="32"></a>
-		  <a href="https://venkatarun.wordpress.com" data-bs-toggle="tooltip" data-bs-html="true" title="Blog"><img src="blog-icon.svg" alt="Blog" width="32" height="32"></a>
-		  <a href="https://github.com/venkatarun95" data-bs-toggle="tooltip" data-bs-html="true" title="Github"><img src="github-logo.svg" alt="GitHub" width="32" height="32"></a>
-		  <a href="https://twitter.com/VenkatArun95" data-bs-toggle="tooltip" data-bs-html="true" title="Twitter"><img src="twitter-logo.svg" alt="Twitter" width="32" height="32"></a>
-		  <a href="https://www.linkedin.com/in/venkat-arun-11a9047b/" data-bs-toggle="tooltip" data-bs-html="true" title="LinkedIn"><img src="linkedin-logo.svg" alt="LinkedIn" width="32" height="32"></a>
-		</div>
-	      </p>
-                    <!--<dt class="col-sm-1">Address</dt>
-                    <dd class="col-sm-11"><address>
-                        32-G982, The Stata Center<br/>
-                        32 Vassar Street<br/>
-                        Cambridge, MA, 02139, USA
-                    </address></dd>-->
-            </div>
+   <body style="background-color: #bf5700">
+     <div class="container" style="background-color: #fff">
+       <div class="row" style="padding-top: 30px;">
+         <div class="col-md-3">
+           <img class="rounded-circle" src="venkat_pic_2023.jpg" alt="Photo" width="180px" height="240px">
+         </div>
+         <div class="col-md-9">
+           <h1>Venkat Arun</h1>
+	   <p>Assistant Professor<br/>
+	     Computer Science, UT Austin</p>
+	   <p>Email: <tt>venkat@utexas.edu</tt></p>
+	   <p>Office: GDC 6.726</p>
+	   
+	   <p><div style="padding:10px">
+	       <a href="cv.pdf" data-bs-toggle="tooltip" data-bs-html="true" title="CV" class="top-icon"><img src="cv-icon.png" alt="CV" width="32" height="32"></a>
+	       <a href="https://scholar.google.com/citations?user=2L4RkXMAAAAJ&hl=en" data-bs-toggle="tooltip" data-bs-html="true" title="Publication List" class="top-icon"><img src="google-scholar-logo.svg" alt="Google Scholar" width="32" height="32"></a>
+	       <a href="https://venkatarun.wordpress.com" data-bs-toggle="tooltip" data-bs-html="true" title="Blog" class="top-icon"><img src="blog-icon.svg" alt="Blog" width="32" height="32"></a>
+	       <a href="https://github.com/venkatarun95" data-bs-toggle="tooltip" data-bs-html="true" title="Github" class="top-icon"><img src="github-logo.svg" alt="GitHub" width="32" height="32"></a>
+	       <a href="https://twitter.com/VenkatArun95" data-bs-toggle="tooltip" data-bs-html="true" title="Twitter" class="top-icon"><img src="twitter-logo.svg" alt="Twitter" width="32" height="32"></a>
+	       <a href="https://www.linkedin.com/in/venkat-arun-11a9047b/" data-bs-toggle="tooltip" data-bs-html="true" title="LinkedIn" class="top-icon"><img src="linkedin-logo.svg" alt="LinkedIn" width="32" height="32"></a>
+	     </div>
+	   </p>
+         </div>
         </div>
-        <hr style="border-width: 2px; border-color: #bf570099"/>
+       <!-- <hr style="border-width: 2px; border-color: #bf570099"/> -->
 
-	  <!--<div class="row width-100">
-            <div class="mx-auto">
-	      <div class="card">
-		<div class="card-header" style="padding:10px">
-		  <b>I am on the faculty job market!</b>
-		</div>
-		<div class="card-body" style="padding:20px">
-		  <a type="button" class="btn btn-primary" style="margin:3px" href="cv.pdf">CV</a>
-		  <a type="button" class="btn btn-primary" style="margin:3px" href="research_statement.pdf">Research Statement</a>
-		  <a type="button" class="btn btn-primary" style="margin:3px" href="teaching_statement.pdf">Teaching Statement</a>
-		  <a type="button" class="btn btn-primary" style="margin:3px" href="diversity_statement.pdf">Diversity Statement</a>
-		</div>
-	      </div>
-            </div>
-	  </div> -->
-		  
-          <!-- <div class="card">
-               <div class="card-body">
-               <h3 class="card-title">About Me</h3> -->
+       <nav class="navbar navbar-expand-lg navbar-bg">
+	 <div class="container-fluid">
+	   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+	     <!--<span class="navbar-toggler-icon"></span>-->
+	     <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-list" viewBox="0 0 16 16">
+	       <path fill-rule="evenodd" d="M2.5 12a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5m0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5m0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5"/>
+	     </svg>
+	   </button>
+	   <div class="collapse navbar-collapse" id="navbarSupportedContent">
+	     <ul class="navbar-nav mr-auto">
+	       
+	       <li class="nav-item">
+		  <b> 
+		   <a class="nav-link" aria-current="page" href="index.html">Home</a>
+		  </b> 
+	       </li>
+	       
+	       <li class="nav-item">
+		 
+		   <a class="nav-link" aria-current="page" href="projects.html">Students</a>
+		 
+	       </li>
+	       
+	       <li class="nav-item">
+		 
+		   <a class="nav-link" aria-current="page" href="teaching.html">Teaching</a>
+		 
+	       </li>
+	       
+	     </ul>
+	   </div>
+	 </div>
+       </nav>
+       
+       <br/><br/>
+
+       
+
+<p>My group works on the fundamentals of computer networking by developing theoretical ideas to gain insights that would have been difficult to discover otherwise. The goal is to build networked systems that can support the next generation of applications. My past work has spanned internet congestion control, video streaming, privacy-preserving computation, wireless networks, and mobile systems.</p>
+
+<h3>Current Projects</h3>
+<hr/>
+
+
+  <div class="card">
+    <div class="card-header">
+      <h5>Performance Verification and Synthesis</h5>
+    </div>
+    <div class="card-body" style="margin-left:10px; margin-right:10px;">
+      <p class="card-text"><p>We are developing a set of methods to design networked systems that perform reliably. Today, we build systems with hundreds of heuristic control algorithms whose emergent behaviors we do not fully understand. These algorithms provision compute resources, choose network routes, allocate bandwidth and storage resources, schedule tasks etc. These tasks are central to the performance and reliability of networked systems, making it crucial for the algorithms to make correct decisions. Designing such algorithms is hard because they operate in the face of incomplete information, uncertainty about the future and constraints on decision-making latency. Thus, a lot of effort goes into their design, based largely on empirical trial-and-error. Today, we lack principled ways to reason about their performance. In this project, we are developing a set of techniques to address this gap, often using program verification and synthesis techniques to augment human intelligence.</p><p>There is now a vibrant community of researchers working on the topic, including people from CMU, U. Michigan, Georgia Tech, MIT, Microsoft Research, and U. Waterloo</p></p>
+      <center>
+        <a href="">Read More &gt;<br/></a>
+      </center>
+    </div>
+  </div>
+  <br/>
+
+  <div class="card">
+    <div class="card-header">
+      <h5>"Solving" Congestion Control</h5>
+    </div>
+    <div class="card-body" style="margin-left:10px; margin-right:10px;">
+      <p class="card-text"><p>We have embarked on a (potentially foolish) journey to "solve" end-to-end congestion control for the internet. To this end, we first came up with a mathematical definition of what it means to solve it [<abbr title="Toward formally verifying congestion control behavior. Venkat Arun, Mina T. Arashloo, Ahmed Saeed, Mohammad Alizadeh, and Hari Balakrishnan. In ACM SIGCOMM 2021">SIGCOMM21</abbr>]. Existing definitions assume far too much about how the network behaves. Thus, we came up with a method to specify network models that make minimal assumptions and are nevertheless sufficient for congestion control algorithms (CCAs) to work (we later realized this technique was general, which lead to our work on performance verification).</p> <p> The next challenge is to find a CCA that achieves a set of performance properties under this network model. This is ongoing work, where we heavily use automated reasoning to discover algorithms and prove impossibility results [<abbr title="Starvation in end-to-end congestion control. Venkat Arun, Mohammad Alizadeh, and Hari Balakrishnan. In ACM SIGCOMM 2023">SIGCOMM23</abbr>, <abbr title="Automating network heuristic design and analysis. Anup Agarwal, Venkat Arun, Devdeep Ray, Ruben Martins, and Srinivasan Seshan. In ACM SIGCOMM HotNets 2022">HotNets22</abbr>, <abbr title="Towards provably performant congestion control. Anup Agarwal, Venkat Arun, Devdeep Ray, Ruben Martins, and Srinivasan Seshan. In USENIX NSDI 2024">NSDI24</abbr>]. We now have CCAs that satisfy a subset of the properties we want. Read more to see all the properties that we are trying to achieve and their current status.</p> <p>Meta is currently using some of our designs to serve their user traffic [<abbr title="Evaluating COPA congestion control for improved video performance. Nitin Garg. In Facebook Engineering Blog 2019">FB Engg. Blog19</abbr>, <abbr title="Toward formally verifying congestion control behavior. Venkat Arun, Mina T. Arashloo, Ahmed Saeed, Mohammad Alizadeh, and Hari Balakrishnan. In ACM SIGCOMM 2021">SIGCOMM21</abbr>]</p></p>
+      <center>
+        <a href="">Read More &gt;<br/></a>
+      </center>
+    </div>
+  </div>
+  <br/>
+
+  <div class="card">
+    <div class="card-header">
+      <h5>Metasurfaces with Thousands of Antennas</h5>
+    </div>
+    <div class="card-body" style="margin-left:10px; margin-right:10px;">
+      <p class="card-text"><p>Fundamental diffraction limits tell us that the more antennas a radio device has, the more precisely it can control the signals. This project explores the new applications enabled by having thousands of radio-frequency antennas, made inexpensive through meta-surfaces. As a first step toward this, we built a system with 3200 antennas that can increase the signal strength between two radio endpoints by about 10&times; [<abbr title="RFocus: Beamforming Using Thousands of Passive Antennas. Venkat Arun and Hari Balakrishnan. In USENIX NSDI 2020">NSDI20</abbr>]. It works by automatically reconfiguring itself to passively reflect signals from the transmitter to the receiver. The very large number of antennas allows it to create extremely focussed beams that can increase point-to-point communication bandwidth and reduce interference between multiple pairs of communicating endpoints.</p><p>To our knowledge, this is the largest number of antennas ever used for a single communication link.</p></p>
+      <center>
+        <a href="">Read More &gt;<br/></a>
+      </center>
+    </div>
+  </div>
+  <br/>
+
+
+
+<p>Let us test some citations <abbr title="Toward formally verifying congestion control behavior. Venkat Arun, Mina T. Arashloo, Ahmed Saeed, Mohammad Alizadeh, and Hari Balakrishnan. In ACM SIGCOMM 2021">SIGCOMM21</abbr>, <abbr title="Towards provably performant congestion control. Anup Agarwal, Venkat Arun, Devdeep Ray, Ruben Martins, and Srinivasan Seshan. In USENIX NSDI 2024">NSDI24</abbr></p>
+
 	       <p> I am developing <I>Performance Verification</I>, a set of mathematical and automated tools to design networked systems that perform reliably [<abbr title="Toward formally verifying congestion control behavior. Venkat Arun, Mina T. Arashloo, Ahmed Saeed, Mohammad Alizadeh, Hari Balakrishnan. In ACM SIGCOMM 2021.">CCAC</abbr>, <abbr title="Starvation in end-to-end congestion control. Venkat Arun, Mohammad Alizadeh, Hari Balakrishnan. In ACM SIGCOMM 2023.">Starvation</abbr>, <abbr title="Automating network heuristic design and analysis. Anup Agarwal, Venkat Arun, Devdeep Ray, Ruben Martins, Srinivasan Seshan. In ACM SIGCOMM HotNets 2022">CCMatic</abbr>, <abbr title="Quantitative Verification of Scheduling Heuristics. Saksham Goel, Ben Mikek, Jehad Aly, Venkat Arun, Ahmed Saeed, Aditya Akella. In Arxiv 2301.04205">Verilay</abbr>]. Today, we build systems with hundreds of heuristic control algorithms whose emergent behaviors we do not fully understand. These algorithms provision compute resources, choose network routes, allocate bandwidth and storage resources, schedule tasks etc. These tasks are central to the performance and reliability of networked systems, making it crucial for the algorithms to make correct decisions. Designing such algorithms is hard because they operate in the face of incomplete information, uncertainty about the future and constraints on decision-making latency. Thus, a lot of effort goes into their design, based largely on empirical trial-and-error. Today, we lack principled ways to reason about their performance. Performance Verification seeks to address this gap. </p>
 	       <!--<p> In the past, I have worked on internet congestion control, video streaming, privacy-preserving computation, wireless networks, and mobile systems. Across these areas, a unifying theme of my work is to bridge between heuristics that systems use in practice and proofs of how well they work. I have shown that current heuristics fail to provide performance guarantees, and I have used proofs to design more robust systems. My principal contribution is a set of tools and techniques to prove performance properties of real-world heuristics running in real-world conditions.</p>-->
 	       <p>These methods have sparked interest among researchers, with groups from CMU, UT Austin, Georgia Tech, MIT, Microsoft Research, and Waterloo all working on related projects. I am collaborating with several of them. It has also impacted industrial practice. For instance, we proposed a modification to BBR [<abbr title="Toward formally verifying congestion control behavior. Venkat Arun, Mina T. Arashloo, Ahmed Saeed, Mohammad Alizadeh, Hari Balakrishnan. In ACM SIGCOMM 2021.">CCAC</abbr>], a widely deployed CCA developed by Google. Facebook uses this modification for a vast majority of their user-facing traffic. In addition, for live video uploads, Facebook uses my algorithm, <abbr title="Copa: practical delay-based congestion control for the internet. Venkat Arun, Hari Balakrishnan. In NSDI 2018.">Copa</abbr>.</p>
@@ -88,268 +160,8 @@
 	       <p><b>I am hiring PhD students this cycle.</b></p>
 	       <p>I finished my PhD at MIT in 2023 with Hari Balakrishnan and Momammad Alizadeh (link to my <a href="thesis.pdf">thesis</a>), and my undergrad at IIT Guwahati in 2017.</p>
 
-	  <!--<ul>
-	    <li> Congestion control (CC) for the wide internet. I seek simplicity and formalism in CC designs. Our protocol Copa (NSDI'18), is currently being used in production at Facebook. Next, we created a framework (CCAC) for formally verifying congestion control behavior (SIGCOMM'21). We used this framework to prove a surprising impossibility result in congestion control (SIGCOMM'22).</li>
-	    <li> Verifying the performance of heuristics other than congestion control using ideas we developed in CCAC.</li>
-	    <li> RFocus (NSDI'20), a system we designed that makes it practical to have single communication links use thousands of antennas by moving beamforming functions from the endpoints to the environment. Each "antenna" here is passive and emits no power of its own. Their simplicity enables the scale.</li>
-	  </ul>-->
 
-            <br/>
 
-	    <h3>Teaching</h3>
-	    <hr style="border-color: #bf570099"/>
-	    I am developing a <a href="performance_analysis_of_networked_systems.html">seminar course (CS 395T)</a> on the role that theoretical performance analysis has had in informing the design of real-world systems. Here is my planned teaching schedule:
-	    <ul>
-	      <li> Spring 2024: <a href="performance_analysis_of_networked_systems.html">Performance Analysis of Networked Systems (CS 395T)</a></li>
-	      <li> Fall 2024: <a href="f24/">Computer Networks (CS 356) - Introduction to computer networking</a></li>
-	      <li> Spring 2025: <a href="performance_analysis_of_networked_systems.html">Performance Analysis of Networked Systems (CS 395T)</a></li>
-	    </ul>
-	    
-	    <br/>
 
-	    <h3>Awards and Honors</h3>
-	    <hr style="border-color: #bf570099"/>
-	    <ul>
-	      <li>G. M. Sprowls PhD Thesis Award in Computer Science 2024</li>
-	      <li>ACM SIGCOMM Doctoral Dissertation Award Runner-Up</li>
-	      <li>Marconi Society Young Scholar Award 2023 </li>
-	      <li>ACM SIGCOMM best paper awards for:
-		<ul>
-		  <li> 2022: "Starvation in end-to-end congestion control". Venkat Arun, Mohammad Alizadeh, Hari Balakrishnan</li>
-		  <li> 2017: "Language-Directed Hardware Design for Network Performance Monitoring". Srinivas Narayana, Anirudh Sivaraman, Vikram Nathan, Prateesh Goyal, Venkat Arun, Mohammad Alizadeh, Vimalkumar Jeyakumar, and Changhoon Kim</li>
-		</ul>
-	      <li>Jacobs Presidential Fellowship, 2017</li>
-	      <li>President of India Gold Medal (IIT Guwahati), 2017</li>
-	      <li>KVPY Government of India Scholarship, 2013</li>
-	    </ul>
-
-	    <br/>
-	    
-            <!--<h3>Publications</h3>
-	    <hr style="border-color: #bf570099"/>
-	    <div class="card">
-                <div class="card-body">
-		    <b style="color:#D01919;">Best Student Paper Award</b>
-                    <h5 class="card-title">Starvation in End-to-End Congestion Control</h5>
-                    <h6 class="card-subtitle mb-2 text-muted"><b>Venkat Arun</b>, Mohammad Alizadeh, Hari Balakrishnan</h6>
-                    <div class="card-subtitle text-muted"><a href="https://conferences.sigcomm.org/sigcomm/2022/">ACM SIGCOMM'22</a></div>
-		    <a href="http://people.csail.mit.edu/venkatar/cc-starvation.pdf"><span class="badge badge-secondary">Paper PDF</span></a>
-		    <a href="https://mitprod-my.sharepoint.com/:p:/g/personal/venkatar_mit_edu/EeYvMC_IBwpHomFnX5ASauwB5fjsOIJsRJe4E2HJTVUuzA?e=cfG2wv"><span class="badge badge-secondary">Slides</span></a>
-		    <a href="https://www.youtube.com/watch?v=XXozY3W_u4s"><span class="badge badge-secondary">Talk Video</span></a>
-		    <a href="https://spectrum.ieee.org/internet-congestion-control"><span class="badge badge-secondary">IEEE Spectrum Article</span></a>
-		    <a href="https://news.mit.edu/2022/algorithm-computer-network-bandwidth-0804"><span class="badge badge-secondary">MIT News Article</span></a>
-                    <details>
-                        <summary>Show Abstract</summary>
-                        <p>To overcome weaknesses in traditional loss-based congestion control algorithms (CCAs), over the last ten years researchers have developed and deployed several delay-bounding CCAs that achieve high utilization without bloating delays (e.g., BBR, PCC, Copa). All these CCAs converge to a small delay range in equilibrium when run on a path with a fixed bottleneck rate, achieving high utilization. This paper proves a surprising result: although designed to be cooperative and achieve reasonable fairness, current methods to develop delay-bounding CCAs cannot avoid starvation, an extreme form of unfairness. Starvation occurs when the CCA runs on paths where non-congestive network delay variations due to real-world factors such as ACK aggregation and end-host scheduling exceed double the delay range that the CCA converges to in equilibrium. In addition to proving this result, we use insights from our proof to show empirical scenarios where two flows obtain throughputs that differ by 10&times; for BBR, PCC Vivace, and Copa. We discuss the implications of this result and posit that to avoid starvation an efficient delay-bounding CCA should design for a certain amount of non-congestive jitter and ensure that its equilibrium delay oscillations are at least one-half of this jitter.</p>
-                    </details>
-                </div>
-            </div>
-	    
-            <div class="card">
-                <div class="card-body">
-                    <h5 class="card-title">Formally Verifying Congestion Control Performance</h5>
-                    <h6 class="card-subtitle mb-2 text-muted"><b>Venkat Arun</b>, Mina Arashloo, Ahmed Saeed, Mohammad Alizadeh, Hari Balakrishnan</h6>
-                    <div class="card-subtitle text-muted"><a href="https://conferences.sigcomm.org/sigcomm/2021/">ACM SIGCOMM'21</a></div>
-		    <a href="https://dl.acm.org/doi/10.1145/3452296.3472912"><span class="badge badge-secondary">Paper PDF</span></a>
-                    <a href="https://projects.csail.mit.edu/ccac"><span class="badge badge-secondary">Project Page</span></a>
-		    <a href="https://mitprod-my.sharepoint.com/:p:/g/personal/venkatar_mit_edu/EW2G_DvvTkVDjxDcKe-3T24BdqTCC_xjgEfAjmHubP-EZQ"><span class="badge badge-secondary">Slides</span></a>
-                    <a href="https://github.com/venkatarun95/ccac"><span class="badge badge-secondary">Code</span></a>
-		    <a href="https://www.youtube.com/watch?v=D_BjxRsXvC4"><span class="badge badge-secondary">Talk (12 min)</span></a>
-                    <a href="https://www.youtube.com/watch?v=9KPKJ6-cl_Q"><span class="badge badge-secondary">Talk (23 min)</span></a>
-                    <details>
-                        <summary>Show Abstract</summary>
-                        <p>The diversity of paths on the Internet makes it difficult for designers and operators to confidently deploy new congestion control algorithms (CCAs) without extensive real-world experiments, but such capabilities are not available to most of the networking community. And even when they are available, understanding why a CCA under-performs by trawling through massive amounts of statistical data from network connections can be extremely challenging. The history of congestion control is replete with many examples of surprising and unanticipated behaviors when a CCA moves from simulation to prototype implementation to large-scale deployment. The set of possible link and path vagaries is not only numerous, but they compose in complicated ways across links on a path. In this paper, we propose a step toward mitigating these issues. We have developed Congestion Control Anxiety Controller (CCAC), a tool that uses formal verification to establish performance properties of CCAs. It is able to formally prove performance properties of CCAs and generate counter-examples for invalid hypotheses. With CCAC, a designer can not only gain greater confidence prior to deployment to avoid unpleasant surprises, but can also use the counter-examples to iteratively improve their algorithm. We model AIMD, Copa, and BBR with CCAC, and report on some surprising results from the exercise.</p>
-                    </details>
-                </div>
-            </div>
-
-            <div class="card">
-                <div class="card-body">
-                    <a href="https://web.mit.edu/copa/#facebook"><b style="color:#D01919;">Being used in production at Facebook</b></a>
-                    <h5 class="card-title">Copa: Congestion Control Combining Objective Optimization with Simple Window Adjustments</h5>
-                    <h6 class="card-subtitle mb-2 text-muted"><b>Venkat Arun</b>, Hari Balakrishnan</h6>
-                    <div class="card-subtitle text-muted"><a href="https://www.usenix.org/conference/nsdi18/">USENIX NSDI'18</a></div>
-                    <a href="copa.pdf"><span class="badge badge-secondary">Paper PDF</span></a>
-                    <a href="https://web.mit.edu/copa/"><span class="badge badge-secondary">Project Page</span></a>
-                    <a href="https://www.youtube.com/watch?v=FDAzVFmuVUY"><span class="badge badge-secondary">Talk Video</span></a>
-                    <a href="https://www.usenix.org/sites/default/files/conference/protected-files/nsdi18_slides_arun.pdf"><span class="badge badge-secondary">Slides</span></a>
-                    <details>
-                        <summary>Show Abstract</summary>
-                        <p>This paper introduces Copa, an end-to-end congestion control algorithm that uses three ideas. First, it shows that a <em>target rate</em> equal to <em>1/(&delta; d<sub>q</sub>)</em>, where <em>d<sub>q</sub></em> is the (measured) queueing delay, optimizes a natural function of throughput and delay under a Markovian packet arrival model. Second, it adjusts its congestion window in the direction of this target rate, converging quickly to the correct fair rates even in the face of significant flow churn. These two ideas enable a group of Copa flows to maintain high utilization with low queuing delay. However, when the bottleneck is shared with loss-based congestion-controlled flows that fill up buffers, Copa, like other delay-sensitive schemes, achieves low throughput. To combat this problem, Copa uses a third idea: detect the presence of buffer-fillers by observing the delay evolution, and respond with additive-increase/multiplicative decrease on the &delta; parameter. Experimental results show that Copa outperforms Cubic (similar throughput, much lower delay, fairer with diverse RTTs), BBR and PCC (significantly fairer, lower delay), and co-exists well with Cubic unlike BBR and PCC. Copa is also robust to non-congestive loss and large bottleneck buffers, and outperforms other schemes on long-RTT paths.</p>
-                    </details>
-                </div>
-            </div>
-
-            <div class="card">
-              <div class="card-body">
-		    <b style="color:#D01919;">Largest antenna array ever used for a single communication link</b>
-                    <h5 class="card-title">RFocus: Beamforming Using Thousands of Passive Antennas</h5>
-                    <h6 class="card-subtitle mb-2 text-muted"><b>Venkat Arun</b>, Hari Balakrishnan</h6>
-                    <div class="card-subtitle text-muted"><a href="https://www.usenix.org/conference/nsdi20">USENIX NSDI'20</a></div>
-                    <a href="https://www.usenix.org/system/files/nsdi20-paper-arun.pdf"><span class="badge badge-secondary">Paper PDF</span></a>
-                    <a href="rfocus.html"><span class="badge badge-secondary">Project Page</span></a>
-                    <a href="https://www.youtube.com/watch?v=BV0vITB54H0"><span class="badge badge-secondary">Talk Video</span></a>
-		    <a href="rfocus-slides.pptx"><span class="badge badge-secondary">Slides</span></a>
-                    <details>
-                        <summary>Show Abstract</summary>
-                        <p>To reduce transmit power, increase throughput, and improve range, radio systems benefit from the ability to direct more of the transmitted power toward the intended receiver. Many modern systems beamform with antenna arrays for this purpose. However, a radio's ability to direct its signal is fundamentally limited by its size. Because radios on IoT and mobile devices must be small and inexpensive, they do not benefit from beamforming.</p>
-
-                        <p>To address this problem, we introduce <em>RFocus</em>, which moves beamforming functions from the radio endpoints to the environment. RFocus includes a two-dimensional surface with a rectangular array of simple RF switch elements. Each switch element either lets the signal through or reflects it. The surface does not emit any power of its own. The state of the elements is set by a software controller to maximize the signal strength at a receiver, with a novel optimization algorithm that uses signal strength measurements from the receiver. The RFocus surface can be manufactured as an inexpensive thin "wallpaper", requiring no wiring. Our prototype implementation improves the median signal strength by 9.5&times;, and the median channel capacity by 2.0&times; inside an office building.</p>
-                    </details>
-                </div>
-            </div>
-
-            <div class="card">
-                <div class="card-body">
-                    <h5 class="card-title">Finding Safety in Numbers with Secure Allegation Escrows</h5>
-                    <h6 class="card-subtitle mb-2 text-muted"><b>Venkat Arun</b>, Aniket Kate, Deepak Garg, Peter Druschel, Bobby Bhattacharjee</h6>
-                    <div class="card-subtitle text-muted"><a href="https://www.ndss-symposium.org/ndss2020/">NDSS'20</a></div>
-                    <a href="https://arxiv.org/pdf/1810.10123.pdf"><span class="badge badge-secondary">Paper PDF</span></a>
-                    <details>
-                        <summary>Show Abstract</summary>
-                        <p>  For fear of retribution, the victim of a crime may be willing to report it only if other victims of the same perpetrator also step forward. Common examples include 1) identifying oneself as the victim of sexual harassment, especially by a person in a position of authority or 2) accusing an influential politician, an authoritarian government or ones own employer of corruption. To handle such situations, legal literature has proposed the concept of an <em>allegation escrow</em>: a neutral third-party that collects allegations anonymously, matches them against each other, and de-anonymizes allegers only after de-anonymity thresholds (in terms of number of co-allegers), pre-specified by the allegers, are reached.</p>
-
-                        <p>An allegation escrow can be realized as a single trusted third party; however, this party must be trusted to keep the identity of the alleger and content of the allegation private. To address this problem, this paper introduces Secure Allegation Escrows (SAE, pronounced "say"). A SAE is a group of parties with independent interests and motives, acting <em>jointly</em> as an escrow for collecting allegations from individuals, matching the allegations, and de-anonymizing the allegations when designated thresholds are reached. By design, SAEs provide a very strong property: No less than a majority of parties constituting a SAE can de-anonymize or disclose the content of an allegation without a sufficient number of matching allegations (even in collusion with any number of other allegers). Once a sufficient number of matching allegations exist, all parties can simultaneously disclose the allegation with a verifiable proof of the allegers' identities.  We describe how SAEs can be constructed using a novel authentication protocol and a novel allegation matching and bucketing algorithm, provide formal proofs of the security of our constructions, and provide an evaluation of a prototype implementation, demonstrating feasibility in practice.</p>
-                    </details>
-                </div>
-            </div>
-
-            <div class="card">
-                <div class="card-body">
-                    <b style="color:#D01919;">Best Paper Award</b>
-                    <h5 class="card-title">Language-Directed Hardware Design for Network Performance Monitoring</h5>
-                    <h6 class="card-subtitle mb-2 text-muted">Srinivas Narayana, Anirudh Sivaraman, Vikram Nathan, Prateesh Goyal, <b>Venkat Arun</b>, Mohammad Alizadeh, Vimalkumar Jeyakumar, and Changhoon Kim</h6>
-                    <div class="card-subtitle text-muted"><a href="https://conferences.sigcomm.org/sigcomm/2017/">ACM SIGCOMM'17</a></div>
-                    <a href="http://web.mit.edu/~alephtwo/www/papers/marple-sigcomm17.pdf"><span class="badge badge-secondary">Paper PDF</span></a>
-                    <a href="http://web.mit.edu/marple/"><span class="badge badge-secondary">Project Page</span></a>
-                    <a href="http://web.mit.edu/~alephtwo/www/talks/marple-sigcomm17.pdf"><span class="badge badge-secondary">Slides</span></a>
-                    <a href="http://news.mit.edu/2017/monitoring-network-traffic-more-efficiently-0823"><span class="badge badge-secondary">MIT News</span></a>
-                    <details>
-                        <summary>Show Abstract</summary>
-                        <p>Network performance monitoring today is restricted by existing
-                            switch support for measurement, forcing operators to rely heavily on
-                            endpoints with poor visibility into the network core. Switch vendors
-                            have added progressively more monitoring features to switches, but
-                            the current trajectory of adding specific features is unsustainable
-                            given the ever-changing demands of network operators. Instead,
-                            we ask what switch hardware primitives are required to support an
-                            expressive language of network performance questions. We believe
-                            that  the  resulting  switch  hardware  design  could  address  a  wide
-                            variety of current and future performance monitoring needs.</p>
-                            <p>We present a performance query language, Marple, modeled on familiar functional constructs like map, filter, groupby, and zip. Marple
-                            is  backed  by  a  new  programmable  key-value  store  primitive  on
-                            switch hardware. The key-value store performs flexible aggregations
-                            at line rate (e.g., a moving average of queueing latencies per flow),
-                            and scales to millions of keys. We present a Marple compiler that
-                            targets a P4-programmable software switch and a simulator for high-
-                            speed programmable switches. Marple can express switch queries
-                            that could previously run only on end hosts, while Marple queries
-                            only occupy a modest fraction of a switch’s hardware resources.</p>
-                    </details>
-                </div>
-            </div>
-
-	    <div class="card">
-                <div class="card-body">
-                    <h5 class="card-title">Automating Network Heuristic Design and Analysis</h5>
-                    <h6 class="card-subtitle mb-2 text-muted">Anup Agarwal, <b>Venkat Arun</b>, Devdeep Ray, Ruben Martins, Srini Seshan</h6>
-		    <div class="card-subtitle text-muted"><a href="https://conferences.sigcomm.org/hotnets/2022/">ACM SIGCOMM HotNets'22</a></div>
-                    <a href="https://conferences.sigcomm.org/hotnets/2022/papers/hotnets22_agarwal.pdf"><span class="badge badge-secondary">Paper PDF</span></a>
-		    <a href="https://www.youtube.com/watch?v=TRn7usW78ow"><span class="badge badge-secondary">Talk Video</span></a>
-                    <details>
-                      <summary>Show Abstract</summary>
-                        <p>Heuristics are ubiquitous in computer systems. Examples include congestion control, adaptive bit rate streaming, schedul-
-ing, load balancing, and caching. In some domains, theoretical proofs have provided clarity on the conditions where a heuristic is guaranteed to work well. This has not been possible in all domains because proving such guarantees can involve combinatorial reasoning making it hard, cumbersome and
-error-prone. In this paper we argue that computers should help humans with the combinatorial part of reasoning. We model reasoning questions as &exist;&forall; formulas and solve them using the counterexample guided inductive synthesis (CEGIS) framework. As preliminary evidence, we prototype CCmatic, a tool that semi-automatically synthesizes congestion control algorithms that are provably robust. It rediscovered a recent congestion control algorithm that provably achieves high utilization and bounded delay under a challenging network model. It also found previously unknown variants of the algorithm that achieve different throughput-delay trade-offs.</p>
-                    </details>
-                </div>
-            </div>
-
-	    <div class="card">
-                <div class="card-body">
-                    <h5 class="card-title">Quantitative Verification of Scheduling Heuristics</h5>
-                    <h6 class="card-subtitle mb-2 text-muted">Saksham Goel, Benjamin Mikek, Jehad Aly, <b>Venkat Arun</b>, Ahmed Saeed, Aditya Akella</h6>
-		    <div class="card-subtitle text-muted">In Submission</div>
-                    <a href="https://arxiv.org/pdf/2301.04205.pdf"><span class="badge badge-secondary">Paper PDF</span></a>
-                    <details>
-                      <summary>Show Abstract</summary>
-                        <p>Computer systems use many scheduling heuristics to allocate resources. Understanding their performance properties is hard because it requires a representative workload and extensive code instrumentation. As a result, widely deployed schedulers can make poor decisions leading to unpredictable performance. We propose a methodology to study their specification using automated verification tools to search for performance issues over a large set of workloads, system characteristics and implementation details. Our key insight is that much of the complexity of the system can be overapproximated without oversimplification, allowing system and heuristic developers to quickly and confidently characterize the performance of their designs. We showcase the power of our methodology through four case studies. First, we produce bounds on the performance of two classical algorithms, SRPT scheduling and work stealing, under practical assumptions. Then, we create a model that identifies two bugs in the Linux CFS scheduler. Finally, we verify a recently made observation that TCP unfairness can cause some ML training workloads to spontaneously converge to a state of high network utilization.</p>
-                    </details>
-                </div>
-            </div>
-	    
-	    <div class="card">
-                <div class="card-body">
-                    <h5 class="card-title">Privid: Practical, Privacy-Preserving Video Analytics Queries</h5>
-                    <h6 class="card-subtitle mb-2 text-muted">Frank Cangialosi, Neil Agarwal, <b>Venkat Arun</b>, Junchen Jiang, Srinivas Narayana, Anand Sarwate, Ravi Netravali</h6>
-		    <div class="card-subtitle text-muted"><a href="https://www.usenix.org/conference/nsdi22">USENIX NSDI'22</a></div>
-                    <a href="https://arxiv.org/pdf/2106.12083.pdf"><span class="badge badge-secondary">Paper PDF</span></a>
-		    <a href="https://youtu.be/Sg9GmZPDXJQ"><span class="badge badge-secondary">Talk Video</span></a>
-		    <a href="https://news.mit.edu/2022/privid-security-tool-guarantees-privacy-surveillance-footage-0328"><span class="badge badge-secondary">MIT News</span></a>
-                    <details>
-                      <summary>Show Abstract</summary>
-		      <p>Analytics on video recorded by cameras in public areas have the potential to fuel many exciting applications, but also pose the risk of intruding on individuals' privacy. Unfortunately, existing solutions fail to practically resolve this tension between utility and privacy, relying on perfect detection of all private information in each video frame--an elusive requirement. This paper presents: (1) a new notion of differential privacy (DP) for video analytics, (&#x03C1, K, &#x03B5)-event-duration privacy, which protects all private information visible for less than a particular duration, rather than relying on perfect detections of that information, and (2) a practical system called Privid that enforces duration-based privacy even with the (untrusted) analyst-provided deep neural networks that are commonplace for video analytics today. Across a variety of videos and queries, we show that Privid achieves accuracies within 79-99% of a non-private system.</p>
-                    </details>
-                </div>
-            </div>
-
-	    <div class="card">
-                <div class="card-body">
-                    <h5 class="card-title">Throughput-Fairness Tradeoffs in Mobility Platforms</h5>
-                    <h6 class="card-subtitle mb-2 text-muted">Arjun Balasingam,  Karthik Gopalakrishnan,  Radhika Mittal, <b>Venkat Arun</b>,  Ahmed Saeed,  Mohammad Alizadeh, Hamsa Balakrishnan, Hari Balakrishnan</h6>
-                    <div class="card-subtitle text-muted"><a href="https://www.sigmobile.org/mobisys/2021/">ACM MOBISYS'21</a></div>
-                    <a href="https://people.csail.mit.edu/arjunvb/pubs/mobius-mobisys21-paper.pdf"><span class="badge badge-secondary">Paper PDF</span></a>
-		    <a href="https://arxiv.org/pdf/2105.11999.pdf"><span class="badge badge-secondary">Extended Version</span></a>
-		    <a href="http://mobius.csail.mit.edu"><span class="badge badge-secondary">Project Page</span></a>
-		    <a href="https://www.youtube.com/watch?v=2Sntdpk_0xg"><span class="badge badge-secondary">Talk Video</span></a>
-                    <details>
-                        <summary>Show Abstract</summary>
-                        <p>This paper studies the problem of allocating tasks from differentcustomers to vehicles in mobility platforms, which are used for ap-plications like food and package delivery, ridesharing, and mobile sensing. A mobility platform should allocate tasks to vehicles and schedule them in order to optimize both throughput and fairness across customers. However, existing approaches to scheduling tasks in mobility platforms ignore fairness.</p>
-			<p>We introduce Mobius, a system that uses guided optimization to achieve both high throughput and fairness across customers. Mobius supports spatiotemporally diverse and dynamic customer demands. It provides a principled method to navigate inherent tradeoffs between fairness and throughput caused by shared mobility. Our evaluation demonstrates these properties, along with the versatility and scalability of Mobius, using traces gathered from ridesharing and aerial sensing applications. Our ridesharing case study shows that Mobius can schedule more than 16,000 tasks across 40 customers and 200 vehicles in an online manner.</p>
-                    </details>
-                </div>
-            </div>
-	    <div class="card">
-                <div class="card-body">
-                    <h5 class="card-title">Enabling High Quality Real-Time Communications with Adaptive Frame-Rate</h5>
-                    <h6 class="card-subtitle mb-2 text-muted">Zili Meng, Tingfeng Wang, Yixin Shen, Bo Wang, Mingwei Xu, Rui Han, Honghao Liu, <b>Venkat Arun</b>, Hongxin Hu, Xue Wei</h6>
-                    <div class="card-subtitle text-muted"><a href="https://www.usenix.org/conference/nsdi23">USENIX NSDI'23</a></div>
-                    <details>
-                        <summary>Show Abstract</summary>
-                        <p>Emerging high quality real-time communication (RTC) applications stream ultra-high-definition (UHD) videos with high frame rate (HFR). They use edge computing, which enables high bandwidth and low latency streaming. Our measurements, from the cloud gaming platform of one of the largest gaming companies, show that, in this setting, the client-side decoder is often the cause for high latency that hurts user's experience. We therefore propose an Adaptive Frame Rate (AFR) controller that helps achieve ultra-low latency by coordinating the frame rate with network fluctuation and decoder capacity. AFR's design addresses two key challenges: (1) queue measurements do not provide timely feedback for the control loop and (2) multiple factors control the decoder queue, and different actions must be taken depending on why the queue accumulates. Trace-driven simulations and large-scale deployments in the wild demonstrate that AFR can reduce the tail queuing delay by up to 7.4× and the stuttering events measured by end-to-end delay by 34% on average. AFR has been deployed in production in our cloud gaming service for over one year.</p>
-                    </details>
-                </div>
-            </div>
-	    <div class="card">
-                <div class="card-body">
-                    <h5 class="card-title">The Case for an Internet Primitive for Fault Localization</h5>
-                    <h6 class="card-subtitle mb-2 text-muted">Will Sussman, Emily Marx, <b>Venkat Arun</b>, Akshay Narayan, Mohammad Alizadeh, Hari Balakrishnan, Aurojit Panda, Scott Shenker</h6>
-                    <div class="card-subtitle text-muted"><a href="https://conferences.sigcomm.org/hotnets/2022/">ACM SIGCOMM HotNets'22</a></div>
-		    <a href="https://conferences.sigcomm.org/hotnets/2022/papers/hotnets22_sussman.pdf"><span class="badge badge-secondary">Paper PDF</span></a>
-		    <a href="https://www.youtube.com/watch?v=Mcpbtn-1HBU"><span class="badge badge-secondary">Talk Video</span></a>
-                    <details>
-                        <summary>Show Abstract</summary>
-                        <p>Modern distributed applications run across numerous microservices and components deployed in cloud datacenters, using shared cloud services for computing and storage, edge services such as content distribution networks, network functions such as rate limiters and firewalls, security infrastructures, network routers, and physical links. When a user-visible fault occurs, the first step toward diagnosis is localization to determine where the fault has occurred. However, because application delivery spans different layers and different organizations, no entity has complete visibility or access to the information required to localize faults quickly. This paper proposes a cross-layer, cross-domain, and cross-application fault localization primitive with a simple and standardized information interface for the Internet.</p>
-                    </details>
-                </div>
-            </div>
-
-	    <br/>	    
-    
-	    <h3>Service</h3>
-	    <hr style="border-color: #bf570099"/>
-	    <ul>
-	      <li>ACM SIGCOMM 2024 program committee member</li>
-	      <li>USENIX ATC 2024 light program committee member</li>
-	      <li>Applied Networking Research Prize (ANRP) 2024 award committee member</li>
-	      <li>ACM SIGCOMM HotNets 2023 publication chair</li>
-	    </ul>-->
-	    
-            <br/>
-	</div>	       
-        </div>
-        <script src="https://code.jquery.com/jquery-3.7.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
-        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.3/js/bootstrap.min.js" integrity="sha384-a5N7Y/aK3qNeh15eJKGWxsqtnX/wWdSZSKp+81YjTmS15nvnvxKHuzaWwXHDli+4" crossorigin="anonymous"></script>
-    </body>
+   </body>
 </html>
