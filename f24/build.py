@@ -56,7 +56,7 @@ def prep_schedule():
         {"name": "Spanning tree routing", "notes": "assets/slides/lec4-routing-1.pdf"},
         {"name": "Distance vector and link state routing", "notes": "assets/slides/lec5-routing-2.pdf"},
         {"name": "Inter domain routing", "notes": "assets/slides/lec6-bgp.pdf"},
-        {"name": "Inter domain routing continued", "notes": None},
+        {"name": "Inter domain routing continued", "notes": "assets/slides/lec7-bgp-adv.pptx"},
         {"name": "Physical layer design considerations", "notes": None},
         {"name": "Physical layer data encoding and multiplexing", "notes": None},
         {"name": "<b>Quiz 1</b>", "notes": None},
