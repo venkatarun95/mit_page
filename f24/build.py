@@ -57,7 +57,7 @@ def prep_schedule():
         {"name": "Distance vector and link state routing", "notes": "assets/slides/lec5-routing-2.pdf"},
         {"name": "Inter domain routing", "notes": "assets/slides/lec6-bgp.pdf"},
         {"name": "Inter domain routing continued", "notes": "assets/slides/lec7-bgp-advanced.pptx"},
-        {"name": "Physical layer design considerations", "notes": "assets/slides/lect8-phy-1.pdf"},
+        {"name": "Physical layer design considerations", "notes": "assets/slides/lec8-phy-1.pdf"},
         {"name": "Physical layer data encoding and multiplexing", "notes": None},
         {"name": "<b>Quiz 1</b>", "notes": None},
         {"name": "Media access control (MAC)", "notes": None},
