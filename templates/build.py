@@ -1,4 +1,5 @@
-from datetime import date
+import copy
+from datetime import date, datetime
 from jinja2 import Environment, FileSystemLoader, StrictUndefined, select_autoescape
 import json
 from typing import Dict, Union
@@ -6,8 +7,9 @@ from typing import Dict, Union
 def prep_navigation(active: str):
     navigation = [
         {"name": "Home", "url": "index.html"},
-        {"name": "Students", "url": "projects.html"},
-        {"name": "Teaching", "url": "teaching.html"},
+        {"name": "Students", "url": "students.html"},
+        {"name": "Teaching", "url": "index.html#teaching"},
+        {"name": "Publications", "url": "publications.html"}
     ]
     for i in range(len(navigation)):
         if active is not None and navigation[i]["name"] == active:
@@ -38,12 +40,46 @@ def prep_inline_cites(papers: Dict[str, Dict[str, Union[str, int]]]) -> Dict[str
         res[ref] = f"<abbr title=\"{paper['title']}. {paper['authors']}. In {paper['conf']} {paper['year']}\">{conf_name}</abbr>"
     return res
 
+def prep_students(students: Dict[str, Dict[str, str]]) -> Dict[str, str]:
+    ''' Prepare the list of all students '''
+    res = copy.deepcopy(students)
+    year_now = datetime.now()
+    year_map = ["First year student",
+                "Second year student",
+                "Third year student",
+                "Fourth year student",
+                "Fifth year student",
+                "Sixth year student",
+                "Seventh year student",
+                "Eigth year student",
+                "Ninth year student",
+                "Tenured grad student"]
+
+    for ref in res:
+        if 'end' in res[ref]:
+            end = datetime.strptime(res[ref]['start'], "%Y-%m")
+            res[ref]['year'] = "Graduated in " + str(end.year)
+            continue
+
+        start = datetime.strptime(res[ref]['start'], "%Y-%m")
+        year = (year_now - start).days // 365
+        if year >= 9:
+            print("Warning: You have a tenured grad student. This is not supposed to happen. Graduate them ASAP")
+            year = 9
+        res[ref]['year'] = year_map[year]
+
+    return res
+
 if __name__ == "__main__":
     env = Environment(
         loader=FileSystemLoader("./"),
         undefined=StrictUndefined
         #autoescape=select_autoescape()
     )
+
+    with open("students.json", "r") as papers_file:
+        students = json.load(papers_file)
+        students = prep_students(students)
 
     with open("papers.json", "r") as papers_file:
         papers = json.load(papers_file)
@@ -60,7 +96,12 @@ if __name__ == "__main__":
 
     with open("../index.html", "w") as outfile:
         template = env.get_template("index.html")
-        rendered = template.render(navigation=prep_navigation("Home"), icite=inline_cites, project_descriptions=project_descriptions)
+        rendered = template.render(navigation=prep_navigation("Home"), icite=inline_cites, project_descriptions=project_descriptions, students=students)
+        outfile.write(rendered)
+
+    with open("../students.html", "w") as outfile:
+        template = env.get_template("students.html")
+        rendered = template.render(navigation=prep_navigation("Students"), students=students)
         outfile.write(rendered)
 
     with open("../perf-verif.html", "w") as outfile:
