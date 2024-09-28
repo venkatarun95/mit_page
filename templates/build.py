@@ -2,7 +2,7 @@ import copy
 from datetime import date, datetime
 from jinja2 import Environment, FileSystemLoader, StrictUndefined, select_autoescape
 import json
-from typing import Dict, Union
+from typing import Dict, Tuple, Union
 
 def prep_navigation(active: str):
     navigation = [
@@ -18,9 +18,10 @@ def prep_navigation(active: str):
             navigation[i]["active"] = False
     return navigation
 
-def prep_inline_cites(papers: Dict[str, Dict[str, Union[str, int]]]) -> Dict[str,str]:
+def prep_cites(papers: Dict[str, Dict[str, Union[str, int]]]) -> Tuple[Dict[str,str], Dict[str,str]]:
     ''' Prepare the list of papers with <abbr> tags for inline citations '''
-    res = {}
+    inline = {}
+    full = copy.deepcopy(papers)
     for ref in papers:
         paper = papers[ref]
 
@@ -32,13 +33,21 @@ def prep_inline_cites(papers: Dict[str, Dict[str, Union[str, int]]]) -> Dict[str
                     "Facebook Engineering Blog": "FB Engg. Blog"}
         if paper['conf'] in conf_map:
             conf_name = conf_map[paper['conf']] + str(paper['year'] - 2000)
+            conf_full_name = conf_map[paper['conf']] + ' ' + str(paper['year'])
         elif paper['conf'].startswith('Arxiv'):
             conf_name = 'Arxiv'
+            conf_full_name = paper['conf']
         else:
             print(f"Warning: unrecognized conference '{paper['conf']}'")
 
-        res[ref] = f"<abbr title=\"{paper['title']}. {paper['authors']}. In {paper['conf']} {paper['year']}\">{conf_name}</abbr>"
-    return res
+        inline[ref] = f"<abbr title=\"{paper['title']}. {paper['authors']}. In {paper['conf']} {paper['year']}\">{conf_name}</abbr>"
+        full[ref]['conf'] = conf_full_name
+
+    # Sort full by year
+    full = [full[p] for p in full]
+    full.sort(key=lambda p: p['year'], reverse=True)
+
+    return inline, full
 
 def prep_students(students: Dict[str, Dict[str, str]]) -> Dict[str, str]:
     ''' Prepare the list of all students '''
@@ -83,7 +92,7 @@ if __name__ == "__main__":
 
     with open("papers.json", "r") as papers_file:
         papers = json.load(papers_file)
-        inline_cites = prep_inline_cites(papers)
+        inline_cites, papers = prep_cites(papers)
 
     with open("project_descriptions.json") as project_descriptions_file:
         project_descriptions = json.load(project_descriptions_file)
@@ -102,6 +111,11 @@ if __name__ == "__main__":
     with open("../students.html", "w") as outfile:
         template = env.get_template("students.html")
         rendered = template.render(navigation=prep_navigation("Students"), students=students)
+        outfile.write(rendered)
+
+    with open("../publications.html", "w") as outfile:
+        template = env.get_template("publications.html")
+        rendered = template.render(navigation=prep_navigation("Publications"), papers=papers)
         outfile.write(rendered)
 
     with open("../perf-verif.html", "w") as outfile:
