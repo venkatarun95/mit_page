@@ -1,0 +1,68 @@
+{% extends "base.html" %}
+
+{% block head %}
+<title>Students</title>
+{% endblock %}
+
+{% block content %}
+
+<h3 class="section">PhD Students</h3>
+<hr/>
+
+<div class="row">
+  {% for stud in students %}
+    {% if students[stud].type == "phd" %}
+      <div class="col-md-4" stye="margin: 10px;">
+	<div class="card" >
+	  <img class="card-img-top" src="{{students[stud].img}}" alt="Photo of {{students[stud].name}}">
+	  <div class="card-body">
+	    <h5 class="card-title"><a href="{{students[stud].url}}">{{students[stud].name}}</a></h5>
+	    <p class="card-subtitle mb-2 text-muted">{{students[stud].year}}</p>
+	    <p>Co-advised with {{students[stud].coadvisor}}</p>
+	  </div>
+	</div>
+      </div>
+    {% endif %}
+  {% endfor %}
+</div>
+
+<h3 class="section">Other PhD Students</h3>
+<hr/>
+<p>These are students that I do not advise, but work/have worked closely with.</p>
+<div class="row">
+  {% for stud in students %}
+    {% if students[stud].type == "other" %}
+      <div class="col-md-4" stye="margin: 10px;">
+	<div class="card" >
+	  <img class="card-img-top" src="{{students[stud].img}}" alt="Photo of {{students[stud].name}}">
+	  <div class="card-body">
+	    <h5 class="card-title"><a href="{{students[stud].url}}">{{students[stud].name}}</a></h5>
+	    <p class="card-subtitle mb-2 text-muted">{{students[stud].year}}</p>
+	    <p>{{students[stud].note}}</p>
+	  </div>
+	</div>
+      </div>
+    {% endif %}
+  {% endfor %}
+</div>
+
+<h3 class="section">Undergraduate Students</h3>
+<hr/>
+
+<div class="row">
+  {% for stud in students %}
+    {% if students[stud].type == "ug" %}
+      <div class="col-md-4" stye="margin: 10px;">
+	<div class="card" >
+	  <img class="card-img-top" src="{{students[stud].img}}" alt="Photo of {{students[stud].name}}">
+	  <div class="card-body">
+	    <h5 class="card-title"><a href="{{students[stud].url}}">{{students[stud].name}}</a></h5>
+	    <p>{{students[stud].note}}</p>
+	  </div>
+	</div>
+      </div>
+    {% endif %}
+  {% endfor %}
+</div>
+
+{% endblock %}

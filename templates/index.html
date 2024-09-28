@@ -8,7 +8,6 @@
   .read-more:hover {
       background-color: #f2f4f7;
   }
-
   .proj-emph {
       color: #995a5a;
       font-weight: bold;
@@ -22,8 +21,9 @@
 
 <p>I work on the fundamentals of computer networking by developing theoretical ideas to gain insights that would have been difficult to discover otherwise. The goal is to build networked systems that can support the next generation of applications. My past work has spanned internet congestion control, video streaming, privacy-preserving computation, wireless networks, and mobile systems. I co-lead the UT Networked Systems Lab (<a href="https://utns.cs.utexas.edu/">UTNS</a>).</p>
 <p><b>I am hiring PhD students this cycle.</b></p>
+<!-- <p>I finished my PhD at MIT in 2023 with Hari Balakrishnan and Momammad Alizadeh (link to my <a href="thesis.pdf">thesis</a>), and my undergrad at IIT Guwahati in 2017.</p> -->
 
-<h3>Current Projects</h3>
+<h3 class="section">Current Projects</h3>
 <hr/>
 
 {% for proj in project_descriptions %}
@@ -41,9 +41,38 @@
   <br/>
 {% endfor %}
 
-<h3>Students</h3>
+<h3 class="section">PhD Students</h3>
 <hr/>
-<!-- <p>I finished my PhD at MIT in 2023 with Hari Balakrishnan and Momammad Alizadeh (link to my <a href="thesis.pdf">thesis</a>), and my undergrad at IIT Guwahati in 2017.</p> -->
 
+<div class="row">
+  {% for stud in students %}
+    {% if students[stud].type == "phd" %}
+      <div class="col-md-4" stye="margin: 10px;">
+	<div class="card" >
+	  <img class="card-img-top" src="{{students[stud].img}}" alt="Photo of {{students[stud].name}}">
+	  <div class="card-body">
+	    <h5 class="card-title"><a href="{{students[stud].url}}">{{students[stud].name}}</a></h5>
+	    <p class="card-subtitle mb-2 text-muted">{{students[stud].year}}</p>
+	    <p>Co-advised with {{students[stud].coadvisor}}</p>
+	  </div>
+	</div>
+      </div>
+    {% endif %}
+  {% endfor %}
+</div>
+
+<br/>
+<p><a href="students.html"><button type="button" class="btn btn-primary">See list of all students &gt;</button></a></p>
+
+<h3 class="section" id="teaching">Teaching</h3>
+<hr/>
+
+<h5>CS 395T: Performance Analysis of Networked Systems</h5>
+<p>A seminar course that surveys the role that theoretical performance analysis has had in informing the design of real-world systems. Ideally, we want our theory to give us practical insights that go beyond what can be obtained via intuition or empirical analysis alone.</p>
+<p><b>Years:</b> <a href="performance_analysis_of_networked_systems.html">Spring 2024</a>, Spring 2025 (planned)</p>
+
+<h5>CS 356: Computer Networks</h5>
+<p>A standard undergraduate course in networking with a focus on how the internet works today.</p>
+<p><b>Years:</b> <a href="f24/index.html">Fall 2024</a>, Fall 2025 (planned)</p>
 
 {% endblock %}

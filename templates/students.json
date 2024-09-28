@@ -1,0 +1,79 @@
+{
+    "haoyu": {
+	"name": "Haoyu Li",
+	"url": "https://lihy0529.github.io/",
+	"img": "assets/img/haoyu.jpg",
+	"coadvisor": "<a href=\"https://www.cs.utexas.edu/~akella/\">Aditya Akella</a>",
+	"type": "phd",
+	"start": "2023-09"
+    },
+    "tony": {
+	"name": "Tony (Jia) Pan",
+	"url": "https://tonypan123.github.io/",
+	"img": "assets/img/tony.jpg",
+	"type": "phd",
+	"coadvisor": "<a href=\"https://www.cs.utexas.edu/~isil/\">Isil Dillig</a>",
+	"start": "2024-09"
+    },
+    "saarth": {
+	"name": "Saarth Deshpande",
+	"url": "https://saarth.xyz/",
+	"img": "assets/img/saarth.jpg",
+	"type": "phd",
+	"coadvisor": "<a href=\"https://sites.utexas.edu/neeraja/\">Neeraja Yadhwakar</a>",
+	"start": "2024-09"
+    },
+
+    "anup": {
+	"name": "Anup Agarwal",
+	"url": "https://108anup.github.io/",
+	"img": "assets/img/anup.jpg",
+	"type": "other",
+	"note": "A PhD student at CMU advised by <a href=\"http://www.cs.cmu.edu/~srini/\">Srini Seshan</a>. We met each other during undergrad.",
+	"start": "2019-09"
+    },
+    "rahul": {
+	"name": "Rahul Bothra",
+	"url": "https://rahulbothra.com/",
+	"img": "assets/img/rahul.jpg",
+	"type": "other",
+	"note": "A PhD student at UIUC advised by <a href=\"http://pbg.cs.illinois.edu/\">Brighten Godfrey</a>, formerly at MSR-India.",
+	"start": "2023-09"
+    },
+    "jehad": {
+	"name": "Jehad Aly",
+	"url": "",
+	"img": "assets/img/jehad.png",
+	"type": "other",
+	"note": "A PhD student at Georgia Tech advised by <a href=\"https://faculty.cc.gatech.edu/~amsmti3/\">Ahmed Saeed</a>.",
+	"start": "2023-09"
+    },
+    "ben": {
+	"name": "Ben Mikek",
+	"url": "https://mikekben.github.io/",
+	"img": "assets/img/ben.jpg",
+	"type": "other",
+	"note": "A PhD student at Georgia Tech advised by <a href=\"https://www.cc.gatech.edu/~qzhang414/\">Qirun Zhang</a>.",
+	"start": "2021-09"
+    },
+
+    "emily": {
+	"name": "Emily Yue",
+	"url": "https://www.linkedin.com/in/emily-yue-0a6858205/",
+	"img": "assets/img/emily.jpg",
+	"type": "ug",
+	"note": "",
+	"start": "2024-01",
+	"end": "2024-04"
+    },
+    "jerry": {
+	"name": "Jerry Liu",
+	"url": "https://www.linkedin.com/in/jerry-liu-2003/",
+	"img": "assets/img/jerry.jpg",
+	"type": "ug",
+	"note": "",
+	"start": "2023-12",
+	"end": "2024-05"
+    }
+
+}
