@@ -1,7 +1,27 @@
 {% extends "base.html" %}
+
+{% block head %}
+<style>
+  .read-more {
+      text-align: center;
+  }
+  .read-more:hover {
+      background-color: #f2f4f7;
+  }
+
+  .proj-emph {
+      color: #995a5a;
+      font-weight: bold;
+  }
+</style>
+
+<title>Venkat Arun</title>
+{% endblock %}
+
 {% block content %}
 
-<p>My group works on the fundamentals of computer networking by developing theoretical ideas to gain insights that would have been difficult to discover otherwise. The goal is to build networked systems that can support the next generation of applications. My past work has spanned internet congestion control, video streaming, privacy-preserving computation, wireless networks, and mobile systems.</p>
+<p>I work on the fundamentals of computer networking by developing theoretical ideas to gain insights that would have been difficult to discover otherwise. The goal is to build networked systems that can support the next generation of applications. My past work has spanned internet congestion control, video streaming, privacy-preserving computation, wireless networks, and mobile systems. I co-lead the UT Networked Systems Lab (<a href="https://utns.cs.utexas.edu/">UTNS</a>).</p>
+<p><b>I am hiring PhD students this cycle.</b></p>
 
 <h3>Current Projects</h3>
 <hr/>
@@ -13,23 +33,17 @@
     </div>
     <div class="card-body" style="margin-left:10px; margin-right:10px;">
       <p class="card-text">{{proj.description}}</p>
-      <center>
-        <a href="">Read More &gt;<br/></a>
-      </center>
+      <div class="read-more">
+        <a href="{{proj.url}}">Read More &gt;<br/></a>
+      </div>
     </div>
   </div>
   <br/>
 {% endfor %}
 
-
-<p>Let us test some citations {{icite.ccac}}, {{icite.ccmatic}}</p>
-
-	       <p> I am developing <I>Performance Verification</I>, a set of mathematical and automated tools to design networked systems that perform reliably [<abbr title="Toward formally verifying congestion control behavior. Venkat Arun, Mina T. Arashloo, Ahmed Saeed, Mohammad Alizadeh, Hari Balakrishnan. In ACM SIGCOMM 2021.">CCAC</abbr>, <abbr title="Starvation in end-to-end congestion control. Venkat Arun, Mohammad Alizadeh, Hari Balakrishnan. In ACM SIGCOMM 2023.">Starvation</abbr>, <abbr title="Automating network heuristic design and analysis. Anup Agarwal, Venkat Arun, Devdeep Ray, Ruben Martins, Srinivasan Seshan. In ACM SIGCOMM HotNets 2022">CCMatic</abbr>, <abbr title="Quantitative Verification of Scheduling Heuristics. Saksham Goel, Ben Mikek, Jehad Aly, Venkat Arun, Ahmed Saeed, Aditya Akella. In Arxiv 2301.04205">Verilay</abbr>]. Today, we build systems with hundreds of heuristic control algorithms whose emergent behaviors we do not fully understand. These algorithms provision compute resources, choose network routes, allocate bandwidth and storage resources, schedule tasks etc. These tasks are central to the performance and reliability of networked systems, making it crucial for the algorithms to make correct decisions. Designing such algorithms is hard because they operate in the face of incomplete information, uncertainty about the future and constraints on decision-making latency. Thus, a lot of effort goes into their design, based largely on empirical trial-and-error. Today, we lack principled ways to reason about their performance. Performance Verification seeks to address this gap. </p>
-	       <!--<p> In the past, I have worked on internet congestion control, video streaming, privacy-preserving computation, wireless networks, and mobile systems. Across these areas, a unifying theme of my work is to bridge between heuristics that systems use in practice and proofs of how well they work. I have shown that current heuristics fail to provide performance guarantees, and I have used proofs to design more robust systems. My principal contribution is a set of tools and techniques to prove performance properties of real-world heuristics running in real-world conditions.</p>-->
-	       <p>These methods have sparked interest among researchers, with groups from CMU, UT Austin, Georgia Tech, MIT, Microsoft Research, and Waterloo all working on related projects. I am collaborating with several of them. It has also impacted industrial practice. For instance, we proposed a modification to BBR [<abbr title="Toward formally verifying congestion control behavior. Venkat Arun, Mina T. Arashloo, Ahmed Saeed, Mohammad Alizadeh, Hari Balakrishnan. In ACM SIGCOMM 2021.">CCAC</abbr>], a widely deployed CCA developed by Google. Facebook uses this modification for a vast majority of their user-facing traffic. In addition, for live video uploads, Facebook uses my algorithm, <abbr title="Copa: practical delay-based congestion control for the internet. Venkat Arun, Hari Balakrishnan. In NSDI 2018.">Copa</abbr>.</p>
-	       <p>In addition to Performance Verification, I am broadly interested in networked systems. In the past, I have worked on  internet congestion control, video streaming, privacy-preserving computation, wireless networks, and mobile systems. For instance, one line of my work examines the new applications enabled by having thousands of radio-frequency antennas, made inexpensive through meta-surfaces. <abbr title="RFocus: Beamforming with thousands of inexpensive antennas. Venkat Arun, Hari Balakrishnan. In NSDI 2020">RFocus</abbr> is such a surface that improves the signal strength between a pair of endpoints by 10&times;. To our knowledge, it is the largest published number of antennas ever used for a single communication link.</p>
-	       <p><b>I am hiring PhD students this cycle.</b></p>
-	       <p>I finished my PhD at MIT in 2023 with Hari Balakrishnan and Momammad Alizadeh (link to my <a href="thesis.pdf">thesis</a>), and my undergrad at IIT Guwahati in 2017.</p>
+<h3>Students</h3>
+<hr/>
+<!-- <p>I finished my PhD at MIT in 2023 with Hari Balakrishnan and Momammad Alizadeh (link to my <a href="thesis.pdf">thesis</a>), and my undergrad at IIT Guwahati in 2017.</p> -->
 
 
 {% endblock %}

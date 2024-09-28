@@ -10,7 +10,7 @@ def prep_navigation(active: str):
         {"name": "Teaching", "url": "teaching.html"},
     ]
     for i in range(len(navigation)):
-        if navigation[i]["name"] == active:
+        if active is not None and navigation[i]["name"] == active:
             navigation[i]["active"] = True
         else:
             navigation[i]["active"] = False
@@ -58,7 +58,23 @@ if __name__ == "__main__":
             project_descriptions[proj]['description'] = desc_template.render(icite=inline_cites)
         project_descriptions = [project_descriptions[x] for x in project_descriptions]
 
-    with open("../index.html", "w") as index_file:
-        index_template = env.get_template("index.html")
-        rendered = index_template.render(navigation=prep_navigation("Home"), icite=inline_cites, project_descriptions=project_descriptions)
-        index_file.write(rendered)
+    with open("../index.html", "w") as outfile:
+        template = env.get_template("index.html")
+        rendered = template.render(navigation=prep_navigation("Home"), icite=inline_cites, project_descriptions=project_descriptions)
+        outfile.write(rendered)
+
+    with open("../perf-verif.html", "w") as outfile:
+        template = env.get_template("perf-verif.html")
+        rendered = template.render(navigation=prep_navigation(None))
+        outfile.write(rendered)
+
+    with open("../congestion-control.html", "w") as outfile:
+        template = env.get_template("congestion-control.html")
+        rendered = template.render(navigation=prep_navigation(None))
+        outfile.write(rendered)
+
+
+    with open("../rfocus.html", "w") as outfile:
+        template = env.get_template("rfocus.html")
+        rendered = template.render(navigation=prep_navigation(None))
+        outfile.write(rendered)
