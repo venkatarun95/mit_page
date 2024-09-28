@@ -12,7 +12,7 @@
 	"short_name": "Starvation",
 	"conf": "ACM SIGCOMM",
 	"year": 2023
-    },    
+    },
     "ccmatic_hotnets": {
         "title": "Automating network heuristic design and analysis",
         "authors": "Anup Agarwal, Venkat Arun, Devdeep Ray, Ruben Martins, and Srinivasan Seshan",
@@ -48,7 +48,7 @@
         "conf": "USENIX NSDI",
         "year": 2018
     },
-    "sched-verif": {
+    "perf_verif": {
         "title": "Quantitative Verification of Scheduling Heuristics",
         "authors": "Saksham Goel, Benjamin Mikek, Jehad Aly, Venkat Arun, Ahmed Saeed, and Aditya Akella",
         "short_name": "Verilay",

@@ -35,7 +35,7 @@
        }
      </style>
 
-     {% block head %} {% endblock %}
+      
 
    </head>
 
@@ -75,13 +75,25 @@
 	   </button>
 	   <div class="collapse navbar-collapse" id="navbarSupportedContent">
 	     <ul class="navbar-nav mr-auto">
-	       {% for item in navigation %}
+	       
 	       <li class="nav-item">
-		 {% if item.active %} <b> {% endif %}
-		   <a class="nav-link" aria-current="page" href="{{item.url}}">{{item.name}}</a>
-		   {% if item.active %} </b> {% endif %}
+		 
+		   <a class="nav-link" aria-current="page" href="index.html">Home</a>
+		   
 	       </li>
-	       {% endfor %}
+	       
+	       <li class="nav-item">
+		 
+		   <a class="nav-link" aria-current="page" href="projects.html">Students</a>
+		   
+	       </li>
+	       
+	       <li class="nav-item">
+		 
+		   <a class="nav-link" aria-current="page" href="teaching.html">Teaching</a>
+		   
+	       </li>
+	       
 	     </ul>
 	   </div>
 	 </div>
@@ -89,7 +101,11 @@
 
        <br/><br/>
 
-       {% block content %} {% endblock %}
+       
+
+<p>I'm still working on this page. Coming soon.</p>
+
+
 
      </div>
    </body>
