@@ -4,14 +4,16 @@
 	"authors": "Venkat Arun, Mina T. Arashloo, Ahmed Saeed, Mohammad Alizadeh, and Hari Balakrishnan",
 	"short_name": "CCAC",
 	"conf": "ACM SIGCOMM",
-	"year": 2021
+	"year": 2021,
+	"special": "Proposed a modification to BBR that Meta now uses for most of their production traffic"
     },
     "starvation": {
 	"title": "Starvation in end-to-end congestion control",
 	"authors": "Venkat Arun, Mohammad Alizadeh, and Hari Balakrishnan",
 	"short_name": "Starvation",
 	"conf": "ACM SIGCOMM",
-	"year": 2023
+	"year": 2023,
+	"special": "Best student paper award"
     },
     "ccmatic_hotnets": {
         "title": "Automating network heuristic design and analysis",
@@ -39,14 +41,16 @@
         "authors": "Srinivas Narayana, Anirudh Sivaraman, Vikram Nathan, Prateesh Goyal, Venkat Arun, Mohammad Alizadeh, Vimalkumar Jeyakumar, and Changhoon Kim",
         "short_name": "Marple",
         "conf": "ACM SIGCOMM",
-        "year": 2017
+        "year": 2017,
+	"special": "Best paper award"
     },
     "copa": {
         "title": "Copa: Practical Delay-Based Congestion Control for the Internet",
         "authors": "Venkat Arun and Hari Balakrishnan",
         "short_name": "Copa",
         "conf": "USENIX NSDI",
-        "year": 2018
+        "year": 2018,
+	"special": "<a href=\"https://engineering.fb.com/2019/11/17/video-engineering/copa/\" style=\"color:#D01919\">Being used in production at Meta</a>"
     },
     "perf_verif": {
         "title": "Quantitative Verification of Scheduling Heuristics",
@@ -61,7 +65,8 @@
         "authors": "Venkat Arun and Hari Balakrishnan",
         "short_name": "RFocus",
         "conf": "USENIX NSDI",
-        "year": 2020
+        "year": 2020,
+	"special": "May be the largest antenna array ever used for a single communication link"
     },
     "privid": {
         "title": "Privid: Practical, Privacy-Preserving Video Analytics Queries",
