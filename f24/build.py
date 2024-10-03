@@ -61,7 +61,7 @@ def prep_schedule():
         {"name": "Physical layer error detection and reliability", "notes": "assets/slides/lec9-error-detect.pdf"},
         {"name": "<b>Quiz 1</b>", "notes": None},
         {"name": "Quiz 1 recap and error correction", "notes": "assets/slides/lec11-error-correction-and-quiz.pptx"},
-        {"name": "Media access control (MAC)", "notes": None},
+        {"name": "Media access control (MAC)", "notes": "assets/slides/lec12-mac-protocols.pptx"},
         {"name": "Reliable transmission, error detection and correction", "notes": None},
         {"name": "Transport layer reliability", "notes": None},
         {"name": "Congestion control", "notes": None},
