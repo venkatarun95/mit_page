@@ -62,7 +62,7 @@ def prep_schedule():
         {"name": "<b>Quiz 1</b>", "notes": None},
         {"name": "Quiz 1 recap and error correction", "notes": "assets/slides/lec11-error-correction-and-quiz.pptx"},
         {"name": "Media access control (MAC)", "notes": "assets/slides/lec12-mac-protocols.pptx"},
-        {"name": "Reliable transmission, error detection and correction", "notes": None},
+        {"name": "Transport layer: flow control and reliaiblity", "notes": "assets/slides/lec13-transport-intro.pdf"},
         {"name": "Transport layer reliability", "notes": None},
         {"name": "Congestion control", "notes": None},
         {"name": "Congestion control 2", "notes": None},
