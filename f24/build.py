@@ -63,7 +63,7 @@ def prep_schedule():
         {"name": "Quiz 1 recap and error correction", "notes": "assets/slides/lec11-error-correction-and-quiz.pptx"},
         {"name": "Media access control (MAC)", "notes": "assets/slides/lec12-mac-protocols.pptx"},
         {"name": "Transport layer: flow control and reliaiblity", "notes": "assets/slides/lec13-transport-intro.pdf"},
-        {"name": "Transport layer reliability", "notes": None},
+        {"name": "Transport layer: alternate designs", "notes": "assets/slides/lec14-transport-adv-reliability.pdf"},
         {"name": "Congestion control", "notes": None},
         {"name": "Congestion control 2", "notes": None},
         {"name": "Queuing mechanisms and centralized bandwidth allocation", "notes": None},
