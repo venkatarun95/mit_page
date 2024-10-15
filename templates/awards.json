@@ -1,0 +1,10 @@
+{
+    "mit_thesis": {"title": "MIT EECS G. M. Sprowls PhD Thesis Award in Computer Science", "year": 2024},
+    "sigcomm_thesis": {"title": "ACM SIGCOMM Doctoral Dissertation Award Runner-Up", "year": 2024},
+    "marconi_young": {"title": "Marconi Society Young Scholar Award", "year": 2023},
+    "best_paper_starvation": {"title": "ACM SIGCOMM best student paper award", "year": 2022},
+    "best_paper_marple": {"title": "ACM SIGCOMM best paper award", "year": 2017},
+    "mit_jacobs": {"title": "MIT Jacobs Presidential Fellowship", "year": 2017},
+    "pgm": {"title": "President of India Gold Medal - IIT Guwahati", "year": 2017},
+    "kvpy": {"title": "KVPY Government of India Scholarship", "year": 2013}
+}

@@ -1,6 +1,10 @@
 import copy
 from datetime import date, datetime
 from jinja2 import Environment, FileSystemLoader, StrictUndefined, select_autoescape
+import os
+import subprocess
+import shutil
+from templatex import Environment as LatexEnvironment
 import json
 from typing import Dict, Tuple, Union
 
@@ -49,7 +53,7 @@ def prep_cites(papers: Dict[str, Dict[str, Union[str, int]]]) -> Tuple[Dict[str,
 
     return inline, full
 
-def prep_students(students: Dict[str, Dict[str, str]]) -> Dict[str, str]:
+def prep_students(students: Dict[str, Dict[str, str]]) -> Dict[str, Dict[str, str]]:
     ''' Prepare the list of all students '''
     res = copy.deepcopy(students)
     year_now = datetime.now()
@@ -79,12 +83,49 @@ def prep_students(students: Dict[str, Dict[str, str]]) -> Dict[str, str]:
 
     return res
 
+def compile_tex_to_pdf(tex_file_path, output_dir):
+    """
+    Compile a .tex file into a PDF using pdflatex and copy the PDF to the given directory.
+
+    :param tex_file_path: Path to the .tex file.
+    :param output_dir: Directory where the resulting PDF will be copied.
+    """
+    # Get the directory and filename of the .tex file
+    tex_dir = os.path.dirname(tex_file_path)
+    tex_filename = os.path.basename(tex_file_path)
+    pdf_filename = os.path.splitext(tex_filename)[0] + ".pdf"
+
+    # Compile the .tex file using pdflatex
+    try:
+        subprocess.run(
+            ["pdflatex", tex_filename],
+            cwd=tex_dir,
+            check=True
+        )
+    except subprocess.CalledProcessError as e:
+        print(f"Error compiling {tex_filename}: {e}")
+        return
+
+    # Check if the output directory exists, create if it doesn't
+    if not os.path.exists(output_dir):
+        os.makedirs(output_dir)
+
+    # Copy the resulting PDF to the output directory
+    pdf_file_path = os.path.join(tex_dir, pdf_filename)
+    if os.path.exists(pdf_file_path):
+        shutil.copy(pdf_file_path, output_dir)
+        print(f"PDF successfully copied to {output_dir}")
+    else:
+        print(f"PDF file not found after compilation: {pdf_file_path}")
+
 if __name__ == "__main__":
     env = Environment(
         loader=FileSystemLoader("./"),
         undefined=StrictUndefined
         #autoescape=select_autoescape()
     )
+
+    latex_env = LatexEnvironment(loader=FileSystemLoader('./'))
 
     with open("students.json", "r") as papers_file:
         students = json.load(papers_file)
@@ -93,6 +134,9 @@ if __name__ == "__main__":
     with open("papers.json", "r") as papers_file:
         papers = json.load(papers_file)
         inline_cites, papers = prep_cites(papers)
+
+    with open("awards.json", "r") as awards_file:
+        awards = json.load(awards_file)
 
     with open("project_descriptions.json") as project_descriptions_file:
         project_descriptions = json.load(project_descriptions_file)
@@ -105,7 +149,7 @@ if __name__ == "__main__":
 
     with open("../index.html", "w") as outfile:
         template = env.get_template("index.html")
-        rendered = template.render(navigation=prep_navigation("Home"), icite=inline_cites, project_descriptions=project_descriptions, students=students)
+        rendered = template.render(navigation=prep_navigation("Home"), icite=inline_cites, project_descriptions=project_descriptions, students=students, awards=awards)
         outfile.write(rendered)
 
     with open("../students.html", "w") as outfile:
@@ -133,3 +177,20 @@ if __name__ == "__main__":
         template = env.get_template("rfocus.html")
         rendered = template.render(navigation=prep_navigation(None))
         outfile.write(rendered)
+
+    with open("/tmp/cv.tex", "w") as outfile:
+        template = latex_env.get_template("cv.tex")
+        rendered = template.render(awards=awards)
+        outfile.write(rendered)
+
+        # Check if the rendered file is the same as cv-compiled.tex. If so, no
+        # need to run pdflatex again as it will create a pdf that is
+        # unnecessarily different from what is comitted
+        with open("cv-compiled.tex", "r") as cached_file:
+            cached = cached_file.read()
+            cached_file.close()
+            if cached != rendered:
+                print("Compiling Latex again")
+                compile_tex_to_pdf("/tmp/cv.tex", "../")
+                # Copy new cached file
+                shutil.copyfile("/tmp/cv.tex", "cv-compiled.tex")

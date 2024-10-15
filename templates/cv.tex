@@ -1,0 +1,205 @@
+\documentclass[notitlepage]{article}
+
+\usepackage{color}
+\usepackage{hyperref}
+% To reduce space between items
+\usepackage{enumitem}
+% Document margins
+\usepackage[left=0.75in,top=0.6in,right=0.75in,bottom=0.6in]{geometry}
+
+% Use sans serif by default
+\renewcommand{\familydefault}{\sfdefault}
+
+% Disable paragraph indent
+\setlength{\parindent}{0pt}
+
+\newcommand{\heading}[1]{\vspace{1em}{\large \MakeUppercase{\textrm{#1}}}
+
+  \hrulefill
+}
+\newcommand{\highlight}[1]{\textcolor{red}{\textit{\textbf{#1}}}}
+
+\begin{document}
+\begin{center}
+  {\huge VENKAT ARUN}\\
+  \vspace{1em}
+  {\large Assistant Professor, Computer Science Department, UT Austin}
+\end{center}
+
+{\bf Contact: } {\tt venkat@utexas.edu} %\hfill {\bf Webpage:} \href{https://people.csail.mit.edu/venkatar/}{people.csail.mit.edu/venkatar}\\
+%\begin{tabular}[width=\textwidth]{lr}
+  %{\bf Contact: } {\tt venkatar@mit.edu} & {\bf Webpage:} \href{https://people.csail.mit.edu/venkatar/}{people.csail.mit.edu/venkatar}\\
+  %\hfill {\bf Programming Languages:} C/C++, Python, Rust & {\bf Github:} \href{https://github.com/venkatarun95/}{github.com/venkatarun95} \\
+%\end{tabular}
+
+\heading{Research Interest and Vision}
+
+%Today's networked systems perform well most of the time, but not all of the time. This is partly because they use heuristics whose behavior in the real world is poorly understood. My principal contribution is a set of tools and techniques to prove \emph{performance} properties of network heuristics. I have applied these to many areas, with a bulk of my work focusing on congestion control. I look forward to use this method to not only analyze, but also synthesize network algorithms that are provably correct by construction.
+
+Today's networked systems perform well most of the time, but not all the time. A key reason for this is that they use heuristics whose behavior is poorly understood. I use automated reasoning in new ways to augment human ability to understand the behavior of widely deployed heuristics. My tools prove performance properties of network heuristics and uncover unexpected ways in which they fail in the real world. I have applied this technique to many areas with the bulk of my work focusing on congestion control. Going forward, I will use this approach to design systems that are provably performant and robust. %More broadly, I will work on making computer systems robust and predictable.
+
+%I am currently extending this method to not only analyze, but also synthesize network algorithms that are provably correct by construction.
+
+\heading{Education}
+
+{\bf Massachusetts Institute of Technology (MIT)} \hfill {\em 2019-2023}\\
+Ph.D. Dept. of EECS\\
+Advisors: Hari Balakrishnan and Mohammad Alizadeh\\
+\\
+{\bf Massachusetts Institute of Technology (MIT)} \hfill {\em 2017-2019}\\
+Master of Science, Dept. of EECS\\
+% GPA: 4.9/5\\
+Advisors: Hari Balakrishnan and Mohammad Alizadeh\\
+\\
+{\bf Indian Institute of Technology Guwahati (IIT-G)} \hfill {\em 2013-2017} \\
+B.Tech. in Computer Science \& Engineering\\
+{\em President of India Gold Medal}
+% GPA: 9.83/10 (Highest among students graduating that year at IIT Guwahati)
+
+\heading{Industry Impact}
+\begin{enumerate}[noitemsep,nolistsep]
+\item Meta uses my congestion control algorithm (CCA), Copa [\ref{paper:copa}], for live video uploads
+\item Meta uses a my modification to BBR [\ref{paper:ccac}] (a CCA designed by Google) for a vast majority of their user-facing traffic
+\end{enumerate}
+
+\heading{Honors and Awards}
+\begin{itemize}[noitemsep,nolistsep]
+  @@ for award in awards @@
+    \item @=awards[award].title=@ (@=awards[award].year=@)
+  @@ endfor @@
+\end{itemize}
+
+\heading{Publications}
+
+\begin{enumerate}[noitemsep,nolistsep]
+\item {\it Starvation in End-to-End Congestion Control}\label{paper:starvation}\\
+  {\bf Venkat Arun}, Mohammad Alizadeh, Hari Balakrishnan\\
+  ACM SIGCOMM 2022\\
+  \highlight{Best Student Paper Award}\\
+  \url{https://dl.acm.org/doi/10.1145/3544216.3544223}\\
+\item {\it Toward Formally Verifying Congestion Control Behavior}\label{paper:ccac}\\
+  {\bf Venkat Arun}, Mina Arashloo, Ahmed Saeed, Mohammad Alizadeh, Hari Balakrishnan\\
+  ACM SIGCOMM 2021\\
+  \highlight{Being used at Meta}\\
+  \url{https://dl.acm.org/doi/10.1145/3452296.3472912}\\
+\item {\it Copa: Practical Delay-Based Congestion Control for the Internet}\label{paper:copa}\\
+  {\bf Venkat Arun}, Hari Balakrishnan\\
+  USENIX NSDI 2018\\
+  \highlight{Being used at Meta}\\
+  \url{https://web.mit.edu/copa/}\\
+%    arXiv \\
+\item {\it RFocus: Practical Beamforming for Small Devices}\label{paper:rfocus}\\
+  {\bf Venkat Arun}, Hari Balakrishnan\\
+  USENIX NSDI 2020\\
+  \highlight{Largest antenna array ever used for a single communication link}\\
+%    arXiv \\
+  % \url{https://arxiv.org/abs/1905.05130}\\
+  \url{https://people.csail.mit.edu/venkatar/rfocus.html}
+\\
+\item {\it Finding Safety in Numbers with Secure Allegation Escrows} \\
+  {\bf Venkat Arun}, Aniket Kate, Deepak Garg, Peter Druschel, Bobby Bhattacharjee \\
+  NDSS Symposium 2020\\
+%    arXiv \\
+  \url{https://arxiv.org/abs/1810.10123}\\
+\item {\it Language-Directed Hardware Design for Network Performance Monitoring}\\
+  Srinivas Narayana,  Anirudh Sivaraman,  Vikram Nathan,  Prateesh Goyal, {\bf Venkat Arun}, Mohammad Alizadeh, Vimalkumar Jeyakumar, and Changhoon Kim\\
+  ACM SIGCOMM 2017\\
+  \highlight{Best Paper Award}\\
+  \url{https://web.mit.edu/marple/}\\
+\item {\it Automating Network Heuristic Design and Analysis}\label{paper:ccmatic}\\
+  Anup Agarwal, {\bf Venkat Arun}, Devdeep Ray, Ruben Martins, Srini Seshan\\
+  ACM SIGCOMM HotNets 2022\\
+  \url{https://conferences.sigcomm.org/hotnets/2022/papers/hotnets22_agarwal.pdf}\\
+\item {\it Quantitative Verification of Scheduling Heuristics}\label{paper:sched-verify}\\
+  Saksham Goel, Benjamin Mikek, Jehad Aly, {\bf Venkat Arun}, Ahmed Saeed, Aditya Akella\\
+  In Submission\\
+  \url{https://arxiv.org/abs/2301.04205}\\
+\item {\it Privid: Practical, Privacy-Preserving Video Analytics Queries}\label{paper:privid}\\
+  Frank Cangialosi, Neil Agarwal, {\bf Venkat Arun}, Junchen Jiang, Srinivas Narayana, Anand Sarwate, Ravi Netravali\\
+  USENIX NSDI 2022\\
+  \url{https://arxiv.org/pdf/2106.12083.pdf}\\
+\item {\it Throughput-Fairness Tradeoffs in Mobility Platforms}\\
+  Arjun Balasingam, Karthik Gopalakrishnan, Radhika Mittal, {\bf Venkat Arun}, Ahmed Saeed, Mohammad Alizadeh, Hamsa Balakrishnan, Hari Balakrishnan\\
+  ACM MobiSys 2021\\
+  \url{https://people.csail.mit.edu/arjunvb/pubs/mobius-mobisys21-paper.pdf}\\
+\item {\it Enabling High Quality Real-Time Communications with Adaptive Frame-Rate}\\
+  Zili Meng, Tingfeng Wang, Yixin Shen, Bo Wang, Mingwei Xu, Rui Han, Honghao Liu, {\bf Venkat Arun}, Hongxin Hu, Xue Wei\\
+  USENIX NSDI 2023\\
+\item {\it The Case for an Internet Primitive for Fault Localization}\\
+  Will Sussman, Emily Marx, {\bf Venkat Arun}, Akshay Narayan, Mohammad Alizadeh, Hari Balakrishnan, Aurojit Panda, Scott Shenker\\
+  ACM SIGCOMM HotNets 2022\\
+  \url{https://conferences.sigcomm.org/hotnets/2022/papers/hotnets22_sussman.pdf}
+\end{enumerate}
+
+\heading{Selected Press Coverage}
+
+\begin{tabular}{l l}
+  Starvation in CC [\ref{paper:starvation}] &
+  \href{https://news.mit.edu/2022/algorithm-computer-network-bandwidth-0804}{MIT News},
+  \underline{\href{https://spectrum.ieee.org/internet-congestion-control}{IEEE Spectrum}},
+  \underline{\href{https://blog.apnic.net/2022/11/23/congestion-control-algorithms-are-not-fair/}{APNIC Blog}},
+  \href{https://www.theregister.com/2022/08/22/network_congestion_algorithms/?td=keepreading}{The Register},
+  \href{https://www.extremetech.com/internet/338610-mit-researchers-say-all-network-congestion-algorithms-are-unfair}{Extreme Tech}\\
+  RFocus [\ref{paper:rfocus}] &
+  \href{https://news.mit.edu/2020/smart-surface-smart-devices-mit-csail-0203}{MIT News},
+  \underline{\href{https://www.bbc.co.uk/programmes/p08271xg}{BBC Radio}},
+  \href{https://techcrunch.com/2020/02/03/mits-rfocus-technology-could-turn-your-walls-into-antennas/}{Tech Crunch},
+  \href{https://venturebeat.com/mobile/mit-csails-rfocus-boosts-wireless-signal-strength-by-a-factor-of-nearly-10/}{Venture Beat},
+  \href{https://www.engadget.com/2020-02-03-mit-rfocus-smart-surface.html}{Engadget},
+  \href{https://www.techspot.com/news/83869-mit-rfocus-smart-surface-uses-tiny-antennas-amplify.html}{Tech Spot},
+  \href{https://www.digitaltrends.com/news/rfocus-smart-wallpaper-boosts-signal-strength/}{Digital Trends}\\
+  Privid [\ref{paper:privid}] &
+  \href{https://news.mit.edu/2022/privid-security-tool-guarantees-privacy-surveillance-footage-0328}{MIT News},
+  \underline{\href{https://spectrum.ieee.org/surveillance-privacy}{IEEE Spectrum}},
+  \href{https://thehackernews.com/2022/03/privid-privacy-preserving-surveillance.html}{Hacker News},
+  \href{https://scitechdaily.com/security-tool-privid-guarantees-privacy-in-surveillance-footage/}{Sci Tech Daily},
+  \href{https://www.marktechpost.com/2022/03/30/researchers-from-mit-csail-introduce-privid-an-ai-tool-build-on-differential-privacy-to-guarantee-privacy-in-video-footage-from-surveillance-cameras/}{MarkTechPost}
+
+\end{tabular}
+
+\if 0
+\newpage
+
+\heading{Mentoring Experience}
+\begin{enumerate}[noitemsep,nolistsep]
+\item Anup Agarwal - automatically synthesizing heuristics that are provably performant by construction [\ref{paper:ccmatic}]
+\item Saksham Goel, Ben Mikek, Jehad Aly - verifying performance properties of CPU schedulers [\ref{paper:sched-verify}]
+\item Rahul Bothra - developing a lightweight verification tool for network architects
+\item Sudarsanan Rajasekaran - improving MIMO rank with RFocus
+\end{enumerate}
+
+\heading{Teaching Experience}
+\begin{itemize}
+\item Guest lecture, MIT 6.5820 (Computer Networks) 2022, on Formally Verifying Congestion Control Behavior [\ref{paper:ccac}]\\
+  taught by Mohammad Alizadeh and Manya Ghobadi
+\item Guest lecture, UIUC 598HH (Advanced Wireless Networks \& Sensing Systems) 2020, on RFocus [\ref{paper:rfocus}]\\
+  taught by Haitham Hassanieh
+\item Teaching Assistant, MIT 6.829 2020 (Graduate Computer Networks)\\
+  taught by Mohammad Alizadeh and Manya Ghobadi
+\end{itemize}
+
+\heading{Service}
+\begin{itemize}
+\item Organizer of the MIT EECS GAAP program 2021-2022: We matched $\sim 200$ diverse candidates with $\sim 50$ mentors to help with their grad school applications and improve diversity of graduate programs in MIT and elsewhere
+\item Reviewed for IEEE Transactions on Networking 2022
+  \item Shadow PC member for Internet Measurement conference 2019
+\end{itemize}
+
+%\newpage
+\heading{Past Experience}
+
+{\bf Intern, Facebook inc.} \hfill {\em Fall 2020}\\
+Experimented with and helped improve WAN congestion control at Facebook.
+
+{\bf Intern, Max Planck Institute for Software Systems} \hfill {\em Summer
+    2016}\\
+{\em Profs. Deepak Garg, Peter Druschel, and Krishna Gummadi}{}\\
+Designed a cryptographically secure allegation escrow (SAE), the first such design to our knowledge
+
+{\bf Intern, Massachusetts Institute of Technology} \hfill {\em Summer 2015}\\
+{\em Prof. Hari Balakrishnan}{}\\
+Developed Copa, a new general purpose congestion control algorithm for the wide-internet
+
+\fi
+
+\end{document}
