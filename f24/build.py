@@ -64,7 +64,7 @@ def prep_schedule():
         {"name": "Media access control (MAC)", "notes": "assets/slides/lec12-mac-protocols.pptx"},
         {"name": "Transport layer: flow control and reliaiblity", "notes": "assets/slides/lec13-transport-intro.pdf"},
         {"name": "Transport layer: alternate designs", "notes": "assets/slides/lec14-transport-adv-reliability.pdf"},
-        {"name": "Congestion control", "notes": None},
+        {"name": "Congestion control 1", "notes": "assets/slides/lec15-congestion-control-1.pptx"},
         {"name": "Congestion control 2", "notes": None},
         {"name": "Queuing mechanisms and centralized bandwidth allocation", "notes": None},
         {"name": "The Domain Name System (DNS)", "notes": None},
