@@ -68,17 +68,17 @@ def prep_schedule():
         {"name": "Congestion control 2", "notes": None},
         {"name": "Recap: BGP and FEC", "notes": None},
         {"name": "Queuing disciplines + HTTP and the web", "notes": "assets/slides/lec18-qd-and-app.pdf"},
-        {"name": "HTTP and the web", "notes": None},
+        {"name": "Encryption 1", "notes": "assets/slides/lec19-security-crypto.pdf"},
         {"name": "<b>Quiz 2</b>", "notes": None},
-        {"name": "Content Delivery Networks (CDNs)", "notes": None},
-        {"name": "Putting it all together: Journey of a web page", "notes": None},
+        {"name": "Encryption 2 and managing certificates", "notes": None},
+        {"name": "Web security", "notes": None},
         {"name": "Datacenter Networks", "notes": None},
+        {"name": "Content Delivery Networks (CDNs)", "notes": None},
+        {"name": "HTTP and the web", "notes": None},
+        {"name": "Putting it all together: Journey of a web page", "notes": None},
         {"name": "The scarcity of addresses: NAT and IPv6", "notes": None},
         {"name": "Virtual Private Networks (VPNs)", "notes": None},
         #{"name": "Reverse proxies", "notes": None},
-        {"name": "Encryption 1", "notes": None},
-        {"name": "Encryption 2 and managing certificates", "notes": None},
-        {"name": "Web security", "notes": None},
     ]
 
     if len(schedule) > len(dates):
