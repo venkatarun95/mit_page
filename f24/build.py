@@ -70,7 +70,7 @@ def prep_schedule():
         {"name": "Queuing disciplines + HTTP and the web", "notes": "assets/slides/lec18-qd-and-app.pdf"},
         {"name": "Encryption 1", "notes": "assets/slides/lec19-security-crypto.pdf"},
         {"name": "<b>Quiz 2</b>", "notes": None},
-        {"name": "Encryption 2 and managing certificates", "notes": None},
+        {"name": "Encryption 2", "notes": "assets/slides/lec20-security-crypto-2.pdf"},
         {"name": "Web security", "notes": None},
         {"name": "Datacenter Networks", "notes": None},
         {"name": "Content Delivery Networks (CDNs)", "notes": None},
