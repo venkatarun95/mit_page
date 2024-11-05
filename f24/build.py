@@ -71,7 +71,7 @@ def prep_schedule():
         {"name": "Encryption 1", "notes": "assets/slides/lec19-security-crypto.pdf"},
         {"name": "<b>Quiz 2</b>", "notes": None},
         {"name": "Encryption 2", "notes": "assets/slides/lec20-security-crypto-2.pdf"},
-        {"name": "Web security", "notes": None},
+        {"name": "Web security", "notes": "assets/slides/lec22-practical-security.pdf"},
         {"name": "Datacenter Networks", "notes": None},
         {"name": "Content Delivery Networks (CDNs)", "notes": None},
         {"name": "HTTP and the web", "notes": None},
