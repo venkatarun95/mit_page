@@ -73,7 +73,7 @@ def prep_schedule():
         {"name": "Encryption 2", "notes": "assets/slides/lec20-security-crypto-2.pdf"},
         {"name": "Web security", "notes": "assets/slides/lec22-practical-security.pdf"},
         {"name": "Datacenter Networks", "notes": "assets/slides/lec23-datacenter-networks.pdf"},
-        {"name": "Programmable network devices (guest lecture by Daehyoek Kim)", "notes": None},
+        {"name": "Programmable network devices (guest lecture by Daehyoek Kim)", "notes": "assets/slides/lec24-programmable-networks.pdf"},
         {"name": "Content Delivery Networks (CDNs)", "notes": "assets/slides/lec25-cdn.pdf"},
         #{"name": "HTTP and the web", "notes": None},
         #{"name": "Putting it all together: Journey of a web page", "notes": None},
