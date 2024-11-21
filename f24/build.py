@@ -74,7 +74,7 @@ def prep_schedule():
         {"name": "Web security", "notes": "assets/slides/lec22-practical-security.pdf"},
         {"name": "Datacenter Networks", "notes": "assets/slides/lec23-datacenter-networks.pdf"},
         {"name": "Programmable network devices (guest lecture by Daehyoek Kim)", "notes": None},
-        {"name": "Content Delivery Networks (CDNs)", "notes": None},
+        {"name": "Content Delivery Networks (CDNs)", "notes": "assets/slides/lec25-cdn.pdf"},
         #{"name": "HTTP and the web", "notes": None},
         #{"name": "Putting it all together: Journey of a web page", "notes": None},
         {"name": "The scarcity of addresses: NAT and IPv6", "notes": None},
