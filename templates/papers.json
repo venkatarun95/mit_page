@@ -1,4 +1,11 @@
 {
+    "archie": {
+	"title": "Lightweight Automated Reasoning for Network Architectures",
+	"authors": "Rahul Bothra, Venkat Arun, Brighten Godfrey, Akshay Narayan, Ahmed Saeed",
+	"short_name": "Archie",
+	"conf": "ACM SIGCOMM HotNets",
+	"year": 2024
+    },
     "ccac": {
 	"title": "Toward formally verifying congestion control behavior",
 	"authors": "Venkat Arun, Mina T. Arashloo, Ahmed Saeed, Mohammad Alizadeh, and Hari Balakrishnan",
