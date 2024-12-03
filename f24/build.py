@@ -77,8 +77,8 @@ def prep_schedule():
         {"name": "Content Delivery Networks (CDNs)", "notes": "assets/slides/lec25-cdn.pdf"},
         #{"name": "HTTP and the web", "notes": None},
         #{"name": "Putting it all together: Journey of a web page", "notes": None},
-        {"name": "The scarcity of addresses: NAT and IPv6", "notes": None},
-        {"name": "Overlay Networks", "notes": None},
+        {"name": "The scarcity of addresses: NAT and IPv6", "notes": "assets/slides/lec26-nat-ipv6-overlay.pptx"},
+        {"name": "Course review: the philosophy of internet design", "notes": None},
         #{"name": "Reverse proxies", "notes": None},
     ]
 
