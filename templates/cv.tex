@@ -71,6 +71,18 @@ B.Tech. in Computer Science \& Engineering\\
 
 \heading{Publications}
 
+\begin{itemize}[noitemsep,nolistsep]
+  @@ for paper in papers @@
+    \item {\it @=paper.title=@}\label{paper:@=paper.ref=@}\\
+      @=paper.authors=@\\
+      @=paper.conf=@\\
+      @@ if paper.special is defined @@
+        \highlight{@=paper.special=@}\\
+      @@ endif @@
+  @@ endfor @@
+\end{itemize}
+
+\if 0
 \begin{enumerate}[noitemsep,nolistsep]
 \item {\it Starvation in End-to-End Congestion Control}\label{paper:starvation}\\
   {\bf Venkat Arun}, Mohammad Alizadeh, Hari Balakrishnan\\
@@ -130,6 +142,7 @@ B.Tech. in Computer Science \& Engineering\\
   ACM SIGCOMM HotNets 2022\\
   \url{https://conferences.sigcomm.org/hotnets/2022/papers/hotnets22_sussman.pdf}
 \end{enumerate}
+\fi
 
 \heading{Selected Press Coverage}
 

@@ -46,6 +46,7 @@ def prep_cites(papers: Dict[str, Dict[str, Union[str, int]]]) -> Tuple[Dict[str,
 
         inline[ref] = f"<abbr title=\"{paper['title']}. {paper['authors']}. In {paper['conf']} {paper['year']}\">{conf_name}</abbr>"
         full[ref]['conf'] = conf_full_name
+        full[ref]['ref'] = ref
 
     # Sort full by year
     full = [full[p] for p in full]
@@ -180,7 +181,7 @@ if __name__ == "__main__":
 
     with open("/tmp/cv.tex", "w") as outfile:
         template = latex_env.get_template("cv.tex")
-        rendered = template.render(awards=awards)
+        rendered = template.render(awards=awards, papers=papers)
         outfile.write(rendered)
 
         # Check if the rendered file is the same as cv-compiled.tex. If so, no

@@ -57,7 +57,7 @@
         "short_name": "Copa",
         "conf": "USENIX NSDI",
         "year": 2018,
-	"special": "<a href=\"https://engineering.fb.com/2019/11/17/video-engineering/copa/\" style=\"color:#D01919\">Being used in production at Meta</a>"
+	"special": "Being used in production at Meta"
     },
     "perf_verif": {
         "title": "Quantitative Verification of Scheduling Heuristics",
