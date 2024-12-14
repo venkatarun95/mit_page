@@ -8,7 +8,7 @@
 <h3 class="section">Publications</h3>
 <hr/>
 
-{% for p in papers %}
+{% for p in papers if not p.exclude %}
   <div class="card" style="border: none">
     <div class="card-body">
       {% if p.special is defined %}

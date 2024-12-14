@@ -48,6 +48,9 @@ def prep_cites(papers: Dict[str, Dict[str, Union[str, int]]]) -> Tuple[Dict[str,
         full[ref]['conf'] = conf_full_name
         full[ref]['ref'] = ref
 
+        if "exclude" not in full[ref]:
+            full[ref]["exclude"] = False
+
     # Sort full by year
     full = [full[p] for p in full]
     full.sort(key=lambda p: p['year'], reverse=True)

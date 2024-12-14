@@ -116,6 +116,7 @@
         "short_name": "Copa-at-FB",
         "conf": "Facebook Engineering Blog",
         "year": 2019,
-        "url": "https://engineering.fb.com/2019/11/17/video-engineering/copa/"
+        "url": "https://engineering.fb.com/2019/11/17/video-engineering/copa/",
+	"exclude": true
     }
 }

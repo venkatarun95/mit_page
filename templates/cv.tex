@@ -72,8 +72,8 @@ B.Tech. in Computer Science \& Engineering\\
 \heading{Publications}
 
 \begin{itemize}[noitemsep,nolistsep]
-  @@ for paper in papers @@
-    \item {\it @=paper.title=@}\label{paper:@=paper.ref=@}\\
+  @@ for paper in papers if not paper.exclude @@
+      \item {\it @=paper.title=@}\label{paper:@=paper.ref=@}\\
       @=paper.authors=@\\
       @=paper.conf=@\\
       @@ if paper.special is defined @@
