@@ -30,7 +30,11 @@
        }
      </style>
 
-      
+     
+
+<title>Congestion Control | Venkat Arun</title>
+
+
 
    </head>
 
@@ -104,7 +108,79 @@
 
        
 
-<p>I'm still working on this page. Coming soon.</p>
+<h2 style="text-palign:center">"Solving" Congestion Control</h2>
+
+<h3>Background and context</h3>
+
+<p>It is said that there are two problems in computer networking: routing and congestion control. Routing is concerned with finding a path for the data to take on the network. Congestion control (or more generally, bandwidth allocation) is concerned with deciding how much network capacity is given to each task that requires it. The original vision of end-to-end congestion control algorithms (CCAs) was that the end-hosts could decide, in a fully distributed way, the rate at which they send data (divided into packets) such that they fully utilize available capacity while sharing it fairly with others who are using the same the network links. In-network bandwidth allocation mechanisms are only needed at a coarse granularity to enforce economic agreements and to provide isolation across trust domains.</p>
+
+<p>This vision has not yet come to fruition. The complexity and diversity of network paths has made it extremely difficult to determine the correct sending rate from end-to-end measurements alone. This problem is exacerbated by the increasingly exacting demands of modern applicaitons: they demand low latency and the ability to quickly adapt to changing network capacity and application needs.</p>
+
+<p>People have responded to this in two ways. Practitioners have deployed far more in-network bandwidth allocation mechanisms than would have been necessary if CCAs worked well. Depending on how this is done, this is either expensive, inefficient, or both.</p>
+
+<p>Researchers have spent decades developing thousands of different algorithms in the hope that the next one will fullfill all the requirements. I am one of these researchers. Like many others, I am unfazed in the face of decades of failure and firmly believe that we have an approach to this problem that will finally succeed. Like delusional people everywhere, I have my reasons. Here they are:</p>
+
+<h3>Our approach to congestion control</h3>
+
+<p>Practical CCA development has been primarily an empirical exercise. While elegant theory exists and has provided coarse guidance on how to design CCAs, it does not capture many factors that critically impact CCA performance in the real world. The finer grained decisions are made empirically. Unfortunately, the internet is too complex and CCAs are too critical a factor in the internet's performance and reliably for such a haphazard empirical approach to be sufficient. We have developed two principles that we believe enable us to reason about CCA performance in real-world networks in a principled and systematic way:</p>
+
+<ol>
+  <li>Use non-deterministic models of the network instead of stochastic ones.</li>
+  <li>Use automated reasoning methods (classical or neural network assisted) to analyze and design CCAs under these models.</li>
+  <!--<li>Existing analytical methods fail to capture real-world performance because they require models that specify the <i>probability</i> distribution of </li>-->
+</ol>
+
+<p>While we developed these principles for congestion control, we later realized that the same principles also apply to many resource allocation heuristics/algorithms used in computer systems. This led to our work on <a href="perf-verif.html">performance verification and synthesis</a>. Like CCA, many such heuristics critically impact the performance of today's systems, often reducing it by more than 10&#10007; at the tail because but we lack a method to think about them systematically.</p>
+
+<p>By placing such critical algorithms on firmer footing, we believe our work will lead to <i>reliably performant</i> computer systems that can support applications of the future that require such reliability. Our work on congestion control has led to the following results:</p>
+
+<ul>
+  <li>An automated tool (CCAC) that can verify performance properties of CCAs [<abbr title="Toward formally verifying congestion control behavior. Venkat Arun, Mina T. Arashloo, Ahmed Saeed, Mohammad Alizadeh, and Hari Balakrishnan. In ACM SIGCOMM 2021">SIGCOMM21</abbr>].</li>
+  <ul>
+    <li>It discovered previously unknown and practically relevant performance issues in many CCAs including the classic AIMD and the widely deployed BBR.</li>
+    <li>For the first time, it proved performance properties about CCAs in a network model that includes real-world phenomena like ACK aggregation and delay jitter due to OS scheduling and wireless links. Previously, it was difficult to even consider packetization without making over-simplifying assumptions.</li>
+    <li>It suggested a modification to BBR that Meta uses for a vast majority of its user facing traffic.</li>
+  </ul>
+  <li>An theorem that showed that <i>all</i> delay-bounding CCAs designed so far suffer from starvation, an extreme form of unfairness. This happens on paths that are common on the internet [<abbr title="Starvation in end-to-end congestion control. Venkat Arun, Mohammad Alizadeh, and Hari Balakrishnan. In ACM SIGCOMM 2023">SIGCOMM23</abbr>].</li>
+  <ul>
+    <li>Our theorem identified a common property shared by all delay-bounding CCAs&mdash;<i>delay convergence</i>&mdash;that seems advantageous, but surprisingly always leads to starvation.</li>
+    <li>A starvation-free CCA must therefore avoid this property. We are currently designing the first provably starvation-free CCA.</li>
+  </ul>
+  <li>A systematic and semi-automated method to <i>design</i> provably performant CCAs [<abbr title="Towards provably performant congestion control. Anup Agarwal, Venkat Arun, Devdeep Ray, Ruben Martins, and Srinivasan Seshan. In USENIX NSDI 2024">NSDI24</abbr>].</li>
+  <ul>
+    <li>Our tool, CCMatic, automatically designed the first CCA that can limit loss to a constant number of packets per RTT on many real-world network paths. To do so, it discovered a new <i>conceptual</i> idea that had not been considered in decades of human-driven CCA design.</li>
+    <li>The tool helped us prove new impossibility results that establishes a pareto frontier on loss tolerance vs convergence time.</li>
+    <li>There has been a lot of debate on what signals CCAs should consider. To make CCMatic possible, we identified a canonical set of signals and proved that if there exists <i>any</i> CCA that satisfies our desired performance properties, then there also exists one whose sending rate is a pure function of these signals.</li>
+  </ul>
+  <li>Before embarking on a formal approach to CCA design, we empirically designed a CCA, Copa, that Meta now uses for live video streaming [<abbr title="Copa: Practical Delay-Based Congestion Control for the Internet. Venkat Arun and Hari Balakrishnan. In USENIX NSDI 2018">NSDI18</abbr>].
+</ul>
+
+<h3>The power of non-deterministic models</h3>
+
+<p>CCAs infer congestion based on measurements of packet delay and loss (all other metrics can be derived from these). However, packets can get delayed and lost for reasons other than congestion too. For instance, it is inefficient to transmit small packets over wireless networks. Thus WiFi routers will wait to aggregate multiple packets before sending all of them at once. In this case, delay can even reduce with congestion since it takes less time for sufficient bytes to accumulate at the router. Similarly, the time at which the OS or even a wired router schedules packet transmission is influenced by other tasks in the system. Cellular networks have a complex service process that depends not only on a rapidly varying wireless channel, but also other flows. Each of these create non-trivial patterns in packet delay that can trick a CCA into mis-estimating congestion.</p>
+
+<p>Recognizing these difficulties, people test CCA designs on either simulations or real test beds. Accurate simulators and emulators are hard to build. In fact, no simulator/emulator adequately models even the phenomena listed above. Real test beds that have sufficiently diverse paths are expensive to create since new equipment needs to be acquired for each type of network link. One can test CCAs on real user traffic which encompass the full diversity of paths on the internet. Thanks to the efforts of hyperscalers, this is increasingly feasible. However while we can measure what the CCA did, we cannot know what it <i>should</i> have done since we do not have visibility into paths controlled by others. Knowing what rate it <i>should</i> transmit at in the face of incomplete observability is precisely the CCA's job. If we knew it, we would not need the CCA.</p>
+
+<p>Even if a perfect simulator or real-world test bed were available, there is not an easy to design a CCA for it. For instance, when I was designing our CCA, Copa [<abbr title="Copa: Practical Delay-Based Congestion Control for the Internet. Venkat Arun and Hari Balakrishnan. In USENIX NSDI 2018">NSDI18</abbr>], I created a small set of simple test cases on which to evaluate it. I spent months tweaking the algorithm, but a change that fixed one issue would create another. It was not until I had found an algorithm that I could theoretically analyze was I able to get consistent and predictable performance. Theory helps us explore combinatorally large spaces of possible algorithms and networks, something that would be impossible experimentally.</p>
+
+<p>Theoretical analysis, the way it is traditionally done for CCAs, has one challenge. If it is hard to capture complex networks in simulation, it is nearly impossible on paper.This is where non-determinism helps. A traditional netwrok model is stochastic. It has to predict how the network <i>will</i> react to CCA action, either exactly or as a probability distribution. In contrast, a non-deterministic model only has to predict what <i>can</i> happen. It predicts a set of possible outcomes, but says nothing about how likely each one is. </p>
+
+<!-- My work is critical to understanding how to build software that can offer consistently good performance, even as computer systems get increasingly complex. This will enable emerging applications---such as Augmented/Virtual/Mixed reality (AR/VR/MR), ubiquitous robotics, and remote surgery---that cannot function when the underlying computer system fails to meet tight performance targets almost every time. My work is specifically important to the United States since the American people will benefit from the development of new applications that require ultra-low latency and high performance. Existing and widely deployed applications will also benefit from being able to run on less expensive or more ubiquitous hardware without a loss in performance. -->
+
+<p>How do we design and test CCAs to operate on such paths? One approach is to create an analytical model or a simulator that can capture these behaviors.</p>
+
+<p>Consider the model shown below:</p>
+
+<img src="assets/img/model-two-flow.png" class="long-image img-fluid w-50 d-block mx-auto"/>
+
+It is nearly impossible to <i>model</i> all of these phenomena
+
+FAQs
+- This is an old problem. Will this really revolutionize the world?
+- Aren't today's CCAs basically good? The internet works right?
+- Won't worst analysis produce very pessimistic CCAs that compromise the common case?
+- No matter what happens, people will still work on congestion control
+- Do you really think you will solve congestion control? What does "solve" even mean?
 
 
 
