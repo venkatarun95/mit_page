@@ -1,0 +1,376 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+        <!-- Bootstrap CSS -->
+        <!--<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.3/css/bootstrap.min.css" integrity="sha384-Zug+QiDoJOrZ5t4lssLdxGhVrurbmBWopoEl+M6BdEfwnCJZtKxi1KgxUyJq13dy" crossorigin="anonymous">-->
+	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+	<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+	<script src="https://cdn.jsdelivr.net/npm/popper.js@1.12.9/dist/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+	<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+	<!-- Bootstrap Icons -->
+	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+
+	<style>
+	  .card-body {
+	      padding: 0.25rem;
+	  }
+	  .text-muted {
+	      font-weight: 300;
+	      color: #000 !important;
+	  }
+	  td, th {
+	      border: 1px solid;
+	  }
+	</style>
+
+	
+<style>
+  td {
+      border: none;
+  }
+  th {
+      border: none;
+  }
+</style>
+
+
+        <title>CS 395T: Computer System Performance Analysis Spring 2025</title>
+    </head>
+
+    <body style="background-color: #bf5700">
+      <div class="container" style="background-color: #fff; padding-top:30pt;">
+	<div class="d-flex justify-content-between align-items-center">
+	  <h1>CS 395T: Computer System Performance Analysis</h1> <h2 class="text-muted">Spring 2025</h2>
+	</div>
+
+	<nav class="navbar navbar-expand-lg navbar-light bg-light">
+	  <div class="container-fluid">
+	    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+	      <span class="navbar-toggler-icon"></span>
+	    </button>
+	    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+	      <ul class="navbar-nav mr-auto">
+		
+		<li class="nav-item ">
+		  <a class="nav-link" aria-current="page" href="index.html">Home</a>
+		</li>
+		
+		<li class="nav-item  active ">
+		  <a class="nav-link" aria-current="page" href="schedule.html">Schedule</a>
+		</li>
+		
+		<li class="nav-item ">
+		  <a class="nav-link" aria-current="page" href="https://edstem.org/us/courses/74525/discussion">Ed Discussion</a>
+		</li>
+		
+		<li class="nav-item ">
+		  <a class="nav-link" aria-current="page" href="https://utexas.instructure.com/courses/1414782">Canvas</a>
+		</li>
+		
+	      </ul>
+	    </div>
+	  </div>
+	</nav>
+
+	<br/><br/>
+
+	
+
+<p>Given below is the tentative schedule for this course</p>
+
+<table class="table table-hover">
+  <thead>
+    <tr>
+      <th scope="col">Lecture &#35;</th>
+      <th scope="col">Date</th>
+      <th scope="col">Topic</th>
+      <th scope="col">Reading</th>
+    </tr>
+  </thead>
+  <tbody>
+    
+      <tr>
+        <th scope="row">1</th>
+	<td style="border:none;">Tue, Jan 14</td>
+	<td>Introduction</td>
+	<td>
+       
+        <a href="https://dl.acm.org/doi/pdf/10.1145/161541.161736"> PIM </a> <br/>
+       
+        <a href="https://www.cs.cornell.edu/~ragarwal/pubs/dcpim.pdf"> dcPIM </a> <br/>
+       
+        <a href="https://cs.utexas.edu/~venkatar/sys_perf_analysis/how-to-read-paper.pdf"> How to read papers </a> <br/>
+      
+    </td>
+    </tr>
+    
+      <tr>
+        <th scope="row">2</th>
+	<td style="border:none;">Thu, Jan 16</td>
+	<td>Class cancelled due to 🛫</td>
+	<td> 
+    -- 
+    </td>
+    </tr>
+    
+      <tr>
+        <th scope="row">3</th>
+	<td style="border:none;">Tue, Jan 21</td>
+	<td>Class cancelled due to ❄️</td>
+	<td> 
+    -- 
+    </td>
+    </tr>
+    
+      <tr>
+        <th scope="row">4</th>
+	<td style="border:none;">Thu, Jan 23</td>
+	<td>Load balancing</td>
+	<td>
+       
+        <a href="https://www.cs.utexas.edu/~venkatar/sys_perf_analysis/valiant-optics.pdf"> Valiant Routing </a> <br/>
+       
+        <a href="https://www.cs.utexas.edu/~venkatar/sys_perf_analysis/plb.pdf"> PLB </a> <br/>
+      
+    </td>
+    </tr>
+    
+      <tr>
+        <th scope="row">5</th>
+	<td style="border:none;">Tue, Jan 28</td>
+	<td>Power of two choices</td>
+	<td>
+       
+        <a href="https://www.haproxy.com/blog/power-of-two-load-balancing"> Empirical blog </a> <br/>
+       
+        <a href="https://www.eecs.harvard.edu/~michaelm/postscripts/handbook2001.pdf"> Survey of theory </a> <br/>
+      
+    </td>
+    </tr>
+    
+      <tr>
+        <th scope="row">6</th>
+	<td style="border:none;">Thu, Jan 30</td>
+	<td>Notions of fairness I</td>
+	<td> 
+    -- 
+    </td>
+    </tr>
+    
+      <tr>
+        <th scope="row">7</th>
+	<td style="border:none;">Tue, Feb 04</td>
+	<td>Notions of fairness II</td>
+	<td> 
+    -- 
+    </td>
+    </tr>
+    
+      <tr>
+        <th scope="row">8</th>
+	<td style="border:none;">Thu, Feb 06</td>
+	<td>Notions of fairness III</td>
+	<td> 
+    -- 
+    </td>
+    </tr>
+    
+      <tr>
+        <th scope="row">9</th>
+	<td style="border:none;">Tue, Feb 11</td>
+	<td>Process scheduling I</td>
+	<td>
+       
+        <a href="https://dl.acm.org/doi/10.1145/277505.277526"> Work stealing theoretical analysis </a> <br/>
+       
+        <a href="https://dl.acm.org/doi/10.1145/262004.262005"> Cilk programming model </a> <br/>
+       
+        <a href="https://dl.acm.org/doi/10.1145/1073970.1073974"> Empirical analysis that concludes work stealing is best </a> <br/>
+      
+    </td>
+    </tr>
+    
+      <tr>
+        <th scope="row">10</th>
+	<td style="border:none;">Thu, Feb 13</td>
+	<td>Process scheduling II</td>
+	<td>
+       
+        <a href="https://www.usenix.org/system/files/conference/osdi16/osdi16-peng.pdf"> Decades of wasted cores in Linux </a> <br/>
+      
+    </td>
+    </tr>
+    
+      <tr>
+        <th scope="row">11</th>
+	<td style="border:none;">Tue, Feb 18</td>
+	<td>Caching replacement policies I</td>
+	<td> 
+    -- 
+    </td>
+    </tr>
+    
+      <tr>
+        <th scope="row">12</th>
+	<td style="border:none;">Thu, Feb 20</td>
+	<td>Cache replacement policies II</td>
+	<td> 
+    -- 
+    </td>
+    </tr>
+    
+      <tr>
+        <th scope="row">13</th>
+	<td style="border:none;">Tue, Feb 25</td>
+	<td>Incorporating ML in systems I</td>
+	<td> 
+    -- 
+    </td>
+    </tr>
+    
+      <tr>
+        <th scope="row">14</th>
+	<td style="border:none;">Thu, Feb 27</td>
+	<td>Incorporating ML in systems II</td>
+	<td> 
+    -- 
+    </td>
+    </tr>
+    
+      <tr>
+        <th scope="row">15</th>
+	<td style="border:none;">Tue, Mar 04</td>
+	<td>Incorporating ML in systems III</td>
+	<td> 
+    -- 
+    </td>
+    </tr>
+    
+      <tr>
+        <th scope="row">16</th>
+	<td style="border:none;">Thu, Mar 06</td>
+	<td>Computational complexity in practice I</td>
+	<td> 
+    -- 
+    </td>
+    </tr>
+    
+      <tr>
+        <th scope="row">17</th>
+	<td style="border:none;">Tue, Mar 11</td>
+	<td>Computational complexity in practice II</td>
+	<td> 
+    -- 
+    </td>
+    </tr>
+    
+      <tr>
+        <th scope="row">18</th>
+	<td style="border:none;">Thu, Mar 13</td>
+	<td>Computational complexity in practice III</td>
+	<td> 
+    -- 
+    </td>
+    </tr>
+    
+      <tr>
+        <th scope="row">19</th>
+	<td style="border:none;">Tue, Mar 25</td>
+	<td>Congestion control I</td>
+	<td> 
+    -- 
+    </td>
+    </tr>
+    
+      <tr>
+        <th scope="row">20</th>
+	<td style="border:none;">Thu, Mar 27</td>
+	<td>Congestion control II</td>
+	<td> 
+    -- 
+    </td>
+    </tr>
+    
+      <tr>
+        <th scope="row">21</th>
+	<td style="border:none;">Tue, Apr 01</td>
+	<td>Congestion control III</td>
+	<td> 
+    -- 
+    </td>
+    </tr>
+    
+      <tr>
+        <th scope="row">22</th>
+	<td style="border:none;">Thu, Apr 03</td>
+	<td>Performance verification I</td>
+	<td> 
+    -- 
+    </td>
+    </tr>
+    
+      <tr>
+        <th scope="row">23</th>
+	<td style="border:none;">Tue, Apr 08</td>
+	<td>Performance verification II</td>
+	<td> 
+    -- 
+    </td>
+    </tr>
+    
+      <tr>
+        <th scope="row">24</th>
+	<td style="border:none;">Thu, Apr 10</td>
+	<td>Bounding performance I</td>
+	<td> 
+    -- 
+    </td>
+    </tr>
+    
+      <tr>
+        <th scope="row">25</th>
+	<td style="border:none;">Tue, Apr 15</td>
+	<td>Abstractions that aid performance I</td>
+	<td> 
+    -- 
+    </td>
+    </tr>
+    
+      <tr>
+        <th scope="row">26</th>
+	<td style="border:none;">Thu, Apr 17</td>
+	<td>Abstractions that aid performance II</td>
+	<td> 
+    -- 
+    </td>
+    </tr>
+    
+      <tr>
+        <th scope="row">27</th>
+	<td style="border:none;">Tue, Apr 22</td>
+	<td>Project presentations I</td>
+	<td> 
+    -- 
+    </td>
+    </tr>
+    
+      <tr>
+        <th scope="row">28</th>
+	<td style="border:none;">Thu, Apr 24</td>
+	<td>Project presentations II</td>
+	<td> 
+    -- 
+    </td>
+    </tr>
+    
+  </tbody>
+</table>
+
+
+
+      </div>
+    </body>
+</html>
