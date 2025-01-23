@@ -30,13 +30,21 @@
         <th scope="row">{{ item.number }}</th>
 	<td style="border:none;">{{ item.date }}</td>
 	<td>{{ item.name }}</td>
-	<td>{% if item.reading == [] %} 
-    -- 
-    {% else %}
-      {% for read in item.reading %} 
-        <a href="{{ read[1] }}"> {{ read[0] }} </a> <br/>
-      {% endfor %}
-    {% endif %}</td>
+	<td>
+	  {% if item.reading == [] %} 
+            -- 
+          {% else %}
+            {% for read in item.reading %} 
+              <a href="{{ read[1] }}"> {{ read[0] }} </a> <br/>
+            {% endfor %}
+	  {% endif %}
+	  {% if item.optional %}
+	    <b>Optional:</b><br/>    
+	    {% for read in item.optional %}
+              <a href="{{ read[1] }}"> {{ read[0] }} </a> <br/>
+	    {% endfor %}
+	  {% endif %}
+	</td>
     </tr>
     {% endfor %}
   </tbody>

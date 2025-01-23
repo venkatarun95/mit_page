@@ -49,10 +49,10 @@ def prep_schedule():
     ]
 
     schedule = [
-        {"name": "Introduction", "reading": [("PIM", "https://dl.acm.org/doi/pdf/10.1145/161541.161736"), ("dcPIM", "https://www.cs.cornell.edu/~ragarwal/pubs/dcpim.pdf"), ("How to read papers", "https://cs.utexas.edu/~venkatar/sys_perf_analysis/how-to-read-paper.pdf")]},
+        {"name": "Introduction", "reading": [("PIM: Matching in a switch", "https://dl.acm.org/doi/pdf/10.1145/161541.161736"), ("dcPIM: Matching in a datacenter", "https://www.cs.cornell.edu/~ragarwal/pubs/dcpim.pdf")], "optional": [("How to read papers", "https://cs.utexas.edu/~venkatar/sys_perf_analysis/how-to-read-paper.pdf")]},
         {"name": "Class cancelled due to 🛫", "reading": []},
         {"name": "Class cancelled due to ❄️", "reading": []},
-        {"name": "Load balancing", "reading": [("Valiant Routing", "https://www.cs.utexas.edu/~venkatar/sys_perf_analysis/valiant-optics.pdf"), ("PLB", "https://www.cs.utexas.edu/~venkatar/sys_perf_analysis/plb.pdf")]},
+        {"name": "Load balancing", "reading": [("Valiant routing in a switch", "https://www.cs.utexas.edu/~venkatar/sys_perf_analysis/valiant-optics.pdf"), ("Valiant routing in Google's datacenter", "https://www.cs.utexas.edu/~venkatar/sys_perf_analysis/plb.pdf")], "optional": [("Original paper by Valiant", "Universal schemes for parallel communication")]},
         {"name": "Power of two choices", "reading": [("Empirical blog", "https://www.haproxy.com/blog/power-of-two-load-balancing"), ("Survey of theory", "https://www.eecs.harvard.edu/~michaelm/postscripts/handbook2001.pdf")]},
         {"name": "Notions of fairness I", "reading": [], "optional": []},
         {"name": "Notions of fairness II", "reading": [], "optional": []},
