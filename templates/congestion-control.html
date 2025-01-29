@@ -34,28 +34,26 @@
 
 <p>By placing such critical algorithms on firmer footing, we believe our work will lead to <i>reliably performant</i> computer systems that can support applications of the future that require such reliability. Our work on congestion control has led to the following results:</p>
 
-<ul>
-  <li>An automated tool (CCAC) that can verify performance properties of CCAs [{{icite.ccac}}].</li>
+<b>An automated tool (CCAC) that can verify performance properties of CCAs [{{icite.ccac}}].</b>
   <ul>
     <li>It discovered previously unknown and practically relevant performance issues in many CCAs including the classic AIMD and the widely deployed BBR.</li>
     <li>For the first time, it proved performance properties about CCAs in a network model that includes real-world phenomena like ACK aggregation and delay jitter due to OS scheduling and wireless links. Previously, it was difficult to even consider packetization without making over-simplifying assumptions.</li>
     <li>It suggested a modification to BBR that Meta uses for a vast majority of its user facing traffic.</li>
   </ul>
-  <li>An theorem that showed that <i>all</i> delay-bounding CCAs designed so far suffer from starvation, an extreme form of unfairness. This happens on paths that are common on the internet [{{icite.starvation}}].</li>
+<b>An theorem that showed that <i>all</i> delay-bounding CCAs designed so far suffer from starvation, an extreme form of unfairness. This happens on paths that are common on the internet [{{icite.starvation}}].</b>
   <ul>
     <li>Our theorem identified a common property shared by all delay-bounding CCAs&mdash;<i>delay convergence</i>&mdash;that seems advantageous, but surprisingly always leads to starvation.</li>
     <li>A starvation-free CCA must therefore avoid this property. We are currently designing the first provably starvation-free CCA.</li>
   </ul>
-  <li>A systematic and semi-automated method to <i>design</i> provably performant CCAs [{{icite.ccmatic}}].</li>
+<b>A systematic and semi-automated method to <i>design</i> provably performant CCAs [{{icite.ccmatic}}].</b>
   <ul>
     <li>Our tool, CCMatic, automatically designed the first CCA that can limit loss to a constant number of packets per RTT on many real-world network paths. To do so, it discovered a new <i>conceptual</i> idea that had not been considered in decades of human-driven CCA design.</li>
     <li>The tool helped us prove new impossibility results that establishes a pareto frontier on loss tolerance vs convergence time.</li>
     <li>There has been a lot of debate on what signals CCAs should consider. To make CCMatic possible, we identified a canonical set of signals and proved that if there exists <i>any</i> CCA that satisfies our desired performance properties, then there also exists one whose sending rate is a pure function of these signals.</li>
   </ul>
-  <li>Before embarking on a formal approach to CCA design, we empirically designed a CCA, Copa, that Meta now uses for live video streaming [{{icite.copa}}].
-</ul>
+<b>Before embarking on a formal approach to CCA design, we empirically designed a CCA, Copa, that Meta now uses for live video streaming [{{icite.copa}}].</b>
 
-<h3>The power of non-deterministic models</h3>
+<h3 id="nondeterminism">The power of non-deterministic models</h3>
 
 <p>CCAs infer congestion based on measurements of packet delay and loss (all other metrics can be derived from these). However, packets can get delayed and lost for reasons other than congestion too. For instance, it is inefficient to transmit small packets over wireless networks. Thus WiFi routers will wait to aggregate multiple packets before sending all of them at once. In this case, delay can even reduce with congestion since it takes less time for sufficient bytes to accumulate at the router. Similarly, the time at which the OS or even a wired router schedules packet transmission is influenced by other tasks in the system. Cellular networks have a complex service process that depends not only on a rapidly varying wireless channel, but also other flows. Each of these create non-trivial patterns in packet delay that can trick a CCA into mis-estimating congestion.</p>
 
@@ -63,23 +61,25 @@
 
 <p>Even if a perfect simulator or real-world test bed were available, there is not an easy to design a CCA for it. For instance, when I was designing our CCA, Copa [{{icite.copa}}], I created a small set of simple test cases on which to evaluate it. I spent months tweaking the algorithm, but a change that fixed one issue would create another. It was not until I had found an algorithm that I could theoretically analyze was I able to get consistent and predictable performance. Theory helps us explore combinatorally large spaces of possible algorithms and networks, something that would be impossible experimentally.</p>
 
-<p>Theoretical analysis, the way it is traditionally done for CCAs, has one challenge. If it is hard to capture complex networks in simulation, it is nearly impossible on paper.This is where non-determinism helps. A traditional netwrok model is stochastic. It has to predict how the network <i>will</i> react to CCA action, either exactly or as a probability distribution. In contrast, a non-deterministic model only has to predict what <i>can</i> happen. It predicts a set of possible outcomes, but says nothing about how likely each one is. </p>
+<p>Theoretical analysis, the way it is traditionally done for CCAs, has one challenge. If it is hard to capture complex networks in simulation, it is nearly impossible on paper. This is where non-determinism helps. A traditional netwrok model is stochastic. It has to predict how the network <i>will</i> react to CCA action, either exactly or as a probability distribution. In contrast, a non-deterministic model only has to predict what <i>can</i> happen. It predicts a set of possible outcomes, but says nothing about how likely each one is. This is much easier to do. It is therefore much easier to design a non-deterministic model than a stochastic one.</p>
 
 <!-- My work is critical to understanding how to build software that can offer consistently good performance, even as computer systems get increasingly complex. This will enable emerging applications---such as Augmented/Virtual/Mixed reality (AR/VR/MR), ubiquitous robotics, and remote surgery---that cannot function when the underlying computer system fails to meet tight performance targets almost every time. My work is specifically important to the United States since the American people will benefit from the development of new applications that require ultra-low latency and high performance. Existing and widely deployed applications will also benefit from being able to run on less expensive or more ubiquitous hardware without a loss in performance. -->
 
-<p>How do we design and test CCAs to operate on such paths? One approach is to create an analytical model or a simulator that can capture these behaviors.</p>
+<!-- My work builds a -->
 
-<p>Consider the model shown below:</p>
+<p>Consider the model shown below. In it, CCAs send packets into a common FIFO queue with a finite size <i>&beta;</i>, served by a constant bit rate link, <i>C</i>. After this, all packets get delayed by <i>R<sub>m</sub></i> seconds to emulate propagation and transmission delays. <i>&beta;</i>, <i>C</i>, and <i>R<sub>m</sub></i> are all fixed for short periods of time, but unknown to the CCAs. Most network models used for CCA analysis either stop here or assume the service process to be stochastic, usually modeling the inter-service time as an i.i.d random variable.</p>
 
 <img src="assets/img/model-two-flow.png" class="long-image img-fluid w-50 d-block mx-auto"/>
 
-It is nearly impossible to <i>model</i> all of these phenomena
+<p>Our model differs in having a non-deterministic box (denoted by <i>D</i>) that is operated by an adversary. This adversary can delay packets in any arbitrary pattern it likes as long as it does not delay any packet by more than <i>D</i> seconds and does not reorder packets (an assumption that largely holds in the internet). This adversary can emulate paths with any arbitrary combination of the network phenomena described above. Thus any CCA that has been proved to work under this model is also guaranteed to work under such networks. This ability to capture real-world complexities in a simple model is the power of non-determinism.</p>
 
-FAQs
+<p>Note, the above model is simplified for ease of presentation and does not adequately capture network paths with finite buffers. To learn more about the model we actually use, read our paper on our CCA verification tool, CCAC [{{icite.ccac}}].<p>
+
+<!--FAQs
 - This is an old problem. Will this really revolutionize the world?
 - Aren't today's CCAs basically good? The internet works right?
 - Won't worst analysis produce very pessimistic CCAs that compromise the common case?
 - No matter what happens, people will still work on congestion control
-- Do you really think you will solve congestion control? What does "solve" even mean?
+- Do you really think you will solve congestion control? What does "solve" even mean?-->
 
 {% endblock %}

@@ -168,12 +168,12 @@ if __name__ == "__main__":
 
     with open("../perf-verif.html", "w") as outfile:
         template = env.get_template("perf-verif.html")
-        rendered = template.render(navigation=prep_navigation(None))
+        rendered = template.render(navigation=prep_navigation(None), icite=inline_cites)
         outfile.write(rendered)
 
     with open("../congestion-control.html", "w") as outfile:
         template = env.get_template("congestion-control.html")
-        rendered = template.render(navigation=prep_navigation(None))
+        rendered = template.render(navigation=prep_navigation(None), icite=inline_cites)
         outfile.write(rendered)
 
 

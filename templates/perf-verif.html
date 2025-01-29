@@ -2,6 +2,17 @@
 
 {% block content %}
 
-<p>I'm still working on this page. Coming soon.</p>
+<p>Computer systems rely on various controllers to allocate CPU, memory, network and storage resources. The quality of their decision making significantly impacts system performance, sometimes degrading it by over 10x. Poor controller decisions also lead to performance variability that makes it difficult to build real-time applications and highly distributed computations.</p>
+
+<p>Engineers and researchers have spent decades modifying various controllers to adapt to applications and workloads. In fact, we lack consensus on even classic problems such as network congestion control and CPU scheduling. No algorithms exist that offer reliably good performance for a large portion of real-world settings.</p>
+
+<p>Controller design is hard due to incomplete system observability and the lack of an accurate system model. This makes it difficult to formally define, let alone guarantee, desired performance properties. As a result, these controllers are designed largely through empirical trial-and-error. In our work, we have developed a set of principles and tools that we have developed to not only verify, but also synthesize controllers with provable performance guarantees. We show how techniques used to verify the correctness of programs can discover previously unknown performance issues in widely studied controllers and how program synthesis techniques can uncover novel solutions overlooked by human designers for decades.</p>
+
+<p>Our methodology is built on two principles:</p>
+
+<ol>
+  <li> While traditional analyses model the controller's environment as a stochastic object, we model it as a non-deterministic one. This allows us to capture a large number of real-world behaviors in a simple mathematical model. To learn more, you can read about the model we use to study <a href="congestion-control.html#nondeterminism">congestion control algorithms</a>.</li>
+  <li> Reasoning about controllers under non-deterministic models can be hard. Thus we use formal methods developed to verify [{{icite.ccac}}, {{icite.perf_verif}} and synthesize [{{icite.ccmatic}}, {{icite.ccmatic_hotnets}}] provably performant controllers. </li>
+</ol>
 
 {% endblock %}
