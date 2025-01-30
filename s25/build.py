@@ -53,7 +53,7 @@ def prep_schedule():
         {"name": "Class cancelled due to 🛫", "reading": []},
         {"name": "Class cancelled due to ❄️", "reading": []},
         {"name": "Load balancing", "reading": [("Valiant routing in a switch", "https://www.cs.utexas.edu/~venkatar/sys_perf_analysis/valiant-optics.pdf"), ("Valiant routing in Google's datacenter", "https://www.cs.utexas.edu/~venkatar/sys_perf_analysis/plb.pdf")], "optional": [("Original paper by Valiant", "Universal schemes for parallel communication")]},
-        {"name": "Power of two choices", "reading": [("Empirical blog", "https://www.haproxy.com/blog/power-of-two-load-balancing"), ("Survey of theory", "https://www.eecs.harvard.edu/~michaelm/postscripts/handbook2001.pdf")]},
+        {"name": "Power of two choices", "reading": [("Empirical blog", "https://www.haproxy.com/blog/power-of-two-load-balancing"), ("Survey of theory", "https://www.eecs.harvard.edu/~michaelm/postscripts/handbook2001.pdf")], "optional": [("Sparrow scheduler", "https://people.eecs.berkeley.edu/~matei/papers/2013/sosp_sparrow.pdf")]},
         {"name": "Notions of fairness I", "reading": [], "optional": []},
         {"name": "Notions of fairness II", "reading": [], "optional": []},
         {"name": "Notions of fairness III", "reading": [], "optional": []},
