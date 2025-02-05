@@ -54,9 +54,9 @@ def prep_schedule():
         {"name": "Class cancelled due to ❄️", "reading": []},
         {"name": "Load balancing", "reading": [("Valiant routing in a switch", "https://www.cs.utexas.edu/~venkatar/sys_perf_analysis/valiant-optics.pdf"), ("Valiant routing in Google's datacenter", "https://www.cs.utexas.edu/~venkatar/sys_perf_analysis/plb.pdf")], "optional": [("Original paper by Valiant", "Universal schemes for parallel communication")]},
         {"name": "Power of two choices", "reading": [("Empirical blog", "https://www.haproxy.com/blog/power-of-two-load-balancing"), ("Survey of theory", "https://www.eecs.harvard.edu/~michaelm/postscripts/handbook2001.pdf")], "optional": [("Sparrow scheduler", "https://people.eecs.berkeley.edu/~matei/papers/2013/sosp_sparrow.pdf")]},
-        {"name": "Notions of fairness I: &alpha;-fairness and NUM", "reading": [("Chapter 2.2 and 2.4 of R. Srikant and Lei Y. (alpha fairness and NUM)", "https://sites.google.com/view/comm-network")], "optional": []},
-        {"name": "Notions of fairness II: Dominant Resource Fairness", "reading": [], "optional": ["https://www.usenix.org/legacy/event/nsdi11/tech/full_papers/Ghodsi.pdf"]},
-        {"name": "Notions of fairness III: FairCloud", "reading": [], "optional": []},
+        {"name": "Notions of fairness I", "reading": [("Chapter 2.2 (&alpha;-fairness) and 2.4 (NUM) of R. Srikant and Lei Y. (alpha fairness and NUM)", "https://sites.google.com/view/comm-network")], "optional": []},
+        {"name": "Notions of fairness II", "reading": [("Dominant Resource Fairness", "https://www.usenix.org/legacy/event/nsdi11/tech/full_papers/Ghodsi.pdf")]},
+        {"name": "Notions of fairness III", "reading": [("FairCloud (fairness is hard)", "https://dl.acm.org/doi/pdf/10.1145/2342356.2342396")], "optional": []},
         # DHT
         # VL2
         # {"name": "Overload control", "reading": [("Overload control (Breakwater)", "https://www.usenix.org/conference/nsdi14/technical-sessions/presentation/zhang")], "optional": []},
