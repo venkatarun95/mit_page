@@ -60,7 +60,7 @@ def prep_schedule():
         # DHT
         # VL2
         # {"name": "Overload control", "reading": [("Overload control (Breakwater)", "https://www.usenix.org/conference/nsdi14/technical-sessions/presentation/zhang")], "optional": []},
-        {"name": "Process scheduling I", "reading": [("Work stealing theoretical analysis", "https://dl.acm.org/doi/pdf/10.1145/324133.324234")], "optional": [("Cilk programming model", "https://dl.acm.org/doi/10.1145/262004.262005"), ("Empirical analysis that concludes work stealing is best", "https://dl.acm.org/doi/10.1145/1073970.1073974")]},
+        {"name": "Process scheduling I", "reading": [("Work stealing theoretical analysis", "https://dl.acm.org/doi/pdf/10.1145/324133.324234")], "optional": [("Cilk programming model", "../sys_perf_analysis/ws_cilk.pdf"), ("Empirical analysis that concludes work stealing is best", "../sys_perf_analysis/ws_empirical.pdf")]},
         {"name": "Process scheduling II", "reading": [("Decades of wasted cores in Linux", "papers/wasted-cores.pdf")], "optional": [("Scheduler in Linux v4.6.8.1", "https://www.kernel.org/doc/Documentation/scheduler/sched-design-CFS.txt"), ("More bugs discovered through verification", "https://arxiv.org/pdf/2301.04205")]},
         {"name": "Caching replacement policies I", "reading": [], "optional": []},
         {"name": "Cache replacement policies II", "reading": [], "optional": []},
