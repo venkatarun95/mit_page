@@ -61,7 +61,7 @@ def prep_schedule():
         # VL2
         # {"name": "Overload control", "reading": [("Overload control (Breakwater)", "https://www.usenix.org/conference/nsdi14/technical-sessions/presentation/zhang")], "optional": []},
         {"name": "Process scheduling I", "reading": [("Work stealing theoretical analysis", "https://dl.acm.org/doi/pdf/10.1145/324133.324234")], "optional": [("Cilk programming model", "../sys_perf_analysis/ws_cilk.pdf"), ("Empirical analysis that concludes work stealing is best", "../sys_perf_analysis/ws_empirical.pdf")]},
-        {"name": "Process scheduling II", "reading": [("Decades of wasted cores in Linux", "papers/wasted-cores.pdf")], "optional": [("Scheduler in Linux v4.6.8.1", "https://www.kernel.org/doc/Documentation/scheduler/sched-design-CFS.txt"), ("More bugs discovered through verification", "https://arxiv.org/pdf/2301.04205")]},
+        {"name": "Process scheduling II", "reading": [("Decades of wasted cores in Linux", "papers/wasted-cores.pdf"),  ("More bugs discovered through verification (section 5 only)", "https://arxiv.org/pdf/2301.04205")], "optional": [("Scheduler in Linux v4.6.8.1", "https://www.kernel.org/doc/Documentation/scheduler/sched-design-CFS.txt")]},
         {"name": "Caching replacement policies I", "reading": [], "optional": []},
         {"name": "Cache replacement policies II", "reading": [], "optional": []},
         {"name": "Incorporating ML in systems I", "reading": [], "optional": []},
