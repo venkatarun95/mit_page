@@ -60,8 +60,8 @@ def prep_schedule():
         # DHT
         # VL2
         # {"name": "Overload control", "reading": [("Overload control (Breakwater)", "https://www.usenix.org/conference/nsdi14/technical-sessions/presentation/zhang")], "optional": []},
-        {"name": "Process scheduling I", "reading": [("Adaptove work stealing theoretical analysis", "https://dl.acm.org/doi/pdf/10.1145/324133.324234"), ("Cilk programming model", "https://dl.acm.org/doi/10.1145/262004.262005"), ("Empirical analysis that concludes work stealing is best", "https://dl.acm.org/doi/10.1145/1073970.1073974")], "optional": []},
-        {"name": "Process scheduling II", "reading": [("Decades of wasted cores in Linux", "https://www.usenix.org/system/files/conference/osdi16/osdi16-peng.pdf")], "optional": [("Scheduler in Linux v4.6.8.1", "https://www.kernel.org/doc/Documentation/scheduler/sched-design-CFS.txt"), ("More bugs discovered through verification", "https://arxiv.org/abs/1802.02181")]},
+        {"name": "Process scheduling I", "reading": [("Work stealing theoretical analysis", "https://dl.acm.org/doi/pdf/10.1145/324133.324234")], "optional": [("Cilk programming model", "https://dl.acm.org/doi/10.1145/262004.262005"), ("Empirical analysis that concludes work stealing is best", "https://dl.acm.org/doi/10.1145/1073970.1073974")]},
+        {"name": "Process scheduling II", "reading": [("Decades of wasted cores in Linux", "papers/wasted-cores.pdf")], "optional": [("Scheduler in Linux v4.6.8.1", "https://www.kernel.org/doc/Documentation/scheduler/sched-design-CFS.txt"), ("More bugs discovered through verification", "https://arxiv.org/pdf/2301.04205")]},
         {"name": "Caching replacement policies I", "reading": [], "optional": []},
         {"name": "Cache replacement policies II", "reading": [], "optional": []},
         {"name": "Incorporating ML in systems I", "reading": [], "optional": []},
@@ -80,6 +80,11 @@ def prep_schedule():
         {"name": "Abstractions that aid performance II", "reading": [], "optional": []},
         {"name": "Project presentations I", "reading": [], "optional": []},
         {"name": "Project presentations II", "reading": [], "optional": []}
+    ]
+
+    other_papers = [
+        ("Adaptive Work Stealing with Parallelism Feedback", "https://dl.acm.org/doi/10.1145/1394441.1394443"),
+        ("Multiplicative Weights Update Method: A Meta Algorithm and Applications", "https://theoryofcomputing.org/articles/v008a006/v008a006.pdf"),
     ]
 
     if len(schedule) > len(dates):
