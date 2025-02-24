@@ -64,7 +64,7 @@ def prep_schedule():
         {"name": "Process scheduling II", "reading": [("Decades of wasted cores in Linux", "papers/wasted-cores.pdf"),  ("More bugs discovered through verification (section 5 only)", "https://arxiv.org/pdf/2301.04205")], "optional": [("Scheduler in Linux v4.6.8.1", "https://www.kernel.org/doc/Documentation/scheduler/sched-design-CFS.txt")]},
         {"name": "When should we use which mathematical operation?", "reading": [("Notes", "papers/notes_when_to_use_which_operation.pdf")], "optional": [("L1 vs L2 norms and compressed sensing", "http://timroughgarden.org/f14/l/l9.pdf")]},
         {"name": "Caching replacement policies I", "reading": [("Tim Roughgarden's beyond worst-case lecture 3", "http://timroughgarden.org/f14/l/l3.pdf"), ("Tim Roughgarden's beyond worst-case lecture 4", "http://timroughgarden.org/f14/l/l4.pdf")], "optional": []},
-        {"name": "Cache replacement policies II", "reading": [("Belatedly: caching with delayed hits", "../sys_perf_analysis/belatedly.pdf")], "optional": []},
+        {"name": "Cache replacement policies II", "reading": [("Caching with delayed hits", "../sys_perf_analysis/belatedly.pdf")], "optional": []},
         {"name": "Incorporating ML in systems I", "reading": [("ML improves the average. Theory bounds the worst", "../sys_perf_analysis/competitive_caching_ml_advice.pdf")], "optional": []},
         {"name": "Incorporating ML in systems II", "reading": [], "optional": []},
         {"name": "Incorporating ML in systems III", "reading": [], "optional": []},
