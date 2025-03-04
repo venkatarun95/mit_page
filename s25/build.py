@@ -66,7 +66,7 @@ def prep_schedule():
         {"name": "Caching replacement policies I", "reading": [("Tim Roughgarden's beyond worst-case lecture 3", "http://timroughgarden.org/f14/l/l3.pdf"), ("Tim Roughgarden's beyond worst-case lecture 4", "http://timroughgarden.org/f14/l/l4.pdf")], "optional": []},
         {"name": "Cache replacement policies II", "reading": [("Caching with delayed hits", "../sys_perf_analysis/belatedly.pdf")], "optional": []},
         {"name": "Incorporating ML in systems I", "reading": [("ML improves the average. Theory bounds the worst", "../sys_perf_analysis/competitive_caching_ml_advice.pdf")], "optional": []},
-        {"name": "Incorporating ML in systems II", "reading": [], "optional": []},
+        {"name": "Incorporating ML in systems II", "reading": [("Traffic engineering by using ML to solve LPs faster", "https://dl.acm.org/doi/pdf/10.1145/3603269.3604857")], "optional": [("Solving computationally hard problems with AlphaZero", "https://arxiv.org/pdf/1712.01815")]},
         {"name": "Incorporating ML in systems III", "reading": [], "optional": []},
         {"name": "Computational complexity in practice", "reading": [], "optional": []},
         {"name": "Signal processing tasting menu I", "reading": [], "optional": []},
