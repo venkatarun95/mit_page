@@ -71,7 +71,7 @@ def prep_schedule():
         {"name": "Computational complexity in practice II", "reading": [], "optional": []},
         {"name": "Signal processing tasting menu I", "reading": [("Rule: use sinusoids", "https://venkatarun.wordpress.com/2022/04/18/why-the-sinusoid/"), ("Learn the rule to break it", "https://dl.acm.org/doi/pdf/10.1145/3230543.3230565")], "optional": []},
         {"name": "Signal processing tasting menu II", "reading": [("Funamental Limits (read before 7.1.1 and skim the rest)", "https://ethz.ch/content/dam/ethz/special-interest/itet/photonics-dam/documents/lectures/EandM/AngularSpectrumRepresentation.pdf"), ("Use the limits", "https://www.usenix.org/system/files/nsdi20-paper-arun.pdf")], "optional": []},
-        {"name": "Congestion control I", "reading": [], "optional": []},
+        {"name": "Congestion control I", "reading": [("AIMD analysis", "https://www.cs.columbia.edu/~danr/courses/6761/Summer03/week4/aimd.pdf"), ("Delay based multi-bottleneck CC (pay attention to IIB)", "https://ieeexplore.ieee.org/stamp/stamp.jsp?arnumber=4032738")], "optional": []},
         {"name": "Congestion control II", "reading": [], "optional": []},
         {"name": "Guest lecture by Tegan Wilson", "reading": [("Oblivious routing", "")], "optional": []},
         # {"name": "Congestion control III", "reading": [], "optional": []},
