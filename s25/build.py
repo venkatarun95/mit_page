@@ -35,7 +35,7 @@ def prep_schedule():
         date(2025, 3, 4),
         date(2025, 3, 6),
         date(2025, 3, 11),
-        date(2025, 3, 13), # Spring break
+        # date(2025, 3, 13), # Spring break
         date(2025, 3, 25),
         date(2025, 3, 27),
         date(2025, 4, 1),
@@ -78,7 +78,7 @@ def prep_schedule():
         {"name": "Performance verification I", "reading": [], "optional": []},
         {"name": "Performance verification II", "reading": [], "optional": []},
         {"name": "Bounding performance I", "reading": [], "optional": []},
-        {"name": "Abstractions that aid performance", "reading": [], "optional": []},
+        # {"name": "Abstractions that aid performance", "reading": [], "optional": []},
         {"name": "Project presentations I", "reading": [], "optional": []},
         {"name": "Project presentations II", "reading": [], "optional": []}
     ]
