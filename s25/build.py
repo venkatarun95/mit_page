@@ -73,7 +73,7 @@ def prep_schedule():
         {"name": "Signal processing tasting menu II", "reading": [("Funamental Limits (read before 7.1.1 and skim the rest)", "https://ethz.ch/content/dam/ethz/special-interest/itet/photonics-dam/documents/lectures/EandM/AngularSpectrumRepresentation.pdf"), ("Use the limits", "https://www.usenix.org/system/files/nsdi20-paper-arun.pdf")], "optional": []},
         {"name": "Congestion control I", "reading": [("AIMD analysis", "https://www.cs.columbia.edu/~danr/courses/6761/Summer03/week4/aimd.pdf"), ("Delay based multi-bottleneck CC (pay attention to IIIB)", "https://ieeexplore.ieee.org/stamp/stamp.jsp?arnumber=4032738")], "optional": []},
         {"name": "Guest lecture by Tegan Wilson", "reading": [("Oblivious reconfigurable networks (sections 3, 4.3, 4.4, and 4.5 are optional)", "https://dl.acm.org/doi/10.1145/3519935.3520020"), ("Real-world version of the above idea in practice", "https://dl.acm.org/doi/10.1145/3651890.3672248")], "optional": []},
-        {"name": "Congestion control II", "reading": [], "optional": []},
+        {"name": "Congestion control II", "reading": [("Everything is broken", "https://dl.acm.org/doi/pdf/10.1145/3452296.3472912"), ("Everything is unfair", "https://dl.acm.org/doi/pdf/10.1145/3544216.3544223")], "optional": []},
         # {"name": "Congestion control III", "reading": [], "optional": []},
         {"name": "Performance verification I", "reading": [], "optional": []},
         {"name": "Performance verification II", "reading": [], "optional": []},
