@@ -75,7 +75,7 @@ def prep_schedule():
         {"name": "Guest lecture by Tegan Wilson", "reading": [("Oblivious reconfigurable networks (sections 3, 4.3, 4.4, and 4.5 are optional)", "https://dl.acm.org/doi/10.1145/3519935.3520020"), ("Real-world version of the above idea in practice", "https://dl.acm.org/doi/10.1145/3651890.3672248")], "optional": []},
         {"name": "Congestion control II", "reading": [("Everything is broken", "https://dl.acm.org/doi/pdf/10.1145/3452296.3472912"), ("Everything is unfair", "https://dl.acm.org/doi/pdf/10.1145/3544216.3544223")], "optional": []},
         # {"name": "Congestion control III", "reading": [], "optional": []},
-        {"name": "Performance verification I", "reading": [], "optional": []},
+        {"name": "Performance verification I", "reading": [("How broken are optimizers?", "https://www.usenix.org/system/files/nsdi24-namyar-finding.pdf")], "optional": []},
         {"name": "Performance verification II", "reading": [], "optional": []},
         {"name": "Bounding performance I", "reading": [], "optional": []},
         # {"name": "Abstractions that aid performance", "reading": [], "optional": []},
