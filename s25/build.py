@@ -79,7 +79,7 @@ def prep_schedule():
         #{"name": "Performance verification III", "reading": [("Hoe complex is my distributed system?", "https://dl.acm.org/doi/pdf/10.1145/3591235")], "optional": []},
         # {"name": "Bounding performance I", "reading": [], "optional": []},
         {"name": "Hardware abstractions for performance I", "reading": [("Hardware for sparse linear algebra", "https://dl.acm.org/doi/pdf/10.1145/3582016.3582051")], "optional": []},
-        {"name": "Abstractions that aid performance II", "reading": [], "optional": []},
+        {"name": "Abstractions that aid performance II", "reading": [("PIFO", "https://dl.acm.org/doi/pdf/10.1145/2934872.2934899"), ("Approximate PIFO", "https://www.usenix.org/system/files/nsdi20-paper-alcoz.pdf")], "optional": []},
         {"name": "Project presentations I", "reading": [], "optional": []},
         {"name": "Project presentations II", "reading": [], "optional": []}
     ]
