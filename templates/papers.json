@@ -44,7 +44,7 @@
     "ccmatic_hotnets": {
         "title": "Automating network heuristic design and analysis",
         "authors": "Anup Agarwal, Venkat Arun, Devdeep Ray, Ruben Martins, and Srinivasan Seshan",
-        "short_name": "CCMatic",
+        "short_name": "CCmatic",
         "conf": "ACM SIGCOMM HotNets",
 	    "url": "https://dl.acm.org/doi/pdf/10.1145/3563766.3564085",
         "year": 2022
@@ -52,7 +52,7 @@
     "ccmatic": {
         "title": "Towards provably performant congestion control",
         "authors": "Anup Agarwal, Venkat Arun, Devdeep Ray, Ruben Martins, and Srinivasan Seshan",
-        "short_name": "CCMatic",
+        "short_name": "CCmatic",
         "conf": "USENIX NSDI",
 	    "url": "https://www.usenix.org/system/files/nsdi24-agarwal-anup.pdf",
         "year": 2024
