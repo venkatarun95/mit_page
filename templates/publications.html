@@ -14,7 +14,11 @@
       {% if p.special is defined %}
         <b style="color:#D01919;">{{p.special}}</b>
       {% endif %}
-      <h5 class="card-title">{{p.title}}</h5>
+      {% if p.url is defined %}
+        <h5 class="card-title"><a href="{{p.url}}">{{p.title}}</a></h5>
+      {% else %}
+        <h5 class="card-title">{{p.title}}</h5>
+      {% endif %}
       <h6 class="card-subtitle mb-2 text-muted">{{p.authors}}</h6>
       <div class="card-subtitle text-muted">{{p.conf}}</div>
     </div>

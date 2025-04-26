@@ -1,32 +1,52 @@
 {
+    "frcc": {
+        "title": "FRCC: Towards Provably Fair and Robust Congestion Control",
+        "authors": "Anup Agarwal, Venkat Arun, Srini Seshan",
+        "short_name": "FRCC",
+        "conf": "Arxiv",
+        "year": 2025,
+        "exclude": true
+    },
+    "speql": {
+        "title": "Speculative Ad-hoc Querying",
+        "authors": "Haoyu Li, Srikanth Kandula, Maria Angels de Luis Balaguer, Aditya Akella, Venkat Arun",
+        "short_name": "SpeQL",
+        "conf": "Arxiv",
+        "year": 2025,
+        "url": "https://arxiv.org/pdf/2503.00714"
+    },
     "archie": {
-	"title": "Lightweight Automated Reasoning for Network Architectures",
-	"authors": "Rahul Bothra, Venkat Arun, Brighten Godfrey, Akshay Narayan, Ahmed Saeed",
-	"short_name": "Archie",
-	"conf": "ACM SIGCOMM HotNets",
-	"year": 2024
+        "title": "Lightweight Automated Reasoning for Network Architectures",
+        "authors": "Rahul Bothra, Venkat Arun, Brighten Godfrey, Akshay Narayan, Ahmed Saeed",
+        "short_name": "Archie",
+        "conf": "ACM SIGCOMM HotNets",
+        "url": "https://dl.acm.org/doi/pdf/10.1145/3696348.3696865",
+        "year": 2024
     },
     "ccac": {
-	"title": "Toward formally verifying congestion control behavior",
-	"authors": "Venkat Arun, Mina T. Arashloo, Ahmed Saeed, Mohammad Alizadeh, and Hari Balakrishnan",
-	"short_name": "CCAC",
-	"conf": "ACM SIGCOMM",
-	"year": 2021,
-	"special": "Proposed a modification to BBR that Meta now uses for most of their production traffic"
+        "title": "Toward formally verifying congestion control behavior",
+        "authors": "Venkat Arun, Mina T. Arashloo, Ahmed Saeed, Mohammad Alizadeh, and Hari Balakrishnan",
+        "short_name": "CCAC",
+        "conf": "ACM SIGCOMM",
+        "url": "https://dl.acm.org/doi/pdf/10.1145/3452296.3472912",
+        "year": 2021,
+        "special": "Proposed a modification to BBR that Meta now uses for most of their production traffic"
     },
     "starvation": {
-	"title": "Starvation in end-to-end congestion control",
-	"authors": "Venkat Arun, Mohammad Alizadeh, and Hari Balakrishnan",
-	"short_name": "Starvation",
-	"conf": "ACM SIGCOMM",
-	"year": 2023,
-	"special": "Best student paper award"
+        "title": "Starvation in end-to-end congestion control",
+        "authors": "Venkat Arun, Mohammad Alizadeh, and Hari Balakrishnan",
+        "short_name": "Starvation",
+        "conf": "ACM SIGCOMM",
+        "url": "https://dl.acm.org/doi/pdf/10.1145/3544216.3544223",
+        "year": 2023,
+        "special": "Best student paper award"
     },
     "ccmatic_hotnets": {
         "title": "Automating network heuristic design and analysis",
         "authors": "Anup Agarwal, Venkat Arun, Devdeep Ray, Ruben Martins, and Srinivasan Seshan",
         "short_name": "CCMatic",
         "conf": "ACM SIGCOMM HotNets",
+	    "url": "https://dl.acm.org/doi/pdf/10.1145/3563766.3564085",
         "year": 2022
     },
     "ccmatic": {
@@ -34,6 +54,7 @@
         "authors": "Anup Agarwal, Venkat Arun, Devdeep Ray, Ruben Martins, and Srinivasan Seshan",
         "short_name": "CCMatic",
         "conf": "USENIX NSDI",
+	    "url": "https://www.usenix.org/system/files/nsdi24-agarwal-anup.pdf",
         "year": 2024
     },
     "hairpin": {
@@ -41,6 +62,7 @@
         "authors": "Zili Meng, Xiao Kong, Jing Chen, Bo Wang, Mingwei Xu, Rui Han, Honghao Liu, Venkat Arun, Hongxin Hu, and Xue Wei",
         "short_name": "hairpin",
         "conf": "USENIX NSDI",
+    	"url": "https://www.usenix.org/system/files/nsdi24-meng.pdf",
         "year": 2024
     },
     "marple": {
@@ -48,22 +70,24 @@
         "authors": "Srinivas Narayana, Anirudh Sivaraman, Vikram Nathan, Prateesh Goyal, Venkat Arun, Mohammad Alizadeh, Vimalkumar Jeyakumar, and Changhoon Kim",
         "short_name": "Marple",
         "conf": "ACM SIGCOMM",
+	    "url": "https://dl.acm.org/doi/pdf/10.1145/3098822.3098829",
         "year": 2017,
-	"special": "Best paper award"
+	    "special": "Best paper award"
     },
     "copa": {
         "title": "Copa: Practical Delay-Based Congestion Control for the Internet",
         "authors": "Venkat Arun and Hari Balakrishnan",
         "short_name": "Copa",
         "conf": "USENIX NSDI",
+	    "url": "https://www.usenix.org/system/files/conference/nsdi18/nsdi18-arun.pdf",
         "year": 2018,
-	"special": "Being used in production at Meta"
+	    "special": "Being used in production at Meta"
     },
     "perf_verif": {
         "title": "Quantitative Verification of Scheduling Heuristics",
         "authors": "Saksham Goel, Benjamin Mikek, Jehad Aly, Venkat Arun, Ahmed Saeed, and Aditya Akella",
         "short_name": "Verilay",
-        "conf": "Arxiv 2301.04205",
+        "conf": "Arxiv",
         "year": 2023,
         "url": "https://arxiv.org/abs/2301.04205"
     },
@@ -72,13 +96,15 @@
         "authors": "Venkat Arun and Hari Balakrishnan",
         "short_name": "RFocus",
         "conf": "USENIX NSDI",
+	    "url": "https://www.usenix.org/system/files/nsdi20-paper-arun.pdf",
         "year": 2020,
-	"special": "May be the largest antenna array ever used for a single communication link"
+	    "special": "May be the largest antenna array ever used for a single communication link"
     },
     "privid": {
         "title": "Privid: Practical, Privacy-Preserving Video Analytics Queries",
         "authors": "Frank Cangialosi, Neil Agarwal, Venkat Arun, Srinivas Narayana, Anand Sarwate, and Ravi Netravali",
         "short_name": "Privid",
+	    "url": "https://www.usenix.org/system/files/nsdi22-paper-cangialosi.pdf",
         "conf": "USENIX NSDI",
         "year": 2022
     },
@@ -87,12 +113,14 @@
         "authors": "Arjun Balasingam, Karthik Gopalakrishnan, Radhika Mittal, Venkat Arun, Ahmed Saeed, Mohammad Alizadeh, Hamsa Balakrishnan, and Hari Balakrishnan",
         "short_name": "Drones",
         "conf": "ACM MobiSys",
+    	"url": "https://dl.acm.org/doi/pdf/10.1145/3458864.3467881",
         "year": 2021
     },
     "sae": {
         "title": "Finding safety in numbers with secure allegation escrows",
         "authors": "Venkat Arun, Aniket Kate, Deepak Garg, Peter Druschel, and Bobby Bhattacharjee",
         "short_name": "SAE",
+    	"url": "https://arxiv.org/pdf/1810.10123",
         "conf": "NDSS Symposium",
         "year": 2020
     },
@@ -101,12 +129,14 @@
         "authors": "William Sussman, Emily Marx, Venkat Arun, Akshay Narayan, Mohammad Alizadeh, Hari Balakrishnan, Aurojit Panda, and Scott Shenker",
         "short_name": "WTF",
         "conf": "ACM SIGCOMM HotNets",
+        "url": "https://dl.acm.org/doi/pdf/10.1145/3563766.3564105",
         "year": 2022
     },
     "afr": {
         "title": "Enabling High Quality Real-Time Communications with Adaptive Frame-Rate",
         "authors": "Zili Meng, Tingfeng Wang, Yixin Shen, Bo Wang, Mingwei Xu, Rui Han, Honghao Liu, Venkat Arun, Hongxin Hu, and Xue Wei",
         "short_name": "AFR",
+    	"url": "https://www.usenix.org/system/files/nsdi23-meng.pdf",
         "conf": "USENIX NSDI",
         "year": 2023
     },
@@ -117,6 +147,6 @@
         "conf": "Facebook Engineering Blog",
         "year": 2019,
         "url": "https://engineering.fb.com/2019/11/17/video-engineering/copa/",
-	"exclude": true
+    	"exclude": true
     }
 }
