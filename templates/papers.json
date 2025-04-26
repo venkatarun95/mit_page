@@ -3,7 +3,7 @@
         "title": "FRCC: Towards Provably Fair and Robust Congestion Control",
         "authors": "Anup Agarwal, Venkat Arun, Srini Seshan",
         "short_name": "FRCC",
-        "conf": "Arxiv",
+        "conf": "arXiv",
         "year": 2025,
         "exclude": true
     },
@@ -11,7 +11,7 @@
         "title": "Speculative Ad-hoc Querying",
         "authors": "Haoyu Li, Srikanth Kandula, Maria Angels de Luis Balaguer, Aditya Akella, Venkat Arun",
         "short_name": "SpeQL",
-        "conf": "Arxiv",
+        "conf": "arXiv",
         "year": 2025,
         "url": "https://arxiv.org/pdf/2503.00714"
     },
@@ -87,7 +87,7 @@
         "title": "Quantitative Verification of Scheduling Heuristics",
         "authors": "Saksham Goel, Benjamin Mikek, Jehad Aly, Venkat Arun, Ahmed Saeed, and Aditya Akella",
         "short_name": "Verilay",
-        "conf": "Arxiv",
+        "conf": "arXiv",
         "year": 2023,
         "url": "https://arxiv.org/abs/2301.04205"
     },

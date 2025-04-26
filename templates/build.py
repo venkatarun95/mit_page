@@ -34,13 +34,11 @@ def prep_cites(papers: Dict[str, Dict[str, Union[str, int]]]) -> Tuple[Dict[str,
                     "ACM SIGCOMM HotNets": "HotNets",
                     "ACM MobiSys": "MobiSys",
                     "NDSS Symposium": "NDSS",
-                    "Facebook Engineering Blog": "FB Engg. Blog"}
+                    "Facebook Engineering Blog": "FB Engg. Blog",
+                    "arXiv": "arXiv"}
         if paper['conf'] in conf_map:
             conf_name = conf_map[paper['conf']] + str(paper['year'] - 2000)
             conf_full_name = conf_map[paper['conf']] + ' ' + str(paper['year'])
-        elif paper['conf'].startswith('Arxiv'):
-            conf_name = 'Arxiv'
-            conf_full_name = paper['conf']
         else:
             print(f"Warning: unrecognized conference '{paper['conf']}'")
 
