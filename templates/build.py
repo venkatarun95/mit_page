@@ -44,7 +44,10 @@ def prep_cites(papers: Dict[str, Dict[str, Union[str, int]]]) -> Tuple[Dict[str,
         else:
             print(f"Warning: unrecognized conference '{paper['conf']}'")
 
-        inline[ref] = f"<abbr title=\"{paper['title']}. {paper['authors']}. In {paper['conf']} {paper['year']}\">{conf_name}</abbr>"
+        url = ""
+        if "url" in paper:
+            url = paper["url"]
+        inline[ref] = f'<abbr class="citation" data-url="{url}" data-papertitle="{paper['title']}" data-authors="{paper["authors"]}" data-conf="{paper["conf"]}" data-year="{paper["year"]}">{paper['short_name']}</abbr>' #f"<abbr title=\"{paper['title']}. {paper['authors']}. In {paper['conf']} {paper['year']}\">{conf_name}</abbr>"
         full[ref]['conf'] = conf_full_name
         full[ref]['ref'] = ref
 

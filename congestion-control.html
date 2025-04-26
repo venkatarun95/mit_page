@@ -134,24 +134,24 @@
 
 <p>By placing such critical algorithms on firmer footing, we believe our work will lead to <i>reliably performant</i> computer systems that can support applications of the future that require such reliability. Our work on congestion control has led to the following results:</p>
 
-<b>An automated tool (CCAC) that can verify performance properties of CCAs [<abbr title="Toward formally verifying congestion control behavior. Venkat Arun, Mina T. Arashloo, Ahmed Saeed, Mohammad Alizadeh, and Hari Balakrishnan. In ACM SIGCOMM 2021">SIGCOMM21</abbr>].</b>
+<b>An automated tool (CCAC) that can verify performance properties of CCAs [<abbr class="citation" data-url="https://dl.acm.org/doi/pdf/10.1145/3452296.3472912" data-papertitle="Toward formally verifying congestion control behavior" data-authors="Venkat Arun, Mina T. Arashloo, Ahmed Saeed, Mohammad Alizadeh, and Hari Balakrishnan" data-conf="ACM SIGCOMM" data-year="2021">CCAC</abbr>].</b>
   <ul>
     <li>It discovered previously unknown and practically relevant performance issues in many CCAs including the classic AIMD and the widely deployed BBR.</li>
     <li>For the first time, it proved performance properties about CCAs in a network model that includes real-world phenomena like ACK aggregation and delay jitter due to OS scheduling and wireless links. Previously, it was difficult to even consider packetization without making over-simplifying assumptions.</li>
     <li>It suggested a modification to BBR that Meta uses for a vast majority of its user facing traffic.</li>
   </ul>
-<b>An theorem that showed that <i>all</i> delay-bounding CCAs designed so far suffer from starvation, an extreme form of unfairness. This happens on paths that are common on the internet [<abbr title="Starvation in end-to-end congestion control. Venkat Arun, Mohammad Alizadeh, and Hari Balakrishnan. In ACM SIGCOMM 2023">SIGCOMM23</abbr>].</b>
+<b>An theorem that showed that <i>all</i> delay-bounding CCAs designed so far suffer from starvation, an extreme form of unfairness. This happens on paths that are common on the internet [<abbr class="citation" data-url="https://dl.acm.org/doi/pdf/10.1145/3544216.3544223" data-papertitle="Starvation in end-to-end congestion control" data-authors="Venkat Arun, Mohammad Alizadeh, and Hari Balakrishnan" data-conf="ACM SIGCOMM" data-year="2023">Starvation</abbr>].</b>
   <ul>
     <li>Our theorem identified a common property shared by all delay-bounding CCAs&mdash;<i>delay convergence</i>&mdash;that seems advantageous, but surprisingly always leads to starvation.</li>
     <li>A starvation-free CCA must therefore avoid this property. We are currently designing the first provably starvation-free CCA.</li>
   </ul>
-<b>A systematic and semi-automated method to <i>design</i> provably performant CCAs [<abbr title="Towards provably performant congestion control. Anup Agarwal, Venkat Arun, Devdeep Ray, Ruben Martins, and Srinivasan Seshan. In USENIX NSDI 2024">NSDI24</abbr>].</b>
+<b>A systematic and semi-automated method to <i>design</i> provably performant CCAs [<abbr class="citation" data-url="https://www.usenix.org/system/files/nsdi24-agarwal-anup.pdf" data-papertitle="Towards provably performant congestion control" data-authors="Anup Agarwal, Venkat Arun, Devdeep Ray, Ruben Martins, and Srinivasan Seshan" data-conf="USENIX NSDI" data-year="2024">CCmatic</abbr>].</b>
   <ul>
     <li>Our tool, CCMatic, automatically designed the first CCA that can limit loss to a constant number of packets per RTT on many real-world network paths. To do so, it discovered a new <i>conceptual</i> idea that had not been considered in decades of human-driven CCA design.</li>
     <li>The tool helped us prove new impossibility results that establishes a pareto frontier on loss tolerance vs convergence time.</li>
     <li>There has been a lot of debate on what signals CCAs should consider. To make CCMatic possible, we identified a canonical set of signals and proved that if there exists <i>any</i> CCA that satisfies our desired performance properties, then there also exists one whose sending rate is a pure function of these signals.</li>
   </ul>
-<b>Before embarking on a formal approach to CCA design, we empirically designed a CCA, Copa, that Meta now uses for live video streaming [<abbr title="Copa: Practical Delay-Based Congestion Control for the Internet. Venkat Arun and Hari Balakrishnan. In USENIX NSDI 2018">NSDI18</abbr>].</b>
+<b>Before embarking on a formal approach to CCA design, we empirically designed a CCA, Copa, that Meta now uses for live video streaming [<abbr class="citation" data-url="https://www.usenix.org/system/files/conference/nsdi18/nsdi18-arun.pdf" data-papertitle="Copa: Practical Delay-Based Congestion Control for the Internet" data-authors="Venkat Arun and Hari Balakrishnan" data-conf="USENIX NSDI" data-year="2018">Copa</abbr>].</b>
 
 <h3 id="nondeterminism">The power of non-deterministic models</h3>
 
@@ -159,7 +159,7 @@
 
 <p>Recognizing these difficulties, people test CCA designs on either simulations or real test beds. Accurate simulators and emulators are hard to build. In fact, no simulator/emulator adequately models even the phenomena listed above. Real test beds that have sufficiently diverse paths are expensive to create since new equipment needs to be acquired for each type of network link. One can test CCAs on real user traffic which encompass the full diversity of paths on the internet. Thanks to the efforts of hyperscalers, this is increasingly feasible. However while we can measure what the CCA did, we cannot know what it <i>should</i> have done since we do not have visibility into paths controlled by others. Knowing what rate it <i>should</i> transmit at in the face of incomplete observability is precisely the CCA's job. If we knew it, we would not need the CCA.</p>
 
-<p>Even if a perfect simulator or real-world test bed were available, there is not an easy to design a CCA for it. For instance, when I was designing our CCA, Copa [<abbr title="Copa: Practical Delay-Based Congestion Control for the Internet. Venkat Arun and Hari Balakrishnan. In USENIX NSDI 2018">NSDI18</abbr>], I created a small set of simple test cases on which to evaluate it. I spent months tweaking the algorithm, but a change that fixed one issue would create another. It was not until I had found an algorithm that I could theoretically analyze was I able to get consistent and predictable performance. Theory helps us explore combinatorally large spaces of possible algorithms and networks, something that would be impossible experimentally.</p>
+<p>Even if a perfect simulator or real-world test bed were available, there is not an easy to design a CCA for it. For instance, when I was designing our CCA, Copa [<abbr class="citation" data-url="https://www.usenix.org/system/files/conference/nsdi18/nsdi18-arun.pdf" data-papertitle="Copa: Practical Delay-Based Congestion Control for the Internet" data-authors="Venkat Arun and Hari Balakrishnan" data-conf="USENIX NSDI" data-year="2018">Copa</abbr>], I created a small set of simple test cases on which to evaluate it. I spent months tweaking the algorithm, but a change that fixed one issue would create another. It was not until I had found an algorithm that I could theoretically analyze was I able to get consistent and predictable performance. Theory helps us explore combinatorally large spaces of possible algorithms and networks, something that would be impossible experimentally.</p>
 
 <p>Theoretical analysis, the way it is traditionally done for CCAs, has one challenge. If it is hard to capture complex networks in simulation, it is nearly impossible on paper. This is where non-determinism helps. A traditional netwrok model is stochastic. It has to predict how the network <i>will</i> react to CCA action, either exactly or as a probability distribution. In contrast, a non-deterministic model only has to predict what <i>can</i> happen. It predicts a set of possible outcomes, but says nothing about how likely each one is. This is much easier to do. It is therefore much easier to design a non-deterministic model than a stochastic one.</p>
 
@@ -173,7 +173,7 @@
 
 <p>Our model differs in having a non-deterministic box (denoted by <i>D</i>) that is operated by an adversary. This adversary can delay packets in any arbitrary pattern it likes as long as it does not delay any packet by more than <i>D</i> seconds and does not reorder packets (an assumption that largely holds in the internet). This adversary can emulate paths with any arbitrary combination of the network phenomena described above. Thus any CCA that has been proved to work under this model is also guaranteed to work under such networks. This ability to capture real-world complexities in a simple model is the power of non-determinism.</p>
 
-<p>Note, the above model is simplified for ease of presentation and does not adequately capture network paths with finite buffers. To learn more about the model we actually use, read our paper on our CCA verification tool, CCAC [<abbr title="Toward formally verifying congestion control behavior. Venkat Arun, Mina T. Arashloo, Ahmed Saeed, Mohammad Alizadeh, and Hari Balakrishnan. In ACM SIGCOMM 2021">SIGCOMM21</abbr>].<p>
+<p>Note, the above model is simplified for ease of presentation and does not adequately capture network paths with finite buffers. To learn more about the model we actually use, read our paper on our CCA verification tool, CCAC [<abbr class="citation" data-url="https://dl.acm.org/doi/pdf/10.1145/3452296.3472912" data-papertitle="Toward formally verifying congestion control behavior" data-authors="Venkat Arun, Mina T. Arashloo, Ahmed Saeed, Mohammad Alizadeh, and Hari Balakrishnan" data-conf="ACM SIGCOMM" data-year="2021">CCAC</abbr>].<p>
 
 <!--FAQs
 - This is an old problem. Will this really revolutionize the world?
@@ -185,5 +185,7 @@
 
 
      </div>
+
+     <script src="assets/js/site.js"></script>  <!-- 👈 your custom JS -->
    </body>
 </html>
