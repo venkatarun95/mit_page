@@ -35,7 +35,8 @@ def prep_cites(papers: Dict[str, Dict[str, Union[str, int]]]) -> Tuple[Dict[str,
                     "ACM MobiSys": "MobiSys",
                     "NDSS Symposium": "NDSS",
                     "Facebook Engineering Blog": "FB Engg. Blog",
-                    "arXiv": "arXiv"}
+                    "arXiv": "arXiv",
+                    "unpublished": "Coming soon"}
         if paper['conf'] in conf_map:
             conf_name = conf_map[paper['conf']] + str(paper['year'] - 2000)
             conf_full_name = conf_map[paper['conf']] + ' ' + str(paper['year'])
