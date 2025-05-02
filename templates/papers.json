@@ -23,6 +23,14 @@
         "year": 2025,
         "url": "https://arxiv.org/pdf/2503.00714"
     },
+    "contracts": {
+	"title": "Contracts: A unified lens on congestion control robustness, fairness, congestion, and generality",
+	"authors": "Anup Agarwal, Venkat Arun, Srinivasan Seshan",
+	"short_name": "CCA Contracts",
+	"conf": "arXiv",
+	"year": 2025,
+	"url": "https://arxiv.org/pdf/2504.18786"
+    },
     "archie": {
         "title": "Lightweight Automated Reasoning for Network Architectures",
         "authors": "Rahul Bothra, Venkat Arun, Brighten Godfrey, Akshay Narayan, Ahmed Saeed",
