@@ -3,16 +3,16 @@
 	"title": "Synthesizing a Provably Performant Joint Controller for Low-Latency Video Streaming",
 	"authors": "Tony Pan, Anup Agarwal, Isil Dillig, Venkat Arun",
 	"short_name": "Syntra",
-	"conf": "unpublished",
-	"year": 2025,
+	"conf": "USENIX NSDI",
+	"year": 2026,
 	"exclude": false
     },
     "frcc": {
         "title": "FRCC: Towards Provably Fair and Robust Congestion Control",
         "authors": "Anup Agarwal, Venkat Arun, Srini Seshan",
         "short_name": "FRCC",
-        "conf": "unpublished",
-        "year": 2025,
+        "conf": "USENIX NSDI",
+        "year": 2026,
         "exclude": false
     },
     "speql": {
