@@ -1,0 +1,295 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+        <!-- Bootstrap CSS -->
+        <!--<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.3/css/bootstrap.min.css" integrity="sha384-Zug+QiDoJOrZ5t4lssLdxGhVrurbmBWopoEl+M6BdEfwnCJZtKxi1KgxUyJq13dy" crossorigin="anonymous">-->
+	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+	<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+	<script src="https://cdn.jsdelivr.net/npm/popper.js@1.12.9/dist/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+	<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+	<!-- Bootstrap Icons -->
+	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+
+	<style>
+	  .card-body {
+	      padding: 0.25rem;
+	  }
+	  .text-muted {
+	      font-weight: 300;
+	      color: #000 !important;
+	  }
+	  td, th {
+	      border: 1px solid;
+	  }
+	</style>
+
+	
+<style>
+  td {
+      border: none;
+  }
+  th {
+      border: none;
+  }
+</style>
+
+
+        <title>CS 356: Computer Networks Fall 2024</title>
+    </head>
+
+    <body style="background-color: #bf5700">
+      <div class="container" style="background-color: #fff; padding-top:30pt;">
+	<div class="d-flex justify-content-between align-items-center">
+	  <h1>CS 356: Computer Networks</h1> <h2 class="text-muted">Fall 2024</h2>
+	</div>
+
+	<nav class="navbar navbar-expand-lg navbar-light bg-light">
+	  <div class="container-fluid">
+	    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+	      <span class="navbar-toggler-icon"></span>
+	    </button>
+	    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+	      <ul class="navbar-nav mr-auto">
+		
+		<li class="nav-item ">
+		  <a class="nav-link" aria-current="page" href="index.html">Home</a>
+		</li>
+		
+		<li class="nav-item  active ">
+		  <a class="nav-link" aria-current="page" href="schedule.html">Schedule</a>
+		</li>
+		
+		<li class="nav-item ">
+		  <a class="nav-link" aria-current="page" href="assignments.html">Assignments</a>
+		</li>
+		
+		<li class="nav-item ">
+		  <a class="nav-link" aria-current="page" href="https://edstem.org/us/courses/62463">Ed Discussion</a>
+		</li>
+		
+		<li class="nav-item ">
+		  <a class="nav-link" aria-current="page" href="https://utexas.instructure.com/courses/1401747">Canvas</a>
+		</li>
+		
+	      </ul>
+	    </div>
+	  </div>
+	</nav>
+
+	<br/><br/>
+	
+	
+
+<p>Given below is the tentative schedule for this course. While we have made slides for all lectures are available at the beginning of the course, they may change until the day after the lecture.</p>
+
+<table class="table table-hover">
+  <thead>
+    <tr>
+      <th scope="col">Lecture &#35;</th>
+      <th scope="col">Date</th>
+      <th scope="col">Topic</th>
+      <th scope="col">Lecture Notes</th>
+    </tr>
+  </thead>
+  <tbody>
+    
+      <tr>
+        <th scope="row">1</th>
+	<td style="border:none;">Tue, Aug 27</td>
+	<td>Introduction</td>
+	<td> <a href="assets/slides/lec1-intro.pdf">slides</a> </td>
+      </tr>
+    
+      <tr>
+        <th scope="row">2</th>
+	<td style="border:none;">Thu, Aug 29</td>
+	<td>Overview of the internet</td>
+	<td> <a href="assets/slides/lec2-architecture.pdf">slides</a> </td>
+      </tr>
+    
+      <tr>
+        <th scope="row">3</th>
+	<td style="border:none;">Tue, Sep 03</td>
+	<td>Naming and addressing</td>
+	<td> <a href="assets/slides/lec3-names.pdf">slides</a> </td>
+      </tr>
+    
+      <tr>
+        <th scope="row">4</th>
+	<td style="border:none;">Thu, Sep 05</td>
+	<td>Spanning tree routing</td>
+	<td> <a href="assets/slides/lec4-routing-1.pdf">slides</a> </td>
+      </tr>
+    
+      <tr>
+        <th scope="row">5</th>
+	<td style="border:none;">Tue, Sep 10</td>
+	<td>Distance vector and link state routing</td>
+	<td> <a href="assets/slides/lec5-routing-2.pdf">slides</a> </td>
+      </tr>
+    
+      <tr>
+        <th scope="row">6</th>
+	<td style="border:none;">Thu, Sep 12</td>
+	<td>Inter domain routing</td>
+	<td> <a href="assets/slides/lec6-bgp.pdf">slides</a> </td>
+      </tr>
+    
+      <tr>
+        <th scope="row">7</th>
+	<td style="border:none;">Tue, Sep 17</td>
+	<td>Inter domain routing continued</td>
+	<td> <a href="assets/slides/lec7-bgp-advanced.pptx">slides</a> </td>
+      </tr>
+    
+      <tr>
+        <th scope="row">8</th>
+	<td style="border:none;">Thu, Sep 19</td>
+	<td>Physical layer design considerations</td>
+	<td> <a href="assets/slides/lec8-phy-1.pdf">slides</a> </td>
+      </tr>
+    
+      <tr>
+        <th scope="row">9</th>
+	<td style="border:none;">Tue, Sep 24</td>
+	<td>Physical layer error detection and reliability</td>
+	<td> <a href="assets/slides/lec9-error-detect.pdf">slides</a> </td>
+      </tr>
+    
+      <tr>
+        <th scope="row">10</th>
+	<td style="border:none;">Thu, Sep 26</td>
+	<td><b>Quiz 1</b></td>
+	<td> -- </td>
+      </tr>
+    
+      <tr>
+        <th scope="row">11</th>
+	<td style="border:none;">Tue, Oct 01</td>
+	<td>Quiz 1 recap and error correction</td>
+	<td> <a href="assets/slides/lec11-error-correction-and-quiz.pptx">slides</a> </td>
+      </tr>
+    
+      <tr>
+        <th scope="row">12</th>
+	<td style="border:none;">Thu, Oct 03</td>
+	<td>Media access control (MAC)</td>
+	<td> <a href="assets/slides/lec12-mac-protocols.pptx">slides</a> </td>
+      </tr>
+    
+      <tr>
+        <th scope="row">13</th>
+	<td style="border:none;">Tue, Oct 08</td>
+	<td>Transport layer: flow control and reliaiblity</td>
+	<td> <a href="assets/slides/lec13-transport-intro.pdf">slides</a> </td>
+      </tr>
+    
+      <tr>
+        <th scope="row">14</th>
+	<td style="border:none;">Thu, Oct 10</td>
+	<td>Transport layer: alternate designs</td>
+	<td> <a href="assets/slides/lec14-transport-adv-reliability.pdf">slides</a> </td>
+      </tr>
+    
+      <tr>
+        <th scope="row">15</th>
+	<td style="border:none;">Tue, Oct 15</td>
+	<td>Congestion control 1</td>
+	<td> <a href="assets/slides/lec15-congestion-control-1.pptx">slides</a> </td>
+      </tr>
+    
+      <tr>
+        <th scope="row">16</th>
+	<td style="border:none;">Thu, Oct 17</td>
+	<td>Congestion control 2</td>
+	<td> -- </td>
+      </tr>
+    
+      <tr>
+        <th scope="row">17</th>
+	<td style="border:none;">Tue, Oct 22</td>
+	<td>Recap: BGP and FEC</td>
+	<td> -- </td>
+      </tr>
+    
+      <tr>
+        <th scope="row">18</th>
+	<td style="border:none;">Thu, Oct 24</td>
+	<td>Queuing disciplines + HTTP and the web</td>
+	<td> <a href="assets/slides/lec18-qd-and-app.pdf">slides</a> </td>
+      </tr>
+    
+      <tr>
+        <th scope="row">19</th>
+	<td style="border:none;">Tue, Oct 29</td>
+	<td>Encryption 1</td>
+	<td> <a href="assets/slides/lec19-security-crypto.pdf">slides</a> </td>
+      </tr>
+    
+      <tr>
+        <th scope="row">20</th>
+	<td style="border:none;">Thu, Oct 31</td>
+	<td><b>Quiz 2</b></td>
+	<td> -- </td>
+      </tr>
+    
+      <tr>
+        <th scope="row">21</th>
+	<td style="border:none;">Tue, Nov 05</td>
+	<td>Encryption 2</td>
+	<td> <a href="assets/slides/lec20-security-crypto-2.pdf">slides</a> </td>
+      </tr>
+    
+      <tr>
+        <th scope="row">22</th>
+	<td style="border:none;">Thu, Nov 07</td>
+	<td>Web security</td>
+	<td> <a href="assets/slides/lec22-practical-security.pdf">slides</a> </td>
+      </tr>
+    
+      <tr>
+        <th scope="row">23</th>
+	<td style="border:none;">Thu, Nov 14</td>
+	<td>Datacenter Networks</td>
+	<td> <a href="assets/slides/lec23-datacenter-networks.pdf">slides</a> </td>
+      </tr>
+    
+      <tr>
+        <th scope="row">24</th>
+	<td style="border:none;">Tue, Nov 19</td>
+	<td>Programmable network devices (guest lecture by Daehyoek Kim)</td>
+	<td> <a href="assets/slides/lec24-programmable-networks.pdf">slides</a> </td>
+      </tr>
+    
+      <tr>
+        <th scope="row">25</th>
+	<td style="border:none;">Thu, Nov 21</td>
+	<td>Content Delivery Networks (CDNs)</td>
+	<td> <a href="assets/slides/lec25-cdn.pdf">slides</a> </td>
+      </tr>
+    
+      <tr>
+        <th scope="row">26</th>
+	<td style="border:none;">Tue, Dec 03</td>
+	<td>The scarcity of addresses: NAT and IPv6</td>
+	<td> <a href="assets/slides/lec26-nat-ipv6-overlay.pptx">slides</a> </td>
+      </tr>
+    
+      <tr>
+        <th scope="row">27</th>
+	<td style="border:none;">Thu, Dec 05</td>
+	<td>Course review: the philosophy of internet design</td>
+	<td> -- </td>
+      </tr>
+    
+  </tbody>
+</table>
+
+
+
+      </div>
+    </body>
+</html>

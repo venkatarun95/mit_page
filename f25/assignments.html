@@ -1,0 +1,144 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+        <!-- Bootstrap CSS -->
+        <!--<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.3/css/bootstrap.min.css" integrity="sha384-Zug+QiDoJOrZ5t4lssLdxGhVrurbmBWopoEl+M6BdEfwnCJZtKxi1KgxUyJq13dy" crossorigin="anonymous">-->
+	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+	<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+	<script src="https://cdn.jsdelivr.net/npm/popper.js@1.12.9/dist/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+	<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+	<!-- Bootstrap Icons -->
+	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+
+	<style>
+	  .card-body {
+	      padding: 0.25rem;
+	  }
+	  .text-muted {
+	      font-weight: 300;
+	      color: #000 !important;
+	  }
+	  td, th {
+	      border: 1px solid;
+	  }
+	</style>
+
+	
+<style>
+  td {
+      border: none;
+  }
+  th {
+      border: none;
+  }
+</style>
+
+
+        <title>CS 356: Computer Networks Fall 2024</title>
+    </head>
+
+    <body style="background-color: #bf5700">
+      <div class="container" style="background-color: #fff; padding-top:30pt;">
+	<div class="d-flex justify-content-between align-items-center">
+	  <h1>CS 356: Computer Networks</h1> <h2 class="text-muted">Fall 2024</h2>
+	</div>
+
+	<nav class="navbar navbar-expand-lg navbar-light bg-light">
+	  <div class="container-fluid">
+	    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+	      <span class="navbar-toggler-icon"></span>
+	    </button>
+	    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+	      <ul class="navbar-nav mr-auto">
+		
+		<li class="nav-item ">
+		  <a class="nav-link" aria-current="page" href="index.html">Home</a>
+		</li>
+		
+		<li class="nav-item ">
+		  <a class="nav-link" aria-current="page" href="schedule.html">Schedule</a>
+		</li>
+		
+		<li class="nav-item  active ">
+		  <a class="nav-link" aria-current="page" href="assignments.html">Assignments</a>
+		</li>
+		
+		<li class="nav-item ">
+		  <a class="nav-link" aria-current="page" href="https://edstem.org/us/courses/62463">Ed Discussion</a>
+		</li>
+		
+		<li class="nav-item ">
+		  <a class="nav-link" aria-current="page" href="https://utexas.instructure.com/courses/1401747">Canvas</a>
+		</li>
+		
+	      </ul>
+	    </div>
+	  </div>
+	</nav>
+
+	<br/><br/>
+	
+	
+<h3>Assignment Logistics</h3>
+
+<p>Assignments will be performed in groups of two. Special permission is required to form a group of one. The goal for the assignments is to introduce you to tools and concepts commonly used in computer networks. We have tried to make the installation and setup of the environment as minimal and flexible as possible. There are five assignments, all of which require some programming. The assignments expect familiarity with Python programming and the Linux/Unix command line interface. </p>
+
+<p>You should pick your own group members for your projects, but you may use the Ed discussion to find group members. You can just switch group members between projects, but please check with the instructor and TA first (send us a private message via Ed). Completinga project individually requires the instructor’s prior approval.</p>
+
+<p>Prior experience has shown that students who begin projects shortly after they are assigned are more likely to succeed. You have up to 5 free late days which can be allocated across the assignments per your discretion (any delay beyond midnight of the due date counts as a late day). After this, we will deduct 20% points for every additional late day.</p>
+
+<p><b>Use of LLMs:</b> You are allowed, and encouraged, to use large language models (LLMs) such as UT Spark or ChatGPT to help with your assignments as a substitute for searching the internet to fix issues. They have become a powerful tool that we should all learn to use effectively. However, it is not acceptable to simply copy paste its outputs for your assignments. Importantly, you are responsible for <i>understanding</i> everything you submit. We may quiz you at our discretion at any time. When in doubt about what constitutes cheating, please reach out to us through Ed Discussion with either a post or as a private message.</p>
+
+<p>All code and results you submit must be the original work of your group. Cheating and plagiarism will not be tolerated and will be dealt with in accordance with the <a href="https://deanofstudents.utexas.edu/conduct/index.php">University of Texas policies and procedures</a>.</p>
+
+<h3>The assignments</h3>
+
+<p>All assignments are due at midnight of the specified date</p>
+
+<table class="table table-hover">
+  <thead>
+    <tr>
+      <th scope="col"></th>
+      <th scope="col">Due Date</th>
+      <th scope="col">Assignment</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>1</th>
+      <td>Fri, Sep 12</td>
+      <td><a href="">Introduction to network programming</a></td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>TBD <!--Fri, Oct 4--></td>
+      <td><a href="">Routing</a> <!--(<a href="assets/assignment-routing.zip">starter code</a>)--> </td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>TBD <!--Fri, Oct 25--></td>
+      <td><a href="">Transport layer reliability</a> <!-- (<a href="assets/assignment-transport.zip">starter code</a>) --> </td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>TBD <!--Fri, Nov 8--></td>
+      <td><a href="">Congestion collapse and control</a> <!-- (<a href="assets/assignment-cc.zip">starter code</a>) --> </td>
+    </tr>
+    <tr>
+      <th>5</th>
+      <td>TBD <!--Fri, Dec 13--></td>
+      <td><a href="">Secure network communication</a> <!-- (<a href="assets/assignment-security.zip">starter code</a>) --></td>
+    </tr>
+  </tbody>
+</table>
+
+<br/>
+
+
+
+      </div>
+    </body>
+</html>
