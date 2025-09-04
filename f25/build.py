@@ -19,34 +19,43 @@ def prep_navigation(active: str):
 
 def prep_schedule():
     dates = [
-        date(2024,  8, 27),
-        date(2024,  8, 29),
-        date(2024,  9, 3),
-        date(2024,  9, 5),
-        date(2024,  9, 10),
-        date(2024,  9, 12),
-        date(2024,  9, 17),
-        date(2024,  9, 19),
-        date(2024,  9, 24),
-        date(2024,  9, 26),
-        date(2024, 10, 1),
-        date(2024, 10, 3),
-        date(2024, 10, 8),
-        date(2024, 10, 10),
-        date(2024, 10, 15),
-        date(2024, 10, 17),
-        date(2024, 10, 22),
-        date(2024, 10, 24),
-        date(2024, 10, 29),
-        date(2024, 10, 31),
-        date(2024, 11, 5),
-        date(2024, 11, 7),
-        #date(2024, 11, 12),
-        date(2024, 11, 14),
-        date(2024, 11, 19),
-        date(2024, 11, 21),
-        date(2024, 12, 3),
-        date(2024, 12, 5),
+        # August
+        date(2025,  8, 26),  # Tue
+        date(2025,  8, 28),  # Thu
+
+        # September
+        date(2025,  9,  2),  # Tue
+        date(2025,  9,  4),  # Thu
+        date(2025,  9,  9),  # Tue
+        date(2025,  9, 11),  # Thu
+        date(2025,  9, 16),  # Tue
+        date(2025,  9, 18),  # Thu
+        date(2025,  9, 23),  # Tue
+        date(2025,  9, 25),  # Thu
+        date(2025,  9, 30),  # Tue
+
+        # October
+        date(2025, 10,  2),  # Thu
+        date(2025, 10,  7),  # Tue
+        date(2025, 10,  9),  # Thu
+        date(2025, 10, 14),  # Tue
+        date(2025, 10, 16),  # Thu
+        date(2025, 10, 21),  # Tue
+        date(2025, 10, 23),  # Thu
+        date(2025, 10, 28),  # Tue
+        date(2025, 10, 30),  # Thu
+
+        # November (before Thanksgiving break)
+        date(2025, 11,  4),  # Tue
+        date(2025, 11,  6),  # Thu
+        # Skip Nov 11? 2025-11-11 is Tuesday but Veterans Day isn't listed as a UT holiday—only Thanksgiving break is. So include it:
+        date(2025, 11, 11),  # Tue
+        date(2025, 11, 13),  # Thu
+        date(2025, 11, 18),  # Tue
+        date(2025, 11, 20),  # Thu
+        # Skip week of Nov 24–29 (break)
+        date(2025, 12,  2),  # Tue
+        date(2025, 12,  4),  # Thu
     ]
     
     schedule = [
@@ -59,8 +68,8 @@ def prep_schedule():
         {"name": "Inter domain routing continued", "notes": "assets/slides/lec7-bgp-advanced.pptx"},
         {"name": "Physical layer design considerations", "notes": "assets/slides/lec8-phy-1.pdf"},
         {"name": "Physical layer error detection and reliability", "notes": "assets/slides/lec9-error-detect.pdf"},
+        {"name": "Forward error correction", "notes": "assets/slides/lec11-error-correction-and-quiz.pptx"},
         {"name": "<b>Quiz 1</b>", "notes": None},
-        {"name": "Quiz 1 recap and error correction", "notes": "assets/slides/lec11-error-correction-and-quiz.pptx"},
         {"name": "Media access control (MAC)", "notes": "assets/slides/lec12-mac-protocols.pptx"},
         {"name": "Transport layer: flow control and reliaiblity", "notes": "assets/slides/lec13-transport-intro.pdf"},
         {"name": "Transport layer: alternate designs", "notes": "assets/slides/lec14-transport-adv-reliability.pdf"},
@@ -73,17 +82,18 @@ def prep_schedule():
         {"name": "Encryption 2", "notes": "assets/slides/lec20-security-crypto-2.pdf"},
         {"name": "Web security", "notes": "assets/slides/lec22-practical-security.pdf"},
         {"name": "Datacenter Networks", "notes": "assets/slides/lec23-datacenter-networks.pdf"},
-        {"name": "Programmable network devices (guest lecture by Daehyoek Kim)", "notes": "assets/slides/lec24-programmable-networks.pdf"},
+        #{"name": "Programmable network devices (guest lecture by Daehyoek Kim)", "notes": "assets/slides/lec24-programmable-networks.pdf"},
         {"name": "Content Delivery Networks (CDNs)", "notes": "assets/slides/lec25-cdn.pdf"},
-        #{"name": "HTTP and the web", "notes": None},
+        {"name": "HTTP and the web", "notes": None},
         #{"name": "Putting it all together: Journey of a web page", "notes": None},
         {"name": "The scarcity of addresses: NAT and IPv6", "notes": "assets/slides/lec26-nat-ipv6-overlay.pptx"},
         {"name": "Course review: the philosophy of internet design", "notes": None},
+        {"name": "<b>Quiz 3</b>", "notes": None},
         #{"name": "Reverse proxies", "notes": None},
     ]
 
     if len(schedule) > len(dates):
-        print("Warning: there are more planned classes than are available in the schedule!")
+        print(f"Warning: there are more planned classes {len(schedule)} than are available in the schedule {len(dates)}!")
     while len(dates) > len(schedule):
         schedule += [{"name": "TBD", "notes": None}]
     assert len(schedule) >= len(dates)
