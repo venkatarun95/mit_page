@@ -23,6 +23,13 @@
 	"coadvisor": "<a href=\"https://sites.utexas.edu/neeraja/\">Neeraja Yadwadkar</a>",
 	"start": "2024-09"
     },
+    "shazer": {
+	"name": "Shazer Ali",
+	"url": "https://shaz-hash.github.io/",
+	"img": "assets/img/shazer.jpg",
+	"type": "phd",
+	"start": "2025-09"
+    },
 
     "anup": {
 	"name": "Anup Agarwal",

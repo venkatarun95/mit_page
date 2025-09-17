@@ -53,7 +53,9 @@
 	  <div class="card-body">
 	    <h5 class="card-title"><a href="{{students[stud].url}}">{{students[stud].name}}</a></h5>
 	    <p class="card-subtitle mb-2 text-muted">{{students[stud].year}}</p>
-	    <p>Co-advised with {{students[stud].coadvisor}}</p>
+	    {% if "coadvisor" in students[stud] %}
+              <p>Co-advised with {{students[stud].coadvisor}}</p>
+	    {% endif %}
 	  </div>
 	</div>
       </div>
@@ -103,6 +105,7 @@ My group is funded by:
   <li>NSF Nets: Medium: An End-To-End Framework For Network (2024)</li>
   <li>NSF FMitF: Performance Verification for Networked Systems (2024)</li>
   <li>A generous gift from <a href="https://www.mibura.com/">Mibura</a> (2024)</li>
+  <li>An Amazon fellowship for <a href="{{students['haoyu'].url}}">Haoyu Li</a> (2025)</li>
 </ul>
 
 Our group is lucky to be managed by <a href="https://www.cs.utexas.edu/people/staff/destiny-turner">Destiny Turner</a>.

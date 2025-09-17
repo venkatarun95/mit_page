@@ -18,7 +18,9 @@
 	  <div class="card-body">
 	    <h5 class="card-title"><a href="{{students[stud].url}}">{{students[stud].name}}</a></h5>
 	    <p class="card-subtitle mb-2 text-muted">{{students[stud].year}}</p>
-	    <p>Co-advised with {{students[stud].coadvisor}}</p>
+	    {% if "coadvisor" in students[stud] %}
+              <p>Co-advised with {{students[stud].coadvisor}}</p>
+	    {% endif %}
 	  </div>
 	</div>
       </div>
