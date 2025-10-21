@@ -86,6 +86,7 @@ def prep_schedule():
         {"name": "Datacenter networks", "notes": "assets/slides/lec23-datacenter-networks.pdf"},
         #{"name": "Programmable network devices (guest lecture by Daehyoek Kim)", "notes": "assets/slides/lec24-programmable-networks.pdf"},
         {"name": "Content Delivery Networks (CDNs)", "notes": "assets/slides/lec25-cdn.pdf"},
+        {"name": "Overlay Networks", "notes": None},
         #{"name": "Putting it all together: Journey of a web page", "notes": None},
         {"name": "The scarcity of addresses: NAT and IPv6", "notes": "assets/slides/lec26-nat-ipv6-overlay.pptx"},
         {"name": "Course review: the philosophy of internet design", "notes": None},
