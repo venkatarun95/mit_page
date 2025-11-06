@@ -1,4 +1,21 @@
 {
+    "nonlocal": {
+	"title": "Faster-than-light coordination for networked systems with quantum non-local games",
+	"authors": "Venkat Arun, Vijay Chidambaram, Scott Aaronson",
+	"short_name": "Nonlocal",
+	"conf": "ACM SIGCOMM HotNets",
+	"year": 2025,
+	"exclude": false
+    },
+    "robusta": {
+	"title": "Robust Heuristic Algorithm Design with LLMs",
+	"authors": "Pantea Karimi, Dany Rouhana, Pooria Namyar, Siva Kesava Reddy Kakarla, Venkat Arun, Behnaz Arzani",
+	"short_name": "Robusta",
+	"conf": "arXiv",
+	"year": 2025,
+	"url": "https://arxiv.org/pdf/2510.08755",
+	"exclude": false
+    },
     "syntra": {
 	"title": "Synthesizing a Provably Performant Joint Controller for Low-Latency Video Streaming",
 	"authors": "Tony Pan, Anup Agarwal, Isil Dillig, Venkat Arun",
@@ -166,3 +183,4 @@
     	"exclude": true
     }
 }
+
