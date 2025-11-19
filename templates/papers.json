@@ -5,6 +5,7 @@
 	"short_name": "Nonlocal",
 	"conf": "ACM SIGCOMM HotNets",
 	"year": 2025,
+	"url": "https://conferences.sigcomm.org/hotnets/2025/papers/hotnets25-final334.pdf",
 	"exclude": false
     },
     "robusta": {
@@ -22,6 +23,7 @@
 	"short_name": "Syntra",
 	"conf": "USENIX NSDI",
 	"year": 2026,
+	"url": "assets/papers/syntra.pdf",
 	"exclude": false
     },
     "frcc": {
@@ -30,6 +32,7 @@
         "short_name": "FRCC",
         "conf": "USENIX NSDI",
         "year": 2026,
+	"url": "assets/papers/frcc.pdf",
         "exclude": false
     },
     "speql": {
