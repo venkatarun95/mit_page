@@ -51,7 +51,7 @@ def prep_schedule():
         # Skip Nov 11? 2025-11-11 is Tuesday but Veterans Day isn't listed as a UT holiday—only Thanksgiving break is. So include it:
         date(2025, 11, 11),  # Tue
         date(2025, 11, 13),  # Thu
-        date(2025, 11, 18),  # Tue
+        #date(2025, 11, 18),  # Tue (class cancelled due to travel)
         date(2025, 11, 20),  # Thu
         # Skip week of Nov 24–29 (break)
         date(2025, 12,  2),  # Tue
@@ -86,7 +86,7 @@ def prep_schedule():
         {"name": "Datacenter networks", "notes": "assets/slides/lec23-datacenter-networks.pdf"},
         # {"name": "Programmable network devices", "notes": "assets/slides/lec24-programmable-networks.pdf"},
         {"name": "Content Delivery Networks (CDNs)", "notes": "assets/slides/lec25-cdn.pdf"},
-        {"name": "Overlay Networks", "notes": None},
+        #{"name": "Overlay Networks", "notes": None},
         #{"name": "Putting it all together: Journey of a web page", "notes": None},
         {"name": "The scarcity of addresses: NAT and IPv6", "notes": "assets/slides/lec26-nat-ipv6-overlay.pptx"},
         {"name": "Course review: the philosophy of internet design", "notes": None},
