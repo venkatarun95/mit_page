@@ -89,7 +89,7 @@ def prep_schedule():
         #{"name": "Overlay Networks", "notes": None},
         #{"name": "Putting it all together: Journey of a web page", "notes": None},
         {"name": "The scarcity of addresses: NAT and IPv6", "notes": "assets/slides/lec26-nat-ipv6-overlay.pptx"},
-        {"name": "Course review: the philosophy of internet design", "notes": None},
+        {"name": "Designing a modern application", "notes": None},
         {"name": "<b>Quiz 3</b>", "notes": None},
         #{"name": "Reverse proxies", "notes": None},
     ]
