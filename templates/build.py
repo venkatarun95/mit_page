@@ -34,6 +34,7 @@ def prep_cites(papers: Dict[str, Dict[str, Union[str, int]]]) -> Tuple[Dict[str,
                     "ACM SIGCOMM HotNets": "HotNets",
                     "ACM MobiSys": "MobiSys",
                     "NDSS Symposium": "NDSS",
+                    "NINeS": "NINeS",
                     "Facebook Engineering Blog": "FB Engg. Blog",
                     "arXiv": "arXiv",
                     "unpublished": "Coming soon"}
