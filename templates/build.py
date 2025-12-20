@@ -77,7 +77,7 @@ def prep_students(students: Dict[str, Dict[str, str]]) -> Dict[str, Dict[str, st
 
     for ref in res:
         if 'end' in res[ref]:
-            end = datetime.strptime(res[ref]['start'], "%Y-%m")
+            end = datetime.strptime(res[ref]['end'], "%Y-%m")
             res[ref]['year'] = "Graduated in " + str(end.year)
             continue
 

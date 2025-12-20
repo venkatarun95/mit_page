@@ -36,8 +36,9 @@
 	"url": "https://108anup.github.io/",
 	"img": "assets/img/anup.jpg",
 	"type": "other",
-	"note": "A PhD student at CMU advised by <a href=\"http://www.cs.cmu.edu/~srini/\">Srini Seshan</a>.",
-	"start": "2019-09"
+	"note": "Now at Google. Was a PhD student at CMU advised by <a href=\"http://www.cs.cmu.edu/~srini/\">Srini Seshan</a>.",
+	"start": "2019-09",
+	"end": "2025-11"
     },
     "rahul": {
 	"name": "Rahul Bothra",
