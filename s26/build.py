@@ -6,8 +6,8 @@ def prep_navigation(active: str):
     navigation = [
         {"name": "Home", "url": "index.html"},
         {"name": "Schedule", "url": "schedule.html"},
-        {"name": "Ed Discussion", "url": "https://edstem.org/us/courses/74525/discussion"},
-        {"name": "Canvas", "url": "https://utexas.instructure.com/courses/1414782"}
+        {"name": "Ed Discussion", "url": "https://edstem.org/us/courses/93293/discussion"},
+        {"name": "Canvas", "url": "https://utexas.instructure.com/courses/1441232"}
     ]
     for i in range(len(navigation)):
         if navigation[i]["name"] == active:
