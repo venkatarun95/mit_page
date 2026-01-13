@@ -1,0 +1,53 @@
+{% extends "base.html" %}
+
+{% block header %}
+<style>
+  td {
+      border: none;
+  }
+  th {
+      border: none;
+  }
+</style>
+{% endblock %}
+
+{% block content %}
+
+<p>Given below is the tentative schedule for this course</p>
+
+<table class="table table-hover">
+  <thead>
+    <tr>
+      <th scope="col">Lecture &#35;</th>
+      <th scope="col">Date</th>
+      <th scope="col">Topic</th>
+      <th scope="col">Reading</th>
+    </tr>
+  </thead>
+  <tbody>
+    {% for item in schedule %}
+      <tr>
+        <th scope="row">{{ item.number }}</th>
+	<td style="border:none;">{{ item.date }}</td>
+	<td>{{ item.name }}</td>
+	<td>
+	  {% if item.reading == [] %} 
+            -- 
+          {% else %}
+            {% for read in item.reading %} 
+              <a href="{{ read[1] }}"> {{ read[0] }} </a> <br/>
+            {% endfor %}
+	  {% endif %}
+	  {% if item.optional %}
+	    <b>Optional:</b><br/>    
+	    {% for read in item.optional %}
+              <a href="{{ read[1] }}"> {{ read[0] }} </a> <br/>
+	    {% endfor %}
+	  {% endif %}
+	</td>
+    </tr>
+    {% endfor %}
+  </tbody>
+</table>
+
+{% endblock %}
