@@ -51,6 +51,8 @@ def prep_schedule():
     schedule = [
         # {"name": "Introduction", "reading": [("PIM: Matching in a switch", "https://dl.acm.org/doi/pdf/10.1145/161541.161736"), ("dcPIM: Matching in a datacenter", "https://www.cs.cornell.edu/~ragarwal/pubs/dcpim.pdf")], "optional": [("How to read papers", "https://cs.utexas.edu/~venkatar/sys_perf_analysis/how-to-read-paper.pdf")]},
         {"name": "Introduction", "reading": [("Notes: When should we use which operation?", "papers/notes_when_to_use_which_operation.pdf")], "optional": [("How to read papers", "https://cs.utexas.edu/~venkatar/sys_perf_analysis/how-to-read-paper.pdf")]},
+        {"name": "Computational complexity in practice I", "reading": [("Notes", "papers/complexity_in_practice.pdf")], "optional": []},
+        {"name": "Computational complexity in practice II", "reading": [("Notes", "papers/complexity_in_practice.pdf")], "optional": []},
         # {"name": "Class cancelled due to 🛫", "reading": []},
         # {"name": "Class cancelled due to ❄️", "reading": []},
         {"name": "Load balancing", "reading": [("Valiant routing in a switch", "https://www.cs.utexas.edu/~venkatar/sys_perf_analysis/valiant-optics.pdf"), ("Valiant routing in Google's datacenter", "https://www.cs.utexas.edu/~venkatar/sys_perf_analysis/plb.pdf")], "optional": [("Original paper by Valiant", "Universal schemes for parallel communication")]},
@@ -68,8 +70,6 @@ def prep_schedule():
         {"name": "Cache replacement policies II", "reading": [("Caching with delayed hits", "../sys_perf_analysis/belatedly.pdf")], "optional": []},
         {"name": "Incorporating ML in systems I", "reading": [("ML improves the average. Theory bounds the worst", "../sys_perf_analysis/competitive_caching_ml_advice.pdf")], "optional": []},
         {"name": "Incorporating ML in systems II", "reading": [("Traffic engineering by using ML to solve LPs faster", "https://dl.acm.org/doi/pdf/10.1145/3603269.3604857")], "optional": [("Solving computationally hard problems with AlphaZero", "https://arxiv.org/pdf/1712.01815")]},
-        {"name": "Computational complexity in practice I", "reading": [("Notes", "papers/complexity_in_practice.pdf")], "optional": []},
-        {"name": "Computational complexity in practice II", "reading": [("Notes", "papers/complexity_in_practice.pdf")], "optional": []},
         {"name": "Signal processing tasting menu I", "reading": [("Rule: use sinusoids", "https://venkatarun.wordpress.com/2022/04/18/why-the-sinusoid/"), ("Learn the rule to break it", "https://dl.acm.org/doi/pdf/10.1145/3230543.3230565")], "optional": []},
         {"name": "Signal processing tasting menu II", "reading": [("Funamental Limits (read before 7.1.1 and skim the rest)", "https://ethz.ch/content/dam/ethz/special-interest/itet/photonics-dam/documents/lectures/EandM/AngularSpectrumRepresentation.pdf"), ("Use the limits", "https://www.usenix.org/system/files/nsdi20-paper-arun.pdf")], "optional": []},
         {"name": "Congestion control I", "reading": [("AIMD analysis", "https://www.cs.columbia.edu/~danr/courses/6761/Summer03/week4/aimd.pdf"), ("Delay based multi-bottleneck CC (pay attention to IIIB)", "https://ieeexplore.ieee.org/stamp/stamp.jsp?arnumber=4032738")], "optional": []},
