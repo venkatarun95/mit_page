@@ -53,7 +53,7 @@ def prep_schedule():
         {"name": "Introduction", "reading": [("Notes: When should we use which operation?", "papers/notes_when_to_use_which_operation.pdf")], "optional": [("How to read papers", "https://cs.utexas.edu/~venkatar/sys_perf_analysis/how-to-read-paper.pdf"), ("L1 vs L2 norms and compressed sensing", "http://timroughgarden.org/f14/l/l9.pdf")]},
         {"name": "Computational complexity in practice I", "reading": [("Notes", "papers/complexity_in_practice.pdf")], "optional": []},
         {"name": "Computational complexity in practice II", "reading": [("Notes", "papers/complexity_in_practice.pdf")], "optional": []},
-        {"name": "Notions of fairness I", "reading": [("Chapter 2.2 (&alpha;-fairness) and 2.4 (NUM) of R. Srikant and Lei Y. (alpha fairness and NUM)", "https://sites.google.com/view/comm-network")], "optional": []},
+        {"name": "Notions of fairness I", "reading": [("Chapter 2.2 (&alpha;-fairness) and 2.4 (NUM) of R. Srikant and Lei Y. (alpha fairness and NUM)", "https://sites.google.com/view/comm-networks")], "optional": []},
         {"name": "Notions of fairness II", "reading": [("Dominant Resource Fairness", "https://www.usenix.org/legacy/event/nsdi11/tech/full_papers/Ghodsi.pdf")]},
         {"name": "Notions of fairness III", "reading": [("FairCloud (fairness is hard)", "https://dl.acm.org/doi/pdf/10.1145/2342356.2342396")], "optional": []},
         {"name": "Load balancing", "reading": [("Valiant routing in a switch", "https://www.cs.utexas.edu/~venkatar/sys_perf_analysis/valiant-optics.pdf"), ("Valiant routing in Google's datacenter", "https://www.cs.utexas.edu/~venkatar/sys_perf_analysis/plb.pdf")], "optional": [("Original paper by Valiant", "Universal schemes for parallel communication")]},
