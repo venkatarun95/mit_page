@@ -51,6 +51,14 @@
 	"year": 2026,
 	"url": "https://arxiv.org/pdf/2504.18786"
     },
+    "byoo": {
+	"title": "Bring Your Own Objective: Inter-operability of Network Objectives in Datacenters",
+	"authors": "Sanjoli Narang, Anup Agarwal, Venkat Arun, Manya Ghobadi",
+	"short_name": "BYOO",
+	"conf": "arXiv",
+	"year": 2026,
+	"url": "https://arxiv.org/pdf/2602.10252"
+    },
     "archie": {
         "title": "Lightweight Automated Reasoning for Network Architectures",
         "authors": "Rahul Bothra, Venkat Arun, Brighten Godfrey, Akshay Narayan, Ahmed Saeed",
@@ -120,11 +128,11 @@
 	    "special": "Being used in production at Meta"
     },
     "perf_verif": {
-        "title": "Quantitative Verification of Scheduling Heuristics",
+        "title": "A Performance Verification Methodology for Resource Allocation Heuristics",
         "authors": "Saksham Goel, Benjamin Mikek, Jehad Aly, Venkat Arun, Ahmed Saeed, and Aditya Akella",
         "short_name": "Verilay",
         "conf": "arXiv",
-        "year": 2023,
+        "year": 2024,
         "url": "https://arxiv.org/abs/2301.04205"
     },
     "rfocus": {
