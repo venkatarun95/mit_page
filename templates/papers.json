@@ -49,7 +49,8 @@
 	"short_name": "CCA Contracts",
 	"conf": "NINeS",
 	"year": 2026,
-	"url": "https://arxiv.org/pdf/2504.18786"
+	"url": "https://drops.dagstuhl.de/storage/01oasics/oasics-vol139-nines2026/OASIcs.NINeS.2026.8/OASIcs.NINeS.2026.8.pdf",
+        "_url": "https://arxiv.org/pdf/2504.18786"
     },
     "byoo": {
 	"title": "Bring Your Own Objective: Inter-operability of Network Objectives in Datacenters",
