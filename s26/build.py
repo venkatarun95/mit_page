@@ -82,7 +82,7 @@ def prep_schedule():
         # {"name": "Congestion control III", "reading": [("Everything is broken", "https://dl.acm.org/doi/pdf/10.1145/3452296.3472912"), ("Everything is unfair", "https://dl.acm.org/doi/pdf/10.1145/3544216.3544223")], "optional": []},
         {"name": "Automated controller design: Synthesis", "reading": [("Syntra", "https://www.cs.utexas.edu/~venkatar/assets/papers/syntra.pdf")], "optional": []},
         {"name": "Automated controller design: Supervised ML", "reading": [("HALP cache", "https://www.usenix.org/system/files/nsdi23-song-zhenyu.pdf"), ("DOTE TE", "https://www.usenix.org/system/files/nsdi23-perry.pdf")]},
-        {"name": "Automated controller design: Recurrent ML", "reading": [("AutoThrottle", "https://www.usenix.org/system/files/nsdi24-wang-zibo.pdf"), ("LLAMA memory", "https://dl.acm.org/doi/pdf/10.1145/3357526.3357534")]},
+        {"name": "Automated controller design: Recurrent ML", "reading": [("AutoThrottle", "https://www.usenix.org/system/files/nsdi24-wang-zibo.pdf"), ("LLAMA memory", "https://dl.acm.org/doi/pdf/10.1145/3373376.3378525")]},
         # {"name": "Performance verification III", "reading": [("How complex is my distributed system?", "https://dl.acm.org/doi/pdf/10.1145/3591235")], "optional": []},
         # {"name": "Synthesis for Performance II", "reading": [], "optional": []},
         {"name": "Multi agent systems I", "reading": [], "optional": []},
