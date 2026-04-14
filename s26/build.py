@@ -55,7 +55,7 @@ def prep_schedule():
         {"name": "Introduction", "reading": [("Notes: When should we use which operation?", "papers/notes_when_to_use_which_operation.pdf")], "optional": [("How to read papers", "https://cs.utexas.edu/~venkatar/sys_perf_analysis/how-to-read-paper.pdf"), ("L1 vs L2 norms and compressed sensing", "http://timroughgarden.org/f14/l/l9.pdf")]},
         {"name": "Computational complexity in practice I", "reading": [("Notes", "papers/complexity_in_practice.pdf")], "optional": []},
         {"name": "Computational complexity in practice II", "reading": [("Notes", "papers/complexity_in_practice.pdf")], "optional": []},
-        {"name": "Notions of fairness I", "reading": [("Chapter 2.2 (&alpha;-fairness) and 2.4 (NUM) of R. Srikant and Lei Y. (alpha fairness and NUM)", "https://sites.google.com/view/comm-networks")], "optional": [("Frank-Wolfe algorithm", "https://en.wikipedia.org/wiki/Frank%E2%80%93Wolfe_algorithm")]},
+        {"name": "Notions of fairness I", "reading": [("Chapter 2.2 (&alpha;-fairness) of R. Srikant and Lei Y. (alpha fairness and NUM)", "https://sites.google.com/view/comm-networks")], "optional": [("Frank-Wolfe algorithm", "https://en.wikipedia.org/wiki/Frank%E2%80%93Wolfe_algorithm")]},
         {"name": "Class cancelled due to ❄️", "reading": [], "optional": []},
         {"name": "Notions of fairness II", "reading": [("Dominant Resource Fairness", "https://www.usenix.org/legacy/event/nsdi11/tech/full_papers/Ghodsi.pdf")]},
         {"name": "Notions of fairness III", "reading": [("FairCloud (fairness is hard)", "https://dl.acm.org/doi/pdf/10.1145/2342356.2342396")], "optional": []},
@@ -86,10 +86,11 @@ def prep_schedule():
         # {"name": "Performance verification III", "reading": [("How complex is my distributed system?", "https://dl.acm.org/doi/pdf/10.1145/3591235")], "optional": []},
         # {"name": "Synthesis for Performance II", "reading": [], "optional": []},
         {"name": "Multi agent systems I", "reading": [], "optional": []},
-        {"name": "Multi agent systems II", "reading": [], "optional": []},
+        {"name": "Multi agent systems II", "reading": [("Chapters 2.4 and 2.7 in Srikant and Ying", "https://sites.google.com/view/comm-networks")], "optional": []},
         # {"name": "Bounding performance I", "reading": [], "optional": []},
         # {"name": "Hardware abstractions for performance I", "reading": [("Hardware for sparse linear algebra", "https://dl.acm.org/doi/pdf/10.1145/3582016.3582051")], "optional": []},
-        {"name": "Abstractions that aid performance II", "reading": [("PIFO", "https://dl.acm.org/doi/pdf/10.1145/2934872.2934899"), ("Approximate PIFO", "https://www.usenix.org/system/files/nsdi20-paper-alcoz.pdf")], "optional": []},
+        {"name": "Abstractions that aid performance", "reading": [("Spark", "https://www.usenix.org/legacy/event/hotcloud10/tech/full_papers/Zaharia.pdf")]},
+        # {"name": "Abstractions that aid performance", "reading": [("PIFO", "https://dl.acm.org/doi/pdf/10.1145/2934872.2934899"), ("Approximate PIFO", "https://www.usenix.org/system/files/nsdi20-paper-alcoz.pdf")], "optional": []},
         {"name": "Project presentations I", "reading": [], "optional": []},
         {"name": "Project presentations II", "reading": [], "optional": []}
     ]
