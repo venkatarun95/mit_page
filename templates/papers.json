@@ -35,14 +35,6 @@
 	"url": "assets/papers/frcc.pdf",
         "exclude": false
     },
-    "speql": {
-        "title": "Speculative Ad-hoc Querying",
-        "authors": "Haoyu Li, Srikanth Kandula, Maria Angels de Luis Balaguer, Aditya Akella, Venkat Arun",
-        "short_name": "SpeQL",
-        "conf": "arXiv",
-        "year": 2025,
-        "url": "https://arxiv.org/pdf/2503.00714"
-    },
     "contracts": {
 	"title": "Contracts: A unified lens on congestion control robustness, fairness, congestion, and generality",
 	"authors": "Anup Agarwal, Venkat Arun, Srinivasan Seshan",
@@ -51,6 +43,23 @@
 	"year": 2026,
 	"url": "https://drops.dagstuhl.de/storage/01oasics/oasics-vol139-nines2026/OASIcs.NINeS.2026.8/OASIcs.NINeS.2026.8.pdf",
         "_url": "https://arxiv.org/pdf/2504.18786"
+    },
+    "archie_full": {
+	"title": "Assistants, Not Architects: The Role of LLMs in Networked Systems Design",
+	"authors": "Pratyush Sahu, Rahul Bothra, Venkat Arun, Brighten Godfrey, Akshay Narayan, Ahmed Saeed",
+	"short_name": "ArchieLLM",
+	"conf": "arXiv",
+	"year": 2026,
+	"url": "https://arxiv.org/pdf/2604.25506v1",
+	"exclude": false
+    },
+    "speql": {
+        "title": "Speculative Ad-hoc Querying",
+        "authors": "Haoyu Li, Srikanth Kandula, Maria Angels de Luis Balaguer, Aditya Akella, Venkat Arun",
+        "short_name": "SpeQL",
+        "conf": "arXiv",
+        "year": 2025,
+        "url": "https://arxiv.org/pdf/2503.00714"
     },
     "byoo": {
 	"title": "Bring Your Own Objective: Inter-operability of Network Objectives in Datacenters",
