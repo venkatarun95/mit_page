@@ -1,106 +1,86 @@
 {% extends "base.html" %}
 
 {% block head %}
-<style>
-  .read-more {
-      text-align: center;
-  }
-  .read-more:hover {
-      background-color: #f2f4f7;
-  }
-  .proj-emph {
-      color: #995a5a;
-      font-weight: bold;
-  }
-</style>
-
 <title>Venkat Arun</title>
 {% endblock %}
 
 {% block content %}
 
-<p>My research seeks to enable networked systems to support the next generation of applications. My past work has spanned internet congestion control, video streaming, privacy-preserving computation, wireless networks, and mobile systems.  A common theme across these is the use of theoretical ideas to gain insights into the real-world that would have been difficult to discover otherwise. I co-lead the UT Networked Systems Lab (<a href="https://utns.cs.utexas.edu/">UTNS</a>).</p>
-<p><b>I am hiring PhD students this cycle.</b></p>
-<!-- <p>I finished my PhD at MIT in 2023 with Hari Balakrishnan and Momammad Alizadeh (link to my <a href="thesis.pdf">thesis</a>), and my undergrad at IIT Guwahati in 2017.</p> -->
+<section>
+  <p class="lead">My research seeks to enable networked systems to support the next generation of applications. My past work has spanned internet congestion control, video streaming, privacy-preserving computation, wireless networks, and mobile systems. A common theme across these is the use of theoretical ideas to gain insights into the real-world that would have been difficult to discover otherwise. I co-lead the UT Networked Systems Lab (<a href="https://utns.cs.utexas.edu/">UTNS</a>).</p>
 
-<h3 class="section">Current Projects</h3>
-<hr/>
+  <div class="hire-banner">I am hiring PhD students this cycle.</div>
+</section>
+
+<h3 class="section-heading">Current Projects</h3>
 
 {% for proj in project_descriptions %}
-  <div class="card">
-    <div class="card-header">
+  {% set body_id = "proj-body-" ~ loop.index %}
+  <div class="card project-card">
+    <button class="card-header project-toggle collapsed"
+            type="button"
+            data-bs-toggle="collapse"
+            data-bs-target="#{{body_id}}"
+            aria-expanded="false"
+            aria-controls="{{body_id}}">
       <h5>{{proj.title}}</h5>
-    </div>
-    <div class="card-body" style="margin-left:10px; margin-right:10px;">
-      <p class="card-text">{{proj.description}}</p>
-      <div class="read-more">
-        <a href="{{proj.url}}">Read More &gt;<br/></a>
+      <span class="project-toggle-icon" aria-hidden="true">
+        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16" fill="currentColor">
+          <path fill-rule="evenodd" d="M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z"/>
+        </svg>
+      </span>
+    </button>
+    <div id="{{body_id}}" class="collapse project-body-collapse">
+      <div class="card-body">
+        <div>{{proj.description}}</div>
+        <div class="read-more">
+          <a href="{{proj.url}}">Read more &rarr;</a>
+        </div>
       </div>
     </div>
   </div>
-  <br/>
 {% endfor %}
 
-<h3 class="section">PhD Students</h3>
-<hr/>
+<h3 class="section-heading">PhD Students</h3>
 
-<div class="row">
+<div class="people-grid">
   {% for stud in students %}
     {% if students[stud].type == "phd" %}
-      <div class="col-md-4" stye="margin: 10px;">
-	<div class="card" >
-	  <img class="card-img-top" src="{{students[stud].img}}" alt="Photo of {{students[stud].name}}">
-	  <div class="card-body">
-	    <h5 class="card-title"><a href="{{students[stud].url}}">{{students[stud].name}}</a></h5>
-	    <p class="card-subtitle mb-2 text-muted">{{students[stud].year}}</p>
-	    {% if "coadvisor" in students[stud] %}
-              <p>Co-advised with {{students[stud].coadvisor}}</p>
-	    {% endif %}
-	  </div>
-	</div>
+      <div class="person-card">
+        <img class="person-photo" src="{{students[stud].img}}" alt="Photo of {{students[stud].name}}">
+        <p class="person-name"><a href="{{students[stud].url}}">{{students[stud].name}}</a></p>
+        <p class="person-meta">{{students[stud].year}}</p>
+        {% if "coadvisor" in students[stud] %}
+          <p class="person-meta">Co-advised with {{students[stud].coadvisor}}</p>
+        {% endif %}
       </div>
     {% endif %}
   {% endfor %}
 </div>
 
-<br/>
-<p><a href="students.html"><button type="button" class="btn btn-primary">See list of all students &gt;</button></a></p>
+<p style="margin-top: 20px;"><a href="students.html" class="btn btn-outline-primary">See list of all students &rarr;</a></p>
 
-<h3 class="section" id="teaching">Teaching</h3>
-<hr/>
+<h3 class="section-heading" id="teaching">Teaching</h3>
 
 <h5>CS 395T: Performance Analysis of Networked Systems</h5>
 <p>A seminar course that surveys the role that theoretical performance analysis has had in informing the design of real-world systems. Ideally, we want our theory to give us practical insights that go beyond what can be obtained via intuition or empirical analysis alone.</p>
 <p><b>Years:</b> <a href="performance_analysis_of_networked_systems.html">Spring 2024</a>, <a href="s25/index.html">Spring 2025</a>, <a href="s26/index.html">Spring 2026</a></p>
 
-<h5>CS 356: Computer Networks</h5>
+<h5 style="margin-top: 24px;">CS 356: Computer Networks</h5>
 <p>A standard undergraduate course in networking with a focus on how the internet works today.</p>
 <p><b>Years:</b> <a href="f24/index.html">Fall 2024</a>, <a href="f25/index.html">Fall 2025</a></p>
 
-<h3 class="section" id="teaching">Awards</h3>
-<hr/>
+<h3 class="section-heading">Awards</h3>
 
 <ul>
   {% for award in awards %}
-    <li>{{awards[award].title}} ({{awards[award].year}})</li>
+    <li>{{awards[award].title}} <span style="color: var(--color-text-muted);">({{awards[award].year}})</span></li>
   {% endfor %}
-  <!--<li>MIT EECS G. M. Sprowls PhD Thesis Award in Computer Science 2024</li>
-  <li>ACM SIGCOMM Doctoral Dissertation Award Runner-Up</li>
-  <li>Marconi Society Young Scholar Award 2023 </li>
-  <li>ACM SIGCOMM best paper awards for:
-    <ul>
-      <li> 2022: "Starvation in end-to-end congestion control". Venkat Arun, Mohammad Alizadeh, Hari Balakrishnan</li>
-      <li> 2017: "Language-Directed Hardware Design for Network Performance Monitoring". Srinivas Narayana, Anirudh Sivaraman, Vikram Nathan, Prateesh Goyal, Venkat Arun, Mohammad Alizadeh, Vimalkumar Jeyakumar, and Changhoon Kim</li>
-    </ul>
-  <li>Jacobs Presidential Fellowship, 2017</li>
-  <li>President of India Gold Medal (IIT Guwahati), 2017</li>
-  <li>KVPY Government of India Scholarship, 2013</li>-->
 </ul>
 
-<h3 class="section" id="teaching">Funding</h3>
-<hr/>
+<h3 class="section-heading">Funding</h3>
 
-My group is funded by:
+<p>My group is funded by:</p>
 <ul>
   <li>NSF Nets: Medium: An End-To-End Framework For Network Design and Implementation for Emerging Applications (2024)</li>
   <li>NSF FMitF: Performance Verification for Networked Systems (2024)</li>
@@ -108,6 +88,6 @@ My group is funded by:
   <li>An Amazon fellowship for <a href="{{students['haoyu'].url}}">Haoyu Li</a> (2025)</li>
 </ul>
 
-Our group is lucky to be managed by <a href="https://www.cs.utexas.edu/people/staff/destiny-turner">Destiny Turner</a>.
+<p>Our group is lucky to be managed by <a href="https://www.cs.utexas.edu/people/staff/destiny-turner">Destiny Turner</a>.</p>
 
 {% endblock %}

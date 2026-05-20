@@ -1,61 +1,73 @@
-const citations = document.querySelectorAll('.citation');
-const popovers = new Map();  // Track popovers per button
-const clickedState = new Map();  // Track clicked state per button
+// Citation popovers: hover to peek, click to pin.
+// While pinned, the card stays open until you click outside it (so links inside are clickable).
 
-citations.forEach(button => {
+const HIDE_DELAY = 200;
+
+document.querySelectorAll('abbr.citation').forEach(button => {
   const title = button.getAttribute('data-papertitle');
   const url = button.getAttribute('data-url');
   const authors = button.getAttribute('data-authors');
   const conf = button.getAttribute('data-conf');
   const year = button.getAttribute('data-year');
-  content = `
-    <div style="max-width: 250px;">
+
+  const content = `
+    <div style="max-width: 260px;">
       <div><a href="${url}"><b>${title}</b></a></div>
-      <div style="font-size: 0.875rem; color: #6c757d; margin-bottom: 0.25rem;">
-        ${conf}, ${year}
-      </div>
-      <div style="font-size: 0.8rem; color: #6c757d;">
-        ${authors}
-      </div>
+      <div style="font-size: 0.85rem; color: #6b7280; margin: 4px 0;">${conf}, ${year}</div>
+      <div style="font-size: 0.85rem; color: #6b7280;">${authors}</div>
     </div>
-  `
+  `;
 
   const popover = new bootstrap.Popover(button, {
     trigger: 'manual',
     html: true,
-    content: content,
+    content,
     placement: 'bottom',
-    animation: false // disable fade in
+    container: 'body',
+    animation: false,
   });
-  popovers.set(button, popover);
-  clickedState.set(button, false);
+
+  let pinned = false;
+  let hideTimer = null;
+  const cancelHide = () => { if (hideTimer) { clearTimeout(hideTimer); hideTimer = null; } };
+  const scheduleHide = () => {
+    cancelHide();
+    if (pinned) return;
+    hideTimer = setTimeout(() => popover.hide(), HIDE_DELAY);
+  };
+
+  // Once the popover is in the DOM, wire hover events on its tip too so the
+  // user can move the mouse from the trigger into the card without it closing.
+  button.addEventListener('shown.bs.popover', () => {
+    const tip = popover.tip || document.querySelector('.popover');
+    if (!tip) return;
+    tip.addEventListener('mouseenter', cancelHide);
+    tip.addEventListener('mouseleave', scheduleHide);
+  });
 
   button.addEventListener('mouseenter', () => {
-    if (!clickedState.get(button)) {
-      popover.show();
-    }
-  });
-
-  button.addEventListener('mouseleave', () => {
-    if (!clickedState.get(button)) {
-      popover.hide();
-    }
-  });
-
-  button.addEventListener('click', (e) => {
-    e.stopPropagation();  // Prevent bubbling up
-    clickedState.set(button, true);
+    cancelHide();
     popover.show();
   });
-});
+  button.addEventListener('mouseleave', scheduleHide);
 
-// Click outside to close any open popover
-document.addEventListener('click', (e) => {
-  citations.forEach(button => {
-    const popoverContent = document.querySelector('.popover'); // Bootstrap adds this when we use bootstrap.Popover
-    if (clickedState.get(button) && !button.contains(e.target) && !(popoverContent && popoverContent.contains(e.target))) {
-      clickedState.set(button, false);
-      popovers.get(button).hide();
+  button.addEventListener('click', (e) => {
+    e.preventDefault();
+    e.stopPropagation();
+    pinned = true;
+    cancelHide();
+    popover.show();
+  });
+
+  // Click outside to unpin / close.
+  document.addEventListener('click', (e) => {
+    if (!pinned) return;
+    const tip = popover.tip || document.querySelector('.popover');
+    const inTrigger = button.contains(e.target);
+    const inTip = tip && tip.contains(e.target);
+    if (!inTrigger && !inTip) {
+      pinned = false;
+      popover.hide();
     }
   });
 });

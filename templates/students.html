@@ -1,67 +1,54 @@
 {% extends "base.html" %}
 
 {% block head %}
-<title>Students</title>
+<title>Students &middot; Venkat Arun</title>
 {% endblock %}
 
 {% block content %}
 
-<h3 class="section">PhD Students</h3>
-<hr/>
+<h3 class="section-heading" style="margin-top: 24px;">PhD Students</h3>
 
-<div class="row">
+<div class="people-grid">
   {% for stud in students %}
     {% if students[stud].type == "phd" %}
-      <div class="col-md-4" stye="margin: 10px;">
-	<div class="card" >
-	  <img class="card-img-top" src="{{students[stud].img}}" alt="Photo of {{students[stud].name}}">
-	  <div class="card-body">
-	    <h5 class="card-title"><a href="{{students[stud].url}}">{{students[stud].name}}</a></h5>
-	    <p class="card-subtitle mb-2 text-muted">{{students[stud].year}}</p>
-	    {% if "coadvisor" in students[stud] %}
-              <p>Co-advised with {{students[stud].coadvisor}}</p>
-	    {% endif %}
-	  </div>
-	</div>
+      <div class="person-card">
+        <img class="person-photo" src="{{students[stud].img}}" alt="Photo of {{students[stud].name}}">
+        <p class="person-name"><a href="{{students[stud].url}}">{{students[stud].name}}</a></p>
+        <p class="person-meta">{{students[stud].year}}</p>
+        {% if "coadvisor" in students[stud] %}
+          <p class="person-meta">Co-advised with {{students[stud].coadvisor}}</p>
+        {% endif %}
       </div>
     {% endif %}
   {% endfor %}
 </div>
 
-<h3 class="section">Other PhD Students</h3>
-<hr/>
-<p>These are students that I do not advise, but work/have worked closely with.</p>
-<div class="row">
+<h3 class="section-heading">Other PhD Students</h3>
+<p>Students I do not advise but work or have worked closely with.</p>
+<div class="people-grid">
   {% for stud in students %}
     {% if students[stud].type == "other" %}
-      <div class="col-md-4" stye="margin: 10px;">
-	<div class="card" >
-	  <img class="card-img-top" src="{{students[stud].img}}" alt="Photo of {{students[stud].name}}">
-	  <div class="card-body">
-	    <h5 class="card-title"><a href="{{students[stud].url}}">{{students[stud].name}}</a></h5>
-	    <p class="card-subtitle mb-2 text-muted">{{students[stud].year}}</p>
-	    <p>{{students[stud].note}}</p>
-	  </div>
-	</div>
+      <div class="person-card">
+        <img class="person-photo" src="{{students[stud].img}}" alt="Photo of {{students[stud].name}}">
+        <p class="person-name"><a href="{{students[stud].url}}">{{students[stud].name}}</a></p>
+        <p class="person-meta">{{students[stud].year}}</p>
+        <p class="person-meta">{{students[stud].note}}</p>
       </div>
     {% endif %}
   {% endfor %}
 </div>
 
-<h3 class="section">Undergraduate Students</h3>
-<hr/>
+<h3 class="section-heading">Undergraduate Students</h3>
 
-<div class="row">
+<div class="people-grid">
   {% for stud in students %}
     {% if students[stud].type == "ug" %}
-      <div class="col-md-4" stye="margin: 10px;">
-	<div class="card" >
-	  <img class="card-img-top" src="{{students[stud].img}}" alt="Photo of {{students[stud].name}}">
-	  <div class="card-body">
-	    <h5 class="card-title"><a href="{{students[stud].url}}">{{students[stud].name}}</a></h5>
-	    <p>{{students[stud].note}}</p>
-	  </div>
-	</div>
+      <div class="person-card">
+        <img class="person-photo" src="{{students[stud].img}}" alt="Photo of {{students[stud].name}}">
+        <p class="person-name"><a href="{{students[stud].url}}">{{students[stud].name}}</a></p>
+        {% if students[stud].note %}
+          <p class="person-meta">{{students[stud].note}}</p>
+        {% endif %}
       </div>
     {% endif %}
   {% endfor %}

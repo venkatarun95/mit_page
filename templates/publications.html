@@ -1,28 +1,27 @@
 {% extends "base.html" %}
 
 {% block head %}
-<title>Publications</title>
+<title>Publications &middot; Venkat Arun</title>
 {% endblock %}
 
 {% block content %}
-<h3 class="section">Publications</h3>
-<hr/>
+<h3 class="section-heading" style="margin-top: 24px;">Publications</h3>
 
+<ul class="pub-list">
 {% for p in papers if not p.exclude %}
-  <div class="card" style="border: none">
-    <div class="card-body">
-      {% if p.special is defined %}
-        <b style="color:#D01919;">{{p.special}}</b>
-      {% endif %}
-      {% if p.url is defined %}
-        <h5 class="card-title"><a href="{{p.url}}">{{p.title}}</a></h5>
-      {% else %}
-        <h5 class="card-title">{{p.title}}</h5>
-      {% endif %}
-      <h6 class="card-subtitle mb-2 text-muted">{{p.authors}}</h6>
-      <div class="card-subtitle text-muted">{{p.conf}}</div>
-    </div>
-  </div>
+  <li class="pub">
+    {% if p.special is defined %}
+      <div><span class="pub-special">{{p.special}}</span></div>
+    {% endif %}
+    {% if p.url is defined %}
+      <h5 class="pub-title"><a href="{{p.url}}">{{p.title}}</a></h5>
+    {% else %}
+      <h5 class="pub-title">{{p.title}}</h5>
+    {% endif %}
+    <p class="pub-authors">{{p.authors}}</p>
+    <div class="pub-venue">{{p.conf}}</div>
+  </li>
 {% endfor %}
+</ul>
 
 {% endblock %}

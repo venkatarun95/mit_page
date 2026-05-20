@@ -1,116 +1,480 @@
 <!doctype html>
 <html lang="en">
-   <head>
-     <meta charset="utf-8">
-     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-     <link rel="icon" type="image/png" href="assets/img/favicon-32x32.png"/>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="icon" type="image/png" href="assets/img/favicon-32x32.png"/>
 
-     <!-- Bootstrap CSS -->
-     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
-     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
-     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.12.9/dist/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
-     <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+    <!-- Bootstrap 5 CSS / JS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
 
-     <style>
-       .top-icon {
-	   padding: 4px;
-       }
+    <!-- Web fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Source+Serif+4:opsz,wght@8..60,400;8..60,600;8..60,700&display=swap" rel="stylesheet">
 
-       .navbar-bg {
-	   background-color: #f5f5f5;
-       }
-       .navbar-bg a {
-	   color: #384F63;
-       }
-       .navbar-bg a:hover {
-	   color: #bf5700;
-       }
-       .section {
-	   margin-top: 60px;
-       }
-     </style>
+    <style>
+      :root {
+        --color-primary: #bf5700;
+        --color-primary-dark: #8c4100;
+        --color-primary-tint: #fbf2eb;
+        --color-text: #1f2937;
+        --color-text-muted: #6b7280;
+        --color-border: #e5e7eb;
+        --color-bg: #fafaf7;
+        --color-surface: #ffffff;
+        --shadow-sm: 0 1px 2px rgba(17, 24, 39, 0.04), 0 1px 3px rgba(17, 24, 39, 0.06);
+        --shadow-md: 0 4px 12px rgba(17, 24, 39, 0.06), 0 2px 4px rgba(17, 24, 39, 0.04);
+        --radius: 10px;
+      }
 
-     
+      html { scroll-behavior: smooth; }
+      html, body { height: auto; }
 
-<title>Congestion Control | Venkat Arun</title>
+      body {
+        background-color: var(--color-bg);
+        color: var(--color-text);
+        font-family: 'Inter', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+        font-size: 16px;
+        line-height: 1.65;
+        -webkit-font-smoothing: antialiased;
+        -moz-osx-font-smoothing: grayscale;
+        margin: 0;
+      }
 
+      /* Burnt-orange accent strip at the top of the page */
+      .accent-strip {
+        height: 5px;
+        background: var(--color-primary);
+      }
 
+      .page {
+        max-width: 960px;
+        margin: 0 auto;
+        padding: 0 24px 64px;
+      }
 
-   </head>
+      h1, h2, h3, h4, h5, h6 {
+        font-family: 'Source Serif 4', 'Source Serif Pro', Charter, Georgia, 'Times New Roman', serif;
+        color: #111827;
+        font-weight: 600;
+        letter-spacing: -0.01em;
+      }
+      h1 { font-size: 2.4rem; line-height: 1.15; margin-bottom: .35rem; }
+      h2 { font-size: 1.75rem; line-height: 1.2; }
+      h3 { font-size: 1.4rem; }
+      h5 { font-size: 1.1rem; font-weight: 600; }
 
-   <body style="background-color: #bf5700;">
-     <div class="container" style="background-color: #fff; padding-bottom: 30px;">
-       <div class="row" style="padding-top: 30px;">
-         <div class="col-md-3">
-           <img src="assets/img/venkat.jpg" alt="Photo" width="240px" height="240px">
-         </div>
-         <div class="col-md-9">
-           <h1>Venkat Arun</h1>
-	   <p>Assistant Professor<br/>
-	     Computer Science, UT Austin</p>
-	   <p>Email: <tt>venkat@utexas.edu</tt></p>
-	   <p>Office: GDC 6.726</p>
+      a {
+        color: var(--color-primary);
+        text-decoration: none;
+        text-decoration-color: rgba(191, 87, 0, 0.35);
+        text-underline-offset: 3px;
+      }
+      a:hover {
+        color: var(--color-primary-dark);
+        text-decoration: underline;
+      }
 
-	   <p><div style="padding:10px">
-	       <a href="cv.pdf" data-bs-toggle="tooltip" data-bs-html="true" title="CV" class="top-icon"><img src="assets/img/cv-icon.png" alt="CV" width="32" height="32"></a>
-	       <a href="https://scholar.google.com/citations?user=2L4RkXMAAAAJ&hl=en" data-bs-toggle="tooltip" data-bs-html="true" title="Publication List" class="top-icon"><img src="assets/img/google-scholar-logo.svg" alt="Google Scholar" width="32" height="32"></a>
-	       <a href="https://venkatarun.wordpress.com" data-bs-toggle="tooltip" data-bs-html="true" title="Blog" class="top-icon"><img src="assets/img/blog-icon.svg" alt="Blog" width="32" height="32"></a>
-	       <a href="https://github.com/venkatarun95" data-bs-toggle="tooltip" data-bs-html="true" title="Github" class="top-icon"><img src="assets/img/github-logo.svg" alt="GitHub" width="32" height="32"></a>
-	       <a href="https://twitter.com/VenkatArun95" data-bs-toggle="tooltip" data-bs-html="true" title="Twitter" class="top-icon"><img src="assets/img/twitter-logo.svg" alt="Twitter" width="32" height="32"></a>
-	       <a href="https://www.linkedin.com/in/venkat-arun-11a9047b/" data-bs-toggle="tooltip" data-bs-html="true" title="LinkedIn" class="top-icon"><img src="assets/img/linkedin-logo.svg" alt="LinkedIn" width="32" height="32"></a>
-	     </div>
-	   </p>
-         </div>
-       </div>
-       <!-- <hr style="border-width: 2px; border-color: #bf570099"/> -->
+      tt, code {
+        font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+        font-size: 0.95em;
+        background: var(--color-primary-tint);
+        color: var(--color-primary-dark);
+        padding: 1px 6px;
+        border-radius: 5px;
+      }
 
-       <nav class="navbar navbar-expand-lg navbar-bg">
-	 <div class="container-fluid">
-	   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-	     <!--<span class="navbar-toggler-icon"></span>-->
-	     <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-list" viewBox="0 0 16 16">
-	       <path fill-rule="evenodd" d="M2.5 12a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5m0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5m0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5"/>
-	     </svg>
-	   </button>
-	   <div class="collapse navbar-collapse" id="navbarSupportedContent">
-	     <ul class="navbar-nav mr-auto">
-	       
-	       <li class="nav-item">
-		 
-		   <a class="nav-link" aria-current="page" href="index.html">Home</a>
-		   
-	       </li>
-	       
-	       <li class="nav-item">
-		 
-		   <a class="nav-link" aria-current="page" href="students.html">Students</a>
-		   
-	       </li>
-	       
-	       <li class="nav-item">
-		 
-		   <a class="nav-link" aria-current="page" href="index.html#teaching">Teaching</a>
-		   
-	       </li>
-	       
-	       <li class="nav-item">
-		 
-		   <a class="nav-link" aria-current="page" href="publications.html">Publications</a>
-		   
-	       </li>
-	       
-	     </ul>
-	   </div>
-	 </div>
-       </nav>
+      /* Hero / header */
+      .hero {
+        display: grid;
+        grid-template-columns: 220px 1fr;
+        gap: 36px;
+        align-items: center;
+        padding: 56px 0 36px;
+      }
+      .hero-photo {
+        width: 220px;
+        height: 220px;
+        object-fit: cover;
+        border-radius: 50%;
+        box-shadow: var(--shadow-md);
+        border: 4px solid #fff;
+      }
+      .hero-meta { color: var(--color-text-muted); margin: 0; }
+      .hero-meta + .hero-meta { margin-top: 2px; }
+      .hero-title { margin-bottom: .15rem; }
+      .hero-subtitle { color: var(--color-text-muted); font-size: 1.05rem; margin-bottom: 14px; }
 
-       <br/><br/>
+      .icon-row {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 10px;
+        margin-top: 18px;
+      }
+      .icon-row a {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        width: 40px;
+        height: 40px;
+        border-radius: 50%;
+        background: var(--color-surface);
+        border: 1px solid var(--color-border);
+        transition: transform 120ms ease, box-shadow 120ms ease, border-color 120ms ease;
+      }
+      .icon-row a:hover {
+        transform: translateY(-1px);
+        border-color: var(--color-primary);
+        box-shadow: var(--shadow-sm);
+      }
+      .icon-row img { width: 20px; height: 20px; }
 
-       
+      /* Sticky navigation */
+      .site-nav {
+        position: sticky;
+        top: 0;
+        z-index: 30;
+        background: rgba(250, 250, 247, 0.92);
+        backdrop-filter: saturate(180%) blur(8px);
+        -webkit-backdrop-filter: saturate(180%) blur(8px);
+        border-top: 1px solid var(--color-border);
+        border-bottom: 1px solid var(--color-border);
+        margin-bottom: 32px;
+      }
+      .site-nav .navbar { padding: 0; }
+      .site-nav .nav-link {
+        color: var(--color-text);
+        font-weight: 500;
+        padding: 14px 0;
+        margin-right: 28px;
+        border-bottom: 2px solid transparent;
+        transition: color 120ms ease, border-color 120ms ease;
+      }
+      .site-nav .nav-link:hover { color: var(--color-primary); }
+      .site-nav .nav-link.active {
+        color: var(--color-primary);
+        border-bottom-color: var(--color-primary);
+      }
+      .site-nav .navbar-toggler {
+        border: 1px solid var(--color-border);
+        padding: 6px 10px;
+      }
 
-<h2 style="text-palign:center">"Solving" Congestion Control</h2>
+      /* Section headings */
+      .section-heading {
+        margin-top: 56px;
+        margin-bottom: 18px;
+        position: relative;
+        padding-left: 14px;
+      }
+      .section-heading::before {
+        content: "";
+        position: absolute;
+        left: 0;
+        top: 0.35em;
+        bottom: 0.35em;
+        width: 4px;
+        background: var(--color-primary);
+        border-radius: 2px;
+      }
 
-<h3>Background and context</h3>
+      /* Body text rhythm */
+      p { margin-bottom: 1rem; }
+      hr { border: 0; border-top: 1px solid var(--color-border); margin: 24px 0; }
+
+      /* Cards */
+      .card {
+        border: 1px solid var(--color-border);
+        border-radius: var(--radius);
+        background: var(--color-surface);
+        box-shadow: var(--shadow-sm);
+        overflow: hidden;
+      }
+      .card-header {
+        background: var(--color-primary-tint);
+        border-bottom: 1px solid var(--color-border);
+        padding: 14px 20px;
+      }
+      .card-header h5 {
+        margin: 0;
+        color: var(--color-primary-dark);
+        font-family: 'Source Serif 4', Charter, Georgia, serif;
+      }
+      .card-body { padding: 20px 24px; }
+      .card-body p:last-child { margin-bottom: 0; }
+
+      /* Project cards */
+      .project-card { margin-bottom: 20px; }
+      .project-card .read-more {
+        text-align: center;
+        margin-top: 8px;
+        padding-top: 12px;
+        border-top: 1px dashed var(--color-border);
+      }
+      .project-card .read-more a {
+        font-weight: 500;
+      }
+
+      /* Project toggle (acts as card header). On desktop it's a static header;
+         on mobile it becomes an interactive collapse trigger. */
+      .project-toggle {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 12px;
+        width: 100%;
+        text-align: left;
+        background: var(--color-primary-tint);
+        border: 0;
+        border-bottom: 1px solid var(--color-border);
+        padding: 14px 20px;
+        color: var(--color-primary-dark);
+        cursor: default;
+      }
+      .project-toggle:focus { outline: none; }
+      .project-toggle:focus-visible {
+        box-shadow: inset 0 0 0 2px rgba(191, 87, 0, 0.4);
+      }
+      .project-toggle h5 {
+        margin: 0;
+        color: var(--color-primary-dark);
+        font-family: 'Source Serif 4', Charter, Georgia, serif;
+      }
+      .project-toggle-icon {
+        display: none;
+        color: var(--color-primary-dark);
+        transition: transform 200ms ease;
+        flex-shrink: 0;
+      }
+      .project-toggle.collapsed .project-toggle-icon { transform: rotate(-90deg); }
+
+      /* Desktop: body is always visible regardless of collapse state. */
+      @media (min-width: 721px) {
+        .project-body-collapse { display: block !important; height: auto !important; }
+      }
+
+      /* Mobile: enable Bootstrap collapse behavior + toggle affordance. */
+      @media (max-width: 720px) {
+        .project-toggle { cursor: pointer; }
+        .project-toggle:hover { background: #f6e6d6; }
+        .project-toggle-icon { display: inline-flex; }
+        .project-body-collapse:not(.show) { display: none; }
+      }
+
+      /* People grid */
+      .people-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+        gap: 20px;
+      }
+      .person-card {
+        text-align: center;
+        background: var(--color-surface);
+        border: 1px solid var(--color-border);
+        border-radius: var(--radius);
+        padding: 22px 16px;
+        transition: transform 150ms ease, box-shadow 150ms ease, border-color 150ms ease;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+      }
+      .person-card:hover {
+        transform: translateY(-2px);
+        box-shadow: var(--shadow-md);
+        border-color: rgba(191, 87, 0, 0.35);
+      }
+      .person-photo {
+        width: 120px;
+        height: 120px;
+        object-fit: cover;
+        border-radius: 50%;
+        margin-bottom: 14px;
+        border: 3px solid #fff;
+        box-shadow: var(--shadow-sm);
+      }
+      .person-name {
+        font-size: 1.05rem;
+        font-weight: 600;
+        margin: 0 0 4px;
+      }
+      .person-name a { color: var(--color-text); }
+      .person-name a:hover { color: var(--color-primary); }
+      .person-meta {
+        color: var(--color-text-muted);
+        font-size: 0.9rem;
+        line-height: 1.45;
+        margin: 0;
+      }
+      .person-meta + .person-meta { margin-top: 2px; }
+
+      /* Publications */
+      .pub-list { list-style: none; padding: 0; margin: 0; }
+      .pub {
+        padding: 16px 0;
+        border-bottom: 1px solid var(--color-border);
+      }
+      .pub:last-child { border-bottom: 0; }
+      .pub-title { font-size: 1.05rem; font-weight: 600; margin: 0 0 4px; }
+      .pub-title a { color: var(--color-text); }
+      .pub-title a:hover { color: var(--color-primary); }
+      .pub-authors { color: var(--color-text-muted); font-size: 0.95rem; margin: 0 0 4px; }
+      .pub-venue {
+        color: var(--color-primary-dark);
+        font-size: 0.85rem;
+        font-weight: 600;
+        text-transform: uppercase;
+        letter-spacing: 0.04em;
+      }
+      .pub-special {
+        display: inline-block;
+        background: var(--color-primary-tint);
+        color: var(--color-primary-dark);
+        font-size: 0.78rem;
+        font-weight: 600;
+        text-transform: uppercase;
+        letter-spacing: 0.05em;
+        padding: 3px 10px;
+        border-radius: 999px;
+        margin-bottom: 8px;
+      }
+
+      /* Buttons */
+      .btn-primary {
+        background-color: var(--color-primary);
+        border-color: var(--color-primary);
+      }
+      .btn-primary:hover, .btn-primary:focus {
+        background-color: var(--color-primary-dark);
+        border-color: var(--color-primary-dark);
+      }
+      .btn-outline-primary {
+        color: var(--color-primary);
+        border-color: var(--color-primary);
+      }
+      .btn-outline-primary:hover, .btn-outline-primary:focus {
+        background-color: var(--color-primary);
+        border-color: var(--color-primary);
+        color: #fff;
+      }
+
+      /* Lists */
+      ul li { margin-bottom: 4px; }
+
+      /* Project emphasis (used inside project descriptions; applied to <p>) */
+      .proj-emph {
+        color: var(--color-primary-dark);
+        font-weight: 600;
+        background: var(--color-primary-tint);
+        border-left: 3px solid var(--color-primary);
+        padding: 10px 14px;
+        border-radius: 0 6px 6px 0;
+        margin-top: 8px;
+      }
+
+      /* Citation popover triggers (<abbr class="citation">) */
+      abbr.citation {
+        text-decoration: none;
+        color: var(--color-primary);
+        border-bottom: 1px dotted var(--color-primary);
+        cursor: help;
+        font-variant: normal;
+      }
+      abbr.citation:hover { color: var(--color-primary-dark); }
+
+      /* Hire callout */
+      .hire-banner {
+        background: linear-gradient(135deg, #fff7f0 0%, #fbf2eb 100%);
+        border: 1px solid rgba(191, 87, 0, 0.25);
+        border-left: 4px solid var(--color-primary);
+        padding: 14px 20px;
+        border-radius: var(--radius);
+        margin: 24px 0 0;
+        color: var(--color-primary-dark);
+        font-weight: 600;
+      }
+
+      /* Responsive */
+      @media (max-width: 720px) {
+        .hero {
+          grid-template-columns: 1fr;
+          text-align: center;
+          gap: 18px;
+          padding-top: 36px;
+        }
+        .hero-photo { width: 160px; height: 160px; margin: 0 auto; }
+        .icon-row { justify-content: center; }
+        h1 { font-size: 1.85rem; }
+        .site-nav .nav-link { margin-right: 16px; }
+      }
+    </style>
+
+    
+<title>Congestion Control &middot; Venkat Arun</title>
+
+  </head>
+
+  <body>
+    <div class="accent-strip"></div>
+
+    <main class="page">
+      <header class="hero">
+        <img class="hero-photo" src="assets/img/venkat.jpg" alt="Venkat Arun">
+        <div>
+          <h1 class="hero-title">Venkat Arun</h1>
+          <p class="hero-subtitle">Assistant Professor, Computer Science &middot; UT Austin</p>
+          <p class="hero-meta">Email: <tt>venkat@utexas.edu</tt></p>
+          <p class="hero-meta">Office: GDC 6.726</p>
+          <div class="icon-row">
+            <a href="cv.pdf" data-bs-toggle="tooltip" data-bs-html="true" title="CV"><img src="assets/img/cv-icon.png" alt="CV"></a>
+            <a href="https://scholar.google.com/citations?user=2L4RkXMAAAAJ&hl=en" data-bs-toggle="tooltip" title="Google Scholar"><img src="assets/img/google-scholar-logo.svg" alt="Google Scholar"></a>
+            <a href="https://venkatarun.wordpress.com" data-bs-toggle="tooltip" title="Blog"><img src="assets/img/blog-icon.svg" alt="Blog"></a>
+            <a href="https://github.com/venkatarun95" data-bs-toggle="tooltip" title="GitHub"><img src="assets/img/github-logo.svg" alt="GitHub"></a>
+            <a href="https://twitter.com/VenkatArun95" data-bs-toggle="tooltip" title="Twitter"><img src="assets/img/twitter-logo.svg" alt="Twitter"></a>
+            <a href="https://www.linkedin.com/in/venkat-arun-11a9047b/" data-bs-toggle="tooltip" title="LinkedIn"><img src="assets/img/linkedin-logo.svg" alt="LinkedIn"></a>
+          </div>
+        </div>
+      </header>
+
+      <div class="site-nav">
+        <nav class="navbar navbar-expand-lg">
+          <div class="container-fluid p-0">
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+              <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" fill="currentColor" viewBox="0 0 16 16">
+                <path fill-rule="evenodd" d="M2.5 12a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5m0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5m0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5"/>
+              </svg>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+              <ul class="navbar-nav me-auto">
+                
+                  <li class="nav-item">
+                    <a class="nav-link" href="index.html">Home</a>
+                  </li>
+                
+                  <li class="nav-item">
+                    <a class="nav-link" href="students.html">Students</a>
+                  </li>
+                
+                  <li class="nav-item">
+                    <a class="nav-link" href="index.html#teaching">Teaching</a>
+                  </li>
+                
+                  <li class="nav-item">
+                    <a class="nav-link" href="publications.html">Publications</a>
+                  </li>
+                
+              </ul>
+            </div>
+          </div>
+        </nav>
+      </div>
+
+      
+
+<h3 class="section-heading" style="margin-top: 24px;">"Solving" Congestion Control</h3>
+
+<h4 style="margin-top: 24px;">Background and context</h4>
 
 <p>It is said that there are two problems in computer networking: routing and congestion control. Routing is concerned with finding a path for the data to take on the network. Congestion control (or more generally, bandwidth allocation) is concerned with deciding how much network capacity is given to each task that requires it. The original vision of end-to-end congestion control algorithms (CCAs) was that the end-hosts could decide, in a fully distributed way, the rate at which they send data (divided into packets) such that they fully utilize available capacity while sharing it fairly with others who are using the same the network links. In-network bandwidth allocation mechanisms are only needed at a coarse granularity to enforce economic agreements and to provide isolation across trust domains.</p>
 
@@ -120,40 +484,42 @@
 
 <p>Researchers have spent decades developing thousands of different algorithms in the hope that the next one will fullfill all the requirements. I am one of these researchers. Like many others, I am unfazed in the face of decades of failure and firmly believe that we have an approach to this problem that will finally succeed. Like delusional people everywhere, I have my reasons. Here they are:</p>
 
-<h3>Our approach to congestion control</h3>
+<h4 style="margin-top: 32px;">Our approach to congestion control</h4>
 
 <p>Practical CCA development has been primarily an empirical exercise. While elegant theory exists and has provided coarse guidance on how to design CCAs, it does not capture many factors that critically impact CCA performance in the real world. The finer grained decisions are made empirically. Unfortunately, the internet is too complex and CCAs are too critical a factor in the internet's performance and reliably for such a haphazard empirical approach to be sufficient. We have developed two principles that we believe enable us to reason about CCA performance in real-world networks in a principled and systematic way:</p>
 
 <ol>
   <li>Use non-deterministic models of the network instead of stochastic ones.</li>
   <li>Use automated reasoning methods (classical or neural network assisted) to analyze and design CCAs under these models.</li>
-  <!--<li>Existing analytical methods fail to capture real-world performance because they require models that specify the <i>probability</i> distribution of </li>-->
 </ol>
 
 <p>While we developed these principles for congestion control, we later realized that the same principles also apply to many resource allocation heuristics/algorithms used in computer systems. This led to our work on <a href="perf-verif.html">performance verification and synthesis</a>. Like CCA, many such heuristics critically impact the performance of today's systems, often reducing it by more than 10&#10007; at the tail because but we lack a method to think about them systematically.</p>
 
 <p>By placing such critical algorithms on firmer footing, we believe our work will lead to <i>reliably performant</i> computer systems that can support applications of the future that require such reliability. Our work on congestion control has led to the following results:</p>
 
-<b>An automated tool (CCAC) that can verify performance properties of CCAs [<abbr class="citation" data-url="https://dl.acm.org/doi/pdf/10.1145/3452296.3472912" data-papertitle="Toward formally verifying congestion control behavior" data-authors="Venkat Arun, Mina T. Arashloo, Ahmed Saeed, Mohammad Alizadeh, and Hari Balakrishnan" data-conf="ACM SIGCOMM" data-year="2021">CCAC</abbr>].</b>
-  <ul>
-    <li>It discovered previously unknown and practically relevant performance issues in many CCAs including the classic AIMD and the widely deployed BBR.</li>
-    <li>For the first time, it proved performance properties about CCAs in a network model that includes real-world phenomena like ACK aggregation and delay jitter due to OS scheduling and wireless links. Previously, it was difficult to even consider packetization without making over-simplifying assumptions.</li>
-    <li>It suggested a modification to BBR that Meta uses for a vast majority of its user facing traffic.</li>
-  </ul>
-<b>An theorem that showed that <i>all</i> delay-bounding CCAs designed so far suffer from starvation, an extreme form of unfairness. This happens on paths that are common on the internet [<abbr class="citation" data-url="https://dl.acm.org/doi/pdf/10.1145/3544216.3544223" data-papertitle="Starvation in end-to-end congestion control" data-authors="Venkat Arun, Mohammad Alizadeh, and Hari Balakrishnan" data-conf="ACM SIGCOMM" data-year="2023">Starvation</abbr>].</b>
-  <ul>
-    <li>Our theorem identified a common property shared by all delay-bounding CCAs&mdash;<i>delay convergence</i>&mdash;that seems advantageous, but surprisingly always leads to starvation.</li>
-    <li>A starvation-free CCA must therefore avoid this property. We are currently designing the first provably starvation-free CCA.</li>
-  </ul>
-<b>A systematic and semi-automated method to <i>design</i> provably performant CCAs [<abbr class="citation" data-url="https://www.usenix.org/system/files/nsdi24-agarwal-anup.pdf" data-papertitle="Towards provably performant congestion control" data-authors="Anup Agarwal, Venkat Arun, Devdeep Ray, Ruben Martins, and Srinivasan Seshan" data-conf="USENIX NSDI" data-year="2024">CCmatic</abbr>].</b>
-  <ul>
-    <li>Our tool, CCMatic, automatically designed the first CCA that can limit loss to a constant number of packets per RTT on many real-world network paths. To do so, it discovered a new <i>conceptual</i> idea that had not been considered in decades of human-driven CCA design.</li>
-    <li>The tool helped us prove new impossibility results that establishes a pareto frontier on loss tolerance vs convergence time.</li>
-    <li>There has been a lot of debate on what signals CCAs should consider. To make CCMatic possible, we identified a canonical set of signals and proved that if there exists <i>any</i> CCA that satisfies our desired performance properties, then there also exists one whose sending rate is a pure function of these signals.</li>
-  </ul>
-<b>Before embarking on a formal approach to CCA design, we empirically designed a CCA, Copa, that Meta now uses for live video streaming [<abbr class="citation" data-url="https://www.usenix.org/system/files/conference/nsdi18/nsdi18-arun.pdf" data-papertitle="Copa: Practical Delay-Based Congestion Control for the Internet" data-authors="Venkat Arun and Hari Balakrishnan" data-conf="USENIX NSDI" data-year="2018">Copa</abbr>].</b>
+<p><b>An automated tool (CCAC) that can verify performance properties of CCAs [<abbr class="citation" data-url="https://dl.acm.org/doi/pdf/10.1145/3452296.3472912" data-papertitle="Toward formally verifying congestion control behavior" data-authors="Venkat Arun, Mina T. Arashloo, Ahmed Saeed, Mohammad Alizadeh, and Hari Balakrishnan" data-conf="ACM SIGCOMM" data-year="2021">CCAC</abbr>].</b></p>
+<ul>
+  <li>It discovered previously unknown and practically relevant performance issues in many CCAs including the classic AIMD and the widely deployed BBR.</li>
+  <li>For the first time, it proved performance properties about CCAs in a network model that includes real-world phenomena like ACK aggregation and delay jitter due to OS scheduling and wireless links. Previously, it was difficult to even consider packetization without making over-simplifying assumptions.</li>
+  <li>It suggested a modification to BBR that Meta uses for a vast majority of its user facing traffic.</li>
+</ul>
 
-<h3 id="nondeterminism">The power of non-deterministic models</h3>
+<p><b>A theorem that showed that <i>all</i> delay-bounding CCAs designed so far suffer from starvation, an extreme form of unfairness. This happens on paths that are common on the internet [<abbr class="citation" data-url="https://dl.acm.org/doi/pdf/10.1145/3544216.3544223" data-papertitle="Starvation in end-to-end congestion control" data-authors="Venkat Arun, Mohammad Alizadeh, and Hari Balakrishnan" data-conf="ACM SIGCOMM" data-year="2023">Starvation</abbr>].</b></p>
+<ul>
+  <li>Our theorem identified a common property shared by all delay-bounding CCAs&mdash;<i>delay convergence</i>&mdash;that seems advantageous, but surprisingly always leads to starvation.</li>
+  <li>A starvation-free CCA must therefore avoid this property. We are currently designing the first provably starvation-free CCA.</li>
+</ul>
+
+<p><b>A systematic and semi-automated method to <i>design</i> provably performant CCAs [<abbr class="citation" data-url="https://www.usenix.org/system/files/nsdi24-agarwal-anup.pdf" data-papertitle="Towards provably performant congestion control" data-authors="Anup Agarwal, Venkat Arun, Devdeep Ray, Ruben Martins, and Srinivasan Seshan" data-conf="USENIX NSDI" data-year="2024">CCmatic</abbr>].</b></p>
+<ul>
+  <li>Our tool, CCMatic, automatically designed the first CCA that can limit loss to a constant number of packets per RTT on many real-world network paths. To do so, it discovered a new <i>conceptual</i> idea that had not been considered in decades of human-driven CCA design.</li>
+  <li>The tool helped us prove new impossibility results that establishes a pareto frontier on loss tolerance vs convergence time.</li>
+  <li>There has been a lot of debate on what signals CCAs should consider. To make CCMatic possible, we identified a canonical set of signals and proved that if there exists <i>any</i> CCA that satisfies our desired performance properties, then there also exists one whose sending rate is a pure function of these signals.</li>
+</ul>
+
+<p><b>Before embarking on a formal approach to CCA design, we empirically designed a CCA, Copa, that Meta now uses for live video streaming [<abbr class="citation" data-url="https://www.usenix.org/system/files/conference/nsdi18/nsdi18-arun.pdf" data-papertitle="Copa: Practical Delay-Based Congestion Control for the Internet" data-authors="Venkat Arun and Hari Balakrishnan" data-conf="USENIX NSDI" data-year="2018">Copa</abbr>].</b></p>
+
+<h4 id="nondeterminism" style="margin-top: 32px;">The power of non-deterministic models</h4>
 
 <p>CCAs infer congestion based on measurements of packet delay and loss (all other metrics can be derived from these). However, packets can get delayed and lost for reasons other than congestion too. For instance, it is inefficient to transmit small packets over wireless networks. Thus WiFi routers will wait to aggregate multiple packets before sending all of them at once. In this case, delay can even reduce with congestion since it takes less time for sufficient bytes to accumulate at the router. Similarly, the time at which the OS or even a wired router schedules packet transmission is influenced by other tasks in the system. Cellular networks have a complex service process that depends not only on a rapidly varying wireless channel, but also other flows. Each of these create non-trivial patterns in packet delay that can trick a CCA into mis-estimating congestion.</p>
 
@@ -163,29 +529,24 @@
 
 <p>Theoretical analysis, the way it is traditionally done for CCAs, has one challenge. If it is hard to capture complex networks in simulation, it is nearly impossible on paper. This is where non-determinism helps. A traditional netwrok model is stochastic. It has to predict how the network <i>will</i> react to CCA action, either exactly or as a probability distribution. In contrast, a non-deterministic model only has to predict what <i>can</i> happen. It predicts a set of possible outcomes, but says nothing about how likely each one is. This is much easier to do. It is therefore much easier to design a non-deterministic model than a stochastic one.</p>
 
-<!-- My work is critical to understanding how to build software that can offer consistently good performance, even as computer systems get increasingly complex. This will enable emerging applications---such as Augmented/Virtual/Mixed reality (AR/VR/MR), ubiquitous robotics, and remote surgery---that cannot function when the underlying computer system fails to meet tight performance targets almost every time. My work is specifically important to the United States since the American people will benefit from the development of new applications that require ultra-low latency and high performance. Existing and widely deployed applications will also benefit from being able to run on less expensive or more ubiquitous hardware without a loss in performance. -->
-
-<!-- My work builds a -->
-
 <p>Consider the model shown below. In it, CCAs send packets into a common FIFO queue with a finite size <i>&beta;</i>, served by a constant bit rate link, <i>C</i>. After this, all packets get delayed by <i>R<sub>m</sub></i> seconds to emulate propagation and transmission delays. <i>&beta;</i>, <i>C</i>, and <i>R<sub>m</sub></i> are all fixed for short periods of time, but unknown to the CCAs. Most network models used for CCA analysis either stop here or assume the service process to be stochastic, usually modeling the inter-service time as an i.i.d random variable.</p>
 
-<img src="assets/img/model-two-flow.png" class="long-image img-fluid w-50 d-block mx-auto"/>
+<img src="assets/img/model-two-flow.png" class="img-fluid d-block mx-auto" style="max-width: 520px; margin: 24px auto;" alt="Two-flow network model"/>
 
 <p>Our model differs in having a non-deterministic box (denoted by <i>D</i>) that is operated by an adversary. This adversary can delay packets in any arbitrary pattern it likes as long as it does not delay any packet by more than <i>D</i> seconds and does not reorder packets (an assumption that largely holds in the internet). This adversary can emulate paths with any arbitrary combination of the network phenomena described above. Thus any CCA that has been proved to work under this model is also guaranteed to work under such networks. This ability to capture real-world complexities in a simple model is the power of non-determinism.</p>
 
-<p>Note, the above model is simplified for ease of presentation and does not adequately capture network paths with finite buffers. To learn more about the model we actually use, read our paper on our CCA verification tool, CCAC [<abbr class="citation" data-url="https://dl.acm.org/doi/pdf/10.1145/3452296.3472912" data-papertitle="Toward formally verifying congestion control behavior" data-authors="Venkat Arun, Mina T. Arashloo, Ahmed Saeed, Mohammad Alizadeh, and Hari Balakrishnan" data-conf="ACM SIGCOMM" data-year="2021">CCAC</abbr>].<p>
-
-<!--FAQs
-- This is an old problem. Will this really revolutionize the world?
-- Aren't today's CCAs basically good? The internet works right?
-- Won't worst analysis produce very pessimistic CCAs that compromise the common case?
-- No matter what happens, people will still work on congestion control
-- Do you really think you will solve congestion control? What does "solve" even mean?-->
+<p>Note, the above model is simplified for ease of presentation and does not adequately capture network paths with finite buffers. To learn more about the model we actually use, read our paper on our CCA verification tool, CCAC [<abbr class="citation" data-url="https://dl.acm.org/doi/pdf/10.1145/3452296.3472912" data-papertitle="Toward formally verifying congestion control behavior" data-authors="Venkat Arun, Mina T. Arashloo, Ahmed Saeed, Mohammad Alizadeh, and Hari Balakrishnan" data-conf="ACM SIGCOMM" data-year="2021">CCAC</abbr>].</p>
 
 
+    </main>
 
-     </div>
-
-     <script src="assets/js/site.js"></script>  <!-- 👈 your custom JS -->
-   </body>
+    <script>
+      // Initialize Bootstrap tooltips
+      document.addEventListener('DOMContentLoaded', function () {
+        const triggers = document.querySelectorAll('[data-bs-toggle="tooltip"]');
+        triggers.forEach(el => new bootstrap.Tooltip(el));
+      });
+    </script>
+    <script src="assets/js/site.js"></script>
+  </body>
 </html>
