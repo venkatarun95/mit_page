@@ -40,6 +40,14 @@
 	"start": "2019-09",
 	"end": "2025-11"
     },
+    "sanjoli": {
+	"name": "Sanjoli Narang",
+	"url": "https://scholar.google.com/citations?user=C3SnGLQAAAAJ&hl=en",
+	"img": "assets/img/sanjoli.jpg",
+	"type": "other",
+	"note": "PhD student at MIT advised by <a href='https://people.csail.mit.edu/ghobadi/'>Manya Ghobadi</a>.",
+	"start": "2023-09"
+    },
     "rahul": {
 	"name": "Rahul Bothra",
 	"url": "https://rahulbothra.com/",
