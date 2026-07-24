@@ -1,0 +1,24 @@
+{% extends "base.html" %}
+
+{% block head %}
+<title>{{ post.title }} · Venkat Arun</title>
+<meta name="description" content="{{ post.summary }}">
+{% endblock %}
+
+{% block content %}
+<article class="blog-post">
+  <header class="blog-post-header">
+    <p class="blog-kicker"><a href="index.html">Blog</a> / <a href="category/{{ post.category_slug }}/index.html">{{ post.category }}</a></p>
+    <h1>{{ post.title }}</h1>
+    <p class="post-meta"><time datetime="{{ post.date }}">{{ post.date_display }}</time></p>
+  </header>
+
+  <div class="blog-post-body">
+    {% include "blog/posts/" ~ post.source %}
+  </div>
+
+  <footer class="blog-post-footer">
+    <a class="back-link" href="index.html">&larr; Back to all posts</a>
+  </footer>
+</article>
+{% endblock %}

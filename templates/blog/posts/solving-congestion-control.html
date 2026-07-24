@@ -1,0 +1,80 @@
+<h2>Background and context</h2>
+
+<p>It is said that there are two problems in computer networking: routing and congestion control. Routing finds a path for data through the network. Congestion control—or, more generally, bandwidth allocation—decides how much network capacity each task receives.</p>
+
+<p>The original vision for end-to-end congestion-control algorithms (CCAs) was that end hosts could independently choose the rate at which they send packets, fully utilizing available capacity while sharing it fairly with others using the same links. In-network bandwidth-allocation mechanisms would then be needed only at a coarse granularity, to enforce economic agreements and isolate different trust domains.</p>
+
+<p>This vision has not yet come to fruition. The complexity and diversity of network paths make it extremely difficult to infer the correct sending rate from end-to-end measurements alone. Modern applications compound the problem: they demand low latency and rapid adaptation to changing capacity and application needs.</p>
+
+<p>Practitioners have responded by deploying far more in-network bandwidth-allocation machinery than would be necessary if CCAs worked reliably. Depending on the implementation, this is expensive, inefficient, or both.</p>
+
+<p>Researchers, meanwhile, have spent decades developing thousands of algorithms in the hope that the next one will satisfy every requirement. I am one of those researchers. Like many others, I remain unfazed by decades of failure and firmly believe that our approach might finally succeed. Like delusional people everywhere, I have my reasons. Here they are.</p>
+
+<h2>Our approach</h2>
+
+<p>Practical CCA development has primarily been an empirical exercise. Elegant theories offer coarse guidance, but they omit many factors that critically affect performance on real networks. Finer-grained decisions are therefore made empirically. The internet is too complex—and congestion control too important to its performance and reliability—for this approach to be sufficient by itself.</p>
+
+<p>We have developed two principles that we believe enable systematic reasoning about CCA performance on real-world networks:</p>
+
+<ol>
+  <li>Use nondeterministic network models instead of stochastic ones.</li>
+  <li>Use automated reasoning, whether classical or assisted by neural networks, to analyze and design CCAs under those models.</li>
+</ol>
+
+<p>We later realized that these principles also apply to many resource-allocation heuristics used throughout computer systems. This led to our work on <a href="performance-verification-and-synthesis.html">performance verification and synthesis</a>. Like CCAs, these heuristics critically affect system performance—sometimes worsening tail performance by more than 10×—yet we lack systematic ways to reason about them.</p>
+
+<p>By placing these critical algorithms on firmer foundations, we hope to build <em>reliably performant</em> computer systems capable of supporting future applications. Our work on congestion control has produced the following results.</p>
+
+<h2>What we have learned</h2>
+
+<h3>Verifying congestion control</h3>
+
+<p>We built CCAC, an automated tool that verifies performance properties of CCAs [{{ icite.ccac }}].</p>
+
+<ul>
+  <li>It discovered previously unknown and practically relevant performance problems in several CCAs, including classic AIMD and the widely deployed BBR.</li>
+  <li>For the first time, it proved CCA performance properties in a network model containing real-world phenomena such as ACK aggregation and delay jitter from operating-system scheduling and wireless links. Earlier analyses struggled to represent even packetization without oversimplifying assumptions.</li>
+  <li>It suggested a modification to BBR that Meta uses for a large majority of its user-facing traffic.</li>
+</ul>
+
+<h3>Understanding starvation</h3>
+
+<p>We proved that every delay-bounding CCA designed at the time suffered from starvation—an extreme form of unfairness—on paths commonly found on the internet [{{ icite.starvation }}].</p>
+
+<ul>
+  <li>The theorem identified a property shared by these algorithms, <em>delay convergence</em>, that appears beneficial but surprisingly leads to starvation.</li>
+  <li>A starvation-free CCA must avoid this property. We are working toward provably starvation-free designs.</li>
+</ul>
+
+<h3>Designing controllers automatically</h3>
+
+<p>We developed a systematic, semi-automated method for designing provably performant CCAs [{{ icite.ccmatic }}].</p>
+
+<ul>
+  <li>Our tool, CCMatic, automatically designed the first CCA that can limit loss to a constant number of packets per round-trip time on many real-world network paths. In doing so, it discovered a conceptual idea overlooked during decades of human-driven CCA design.</li>
+  <li>The tool helped us prove impossibility results that establish a Pareto frontier between loss tolerance and convergence time.</li>
+  <li>To make CCMatic possible, we identified a canonical set of signals and proved that if any CCA can satisfy the desired performance properties, then one also exists whose sending rate is a pure function of these signals.</li>
+</ul>
+
+<p>Before adopting a formal approach, we empirically designed Copa, a CCA that Meta uses for live video streaming [{{ icite.copa }}].</p>
+
+<h2 id="nondeterminism">The power of nondeterministic models</h2>
+
+<p>CCAs infer congestion from packet delay and loss. Packets can, however, be delayed or lost for reasons unrelated to congestion. Wi-Fi networks, for example, may wait to aggregate small packets before transmitting them together. In that setting, measured delay can even fall as traffic increases because bytes accumulate more quickly. Operating systems and wired routers schedule packet transmission alongside other work. Cellular service varies with wireless conditions and competing flows. Each phenomenon creates delay patterns that can cause a CCA to misjudge congestion.</p>
+
+<p>Designers therefore test CCAs in simulations, emulators, or real testbeds. Accurate simulators are difficult to build, and none adequately captures every phenomenon above. Diverse physical testbeds are expensive because each type of link requires new equipment. Testing on real user traffic covers the internet's full diversity, but it presents a different problem: we can observe what a CCA did without knowing what it <em>should</em> have done on a path controlled by someone else. Inferring the correct rate under incomplete observability is precisely the CCA's job. If we already knew the answer, we would not need the algorithm.</p>
+
+<p>Even with a perfect simulator or testbed, designing an algorithm remains difficult. While developing Copa [{{ icite.copa }}], I evaluated it against a small collection of simple tests. I spent months adjusting the algorithm, but a change that fixed one problem would create another. Performance became consistent and predictable only after I found an algorithm that I could analyze theoretically. Theory lets us explore combinatorially large spaces of algorithms and networks that experiments alone cannot cover.</p>
+
+<p>Traditional theoretical analysis faces its own problem: if a network is difficult to capture in simulation, representing it on paper is harder still. This is where nondeterminism helps. A stochastic model must predict how a network <em>will</em> react to a CCA, either exactly or as a probability distribution. A nondeterministic model needs only to describe what <em>can</em> happen. It specifies a set of possible outcomes without assigning probabilities to them, making the model much easier to construct.</p>
+
+<p>Consider the model below. CCAs send packets into a shared first-in, first-out queue with finite size <em>β</em>, served by a constant-bit-rate link <em>C</em>. Every packet is then delayed by <em>R<sub>m</sub></em> seconds to represent propagation and transmission. The values <em>β</em>, <em>C</em>, and <em>R<sub>m</sub></em> remain fixed over short intervals but are unknown to the CCAs. Many analytical models stop here or assume that service is stochastic.</p>
+
+<figure class="post-figure">
+  <img src="../assets/img/model-two-flow.png" alt="Two congestion-controlled flows sharing a finite queue, followed by nondeterministic delay">
+  <figcaption>A simplified two-flow network model with a nondeterministic delay component.</figcaption>
+</figure>
+
+<p>Our model instead includes a nondeterministic component, denoted by <em>D</em>, controlled by an adversary. The adversary may delay packets in any pattern, provided no packet is delayed by more than <em>D</em> seconds and packets are not reordered—an assumption that largely holds on the internet. It can therefore represent arbitrary combinations of the phenomena described above. Any CCA proved to work under this model is guaranteed to work under every network behavior the model contains. Capturing real-world complexity in a compact model is the power of nondeterminism.</p>
+
+<p>This example is simplified for presentation and does not adequately describe paths with finite buffers. Our paper on CCAC presents the fuller model [{{ icite.ccac }}].</p>

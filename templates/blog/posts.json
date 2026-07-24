@@ -1,0 +1,74 @@
+[
+  {
+    "title": "Umbrella design",
+    "slug": "umbrella-design",
+    "date": "2026-07-23",
+    "category": "Humor",
+    "summary": "Systems instincts taken too far",
+    "source": "umbrella-design.html"
+  },
+  {
+    "title": "Scottish Sheep",
+    "slug": "scottish-sheep",
+    "date": "2026-07-23",
+    "category": "Humor",
+    "summary": "FM instincts taken too far",
+    "source": "scottish-sheep.html"
+  },
+  {
+    "title": "Let's make paperclips!",
+    "slug": "lets-make-paperclips",
+    "date": "2026-07-22",
+    "category": "Philosophy",
+    "summary": "Would a civilization devoted to making paperclips necessarily be empty—or would intelligence, culture, evolution, and conflict emerge along the way?",
+    "source": "lets-make-paperclips.html"
+  },
+  {
+    "title": "India's Language Problem",
+    "slug": "indias-language-problem",
+    "date": "2022-02-16",
+    "category": "Philosophy",
+    "summary": "English proficiency remains a gatekeeper to opportunity in India. Machine translation may offer the most practical way to weaken that barrier.",
+    "source": "indias-language-problem.html"
+  },
+  {
+    "title": "Performance Verification and Synthesis",
+    "slug": "performance-verification-and-synthesis",
+    "date": "2024-09-27",
+    "category": "Research",
+    "summary": "Using nondeterministic models, program verification, and synthesis to design resource-allocation controllers with provable performance guarantees.",
+    "source": "performance-verification-and-synthesis.html"
+  },
+  {
+    "title": "\"Solving\" Congestion Control",
+    "slug": "solving-congestion-control",
+    "date": "2024-09-27",
+    "category": "Research",
+    "summary": "A systematic approach to congestion control based on nondeterministic network models and automated reasoning.",
+    "source": "solving-congestion-control.html"
+  },
+  {
+    "title": "Is Water Really Zero-Calorie?",
+    "slug": "is-water-really-zero-calorie",
+    "date": "2021-06-06",
+    "category": "Fun ideas",
+    "summary": "Dilute water can save the body energy. A thermodynamic view of thirst, kidneys, desert rats, and why some drinks dehydrate us.",
+    "source": "is-water-really-zero-calorie.html"
+  },
+  {
+    "title": "How to Tie Your Shoelaces",
+    "slug": "how-to-tie-your-shoelaces",
+    "date": "2018-07-30",
+    "category": "Fun ideas",
+    "summary": "Is one way of tying shoelaces genuinely more reliable? A small, blinded experiment suggests that it is.",
+    "source": "how-to-tie-your-shoelaces.html"
+  },
+  {
+    "title": "Biasing a Coin",
+    "slug": "biasing-a-coin",
+    "date": "2015-11-14",
+    "category": "Fun ideas",
+    "summary": "Can the way a coin is tossed bias its result? A small 2015 experiment produced a surprisingly strong effect that still needs replication.",
+    "source": "biasing-a-coin.html"
+  }
+]
