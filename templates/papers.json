@@ -1,4 +1,20 @@
 {
+    "archie_nsdi": {
+        "title": "On the Role of LLMs in Designing the Architecture of Networked Systems",
+        "authors": "Pratyush Sahu, Rahul Bothra, Venkat Arun, Brighten Godfrey, Akshay Narayan, Ahmed Saeed",
+        "short_name": "LLM Networked Systems",
+        "conf": "USENIX NSDI",
+        "year": 2027,
+        "exclude": false
+    },
+    "lfs": {
+        "title": "LFS: Learning-Based Flexible CPU Scheduler",
+        "authors": "Yeonju Ro, Vincent Zhang, Venkat Arun, Daehyeok Kim, Jiaxin Lin, Christopher J. Rossbach, Atlas Wang, Aditya Akella",
+        "short_name": "LFS",
+        "conf": "USENIX NSDI",
+        "year": 2027,
+        "exclude": false
+    },
     "nonlocal": {
 	"title": "Faster-than-light coordination for networked systems with quantum non-local games",
 	"authors": "Venkat Arun, Vijay Chidambaram, Scott Aaronson",
@@ -42,8 +58,17 @@
 	"conf": "NINeS",
 	"year": 2026,
 	"url": "https://drops.dagstuhl.de/storage/01oasics/oasics-vol139-nines2026/OASIcs.NINeS.2026.8/OASIcs.NINeS.2026.8.pdf",
-        "_url": "https://arxiv.org/pdf/2504.18786"
+    "_url": "https://arxiv.org/pdf/2504.18786"
     },
+    "tiersizer": {
+        "title": "TierSizer: Counterfactual Reasoning for DRAM Sizing in Tiered Memory Systems",
+        "authors": "Sujay Yadalam, Saarth Deshpande, Divyanshu Saxena, Venkat Arun, Neeraja Yadwadkar, Aditya Akella",
+        "short_name": "TierSizer",
+        "conf": "DIMES",
+        "year": 2026,
+        "exclude": false
+    },
+
     "archie_full": {
 	"title": "Assistants, Not Architects: The Role of LLMs in Networked Systems Design",
 	"authors": "Pratyush Sahu, Rahul Bothra, Venkat Arun, Brighten Godfrey, Akshay Narayan, Ahmed Saeed",
@@ -204,4 +229,3 @@
     	"exclude": true
     }
 }
-
