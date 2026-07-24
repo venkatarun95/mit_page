@@ -1,10 +1,11 @@
 {
-    "archie_nsdi": {
+    "archie_full": {
         "title": "On the Role of LLMs in Designing the Architecture of Networked Systems",
         "authors": "Pratyush Sahu, Rahul Bothra, Venkat Arun, Brighten Godfrey, Akshay Narayan, Ahmed Saeed",
-        "short_name": "LLM Networked Systems",
+        "short_name": "Archie",
         "conf": "USENIX NSDI",
         "year": 2027,
+        "url": "https://arxiv.org/pdf/2604.25506v1",
         "exclude": false
     },
     "lfs": {
@@ -67,16 +68,6 @@
         "conf": "DIMES",
         "year": 2026,
         "exclude": false
-    },
-
-    "archie_full": {
-	"title": "Assistants, Not Architects: The Role of LLMs in Networked Systems Design",
-	"authors": "Pratyush Sahu, Rahul Bothra, Venkat Arun, Brighten Godfrey, Akshay Narayan, Ahmed Saeed",
-	"short_name": "ArchieLLM",
-	"conf": "arXiv",
-	"year": 2026,
-	"url": "https://arxiv.org/pdf/2604.25506v1",
-	"exclude": false
     },
     "speql": {
         "title": "Speculative Ad-hoc Querying",
