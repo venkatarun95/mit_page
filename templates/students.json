@@ -12,7 +12,7 @@
 	"url": "https://tonypan123.github.io/",
 	"img": "assets/img/tony.jpg",
 	"type": "phd",
-	"coadvisor": "<a href=\"https://www.cs.utexas.edu/~isil/\">Isil Dillig</a>",
+	"_coadvisor": "<a href=\"https://www.cs.utexas.edu/~isil/\">Isil Dillig</a>",
 	"start": "2024-09"
     },
     "saarth": {
