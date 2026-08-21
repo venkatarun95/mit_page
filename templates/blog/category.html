@@ -1,0 +1,32 @@
+{% extends "base.html" %}
+
+{% block head %}<title>{{ category.name }} · Blog · Venkat Arun</title>{% endblock %}
+
+{% block content %}
+<header class="blog-header">
+  <p class="blog-kicker"><a href="../../index.html">Blog</a> / Category</p>
+  <h1>{{ category.name }}</h1>
+  <p class="blog-intro">{{ category.description }}</p>
+</header>
+
+<nav class="category-nav" aria-label="Blog categories">
+  <a class="category-pill" href="../../index.html">All posts</a>
+  {% for item in categories %}
+    <a class="category-pill{% if item.slug == category.slug %} active{% endif %}" href="../{{ item.slug }}/index.html">{{ item.name }}</a>
+  {% endfor %}
+</nav>
+
+{% if posts %}
+  <div class="post-list">
+    {% for post in posts %}
+      <article class="post-list-item">
+        <p class="post-meta"><time datetime="{{ post.date }}">{{ post.date_display }}</time></p>
+        <h2><a href="../../{{ post.slug }}.html">{{ post.title }}</a></h2>
+        <p class="post-summary">{{ post.summary }}</p>
+      </article>
+    {% endfor %}
+  </div>
+{% else %}
+  <div class="empty-category">No posts here yet. This category is ready for the first one.</div>
+{% endif %}
+{% endblock %}

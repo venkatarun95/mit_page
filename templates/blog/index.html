@@ -1,0 +1,51 @@
+{% extends "base.html" %}
+
+{% block head %}<title>Blog · Venkat Arun</title>{% endblock %}
+
+{% block content %}
+<header class="blog-header">
+  <p class="blog-kicker">Blog</p>
+  <h1>Ideas, experiments, and essays</h1>
+  <p class="blog-intro">A collection of small investigations, technical curiosities, and thoughts about the world.</p>
+</header>
+
+<div class="category-grid" aria-label="Browse posts by category">
+  {% for category in categories %}
+    {% set category_posts = posts|selectattr("category", "equalto", category.name)|list %}
+    {% set count = category_posts|length %}
+    <details class="category-card">
+      <summary>
+        <span class="category-card-heading">
+          <span class="category-card-name">{{ category.name }}</span>
+          <span class="category-card-count">{{ count }} {% if count == 1 %}post{% else %}posts{% endif %}</span>
+        </span>
+        <span class="category-card-description">{{ category.description }}</span>
+      </summary>
+      <div class="category-dropdown">
+        {% if category_posts %}
+          {% for post in category_posts %}
+            <a class="category-post-link" href="{{ post.slug }}.html">
+              <span>{{ post.title }}</span>
+              <time datetime="{{ post.date }}">{{ post.date_display }}</time>
+            </a>
+          {% endfor %}
+        {% else %}
+          <p class="category-empty-note">No posts here yet.</p>
+        {% endif %}
+        <a class="category-archive-link" href="category/{{ category.slug }}/index.html">View {{ category.name }} archive &rarr;</a>
+      </div>
+    </details>
+  {% endfor %}
+</div>
+
+<h2>All posts</h2>
+<div class="post-list">
+  {% for post in posts %}
+    <article class="post-list-item">
+      <p class="post-meta"><time datetime="{{ post.date }}">{{ post.date_display }}</time> · <a href="category/{{ post.category_slug }}/index.html">{{ post.category }}</a></p>
+      <h2><a href="{{ post.slug }}.html">{{ post.title }}</a></h2>
+      <p class="post-summary">{{ post.summary }}</p>
+    </article>
+  {% endfor %}
+</div>
+{% endblock %}

@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <link rel="icon" type="image/png" href="assets/img/favicon-32x32.png"/>
+    <link rel="icon" type="image/png" href="../assets/img/favicon-32x32.png"/>
 
     <!-- Bootstrap 5 CSS / JS -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
@@ -510,8 +510,9 @@
       }
     </style>
 
-    
-<title>Venkat Arun</title>
+
+<title>"Solving" Congestion Control · Venkat Arun</title>
+<meta name="description" content="A systematic approach to congestion control based on nondeterministic network models and automated reasoning.">
 
   </head>
 
@@ -520,18 +521,18 @@
 
     <main class="page">
       <header class="hero">
-        <img class="hero-photo" src="assets/img/venkat.jpg" alt="Venkat Arun">
+        <img class="hero-photo" src="../assets/img/venkat.jpg" alt="Venkat Arun">
         <div>
           <h1 class="hero-title">Venkat Arun</h1>
           <p class="hero-subtitle">Assistant Professor, Computer Science &middot; UT Austin</p>
           <p class="hero-meta">Email: <tt>venkat@utexas.edu</tt></p>
           <p class="hero-meta">Office: GDC 6.726</p>
           <div class="icon-row">
-            <a href="cv.pdf" data-bs-toggle="tooltip" data-bs-html="true" title="CV"><img src="assets/img/cv-icon.png" alt="CV"></a>
-            <a href="https://scholar.google.com/citations?user=2L4RkXMAAAAJ&amp;hl=en" data-bs-toggle="tooltip" title="Google Scholar"><img src="assets/img/google-scholar-logo.svg" alt="Google Scholar"></a>
-            <a href="https://github.com/venkatarun95" data-bs-toggle="tooltip" title="GitHub"><img src="assets/img/github-logo.svg" alt="GitHub"></a>
-            <a href="https://twitter.com/VenkatArun95" data-bs-toggle="tooltip" title="Twitter"><img src="assets/img/twitter-logo.svg" alt="Twitter"></a>
-            <a href="https://www.linkedin.com/in/venkat-arun-11a9047b/" data-bs-toggle="tooltip" title="LinkedIn"><img src="assets/img/linkedin-logo.svg" alt="LinkedIn"></a>
+            <a href="../cv.pdf" data-bs-toggle="tooltip" data-bs-html="true" title="CV"><img src="../assets/img/cv-icon.png" alt="CV"></a>
+            <a href="https://scholar.google.com/citations?user=2L4RkXMAAAAJ&amp;hl=en" data-bs-toggle="tooltip" title="Google Scholar"><img src="../assets/img/google-scholar-logo.svg" alt="Google Scholar"></a>
+            <a href="https://github.com/venkatarun95" data-bs-toggle="tooltip" title="GitHub"><img src="../assets/img/github-logo.svg" alt="GitHub"></a>
+            <a href="https://twitter.com/VenkatArun95" data-bs-toggle="tooltip" title="Twitter"><img src="../assets/img/twitter-logo.svg" alt="Twitter"></a>
+            <a href="https://www.linkedin.com/in/venkat-arun-11a9047b/" data-bs-toggle="tooltip" title="LinkedIn"><img src="../assets/img/linkedin-logo.svg" alt="LinkedIn"></a>
           </div>
         </div>
       </header>
@@ -547,15 +548,15 @@
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
               <ul class="navbar-nav me-auto">
                 <li class="nav-item">
-                    <a class="nav-link active" href="index.html">Home</a>
+                    <a class="nav-link" href="../index.html">Home</a>
                   </li><li class="nav-item">
-                    <a class="nav-link" href="students.html">Students</a>
+                    <a class="nav-link" href="../students.html">Students</a>
                   </li><li class="nav-item">
-                    <a class="nav-link" href="index.html#teaching">Teaching</a>
+                    <a class="nav-link" href="../index.html#teaching">Teaching</a>
                   </li><li class="nav-item">
-                    <a class="nav-link" href="publications.html">Publications</a>
+                    <a class="nav-link" href="../publications.html">Publications</a>
                   </li><li class="nav-item">
-                    <a class="nav-link" href="blog/index.html">Blog</a>
+                    <a class="nav-link active" href="../blog/index.html">Blog</a>
                   </li>
               </ul>
             </div>
@@ -563,202 +564,101 @@
         </nav>
       </div>
 
-      
 
-<section>
-  <p class="lead">My research seeks to enable networked systems to support the next generation of applications. My past work has spanned internet congestion control, video streaming, privacy-preserving computation, wireless networks, and mobile systems. A common theme across these is the use of theoretical ideas to gain insights into the real-world that would have been difficult to discover otherwise. I co-lead the UT Networked Systems Lab (<a href="https://utns.cs.utexas.edu/">UTNS</a>).</p>
+<article class="blog-post">
+  <header class="blog-post-header">
+    <p class="blog-kicker"><a href="index.html">Blog</a> / <a href="category/research/index.html">Research</a></p>
+    <h1>"Solving" Congestion Control</h1>
+    <p class="post-meta"><time datetime="2024-09-27">September 27, 2024</time></p>
+  </header>
 
-  <div class="hire-banner">I am hiring PhD students this cycle.</div>
-</section>
+  <div class="blog-post-body">
+    <h2>Background and context</h2>
 
-<h3 class="section-heading">Current Projects</h3>
+<p>It is said that there are two problems in computer networking: routing and congestion control. Routing finds a path for data through the network. Congestion control—or, more generally, bandwidth allocation—decides how much network capacity each task receives.</p>
 
+<p>The original vision for end-to-end congestion-control algorithms (CCAs) was that end hosts could independently choose the rate at which they send packets, fully utilizing available capacity while sharing it fairly with others using the same links. In-network bandwidth-allocation mechanisms would then be needed only at a coarse granularity, to enforce economic agreements and isolate different trust domains.</p>
 
-  
-  <div class="card project-card">
-    <button class="card-header project-toggle collapsed"
-            type="button"
-            data-bs-toggle="collapse"
-            data-bs-target="#proj-body-1"
-            aria-expanded="false"
-            aria-controls="proj-body-1">
-      <h5>Performance Verification and Synthesis</h5>
-      <span class="project-toggle-icon" aria-hidden="true">
-        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16" fill="currentColor">
-          <path fill-rule="evenodd" d="M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z"/>
-        </svg>
-      </span>
-    </button>
-    <div id="proj-body-1" class="collapse project-body-collapse">
-      <div class="card-body">
-        <div><p>We are developing a set of methods to design networked systems that perform reliably. Today, we build systems with hundreds of heuristic control algorithms whose emergent behaviors we do not fully understand. These algorithms provision compute resources, choose network routes, allocate bandwidth and storage resources, schedule tasks etc. These tasks are central to the performance and reliability of networked systems, making it crucial for the algorithms to make correct decisions. Designing such algorithms is hard because they operate in the face of incomplete information, uncertainty about the future and constraints on decision-making latency. Thus, a lot of effort goes into their design, based largely on empirical trial-and-error. Today, we lack principled ways to reason about their performance. In this project, we are developing a set of techniques to address this gap, often using program verification [<abbr class="citation" data-url="https://dl.acm.org/doi/pdf/10.1145/3452296.3472912" data-papertitle="Toward formally verifying congestion control behavior" data-authors="Venkat Arun, Mina T. Arashloo, Ahmed Saeed, Mohammad Alizadeh, and Hari Balakrishnan" data-conf="ACM SIGCOMM" data-year="2021">CCAC</abbr>, <abbr class="citation" data-url="https://arxiv.org/abs/2301.04205" data-papertitle="A Performance Verification Methodology for Resource Allocation Heuristics" data-authors="Saksham Goel, Benjamin Mikek, Jehad Aly, Venkat Arun, Ahmed Saeed, and Aditya Akella" data-conf="arXiv" data-year="2024">Verilay</abbr>] and synthesis techniques [<abbr class="citation" data-url="assets/papers/syntra.pdf" data-papertitle="Synthesizing a Provably Performant Joint Controller for Low-Latency Video Streaming" data-authors="Tony Pan, Anup Agarwal, Isil Dillig, Venkat Arun" data-conf="USENIX NSDI" data-year="2026">Syntra</abbr>, <abbr class="citation" data-url="https://www.usenix.org/system/files/nsdi24-agarwal-anup.pdf" data-papertitle="Towards provably performant congestion control" data-authors="Anup Agarwal, Venkat Arun, Devdeep Ray, Ruben Martins, and Srinivasan Seshan" data-conf="USENIX NSDI" data-year="2024">CCmatic</abbr>, <abbr class="citation" data-url="https://arxiv.org/pdf/2510.08755" data-papertitle="Robust Heuristic Algorithm Design with LLMs" data-authors="Pantea Karimi, Dany Rouhana, Pooria Namyar, Siva Kesava Reddy Kakarla, Venkat Arun, Behnaz Arzani" data-conf="arXiv" data-year="2025">Robusta</abbr>] to augment human intelligence.</p><p>There is now a vibrant community of researchers working on the topic, including people from CMU, U. Michigan, Georgia Tech, MIT, Microsoft Research, and U. Waterloo</p></div>
-        <div class="read-more">
-          <a href="blog/performance-verification-and-synthesis.html">Read more &rarr;</a>
-        </div>
-      </div>
-    </div>
-  </div>
+<p>This vision has not yet come to fruition. The complexity and diversity of network paths make it extremely difficult to infer the correct sending rate from end-to-end measurements alone. Modern applications compound the problem: they demand low latency and rapid adaptation to changing capacity and application needs.</p>
 
-  
-  <div class="card project-card">
-    <button class="card-header project-toggle collapsed"
-            type="button"
-            data-bs-toggle="collapse"
-            data-bs-target="#proj-body-2"
-            aria-expanded="false"
-            aria-controls="proj-body-2">
-      <h5>"Solving" Congestion Control</h5>
-      <span class="project-toggle-icon" aria-hidden="true">
-        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16" fill="currentColor">
-          <path fill-rule="evenodd" d="M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z"/>
-        </svg>
-      </span>
-    </button>
-    <div id="proj-body-2" class="collapse project-body-collapse">
-      <div class="card-body">
-        <div><p>We have embarked on a (potentially foolish) journey to "solve" end-to-end congestion control for the internet. To this end, we first came up with a mathematical definition of what it means to solve it [<abbr class="citation" data-url="https://dl.acm.org/doi/pdf/10.1145/3452296.3472912" data-papertitle="Toward formally verifying congestion control behavior" data-authors="Venkat Arun, Mina T. Arashloo, Ahmed Saeed, Mohammad Alizadeh, and Hari Balakrishnan" data-conf="ACM SIGCOMM" data-year="2021">CCAC</abbr>]. Existing definitions assume far too much about how the network behaves, which means CCAs that satisfy those definitions may not perform well in the real-world. Thus, we came up with a method to specify network models that make minimal assumptions and are nevertheless sufficient for congestion control algorithms (CCAs) to work (we later realized this technique was general, which lead to our work on performance verification).</p> <p> The next challenge is to find a CCA that achieves a set of performance properties under this network model. This is ongoing work, where we heavily use automated reasoning to discover algorithms [<abbr class="citation" data-url="assets/papers/frcc.pdf" data-papertitle="FRCC: Towards Provably Fair and Robust Congestion Control" data-authors="Anup Agarwal, Venkat Arun, Srini Seshan" data-conf="USENIX NSDI" data-year="2026">FRCC</abbr>, <abbr class="citation" data-url="https://www.usenix.org/system/files/nsdi24-agarwal-anup.pdf" data-papertitle="Towards provably performant congestion control" data-authors="Anup Agarwal, Venkat Arun, Devdeep Ray, Ruben Martins, and Srinivasan Seshan" data-conf="USENIX NSDI" data-year="2024">CCmatic</abbr>, <abbr class="citation" data-url="https://dl.acm.org/doi/pdf/10.1145/3563766.3564085" data-papertitle="Automating network heuristic design and analysis" data-authors="Anup Agarwal, Venkat Arun, Devdeep Ray, Ruben Martins, and Srinivasan Seshan" data-conf="ACM SIGCOMM HotNets" data-year="2022">CCmatic</abbr>] and prove impossibility results [<abbr class="citation" data-url="https://drops.dagstuhl.de/storage/01oasics/oasics-vol139-nines2026/OASIcs.NINeS.2026.8/OASIcs.NINeS.2026.8.pdf" data-papertitle="Contracts: A unified lens on congestion control robustness, fairness, congestion, and generality" data-authors="Anup Agarwal, Venkat Arun, Srinivasan Seshan" data-conf="NINeS" data-year="2026">CCA Contracts</abbr>, <abbr class="citation" data-url="https://dl.acm.org/doi/pdf/10.1145/3544216.3544223" data-papertitle="Starvation in end-to-end congestion control" data-authors="Venkat Arun, Mohammad Alizadeh, and Hari Balakrishnan" data-conf="ACM SIGCOMM" data-year="2023">Starvation</abbr>]. We now have CCAs that satisfy a subset of the properties we want. Read more to see all the properties that we are trying to achieve and their current status.</p> <p class="proj-emph">Meta is currently using some of our designs to serve their user traffic [<abbr class="citation" data-url="https://engineering.fb.com/2019/11/17/video-engineering/copa/" data-papertitle="Evaluating COPA congestion control for improved video performance" data-authors="Nitin Garg" data-conf="Facebook Engineering Blog" data-year="2019">Copa-at-FB</abbr>, <abbr class="citation" data-url="https://dl.acm.org/doi/pdf/10.1145/3452296.3472912" data-papertitle="Toward formally verifying congestion control behavior" data-authors="Venkat Arun, Mina T. Arashloo, Ahmed Saeed, Mohammad Alizadeh, and Hari Balakrishnan" data-conf="ACM SIGCOMM" data-year="2021">CCAC</abbr>].</p></div>
-        <div class="read-more">
-          <a href="blog/solving-congestion-control.html">Read more &rarr;</a>
-        </div>
-      </div>
-    </div>
-  </div>
+<p>Practitioners have responded by deploying far more in-network bandwidth-allocation machinery than would be necessary if CCAs worked reliably. Depending on the implementation, this is expensive, inefficient, or both.</p>
 
-  
-  <div class="card project-card">
-    <button class="card-header project-toggle collapsed"
-            type="button"
-            data-bs-toggle="collapse"
-            data-bs-target="#proj-body-3"
-            aria-expanded="false"
-            aria-controls="proj-body-3">
-      <h5>Metasurfaces with Thousands of Antennas</h5>
-      <span class="project-toggle-icon" aria-hidden="true">
-        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16" fill="currentColor">
-          <path fill-rule="evenodd" d="M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z"/>
-        </svg>
-      </span>
-    </button>
-    <div id="proj-body-3" class="collapse project-body-collapse">
-      <div class="card-body">
-        <div><p>Fundamental diffraction limits tell us that the more antennas a radio device has, the more precisely it can control the signals. This project explores the new applications enabled by having thousands of radio-frequency antennas, made inexpensive through meta-surfaces. As a first step toward this, we built a system with 3200 antennas that can increase the signal strength between two radio endpoints by about 10&times; [<abbr class="citation" data-url="https://www.usenix.org/system/files/nsdi20-paper-arun.pdf" data-papertitle="RFocus: Beamforming Using Thousands of Passive Antennas" data-authors="Venkat Arun and Hari Balakrishnan" data-conf="USENIX NSDI" data-year="2020">RFocus</abbr>]. It works by automatically reconfiguring itself to passively reflect signals from the transmitter to the receiver. The very large number of antennas allows it to create extremely focussed beams that can increase point-to-point communication bandwidth and reduce interference between multiple pairs of communicating endpoints. While we are not actively working on this anymore, if you are a prospective or current UT Austin student interested in this project, do reach out to me.</p><p class="proj-emph">To our knowledge, this is the largest number of antennas ever used for a single communication link.</p></div>
-        <div class="read-more">
-          <a href="rfocus.html">Read more &rarr;</a>
-        </div>
-      </div>
-    </div>
-  </div>
+<p>Researchers, meanwhile, have spent decades developing thousands of algorithms in the hope that the next one will satisfy every requirement. I am one of those researchers. Like many others, I remain unfazed by decades of failure and firmly believe that our approach might finally succeed. Like delusional people everywhere, I have my reasons. Here they are.</p>
 
+<h2>Our approach</h2>
 
-<h3 class="section-heading">PhD Students</h3>
+<p>Practical CCA development has primarily been an empirical exercise. Elegant theories offer coarse guidance, but they omit many factors that critically affect performance on real networks. Finer-grained decisions are therefore made empirically. The internet is too complex—and congestion control too important to its performance and reliability—for this approach to be sufficient by itself.</p>
 
-<div class="people-grid">
-  
-    
-      <div class="person-card">
-        <img class="person-photo" src="assets/img/haoyu.jpg" alt="Photo of Haoyu Li">
-        <p class="person-name"><a href="https://lihy0529.github.io/">Haoyu Li</a></p>
-        <p class="person-meta">Third year student</p>
-        
-          <p class="person-meta">Co-advised with <a href="https://www.cs.utexas.edu/~akella/">Aditya Akella</a></p>
-        
-      </div>
-    
-  
-    
-      <div class="person-card">
-        <img class="person-photo" src="assets/img/tony.jpg" alt="Photo of Tony (Jia) Pan">
-        <p class="person-name"><a href="https://tonypan123.github.io/">Tony (Jia) Pan</a></p>
-        <p class="person-meta">Second year student</p>
-        
-      </div>
-    
-  
-    
-      <div class="person-card">
-        <img class="person-photo" src="assets/img/saarth.jpg" alt="Photo of Saarth Deshpande">
-        <p class="person-name"><a href="https://saarth.xyz/">Saarth Deshpande</a></p>
-        <p class="person-meta">Second year student</p>
-        
-          <p class="person-meta">Co-advised with <a href="https://sites.utexas.edu/neeraja/">Neeraja Yadwadkar</a></p>
-        
-      </div>
-    
-  
-    
-      <div class="person-card">
-        <img class="person-photo" src="assets/img/shazer.jpg" alt="Photo of Shazer Ali">
-        <p class="person-name"><a href="https://shaz-hash.github.io/">Shazer Ali</a></p>
-        <p class="person-meta">First year student</p>
-        
-      </div>
-    
-  
-    
-  
-    
-  
-    
-  
-    
-  
-    
-  
-    
-  
-    
-  
-    
-  
-</div>
+<p>We have developed two principles that we believe enable systematic reasoning about CCA performance on real-world networks:</p>
 
-<p style="margin-top: 20px;"><a href="students.html" class="btn btn-outline-primary">See list of all students &rarr;</a></p>
+<ol>
+  <li>Use nondeterministic network models instead of stochastic ones.</li>
+  <li>Use automated reasoning, whether classical or assisted by neural networks, to analyze and design CCAs under those models.</li>
+</ol>
 
-<h3 class="section-heading" id="teaching">Teaching</h3>
+<p>We later realized that these principles also apply to many resource-allocation heuristics used throughout computer systems. This led to our work on <a href="performance-verification-and-synthesis.html">performance verification and synthesis</a>. Like CCAs, these heuristics critically affect system performance—sometimes worsening tail performance by more than 10×—yet we lack systematic ways to reason about them.</p>
 
-<h5>CS 395T: Performance Analysis of Networked Systems</h5>
-<p>A seminar course that surveys the role that theoretical performance analysis has had in informing the design of real-world systems. Ideally, we want our theory to give us practical insights that go beyond what can be obtained via intuition or empirical analysis alone.</p>
-<p><b>Years:</b> <a href="performance_analysis_of_networked_systems.html">Spring 2024</a>, <a href="s25/index.html">Spring 2025</a>, <a href="s26/index.html">Spring 2026</a></p>
+<p>By placing these critical algorithms on firmer foundations, we hope to build <em>reliably performant</em> computer systems capable of supporting future applications. Our work on congestion control has produced the following results.</p>
 
-<h5 style="margin-top: 24px;">CS 356: Computer Networks</h5>
-<p>A standard undergraduate course in networking with a focus on how the internet works today.</p>
-<p><b>Years:</b> <a href="f24/index.html">Fall 2024</a>, <a href="f25/index.html">Fall 2025</a></p>
+<h2>What we have learned</h2>
 
-<h3 class="section-heading">Awards</h3>
+<h3>Verifying congestion control</h3>
+
+<p>We built CCAC, an automated tool that verifies performance properties of CCAs [<abbr class="citation" data-url="https://dl.acm.org/doi/pdf/10.1145/3452296.3472912" data-papertitle="Toward formally verifying congestion control behavior" data-authors="Venkat Arun, Mina T. Arashloo, Ahmed Saeed, Mohammad Alizadeh, and Hari Balakrishnan" data-conf="ACM SIGCOMM" data-year="2021">CCAC</abbr>].</p>
 
 <ul>
-  
-    <li>MIT EECS G. M. Sprowls PhD Thesis Award in Computer Science <span style="color: var(--color-text-muted);">(2024)</span></li>
-  
-    <li>ACM SIGCOMM Doctoral Dissertation Award Runner-Up <span style="color: var(--color-text-muted);">(2024)</span></li>
-  
-    <li>Marconi Society Young Scholar Award <span style="color: var(--color-text-muted);">(2023)</span></li>
-  
-    <li>ACM SIGCOMM best student paper award <span style="color: var(--color-text-muted);">(2022)</span></li>
-  
-    <li>ACM SIGCOMM best paper award <span style="color: var(--color-text-muted);">(2017)</span></li>
-  
-    <li>MIT Jacobs Presidential Fellowship <span style="color: var(--color-text-muted);">(2017)</span></li>
-  
-    <li>President of India Gold Medal - IIT Guwahati <span style="color: var(--color-text-muted);">(2017)</span></li>
-  
-    <li>KVPY Government of India Scholarship <span style="color: var(--color-text-muted);">(2013)</span></li>
-  
+  <li>It discovered previously unknown and practically relevant performance problems in several CCAs, including classic AIMD and the widely deployed BBR.</li>
+  <li>For the first time, it proved CCA performance properties in a network model containing real-world phenomena such as ACK aggregation and delay jitter from operating-system scheduling and wireless links. Earlier analyses struggled to represent even packetization without oversimplifying assumptions.</li>
+  <li>It suggested a modification to BBR that Meta uses for a large majority of its user-facing traffic.</li>
 </ul>
 
-<h3 class="section-heading">Funding</h3>
+<h3>Understanding starvation</h3>
 
-<p>My group is funded by:</p>
+<p>We proved that every delay-bounding CCA designed at the time suffered from starvation—an extreme form of unfairness—on paths commonly found on the internet [<abbr class="citation" data-url="https://dl.acm.org/doi/pdf/10.1145/3544216.3544223" data-papertitle="Starvation in end-to-end congestion control" data-authors="Venkat Arun, Mohammad Alizadeh, and Hari Balakrishnan" data-conf="ACM SIGCOMM" data-year="2023">Starvation</abbr>].</p>
+
 <ul>
-  <li>NSF Nets: A periodic table of congestion control: A formal taxonomy of algorithms and scenarios (2026)</li>
-  <li>NSF FMitF: Performance Verification for Networked Systems (2024)</li>
-  <li>NSF Nets: Medium: An End-To-End Framework For Network Design and Implementation for Emerging Applications (2024)</li>
-  <li>A generous gift from <a href="https://www.mibura.com/">Mibura</a> (2024)</li>
-  <li>An Amazon fellowship for <a href="https://lihy0529.github.io/">Haoyu Li</a> (2025)</li>
+  <li>The theorem identified a property shared by these algorithms, <em>delay convergence</em>, that appears beneficial but surprisingly leads to starvation.</li>
+  <li>A starvation-free CCA must avoid this property. We are working toward provably starvation-free designs.</li>
 </ul>
 
-<p>Our group is lucky to be managed by <a href="https://www.cs.utexas.edu/people/staff/destiny-turner">Destiny Turner</a>.</p>
+<h3>Designing controllers automatically</h3>
 
+<p>We developed a systematic, semi-automated method for designing provably performant CCAs [<abbr class="citation" data-url="https://www.usenix.org/system/files/nsdi24-agarwal-anup.pdf" data-papertitle="Towards provably performant congestion control" data-authors="Anup Agarwal, Venkat Arun, Devdeep Ray, Ruben Martins, and Srinivasan Seshan" data-conf="USENIX NSDI" data-year="2024">CCmatic</abbr>].</p>
+
+<ul>
+  <li>Our tool, CCMatic, automatically designed the first CCA that can limit loss to a constant number of packets per round-trip time on many real-world network paths. In doing so, it discovered a conceptual idea overlooked during decades of human-driven CCA design.</li>
+  <li>The tool helped us prove impossibility results that establish a Pareto frontier between loss tolerance and convergence time.</li>
+  <li>To make CCMatic possible, we identified a canonical set of signals and proved that if any CCA can satisfy the desired performance properties, then one also exists whose sending rate is a pure function of these signals.</li>
+</ul>
+
+<p>Before adopting a formal approach, we empirically designed Copa, a CCA that Meta uses for live video streaming [<abbr class="citation" data-url="https://www.usenix.org/system/files/conference/nsdi18/nsdi18-arun.pdf" data-papertitle="Copa: Practical Delay-Based Congestion Control for the Internet" data-authors="Venkat Arun and Hari Balakrishnan" data-conf="USENIX NSDI" data-year="2018">Copa</abbr>].</p>
+
+<h2 id="nondeterminism">The power of nondeterministic models</h2>
+
+<p>CCAs infer congestion from packet delay and loss. Packets can, however, be delayed or lost for reasons unrelated to congestion. Wi-Fi networks, for example, may wait to aggregate small packets before transmitting them together. In that setting, measured delay can even fall as traffic increases because bytes accumulate more quickly. Operating systems and wired routers schedule packet transmission alongside other work. Cellular service varies with wireless conditions and competing flows. Each phenomenon creates delay patterns that can cause a CCA to misjudge congestion.</p>
+
+<p>Designers therefore test CCAs in simulations, emulators, or real testbeds. Accurate simulators are difficult to build, and none adequately captures every phenomenon above. Diverse physical testbeds are expensive because each type of link requires new equipment. Testing on real user traffic covers the internet's full diversity, but it presents a different problem: we can observe what a CCA did without knowing what it <em>should</em> have done on a path controlled by someone else. Inferring the correct rate under incomplete observability is precisely the CCA's job. If we already knew the answer, we would not need the algorithm.</p>
+
+<p>Even with a perfect simulator or testbed, designing an algorithm remains difficult. While developing Copa [<abbr class="citation" data-url="https://www.usenix.org/system/files/conference/nsdi18/nsdi18-arun.pdf" data-papertitle="Copa: Practical Delay-Based Congestion Control for the Internet" data-authors="Venkat Arun and Hari Balakrishnan" data-conf="USENIX NSDI" data-year="2018">Copa</abbr>], I evaluated it against a small collection of simple tests. I spent months adjusting the algorithm, but a change that fixed one problem would create another. Performance became consistent and predictable only after I found an algorithm that I could analyze theoretically. Theory lets us explore combinatorially large spaces of algorithms and networks that experiments alone cannot cover.</p>
+
+<p>Traditional theoretical analysis faces its own problem: if a network is difficult to capture in simulation, representing it on paper is harder still. This is where nondeterminism helps. A stochastic model must predict how a network <em>will</em> react to a CCA, either exactly or as a probability distribution. A nondeterministic model needs only to describe what <em>can</em> happen. It specifies a set of possible outcomes without assigning probabilities to them, making the model much easier to construct.</p>
+
+<p>Consider the model below. CCAs send packets into a shared first-in, first-out queue with finite size <em>β</em>, served by a constant-bit-rate link <em>C</em>. Every packet is then delayed by <em>R<sub>m</sub></em> seconds to represent propagation and transmission. The values <em>β</em>, <em>C</em>, and <em>R<sub>m</sub></em> remain fixed over short intervals but are unknown to the CCAs. Many analytical models stop here or assume that service is stochastic.</p>
+
+<figure class="post-figure">
+  <img src="../assets/img/model-two-flow.png" alt="Two congestion-controlled flows sharing a finite queue, followed by nondeterministic delay">
+  <figcaption>A simplified two-flow network model with a nondeterministic delay component.</figcaption>
+</figure>
+
+<p>Our model instead includes a nondeterministic component, denoted by <em>D</em>, controlled by an adversary. The adversary may delay packets in any pattern, provided no packet is delayed by more than <em>D</em> seconds and packets are not reordered—an assumption that largely holds on the internet. It can therefore represent arbitrary combinations of the phenomena described above. Any CCA proved to work under this model is guaranteed to work under every network behavior the model contains. Capturing real-world complexity in a compact model is the power of nondeterminism.</p>
+
+<p>This example is simplified for presentation and does not adequately describe paths with finite buffers. Our paper on CCAC presents the fuller model [<abbr class="citation" data-url="https://dl.acm.org/doi/pdf/10.1145/3452296.3472912" data-papertitle="Toward formally verifying congestion control behavior" data-authors="Venkat Arun, Mina T. Arashloo, Ahmed Saeed, Mohammad Alizadeh, and Hari Balakrishnan" data-conf="ACM SIGCOMM" data-year="2021">CCAC</abbr>].</p>
+  </div>
+
+  <footer class="blog-post-footer">
+    <a class="back-link" href="index.html">&larr; Back to all posts</a>
+  </footer>
+</article>
 
     </main>
 
@@ -769,6 +669,6 @@
         triggers.forEach(el => new bootstrap.Tooltip(el));
       });
     </script>
-    <script src="assets/js/site.js"></script>
+    <script src="../assets/js/site.js"></script>
   </body>
 </html>

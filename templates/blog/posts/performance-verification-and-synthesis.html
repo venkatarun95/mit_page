@@ -1,0 +1,16 @@
+<p>Computer systems rely on controllers to allocate CPU, memory, network, and storage resources. The quality of their decisions significantly affects system performance, sometimes degrading it by more than 10×. Poor controller decisions also create performance variability, making it difficult to build real-time applications and highly distributed computations.</p>
+
+<p>Engineers and researchers have spent decades modifying controllers to suit different applications and workloads. We still lack consensus on classic problems such as network congestion control and CPU scheduling. No existing algorithm offers reliably good performance across a large portion of real-world settings.</p>
+
+<p>Controller design is difficult because systems are only partially observable and accurate models are often unavailable. This makes it hard to formally define—let alone guarantee—the performance properties we want. Controllers are therefore designed largely through empirical trial and error.</p>
+
+<p>Our work develops principles and tools that can both verify and synthesize controllers with provable performance guarantees. We show how techniques originally used to verify program correctness can uncover previously unknown performance problems in widely studied controllers. We also use program synthesis to discover solutions overlooked during decades of human design.</p>
+
+<p>Our methodology is built on two principles:</p>
+
+<ol>
+  <li>Traditional analyses often model a controller's environment as a stochastic process. We instead model it as a nondeterministic one. This lets a simple mathematical model capture a large range of real-world behaviors. The model we use for <a href="solving-congestion-control.html#nondeterminism">congestion-control algorithms</a> illustrates the approach.</li>
+  <li>Reasoning about controllers under nondeterministic models can be difficult. We therefore use formal methods to verify [{{ icite.ccac }}, {{ icite.perf_verif }}] and synthesize [{{ icite.syntra }}, {{ icite.ccmatic }}, {{ icite.ccmatic_hotnets }}, {{ icite.robusta }}] provably performant controllers.</li>
+</ol>
+
+<p>These methods aim to put critical resource-allocation decisions on firmer foundations, helping computer systems deliver reliable performance even when their environments are uncertain and only partially observable.</p>

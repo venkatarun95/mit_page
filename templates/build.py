@@ -8,12 +8,21 @@ from templatex import Environment as LatexEnvironment
 import json
 from typing import Dict, Tuple, Union
 
-def prep_navigation(active: str):
+BLOG_CATEGORIES = [
+    {"name": "Research", "slug": "research", "description": "Technical ideas, research notes, and works in progress."},
+    {"name": "Philosophy", "slug": "philosophy", "description": "Essays about society, language, and how we make sense of the world."},
+    {"name": "Fun ideas", "slug": "fun-ideas", "description": "Small experiments and unexpected ways to look at everyday things."},
+    {"name": "Humor", "slug": "humor", "description": "Pieces written mainly for amusement."},
+]
+
+
+def prep_navigation(active: str, root_prefix: str = ""):
     navigation = [
-        {"name": "Home", "url": "index.html"},
-        {"name": "Students", "url": "students.html"},
-        {"name": "Teaching", "url": "index.html#teaching"},
-        {"name": "Publications", "url": "publications.html"}
+        {"name": "Home", "url": root_prefix + "index.html"},
+        {"name": "Students", "url": root_prefix + "students.html"},
+        {"name": "Teaching", "url": root_prefix + "index.html#teaching"},
+        {"name": "Publications", "url": root_prefix + "publications.html"},
+        {"name": "Blog", "url": root_prefix + "blog/index.html"}
     ]
     for i in range(len(navigation)):
         if active is not None and navigation[i]["name"] == active:
@@ -21,6 +30,33 @@ def prep_navigation(active: str):
         else:
             navigation[i]["active"] = False
     return navigation
+
+
+def prep_blog_posts(posts):
+    """Validate and prepare blog metadata for templates."""
+    category_names = {category["name"] for category in BLOG_CATEGORIES}
+    prepared = copy.deepcopy(posts)
+    seen_slugs = set()
+
+    for post in prepared:
+        required = {"title", "slug", "date", "category", "summary", "source"}
+        missing = required - post.keys()
+        if missing:
+            raise ValueError(f"Blog post is missing fields: {sorted(missing)}")
+        if post["slug"] in seen_slugs:
+            raise ValueError(f"Duplicate blog slug: {post['slug']}")
+        if post["category"] not in category_names:
+            raise ValueError(f"Unknown blog category: {post['category']}")
+        seen_slugs.add(post["slug"])
+        post["date_obj"] = datetime.strptime(post["date"], "%Y-%m-%d")
+        post["date_display"] = post["date_obj"].strftime("%B %-d, %Y")
+        post["category_slug"] = next(
+            category["slug"] for category in BLOG_CATEGORIES
+            if category["name"] == post["category"]
+        )
+
+    prepared.sort(key=lambda post: post["date_obj"], reverse=True)
+    return prepared
 
 def prep_cites(papers: Dict[str, Dict[str, Union[str, int]]]) -> Tuple[Dict[str,str], Dict[str,str]]:
     ''' Prepare the list of papers with <abbr> tags for inline citations '''
@@ -48,7 +84,17 @@ def prep_cites(papers: Dict[str, Dict[str, Union[str, int]]]) -> Tuple[Dict[str,
         url = ""
         if "url" in paper:
             url = paper["url"]
-        inline[ref] = f'<abbr class="citation" data-url="{url}" data-papertitle="{paper['title']}" data-authors="{paper["authors"]}" data-conf="{paper["conf"]}" data-year="{paper["year"]}">{paper['short_name']}</abbr>' #f"<abbr title=\"{paper['title']}. {paper['authors']}. In {paper['conf']} {paper['year']}\">{conf_name}</abbr>"
+        inline[ref] = (
+            '<abbr class="citation" data-url="{}" data-papertitle="{}" '
+            'data-authors="{}" data-conf="{}" data-year="{}">{}</abbr>'
+        ).format(
+            url,
+            paper['title'],
+            paper['authors'],
+            paper['conf'],
+            paper['year'],
+            paper['short_name'],
+        )
         full[ref]['conf'] = conf_full_name
         full[ref]['ref'] = ref
 
@@ -142,9 +188,16 @@ if __name__ == "__main__":
     with open("papers.json", "r") as papers_file:
         papers = json.load(papers_file)
         inline_cites, papers = prep_cites(papers)
+        blog_inline_cites = {
+            ref: cite.replace('data-url="assets/', 'data-url="../assets/')
+            for ref, cite in inline_cites.items()
+        }
 
     with open("awards.json", "r") as awards_file:
         awards = json.load(awards_file)
+
+    with open("blog/posts.json", "r") as posts_file:
+        blog_posts = prep_blog_posts(json.load(posts_file))
 
     with open("project_descriptions.json") as project_descriptions_file:
         project_descriptions = json.load(project_descriptions_file)
@@ -170,21 +223,51 @@ if __name__ == "__main__":
         rendered = template.render(navigation=prep_navigation("Publications"), papers=papers)
         outfile.write(rendered)
 
-    with open("../perf-verif.html", "w") as outfile:
-        template = env.get_template("perf-verif.html")
-        rendered = template.render(navigation=prep_navigation(None), icite=inline_cites)
-        outfile.write(rendered)
-
-    with open("../congestion-control.html", "w") as outfile:
-        template = env.get_template("congestion-control.html")
-        rendered = template.render(navigation=prep_navigation(None), icite=inline_cites)
-        outfile.write(rendered)
-
-
     with open("../rfocus.html", "w") as outfile:
         template = env.get_template("rfocus.html")
         rendered = template.render(navigation=prep_navigation(None))
         outfile.write(rendered)
+
+    blog_dir = "../blog"
+    os.makedirs(blog_dir, exist_ok=True)
+
+    with open(os.path.join(blog_dir, "index.html"), "w") as outfile:
+        template = env.get_template("blog/index.html")
+        rendered = template.render(
+            navigation=prep_navigation("Blog", "../"),
+            root_prefix="../",
+            posts=blog_posts,
+            categories=BLOG_CATEGORIES,
+        )
+        outfile.write("\n".join(line.rstrip() for line in rendered.splitlines()) + "\n")
+
+    post_template = env.get_template("blog/post.html")
+    for post in blog_posts:
+        with open(os.path.join(blog_dir, post["slug"] + ".html"), "w") as outfile:
+            rendered = post_template.render(
+                navigation=prep_navigation("Blog", "../"),
+                root_prefix="../",
+                post=post,
+                icite=blog_inline_cites,
+            )
+            outfile.write("\n".join(line.rstrip() for line in rendered.splitlines()) + "\n")
+
+    category_template = env.get_template("blog/category.html")
+    for category in BLOG_CATEGORIES:
+        category_dir = os.path.join(blog_dir, "category", category["slug"])
+        os.makedirs(category_dir, exist_ok=True)
+        category_posts = [
+            post for post in blog_posts if post["category"] == category["name"]
+        ]
+        with open(os.path.join(category_dir, "index.html"), "w") as outfile:
+            rendered = category_template.render(
+                navigation=prep_navigation("Blog", "../../../"),
+                root_prefix="../../../",
+                category=category,
+                posts=category_posts,
+                categories=BLOG_CATEGORIES,
+            )
+            outfile.write("\n".join(line.rstrip() for line in rendered.splitlines()) + "\n")
 
     with open("/tmp/cv.tex", "w") as outfile:
         template = latex_env.get_template("cv.tex")

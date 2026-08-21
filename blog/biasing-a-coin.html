@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <link rel="icon" type="image/png" href="assets/img/favicon-32x32.png"/>
+    <link rel="icon" type="image/png" href="../assets/img/favicon-32x32.png"/>
 
     <!-- Bootstrap 5 CSS / JS -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
@@ -510,8 +510,9 @@
       }
     </style>
 
-    
-<title>Venkat Arun</title>
+
+<title>Biasing a Coin · Venkat Arun</title>
+<meta name="description" content="Can the way a coin is tossed bias its result? A small 2015 experiment produced a surprisingly strong effect that still needs replication.">
 
   </head>
 
@@ -520,18 +521,18 @@
 
     <main class="page">
       <header class="hero">
-        <img class="hero-photo" src="assets/img/venkat.jpg" alt="Venkat Arun">
+        <img class="hero-photo" src="../assets/img/venkat.jpg" alt="Venkat Arun">
         <div>
           <h1 class="hero-title">Venkat Arun</h1>
           <p class="hero-subtitle">Assistant Professor, Computer Science &middot; UT Austin</p>
           <p class="hero-meta">Email: <tt>venkat@utexas.edu</tt></p>
           <p class="hero-meta">Office: GDC 6.726</p>
           <div class="icon-row">
-            <a href="cv.pdf" data-bs-toggle="tooltip" data-bs-html="true" title="CV"><img src="assets/img/cv-icon.png" alt="CV"></a>
-            <a href="https://scholar.google.com/citations?user=2L4RkXMAAAAJ&amp;hl=en" data-bs-toggle="tooltip" title="Google Scholar"><img src="assets/img/google-scholar-logo.svg" alt="Google Scholar"></a>
-            <a href="https://github.com/venkatarun95" data-bs-toggle="tooltip" title="GitHub"><img src="assets/img/github-logo.svg" alt="GitHub"></a>
-            <a href="https://twitter.com/VenkatArun95" data-bs-toggle="tooltip" title="Twitter"><img src="assets/img/twitter-logo.svg" alt="Twitter"></a>
-            <a href="https://www.linkedin.com/in/venkat-arun-11a9047b/" data-bs-toggle="tooltip" title="LinkedIn"><img src="assets/img/linkedin-logo.svg" alt="LinkedIn"></a>
+            <a href="../cv.pdf" data-bs-toggle="tooltip" data-bs-html="true" title="CV"><img src="../assets/img/cv-icon.png" alt="CV"></a>
+            <a href="https://scholar.google.com/citations?user=2L4RkXMAAAAJ&amp;hl=en" data-bs-toggle="tooltip" title="Google Scholar"><img src="../assets/img/google-scholar-logo.svg" alt="Google Scholar"></a>
+            <a href="https://github.com/venkatarun95" data-bs-toggle="tooltip" title="GitHub"><img src="../assets/img/github-logo.svg" alt="GitHub"></a>
+            <a href="https://twitter.com/VenkatArun95" data-bs-toggle="tooltip" title="Twitter"><img src="../assets/img/twitter-logo.svg" alt="Twitter"></a>
+            <a href="https://www.linkedin.com/in/venkat-arun-11a9047b/" data-bs-toggle="tooltip" title="LinkedIn"><img src="../assets/img/linkedin-logo.svg" alt="LinkedIn"></a>
           </div>
         </div>
       </header>
@@ -547,15 +548,15 @@
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
               <ul class="navbar-nav me-auto">
                 <li class="nav-item">
-                    <a class="nav-link active" href="index.html">Home</a>
+                    <a class="nav-link" href="../index.html">Home</a>
                   </li><li class="nav-item">
-                    <a class="nav-link" href="students.html">Students</a>
+                    <a class="nav-link" href="../students.html">Students</a>
                   </li><li class="nav-item">
-                    <a class="nav-link" href="index.html#teaching">Teaching</a>
+                    <a class="nav-link" href="../index.html#teaching">Teaching</a>
                   </li><li class="nav-item">
-                    <a class="nav-link" href="publications.html">Publications</a>
+                    <a class="nav-link" href="../publications.html">Publications</a>
                   </li><li class="nav-item">
-                    <a class="nav-link" href="blog/index.html">Blog</a>
+                    <a class="nav-link active" href="../blog/index.html">Blog</a>
                   </li>
               </ul>
             </div>
@@ -563,202 +564,86 @@
         </nav>
       </div>
 
-      
 
-<section>
-  <p class="lead">My research seeks to enable networked systems to support the next generation of applications. My past work has spanned internet congestion control, video streaming, privacy-preserving computation, wireless networks, and mobile systems. A common theme across these is the use of theoretical ideas to gain insights into the real-world that would have been difficult to discover otherwise. I co-lead the UT Networked Systems Lab (<a href="https://utns.cs.utexas.edu/">UTNS</a>).</p>
+<article class="blog-post">
+  <header class="blog-post-header">
+    <p class="blog-kicker"><a href="index.html">Blog</a> / <a href="category/fun-ideas/index.html">Fun ideas</a></p>
+    <h1>Biasing a Coin</h1>
+    <p class="post-meta"><time datetime="2015-11-14">November 14, 2015</time></p>
+  </header>
 
-  <div class="hire-banner">I am hiring PhD students this cycle.</div>
-</section>
+  <div class="blog-post-body">
+    <aside class="post-note">
+  <strong>Note from 2026:</strong> I conducted this experiment in 2015 and have not yet tried to replicate it. Although I took care to avoid the usual sources of bias, as described below, even my own confidence in the result is contingent on repeating it—and on finding that exact coin. Still, it is fun that this happened!
+</aside>
 
-<h3 class="section-heading">Current Projects</h3>
+<figure class="post-figure post-figure--hero post-figure--compact">
+  <img src="../assets/img/blog/biasing-a-coin.png" alt="Indian two-rupee Platinum Jubilee coin">
+</figure>
 
+<p>Is it possible to toss a coin in a way that biases it toward heads or tails? Perhaps. Here is a sequence of actual coin tosses:</p>
 
-  
-  <div class="card project-card">
-    <button class="card-header project-toggle collapsed"
-            type="button"
-            data-bs-toggle="collapse"
-            data-bs-target="#proj-body-1"
-            aria-expanded="false"
-            aria-controls="proj-body-1">
-      <h5>Performance Verification and Synthesis</h5>
-      <span class="project-toggle-icon" aria-hidden="true">
-        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16" fill="currentColor">
-          <path fill-rule="evenodd" d="M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z"/>
-        </svg>
-      </span>
-    </button>
-    <div id="proj-body-1" class="collapse project-body-collapse">
-      <div class="card-body">
-        <div><p>We are developing a set of methods to design networked systems that perform reliably. Today, we build systems with hundreds of heuristic control algorithms whose emergent behaviors we do not fully understand. These algorithms provision compute resources, choose network routes, allocate bandwidth and storage resources, schedule tasks etc. These tasks are central to the performance and reliability of networked systems, making it crucial for the algorithms to make correct decisions. Designing such algorithms is hard because they operate in the face of incomplete information, uncertainty about the future and constraints on decision-making latency. Thus, a lot of effort goes into their design, based largely on empirical trial-and-error. Today, we lack principled ways to reason about their performance. In this project, we are developing a set of techniques to address this gap, often using program verification [<abbr class="citation" data-url="https://dl.acm.org/doi/pdf/10.1145/3452296.3472912" data-papertitle="Toward formally verifying congestion control behavior" data-authors="Venkat Arun, Mina T. Arashloo, Ahmed Saeed, Mohammad Alizadeh, and Hari Balakrishnan" data-conf="ACM SIGCOMM" data-year="2021">CCAC</abbr>, <abbr class="citation" data-url="https://arxiv.org/abs/2301.04205" data-papertitle="A Performance Verification Methodology for Resource Allocation Heuristics" data-authors="Saksham Goel, Benjamin Mikek, Jehad Aly, Venkat Arun, Ahmed Saeed, and Aditya Akella" data-conf="arXiv" data-year="2024">Verilay</abbr>] and synthesis techniques [<abbr class="citation" data-url="assets/papers/syntra.pdf" data-papertitle="Synthesizing a Provably Performant Joint Controller for Low-Latency Video Streaming" data-authors="Tony Pan, Anup Agarwal, Isil Dillig, Venkat Arun" data-conf="USENIX NSDI" data-year="2026">Syntra</abbr>, <abbr class="citation" data-url="https://www.usenix.org/system/files/nsdi24-agarwal-anup.pdf" data-papertitle="Towards provably performant congestion control" data-authors="Anup Agarwal, Venkat Arun, Devdeep Ray, Ruben Martins, and Srinivasan Seshan" data-conf="USENIX NSDI" data-year="2024">CCmatic</abbr>, <abbr class="citation" data-url="https://arxiv.org/pdf/2510.08755" data-papertitle="Robust Heuristic Algorithm Design with LLMs" data-authors="Pantea Karimi, Dany Rouhana, Pooria Namyar, Siva Kesava Reddy Kakarla, Venkat Arun, Behnaz Arzani" data-conf="arXiv" data-year="2025">Robusta</abbr>] to augment human intelligence.</p><p>There is now a vibrant community of researchers working on the topic, including people from CMU, U. Michigan, Georgia Tech, MIT, Microsoft Research, and U. Waterloo</p></div>
-        <div class="read-more">
-          <a href="blog/performance-verification-and-synthesis.html">Read more &rarr;</a>
-        </div>
-      </div>
-    </div>
+<div class="data-block">TTHTTHTTTTHTTHHHTTTHTTHHTHTTHTHTTTTTTTTTTHTHTTTHTTTHHTHTHTTTTTHHTTTTTTHTT</div>
+
+<p>This sequence has 51 tails, about 70 percent. If the tosses were independent and the coin had an equal chance of landing on either side, the probability of observing at least 51 tails would be approximately 0.00046. How did I produce such an imbalance?</p>
+
+<h2>Tossing method</h2>
+
+<figure class="post-figure post-figure--compact">
+  <img src="../assets/img/blog/india-1-rupee-2013.jpg" alt="Indian one-rupee coin similar to the coin used in the first experiment" loading="lazy">
+  <figcaption>A one-rupee Indian coin similar to the one used in the experiment. Photograph credited in the original post to uCoin.net.</figcaption>
+</figure>
+
+<p>For every toss, I began with tails facing up, threw the coin high with a strong spin, and caught it with a sharp slap between my palms. The coin was a 2012 Indian one-rupee coin.</p>
+
+<p>Not every toss landed sharply between my palms. Thus, I had to discard the failed tosses. Naturally, this could bias the results; I may reject heads more often than tails. To remove this bias, I decided whether to discard a toss <i>before</i> I looked at the result.</p>
+
+<h2>Reversing the starting side</h2>
+
+<p>To test whether the starting orientation mattered, I repeated the experiment with the same coin, this time beginning every toss with heads facing up. The results of 50 tosses were:</p>
+
+<div class="data-block">HHHHTTHTHHHTTHHHHHHHHHTHTTTHHTTHHTHHTHHHHHTHTTHTHH</div>
+
+<p>Thirty-three tosses landed heads-up and 17 landed tails-up. Under the same fair-and-independent model, the one-sided probability of observing at least 33 heads in 50 tosses is approximately 0.016.</p>
+
+<h2>Trying a different coin</h2>
+
+<figure class="post-figure post-figure--compact">
+  <img src="../assets/img/blog/india-2-rupee-2010.jpg" alt="Indian two-rupee RBI Platinum Jubilee coin used for the second experiment" loading="lazy">
+  <figcaption>The larger RBI Platinum Jubilee two-rupee coin used for the second experiment.</figcaption>
+</figure>
+
+<p>I next repeated the experiment with a larger RBI platinum-jubilee two-rupee coin, again beginning with tails facing up:</p>
+
+<div class="data-block">TTHTTTHTTHTHHHTTTHTHHTHHTTTHTTHTTTTTHHTTHTTTHTTTTT</div>
+
+<p>Once again, 33 of 50 tosses landed on the favored side. The corresponding one-sided probability is approximately 0.016. This suggested that the effect might not be unique to the smaller coin, although two coins are far too few to establish that conclusion.</p>
+
+<h2>A more ordinary toss</h2>
+
+<p>Finally, I checked whether the unusual tossing technique itself mattered. I tossed the coin more normally, without controlling the height or spin and without catching it with a slap. I started each toss with heads facing up and simply let the coin land on one palm:</p>
+
+<div class="data-block">HHHHTHHTTTHTTHHTTHTTTHHTHHTTHHTHTTHTHHTTHTHTHHTHHHTTTTTHTTTHTTHHHTTTHHTTHTH</div>
+
+<p>Of these 75 tosses, 36 landed heads-up and 39 landed tails-up—an unremarkable result for a fair coin.</p>
+
+<p>My experience suggested that the height, spin, and sharp catch were all important. A more rigorous experiment would vary these conditions one at a time, randomize the starting side, use several coins, and have someone else record or perform the tosses. However, my palms were sore from all the sharp catching.</p>
+
+<p>If the visible sequences from the first three experiments are pooled, 117 of 173 tosses landed on the side that began facing up. A straightforward one-sided binomial calculation gives a probability of about 2.0 × 10<sup>−6</sup> under the fair-and-independent model. That calculation does not account for every choice made while developing the procedure, which is one reason an independent replication matters.</p>
+
+<blockquote>
+  <p><strong>Preliminary conclusion:</strong> When I tossed a coin high with a strong spin and caught it with a sharp slap, it was more likely to land on the same side that faced up at the start.</p>
+</blockquote>
+
+<p>Experimental history offers plenty of reasons for caution. Measurements can be influenced by accepted results, choices about which observations to retain, and procedures refined while data are being collected. I tried to avoid the most obvious version of that problem by accepting or rejecting each toss before seeing its outcome. Replication would be the stronger test.</p>
+
+<p><small><a href="https://venkatarun.wordpress.com/2015/11/14/the-biased-coin/">Originally published November 14, 2015.</a></small></p>
   </div>
 
-  
-  <div class="card project-card">
-    <button class="card-header project-toggle collapsed"
-            type="button"
-            data-bs-toggle="collapse"
-            data-bs-target="#proj-body-2"
-            aria-expanded="false"
-            aria-controls="proj-body-2">
-      <h5>"Solving" Congestion Control</h5>
-      <span class="project-toggle-icon" aria-hidden="true">
-        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16" fill="currentColor">
-          <path fill-rule="evenodd" d="M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z"/>
-        </svg>
-      </span>
-    </button>
-    <div id="proj-body-2" class="collapse project-body-collapse">
-      <div class="card-body">
-        <div><p>We have embarked on a (potentially foolish) journey to "solve" end-to-end congestion control for the internet. To this end, we first came up with a mathematical definition of what it means to solve it [<abbr class="citation" data-url="https://dl.acm.org/doi/pdf/10.1145/3452296.3472912" data-papertitle="Toward formally verifying congestion control behavior" data-authors="Venkat Arun, Mina T. Arashloo, Ahmed Saeed, Mohammad Alizadeh, and Hari Balakrishnan" data-conf="ACM SIGCOMM" data-year="2021">CCAC</abbr>]. Existing definitions assume far too much about how the network behaves, which means CCAs that satisfy those definitions may not perform well in the real-world. Thus, we came up with a method to specify network models that make minimal assumptions and are nevertheless sufficient for congestion control algorithms (CCAs) to work (we later realized this technique was general, which lead to our work on performance verification).</p> <p> The next challenge is to find a CCA that achieves a set of performance properties under this network model. This is ongoing work, where we heavily use automated reasoning to discover algorithms [<abbr class="citation" data-url="assets/papers/frcc.pdf" data-papertitle="FRCC: Towards Provably Fair and Robust Congestion Control" data-authors="Anup Agarwal, Venkat Arun, Srini Seshan" data-conf="USENIX NSDI" data-year="2026">FRCC</abbr>, <abbr class="citation" data-url="https://www.usenix.org/system/files/nsdi24-agarwal-anup.pdf" data-papertitle="Towards provably performant congestion control" data-authors="Anup Agarwal, Venkat Arun, Devdeep Ray, Ruben Martins, and Srinivasan Seshan" data-conf="USENIX NSDI" data-year="2024">CCmatic</abbr>, <abbr class="citation" data-url="https://dl.acm.org/doi/pdf/10.1145/3563766.3564085" data-papertitle="Automating network heuristic design and analysis" data-authors="Anup Agarwal, Venkat Arun, Devdeep Ray, Ruben Martins, and Srinivasan Seshan" data-conf="ACM SIGCOMM HotNets" data-year="2022">CCmatic</abbr>] and prove impossibility results [<abbr class="citation" data-url="https://drops.dagstuhl.de/storage/01oasics/oasics-vol139-nines2026/OASIcs.NINeS.2026.8/OASIcs.NINeS.2026.8.pdf" data-papertitle="Contracts: A unified lens on congestion control robustness, fairness, congestion, and generality" data-authors="Anup Agarwal, Venkat Arun, Srinivasan Seshan" data-conf="NINeS" data-year="2026">CCA Contracts</abbr>, <abbr class="citation" data-url="https://dl.acm.org/doi/pdf/10.1145/3544216.3544223" data-papertitle="Starvation in end-to-end congestion control" data-authors="Venkat Arun, Mohammad Alizadeh, and Hari Balakrishnan" data-conf="ACM SIGCOMM" data-year="2023">Starvation</abbr>]. We now have CCAs that satisfy a subset of the properties we want. Read more to see all the properties that we are trying to achieve and their current status.</p> <p class="proj-emph">Meta is currently using some of our designs to serve their user traffic [<abbr class="citation" data-url="https://engineering.fb.com/2019/11/17/video-engineering/copa/" data-papertitle="Evaluating COPA congestion control for improved video performance" data-authors="Nitin Garg" data-conf="Facebook Engineering Blog" data-year="2019">Copa-at-FB</abbr>, <abbr class="citation" data-url="https://dl.acm.org/doi/pdf/10.1145/3452296.3472912" data-papertitle="Toward formally verifying congestion control behavior" data-authors="Venkat Arun, Mina T. Arashloo, Ahmed Saeed, Mohammad Alizadeh, and Hari Balakrishnan" data-conf="ACM SIGCOMM" data-year="2021">CCAC</abbr>].</p></div>
-        <div class="read-more">
-          <a href="blog/solving-congestion-control.html">Read more &rarr;</a>
-        </div>
-      </div>
-    </div>
-  </div>
-
-  
-  <div class="card project-card">
-    <button class="card-header project-toggle collapsed"
-            type="button"
-            data-bs-toggle="collapse"
-            data-bs-target="#proj-body-3"
-            aria-expanded="false"
-            aria-controls="proj-body-3">
-      <h5>Metasurfaces with Thousands of Antennas</h5>
-      <span class="project-toggle-icon" aria-hidden="true">
-        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16" fill="currentColor">
-          <path fill-rule="evenodd" d="M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z"/>
-        </svg>
-      </span>
-    </button>
-    <div id="proj-body-3" class="collapse project-body-collapse">
-      <div class="card-body">
-        <div><p>Fundamental diffraction limits tell us that the more antennas a radio device has, the more precisely it can control the signals. This project explores the new applications enabled by having thousands of radio-frequency antennas, made inexpensive through meta-surfaces. As a first step toward this, we built a system with 3200 antennas that can increase the signal strength between two radio endpoints by about 10&times; [<abbr class="citation" data-url="https://www.usenix.org/system/files/nsdi20-paper-arun.pdf" data-papertitle="RFocus: Beamforming Using Thousands of Passive Antennas" data-authors="Venkat Arun and Hari Balakrishnan" data-conf="USENIX NSDI" data-year="2020">RFocus</abbr>]. It works by automatically reconfiguring itself to passively reflect signals from the transmitter to the receiver. The very large number of antennas allows it to create extremely focussed beams that can increase point-to-point communication bandwidth and reduce interference between multiple pairs of communicating endpoints. While we are not actively working on this anymore, if you are a prospective or current UT Austin student interested in this project, do reach out to me.</p><p class="proj-emph">To our knowledge, this is the largest number of antennas ever used for a single communication link.</p></div>
-        <div class="read-more">
-          <a href="rfocus.html">Read more &rarr;</a>
-        </div>
-      </div>
-    </div>
-  </div>
-
-
-<h3 class="section-heading">PhD Students</h3>
-
-<div class="people-grid">
-  
-    
-      <div class="person-card">
-        <img class="person-photo" src="assets/img/haoyu.jpg" alt="Photo of Haoyu Li">
-        <p class="person-name"><a href="https://lihy0529.github.io/">Haoyu Li</a></p>
-        <p class="person-meta">Third year student</p>
-        
-          <p class="person-meta">Co-advised with <a href="https://www.cs.utexas.edu/~akella/">Aditya Akella</a></p>
-        
-      </div>
-    
-  
-    
-      <div class="person-card">
-        <img class="person-photo" src="assets/img/tony.jpg" alt="Photo of Tony (Jia) Pan">
-        <p class="person-name"><a href="https://tonypan123.github.io/">Tony (Jia) Pan</a></p>
-        <p class="person-meta">Second year student</p>
-        
-      </div>
-    
-  
-    
-      <div class="person-card">
-        <img class="person-photo" src="assets/img/saarth.jpg" alt="Photo of Saarth Deshpande">
-        <p class="person-name"><a href="https://saarth.xyz/">Saarth Deshpande</a></p>
-        <p class="person-meta">Second year student</p>
-        
-          <p class="person-meta">Co-advised with <a href="https://sites.utexas.edu/neeraja/">Neeraja Yadwadkar</a></p>
-        
-      </div>
-    
-  
-    
-      <div class="person-card">
-        <img class="person-photo" src="assets/img/shazer.jpg" alt="Photo of Shazer Ali">
-        <p class="person-name"><a href="https://shaz-hash.github.io/">Shazer Ali</a></p>
-        <p class="person-meta">First year student</p>
-        
-      </div>
-    
-  
-    
-  
-    
-  
-    
-  
-    
-  
-    
-  
-    
-  
-    
-  
-    
-  
-</div>
-
-<p style="margin-top: 20px;"><a href="students.html" class="btn btn-outline-primary">See list of all students &rarr;</a></p>
-
-<h3 class="section-heading" id="teaching">Teaching</h3>
-
-<h5>CS 395T: Performance Analysis of Networked Systems</h5>
-<p>A seminar course that surveys the role that theoretical performance analysis has had in informing the design of real-world systems. Ideally, we want our theory to give us practical insights that go beyond what can be obtained via intuition or empirical analysis alone.</p>
-<p><b>Years:</b> <a href="performance_analysis_of_networked_systems.html">Spring 2024</a>, <a href="s25/index.html">Spring 2025</a>, <a href="s26/index.html">Spring 2026</a></p>
-
-<h5 style="margin-top: 24px;">CS 356: Computer Networks</h5>
-<p>A standard undergraduate course in networking with a focus on how the internet works today.</p>
-<p><b>Years:</b> <a href="f24/index.html">Fall 2024</a>, <a href="f25/index.html">Fall 2025</a></p>
-
-<h3 class="section-heading">Awards</h3>
-
-<ul>
-  
-    <li>MIT EECS G. M. Sprowls PhD Thesis Award in Computer Science <span style="color: var(--color-text-muted);">(2024)</span></li>
-  
-    <li>ACM SIGCOMM Doctoral Dissertation Award Runner-Up <span style="color: var(--color-text-muted);">(2024)</span></li>
-  
-    <li>Marconi Society Young Scholar Award <span style="color: var(--color-text-muted);">(2023)</span></li>
-  
-    <li>ACM SIGCOMM best student paper award <span style="color: var(--color-text-muted);">(2022)</span></li>
-  
-    <li>ACM SIGCOMM best paper award <span style="color: var(--color-text-muted);">(2017)</span></li>
-  
-    <li>MIT Jacobs Presidential Fellowship <span style="color: var(--color-text-muted);">(2017)</span></li>
-  
-    <li>President of India Gold Medal - IIT Guwahati <span style="color: var(--color-text-muted);">(2017)</span></li>
-  
-    <li>KVPY Government of India Scholarship <span style="color: var(--color-text-muted);">(2013)</span></li>
-  
-</ul>
-
-<h3 class="section-heading">Funding</h3>
-
-<p>My group is funded by:</p>
-<ul>
-  <li>NSF Nets: A periodic table of congestion control: A formal taxonomy of algorithms and scenarios (2026)</li>
-  <li>NSF FMitF: Performance Verification for Networked Systems (2024)</li>
-  <li>NSF Nets: Medium: An End-To-End Framework For Network Design and Implementation for Emerging Applications (2024)</li>
-  <li>A generous gift from <a href="https://www.mibura.com/">Mibura</a> (2024)</li>
-  <li>An Amazon fellowship for <a href="https://lihy0529.github.io/">Haoyu Li</a> (2025)</li>
-</ul>
-
-<p>Our group is lucky to be managed by <a href="https://www.cs.utexas.edu/people/staff/destiny-turner">Destiny Turner</a>.</p>
-
+  <footer class="blog-post-footer">
+    <a class="back-link" href="index.html">&larr; Back to all posts</a>
+  </footer>
+</article>
 
     </main>
 
@@ -769,6 +654,6 @@
         triggers.forEach(el => new bootstrap.Tooltip(el));
       });
     </script>
-    <script src="assets/js/site.js"></script>
+    <script src="../assets/js/site.js"></script>
   </body>
 </html>
