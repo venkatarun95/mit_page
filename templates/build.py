@@ -129,13 +129,13 @@ def prep_students(students: Dict[str, Dict[str, str]]) -> Dict[str, Dict[str, st
             continue
 
         start = datetime.strptime(res[ref]['start'], "%Y-%m")
-        year = (year_now - start).days // 365
+        year = max(0, (year_now - start).days // 365)
         if year >= 9:
             print("Warning: You have a tenured grad student. This is not supposed to happen. Graduate them ASAP")
             year = 9
         res[ref]['year'] = year_map[year]
 
-    return res
+    return dict(sorted(res.items(), key=lambda student: student[1]['start'], reverse=True))
 
 def compile_tex_to_pdf(tex_file_path, output_dir):
     """

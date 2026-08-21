@@ -72,6 +72,22 @@
 	"note": "A PhD student at Georgia Tech advised by <a href=\"https://www.cc.gatech.edu/~qzhang414/\">Qirun Zhang</a>.",
 	"start": "2021-09"
     },
+    "ritul": {
+	"name": "Ritul Satish",
+	"url": "https://rituls.github.io/",
+	"img": "assets/img/ritul.jpg",
+	"type": "other",
+	"note": "A PhD student at UT Austin advised by <a href=\"https://sites.utexas.edu/neeraja/\">Neeraja Yadwadkar</a>.",
+	"start": "2026-09"
+    },
+    "yeonju": {
+	"name": "Yeonju Ro",
+	"url": "https://sites.google.com/view/hey-yeonju",
+	"img": "assets/img/yeonju.jpg",
+	"type": "other",
+	"note": "A PhD student at UT Austin advised by <a href=\"https://www.cs.utexas.edu/~akella/\">Aditya Akella</a>.",
+	"start": "2021-09"
+    },
 
     "sumedh": {
 	"name": "Sumedh Rao",
