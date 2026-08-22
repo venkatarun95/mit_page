@@ -1,0 +1,65 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css">
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.12.9/dist/umd/popper.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js"></script>
+    <style>
+      .card-body { padding: .25rem; }
+      .text-muted { font-weight: 300; color: #000 !important; }
+      td, th { border: 1px solid; }
+    </style>
+    <style>td, th { border: none; }</style>
+    <title>CS 356: Computer Networks Fall 2026</title>
+  </head>
+  <body style="background-color: #bf5700">
+    <div class="container" style="background-color: #fff; padding-top:30pt;">
+      <div class="d-flex justify-content-between align-items-center">
+        <h1>CS 356: Computer Networks</h1><h2 class="text-muted">Fall 2026</h2>
+      </div>
+      <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <div class="container-fluid">
+          <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
+          <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav mr-auto">
+              <li class="nav-item "><a class="nav-link" href="index.html">Home</a></li><li class="nav-item "><a class="nav-link" href="schedule.html">Schedule</a></li><li class="nav-item active"><a class="nav-link" href="assignments.html">Assignments</a></li><li class="nav-item "><a class="nav-link" href="https://edstem.org/us/courses/102831/discussion">Ed Discussion</a></li><li class="nav-item "><a class="nav-link" href="https://utexas.instructure.com/courses/1450929">Canvas</a></li>
+            </ul>
+          </div>
+        </div>
+      </nav>
+      <br><br>
+      
+<h3>Assignments: Network Arena</h3>
+<p>The assignments use <b>Network Arena</b>, a deterministic, sandboxed simulator in which you operate an independent network. You will write a program for your programmable switches, submit it as a WebAssembly (<code>.wasm</code>) file, and use the results of each run to understand and improve your network.</p>
+
+<h4>What this is designed to teach</h4>
+<p>AI can help write code, but operating a consequential system still requires judgment: deciding what behavior to guarantee, weighing tradeoffs, interpreting incomplete evidence, and adapting a design when the world changes. You may use AI in the course; you remain responsible for understanding, verifying, and defending the behavior of what you submit. Assignment details, team policy, and grading are TBD.</p>
+
+<p><b>Quizzes will ask about your program's behavior.</b> You will not be expected to understand or recall the code line by line. Instead, we will give you a network scenario and ask what your submitted program will do: for example, how it will route traffic or respond to a failure. We will check those predictions against the program's actual behavior. The goal is to know how your design operates and to be able to reason about it, even when AI helped write the code.</p>
+
+<h4>How the arena works</h4>
+<p>The early assignments give each team its own network and well-defined goals. You will learn to make the network deliver traffic, perform under load, and observe its own behavior. In the later assignments, every team becomes an autonomous system (AS) in one shared simulated Internet. We run the submitted switch programs repeatedly—approximately twice each week. Between runs, teams may submit a new program and may choose to collect logs from the prior run, then use that evidence to refine their strategy.</p>
+
+<h4>Assignment sketch</h4>
+<table class="table table-hover">
+  <thead><tr><th scope="col">Assignment</th><th scope="col">Focus</th><th scope="col">Structure</th><th scope="col">Dates</th></tr></thead>
+  <tbody>
+    <tr><th>1. Make It Work</th><td>Forwarding, discovery, routing, and recovery from failures</td><td>Your own network; establish a reliable foundation.</td><td>TBD</td></tr>
+    <tr><th>2. Make It Fast</th><td>Queuing, scheduling, congestion, and isolation</td><td>Your own network; meet performance goals under load.</td><td>TBD</td></tr>
+    <tr><th>3. Make It Visible</th><td>Measurement, telemetry, and fault localization</td><td>Your own network; collect evidence and identify hidden anomalies.</td><td>TBD</td></tr>
+    <tr><th>4. Take It Live</th><td>Interdomain routing, policy, and competition</td><td>All teams share one simulated network; each team operates its own AS.</td><td>TBD</td></tr>
+    <tr><th>5. Make It Pay</th><td>Markets, specialization, and adaptation</td><td>Repeated shared-network runs; invest and revise your AS strategy between runs.</td><td>TBD</td></tr>
+  </tbody>
+</table>
+
+<h4>Competition, specialization, and learning</h4>
+<p>There is deliberately no universal best strategy. Simulated customers choose the AS offering the best performance-to-cost tradeoff, so a network’s value depends on what the other networks provide. One AS might deploy many CDN nodes; another might focus on edge GPU compute; another might invest in ultra-low-latency wireless links for high-frequency trading. The successful approach is often to specialize, rather than follow a generic answer. This is also why an off-the-shelf LLM solution will not automatically be optimal: when everyone pursues the same strategy, there is an incentive to offer something different.</p>
+<p>Full handouts, schedules, scoring rules, and submission instructions will be posted as they are finalized. Assignments may evolve through the course as we learn what works best and respond to the class's progress.</p>
+<br>
+
+    </div>
+  </body>
+</html>
