@@ -205,6 +205,11 @@
       .card-body { padding: 20px 24px; }
       .card-body p:last-child { margin-bottom: 0; }
 
+      /* Teaching cards */
+      .teaching-course-card { margin-top: 12px; }
+      .teaching-course-card + .teaching-course-card { margin-top: 20px; }
+      .teaching-course-card h5 { margin: 0 0 8px; }
+
       /* Project cards */
       .project-card { margin-bottom: 20px; }
       .project-card .read-more {
@@ -720,13 +725,21 @@
 
 <h3 class="section-heading" id="teaching">Teaching</h3>
 
-<h5>CS 395T: Performance Analysis of Networked Systems</h5>
-<p>A seminar course that surveys the role that theoretical performance analysis has had in informing the design of real-world systems. Ideally, we want our theory to give us practical insights that go beyond what can be obtained via intuition or empirical analysis alone.</p>
-<p><b>Years:</b> <a href="performance_analysis_of_networked_systems.html">Spring 2024</a>, <a href="s25/index.html">Spring 2025</a>, <a href="s26/index.html">Spring 2026</a></p>
+<div class="card teaching-course-card">
+  <div class="card-body">
+    <h5>CS 395T: Performance Analysis of Networked Systems</h5>
+    <p style="margin-bottom: 8px;">A seminar course that surveys the role theoretical performance analysis has had in informing the design of real-world systems. The goal is to develop practical insights that go beyond intuition or empirical analysis alone.</p>
+    <p style="margin-bottom: 0;"><b>Years:</b> <a href="performance_analysis_of_networked_systems.html">Spring 2024</a>, <a href="s25/index.html">Spring 2025</a>, <a href="s26/index.html"><b>Spring 2026 &rarr;</b></a></p>
+  </div>
+</div>
 
-<h5 style="margin-top: 24px;">CS 356: Computer Networks</h5>
-<p>A standard undergraduate course in networking with a focus on how the internet works today.</p>
-<p><b>Years:</b> <a href="f24/index.html">Fall 2024</a>, <a href="f25/index.html">Fall 2025</a></p>
+<div class="card teaching-course-card">
+  <div class="card-body">
+    <h5>CS 356: Computer Networks</h5>
+    <p style="margin-bottom: 8px;">A standard undergraduate course in networking with a focus on how the Internet works today. Starting Fall 2026, the course features a new kind of assignment designed to embrace LLM-assisting programming.</p>
+    <p style="margin-bottom: 0;"><b>Years:</b> <a href="f24/index.html">Fall 2024</a>, <a href="f25/index.html">Fall 2025</a>, <a href="f26/index.html"><b>Fall 2026 &rarr;</b></a></p>
+  </div>
+</div>
 
 <h3 class="section-heading">Awards</h3>
 
