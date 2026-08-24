@@ -35,8 +35,18 @@ def prep_schedule():
         "HTTP and the web", "Datacenter networks", "Content delivery networks (CDNs)",
         "The scarcity of addresses: NAT and IPv6", "Designing a modern application", "Quiz 3", "TBD",
     ]
+    notes = [
+        "lec1-intro.pdf", "lec2-architecture.pdf", "lec3-names.pdf", "lec4-routing-1.pdf",
+        "lec5-routing-2.pdf", "lec6-bgp.pdf", "lec7-bgp-advanced.pptx", "lec8-phy-1.pdf",
+        "lec9-error-detect.pdf", "lec11-error-correction-and-quiz.pdf", None,
+        "lec12-mac-protocols.pptx", "lec13-transport-intro.pdf", "lec14-transport-adv-reliability.pdf",
+        "lec15-congestion-control-1.pdf", "lec16-qd-and-switches.pdf", "lec19-security-crypto.pdf",
+        "lec20-security-crypto-2.pdf", "lec22-practical-security.pdf", None, "lec22-web.pdf",
+        "lec22-web.pdf", "lec23-datacenter-networks.pdf", "lec25-cdn.pdf", "lec26-nat-ipv6-overlay.pptx",
+        None, None, None,
+    ]
     return [
-        {"number": i + 1, "date": day.strftime("%a, %b %d"), "name": name}
+        {"number": i + 1, "date": day.strftime("%a, %b %d"), "name": name, "notes": notes[i]}
         for i, (day, name) in enumerate(zip(dates, schedule))
     ]
 
