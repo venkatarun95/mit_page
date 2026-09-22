@@ -28,7 +28,7 @@ def prep_schedule():
     schedule = [
         "Introduction", "Overview of the internet", "Using LLMs", "Naming and addressing", "Spanning tree routing",
         "Distance vector and link state routing", "Inter-domain routing", "Inter-domain routing continued",
-        "Error detection and reliability", "Forward error correction", "Quiz 1",
+        "Traffic Engineering", "Error detection and reliability", "Quiz 1",
         "Media access control (MAC)", "Transport layer: flow control and reliability",
         "Transport layer: alternate designs", "Congestion control", "Queuing disciplines and switches",
         "Encryption 1", "Encryption 2", "Web security", "Quiz 2", "Putting it all together",
@@ -38,7 +38,7 @@ def prep_schedule():
     notes = [
         "lec1-intro.pdf", "lec2-architecture.pdf", "lec3-agentic-coding.pdf", "lec3-names.pdf", "lec4-routing-1.pdf",
         "lec5-routing-2.pdf", "lec6-bgp.pdf", "lec7-bgp-advanced.pptx", "lec8-phy-1.pdf",
-        "lec9-error-detect.pdf", "lec11-error-correction-and-quiz.pdf", None,
+        "lec9-te.pdf", "lec9-error-detect.pdf", None,
         "lec12-mac-protocols.pptx", "lec13-transport-intro.pdf", "lec14-transport-adv-reliability.pdf",
         "lec15-congestion-control-1.pdf", "lec16-qd-and-switches.pdf", "lec19-security-crypto.pdf",
         "lec20-security-crypto-2.pdf", "lec22-practical-security.pdf", None, "lec22-web.pdf",
