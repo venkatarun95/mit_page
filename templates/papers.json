@@ -36,11 +36,19 @@
     },
     "syntra": {
 	"title": "Synthesizing a Provably Performant Joint Controller for Low-Latency Video Streaming",
-	"authors": "Tony Pan, Anup Agarwal, Isil Dillig, Venkat Arun",
+	"authors": "Jia (Tony) Pan, Anup Agarwal, Isil Dillig, Venkat Arun",
 	"short_name": "Syntra",
 	"conf": "USENIX NSDI",
 	"year": 2026,
 	"url": "assets/papers/syntra.pdf",
+	"exclude": false
+    },
+    "symbolic_memory_abstractions": {
+	"title": "Solving Partially Observable Safety Games via Symbolic Memory Abstractions",
+	"authors": "Jia (Tony) Pan, Ziteng Wang, Venkat Arun, Kenneth L. McMillan, Isil Dillig",
+	"short_name": "Symbolic Memory Abstractions",
+	"conf": "POPL",
+	"year": 2027,
 	"exclude": false
     },
     "frcc": {
