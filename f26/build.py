@@ -25,29 +25,40 @@ def prep_schedule():
         date(2026, 11, 3), date(2026, 11, 5), date(2026, 11, 10), date(2026, 11, 12), date(2026, 11, 17), date(2026, 11, 19),
         date(2026, 12, 1), date(2026, 12, 3),
     ]
-    schedule = [
-        "Introduction", "Overview of the internet", "Using LLMs", "Naming and addressing", "Spanning tree routing",
-        "Distance vector and link state routing", "Inter-domain routing", "Inter-domain routing continued",
-        "Traffic Engineering", "Error detection and correction", "Quiz 1",
-        "Media access control (MAC)", "Transport layer: flow control and reliability",
-        "Transport layer: alternate designs", "Congestion control", "Queuing disciplines and switches",
-        "Encryption 1", "Encryption 2", "Web security", "Quiz 2", "Putting it all together",
-        "HTTP and the web", "Datacenter networks", "Content delivery networks (CDNs)",
-        "The scarcity of addresses: NAT and IPv6", "Designing a modern application", "Quiz 3", "Completely optional class",
-    ]
-    notes = [
-        "lec1-intro.pdf", "lec2-architecture.pdf", "lec3-agentic-coding.pdf", "lec3-names.pdf", "lec4-routing-1.pdf",
-        "lec5-routing-2.pdf", "lec6-bgp.pdf", "lec7-bgp-advanced.pptx", 
-        "lec9-te.pdf", "lec9-error-detect-correct.pdf", None,
-        "lec12-mac-protocols.pptx", "lec13-transport-intro.pdf", "lec14-transport-adv-reliability.pdf",
-        "lec15-congestion-control-1.pdf", "lec16-qd-and-switches.pdf", "lec19-security-crypto.pdf",
-        "lec20-security-crypto-2.pdf", "lec22-practical-security.pdf", None, "lec22-web.pdf",
-        "lec22-web.pdf", "lec23-datacenter-networks.pdf", "lec25-cdn.pdf", "lec26-nat-ipv6-overlay.pptx",
-        None, None, None,
-    ]
+    lectures = {
+        "Introduction": "lec1-intro.pdf",
+        "Overview of the internet": "lec2-architecture.pdf",
+        "Using LLMs": "lec3-agentic-coding.pdf",
+        "Naming and addressing": "lec3-names.pdf",
+        "Spanning tree routing": "lec4-routing-1.pdf",
+        "Distance vector and link state routing": "lec5-routing-2.pdf",
+        "Inter-domain routing": "lec6-bgp.pdf",
+        "Inter-domain routing continued": "lec7-bgp-advanced.pptx",
+        "Traffic Engineering": "lec9-te.pdf",
+        "Error detection and correction": "lec9-error-detect-correct.pdf",
+        "Quiz 1": None,
+        "Transport layer: flow control and reliability": "lec13-transport-intro.pdf",
+        "Congestion control": "lec15-congestion-control-1.pdf",
+        "Transport layer: alternate designs": "lec14-transport-adv-reliability.pdf",
+        "Physical layer transmission": "lec8-phy-1.pdf",
+        "Media access control (MAC)": "lec12-mac-protocols.pptx",
+        "Queuing disciplines and switches": "lec16-qd-and-switches.pdf",
+        "Encryption 1": "lec19-security-crypto.pdf",
+        "Encryption 2": "lec20-security-crypto-2.pdf",
+        "Web security": "lec22-practical-security.pdf",
+        "Quiz 2": None,
+        "Putting it all together": "lec22-web.pdf",
+        "HTTP and the web": "lec22-web.pdf",
+        "Datacenter networks": "lec23-datacenter-networks.pdf",
+        "Content delivery networks (CDNs)": "lec25-cdn.pdf",
+        "The scarcity of addresses: NAT and IPv6": "lec26-nat-ipv6-overlay.pptx",
+        "Designing a modern application": None,
+        "Quiz 3": None,
+        "Completely optional class": None,
+    }
     return [
-        {"number": i + 1, "date": day.strftime("%a, %b %d"), "name": name, "notes": notes[i]}
-        for i, (day, name) in enumerate(zip(dates, schedule))
+        {"number": i + 1, "date": day.strftime("%a, %b %d"), "name": name, "notes": notes}
+        for i, (day, (name, notes)) in enumerate(zip(dates, lectures.items()))
     ]
 
 
