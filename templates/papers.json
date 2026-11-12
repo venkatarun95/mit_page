@@ -49,7 +49,7 @@
 	"short_name": "Symbolic Memory Abstractions",
 	"conf": "POPL",
 	"year": 2027,
-	"exclude": false
+	"exclude": true
     },
     "frcc": {
         "title": "FRCC: Towards Provably Fair and Robust Congestion Control",
