@@ -93,6 +93,33 @@
 	"year": 2026,
 	"url": "https://arxiv.org/pdf/2602.10252"
     },
+    "dimwit": {
+        "title": "DIMWIT: Directly Invoking Models Without Intensive Tuning",
+        "authors": "Saarth Deshpande, Neeraja J. Yadwadkar, Venkat Arun",
+        "short_name": "DIMWIT",
+        "conf": "arXiv",
+        "year": 2026,
+        "url": "https://arxiv.org/pdf/2611.01463",
+        "exclude": false
+    },
+    "tailor": {
+        "title": "Robustness Starts with the Objective: Designing and Certifying Robust LLM-Generated Heuristics",
+        "authors": "Pantea Karimi, Roozbeh Bostandoost, Dany Rouhana, Siva Kesava Reddy Kakarla, Pooria Namyar, Mohammad Alizadeh, Venkat Arun, Behnaz Arzani",
+        "short_name": "TAILOR",
+        "conf": "arXiv",
+        "year": 2026,
+        "url": "https://arxiv.org/pdf/2611.00504",
+        "exclude": false
+    },
+    "agar": {
+        "title": "Agar: What-If Analysis for Microservice Applications",
+        "authors": "Saarth Deshpande, Neeraja J. Yadwadkar, Venkat Arun",
+        "short_name": "Agar",
+        "conf": "arXiv",
+        "year": 2026,
+        "url": "https://arxiv.org/pdf/2610.36636",
+        "exclude": false
+    },
     "archie": {
         "title": "Lightweight Automated Reasoning for Network Architectures",
         "authors": "Rahul Bothra, Venkat Arun, Brighten Godfrey, Akshay Narayan, Ahmed Saeed",
