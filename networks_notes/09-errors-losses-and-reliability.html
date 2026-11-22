@@ -1,0 +1,646 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>9. Errors, Losses, and Reliability</title>
+  <style>:root {
+  color-scheme: light;
+  background: #f3f6f5;
+  color: #182a30;
+  font: 18px/1.65 Georgia, serif;
+}
+
+body {
+  max-width: 48rem;
+  margin: 2.5rem auto;
+  padding: 2.25rem clamp(1rem, 5vw, 3.25rem);
+  background: #fff;
+  border-top: 0.3rem solid #076764;
+}
+
+h1,
+h2,
+h3 {
+  font-family: system-ui, sans-serif;
+  line-height: 1.2;
+  color: #152e37;
+}
+
+h1 {
+  margin: 0 0 1.4rem;
+  font-size: clamp(2rem, 5vw, 3rem);
+  letter-spacing: -0.035em;
+}
+
+h2 {
+  margin: 2.5rem 0 0.7rem;
+  font-size: clamp(1.4rem, 3vw, 1.75rem);
+}
+
+p {
+  margin: 0 0 1rem;
+}
+
+a {
+  color: #0a5b63;
+  overflow-wrap: anywhere;
+  text-underline-offset: 0.15em;
+}
+
+li + li {
+  margin-top: 0.7rem;
+}
+
+blockquote {
+  margin: 1.2rem 0;
+  padding: 0.65rem 1rem;
+  background: #edf6f4;
+  border-inline-start: 0.2rem solid #076764;
+}
+
+blockquote p {
+  margin: 0;
+}
+
+img {
+  display: block;
+  max-width: 100%;
+  height: auto;
+  outline: 1px solid #d3dfdf;
+}
+
+p:has(> img:only-child) {
+  margin: 1.5rem 0 0.5rem;
+}
+
+p:has(> img:only-child) + p:has(> em:only-child) {
+  color: #37525a;
+  font: 0.83rem/1.5 system-ui, sans-serif;
+  margin: 0 0 1.5rem;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 1.25rem 0;
+  font: 0.83rem/1.45 system-ui, sans-serif;
+  font-variant-numeric: tabular-nums;
+  overflow-wrap: anywhere;
+}
+
+th,
+td {
+  border: 1px solid #d3dfdf;
+  padding: 0.55rem;
+  vertical-align: top;
+}
+
+th {
+  background: #edf6f4;
+}
+
+@media (max-width: 34rem) {
+  body {
+    margin: 0;
+  }
+
+  table {
+    font-size: 0.7rem;
+  }
+
+  th,
+  td {
+    padding: 0.3rem;
+  }
+}
+
+@media print {
+  :root {
+    background: #fff;
+  }
+
+  body {
+    margin: 0;
+    padding: 0;
+    border: 0;
+  }
+
+  h2,
+  p:has(> img:only-child) {
+    break-after: avoid;
+  }
+
+  table,
+  img {
+    break-inside: avoid;
+  }
+}
+
+.chapter-lab {
+  margin: 1.5rem 0 0.65rem;
+  padding: clamp(0.75rem, 3vw, 1.25rem);
+  border: 1px solid #b7cdcd;
+  border-radius: 0.6rem;
+  background: #f7faf9;
+  font: 0.93rem/1.5 system-ui, sans-serif;
+}
+
+.chapter-lab h3 {
+  margin: 0 0 0.5rem;
+  font-size: 1.2rem;
+}
+
+.chapter-lab > p {
+  color: #334e56;
+}
+
+.chapter-lab + p:has(> em:only-child) {
+  color: #37525a;
+  font: 0.83rem/1.5 system-ui, sans-serif;
+  margin-bottom: 1.5rem;
+}
+
+#playback-lab:not([hidden]) + p:has(> img:only-child) {
+  display: none;
+}
+
+.lab-controls {
+  display: flex;
+  gap: 0.75rem;
+  align-items: end;
+  flex-wrap: wrap;
+  margin-bottom: 1rem;
+}
+
+.lab-controls label {
+  display: grid;
+  gap: 0.3rem;
+  font-weight: 700;
+  font-size: 0.8rem;
+}
+
+.lab-controls select,
+.lab-controls button {
+  min-height: 2.2rem;
+  border: 1px solid #9bb2b8;
+  border-radius: 0.3rem;
+  background: #fff;
+  color: #163440;
+  padding: 0.25rem 0.5rem;
+  font: inherit;
+}
+
+.lab-controls button {
+  font-size: 0.8rem;
+  cursor: pointer;
+}
+
+.lab-controls :focus-visible {
+  outline: 2px solid #076764;
+  outline-offset: 2px;
+}
+
+#link-race .race-timeline {
+  display: grid;
+  gap: 0.25rem;
+  margin-bottom: 0.85rem;
+}
+
+#link-race .race-timeline label,
+#link-race .race-endpoints {
+  display: flex;
+  justify-content: space-between;
+  gap: 0.35rem;
+}
+
+#link-race .race-timeline label {
+  font-size: 0.8rem;
+  font-weight: 700;
+  font-variant-numeric: tabular-nums;
+}
+
+#link-race .race-timeline input {
+  width: 100%;
+  margin: 0;
+  accent-color: #076764;
+}
+
+#link-race .race-timeline input:focus-visible {
+  outline: 2px solid #076764;
+  outline-offset: 2px;
+}
+
+#link-race [aria-disabled="true"] {
+  color: #55676e;
+  background: #edf2f1;
+  cursor: default;
+}
+
+#link-race .race-lane {
+  --race-color: #25618b;
+  --race-wire: #dce9f1;
+  padding: 0.75rem 0;
+  border-top: 1px solid #b7cdcd;
+}
+
+#link-race .race-lane[data-link="B"] {
+  --race-color: #076764;
+  --race-wire: #dbede9;
+}
+
+#link-race h4 {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 0.15rem 0.6rem;
+  margin: 0 0 0.4rem;
+  color: var(--race-color);
+  font-size: 1rem;
+}
+
+#link-race h4 span,
+#link-race .race-endpoints,
+#link-race .race-timeline p,
+#link-race .race-key {
+  color: #405961;
+  font-size: 0.8rem;
+  font-weight: 400;
+}
+
+#link-race h4 strong {
+  padding: 0.05rem 0.4rem;
+  border-radius: 0.2rem;
+  background: var(--race-wire);
+  font-size: 0.76rem;
+}
+
+#link-race .race-path {
+  margin-inline: 0.3rem;
+}
+
+#link-race [data-link="B"] .race-path {
+  width: 48%;
+}
+
+#link-race .race-track {
+  position: relative;
+  height: 0.85rem;
+  margin: 0.2rem 0 0.4rem;
+  border-radius: 1rem;
+  background: var(--race-wire);
+}
+
+#link-race .race-track::before,
+#link-race .race-track::after,
+#link-race .race-track span {
+  position: absolute;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  background: var(--race-color);
+}
+
+#link-race .race-track::before,
+#link-race .race-track::after {
+  content: "";
+  left: 0;
+  width: 0.14rem;
+  height: 100%;
+  border-radius: 1rem;
+}
+
+#link-race .race-track::after {
+  left: 100%;
+}
+
+#link-race .race-track span {
+  width: clamp(0.17rem, 0.55vw, 0.36rem);
+  aspect-ratio: 1;
+  border-radius: 50%;
+}
+
+#link-race .race-timeline p,
+#link-race .race-meter p,
+#link-race .race-finish {
+  margin: 0;
+}
+
+#link-race .race-totals {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 0.75rem;
+  margin-top: 0.6rem;
+}
+
+#link-race .race-meter p {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: 0 0.35rem;
+  font-size: 0.8rem;
+  font-variant-numeric: tabular-nums;
+}
+
+#link-race .race-meter progress {
+  display: block;
+  width: 100%;
+  height: 0.55rem;
+  margin: 0.2rem 0 0;
+  accent-color: var(--race-color);
+}
+
+#link-race .race-finish {
+  margin-top: 0.4rem;
+  font-size: 0.85rem;
+  font-variant-numeric: tabular-nums;
+}
+
+#link-race .race-announcement {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  clip-path: inset(50%);
+  overflow: hidden;
+}
+
+#link-race figcaption {
+  border-top: 1px solid #b7cdcd;
+  padding-top: 0.65rem;
+  color: #173840;
+  font-weight: 600;
+}
+
+.lab-link-policy {
+  padding-top: 0.65rem;
+  border-top: 1px solid #b7cdcd;
+}
+
+.lab-link-policy + .lab-link-policy {
+  margin-top: 0.9rem;
+}
+
+.lab-link-policy h4 {
+  margin: 0 0 0.6rem;
+  color: #173840;
+  font-size: 0.98rem;
+}
+
+.lab-sender p {
+  margin: 0 0 0.3rem;
+  font-size: 0.8rem;
+  color: #334e56;
+}
+
+.lab-sender + .lab-sender {
+  margin-top: 0.65rem;
+}
+
+.lab-packets,
+.lab-events {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.lab-packets {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.35rem;
+}
+
+.lab-packets li,
+.lab-events li {
+  margin: 0;
+}
+
+.lab-packet {
+  display: grid;
+  padding: 0.3rem 0.45rem;
+  border: 1px solid #99b9af;
+  border-radius: 0.3rem;
+  background: #e4f3ee;
+  color: #18443b;
+  font-size: 0.74rem;
+  min-width: 4.6rem;
+}
+
+.lab-packet.late {
+  border-color: #cfac85;
+  background: #fcf0dd;
+  color: #704411;
+}
+
+.lab-packet.refused {
+  border-color: #c6cfd2;
+  background: #eef1f2;
+  color: #324850;
+}
+
+.lab-plot {
+  background: #fff;
+  border: 1px solid #d3dfdf;
+  border-radius: 0.3rem;
+}
+
+.lab-plot svg {
+  display: block;
+  width: 100%;
+  color: #314d58;
+  font-size: 17px;
+}
+
+.lab-plot text {
+  fill: currentColor;
+}
+
+.lab-plot .lab-axis-title {
+  font-weight: 700;
+}
+
+.lab-plot .lab-outage-label {
+  fill: #6c441b;
+}
+
+.lab-grid {
+  stroke: #c0cfd1;
+}
+
+.lab-outage {
+  fill: #fbefde;
+}
+
+.lab-threshold {
+  stroke: #567e89;
+  stroke-dasharray: 6 5;
+}
+
+.lab-trace {
+  fill: none;
+  stroke: #076764;
+  stroke-width: 3.5;
+  stroke-linejoin: round;
+}
+
+.lab-marker {
+  fill: #076764;
+  stroke: #fff;
+  stroke-width: 1.2;
+}
+
+.lab-plot .lab-marker-text {
+  fill: #fff;
+  font-size: 13px;
+  font-weight: 700;
+}
+
+.lab-result {
+  margin: 0.6rem 0;
+  font-weight: 700;
+}
+
+.lab-events {
+  display: flex;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+  font-size: 0.78rem;
+}
+
+.lab-events li {
+  flex: 1 1 9rem;
+  display: flex;
+  align-items: start;
+  gap: 0.4rem;
+  border: 1px solid #d3dfdf;
+  border-radius: 0.3rem;
+  background: #fff;
+  padding: 0.45rem;
+}
+
+.lab-marker-label {
+  min-width: 1.2rem;
+  height: 1.2rem;
+  border-radius: 50%;
+  background: #076764;
+  color: #fff;
+  font-weight: 700;
+  text-align: center;
+}
+
+@media print {
+  .chapter-lab {
+    display: none;
+  }
+
+  #playback-lab:not([hidden]) + p:has(> img:only-child) {
+    display: block;
+  }
+}
+
+.book-nav {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: .55rem 1.4rem;
+  margin-bottom: 1.6rem;
+  color: #37525a;
+  font: .85rem/1.5 system-ui, sans-serif;
+}
+
+.chapter-turn {
+  justify-content: space-between;
+  margin: 2.4rem 0 0;
+  padding-top: 1rem;
+  border-top: 1px solid #d3dfdf;
+}
+
+.book-contents ul {
+  list-style: none;
+  padding: 0;
+}
+
+@media print {
+  .book-nav { display: none; }
+}
+</style>
+</head>
+<body>
+  <main>
+    <nav class="book-nav" aria-label="Book location"><a href="index.html">Contents</a><span>Part III — Moving Data Reliably and Efficiently</span></nav>
+    <article><h1>9. Errors, Losses, and Reliability</h1>
+<p>The sender put packets 6, 7, and 8 onto the network in that order. Packet 7 took the longer path from Chapter 8, so the receiver has seen 6 and 8. You&#39;re writing the receiver. Do you wait for 7, ask for it again, or give the application what you already have? Draw two versions of the trip, one in which 7 is still in flight and one in which a router dropped it. Up to now, what signal could your program use to tell those versions apart?</p>
+<p>The number on packet 8 tells the program it has a gap. It has no way yet to tell how long the gap will last. Perhaps the application can use packet 8 right away. Perhaps it needs an ordered stream, in which case packet 8 has to wait in memory behind 7. A video call might give packet 7 a few milliseconds to turn up and then play the next frame. A file copy can afford to wait but has to get every byte right. Before you decide how to repair a failure, specify what the receiver has to deliver and when.</p>
+<h2>Which bits would you believe?</h2>
+<p>Suppose packet 7 arrives, but the channel has changed one bit. Could the receiver tell by looking at the result? In class, the instructor tried this on English with <code>cxt</code>. You can spot a typo, and you can propose <em>cat</em>, <em>cot</em>, or <em>cut</em>. Which did the sender write? Now try <code>sore</code>. It&#39;s a word, so you may never even ask the question. If the sender is free to send any bit string of a given length, every received string has that same difficulty. The receiver needs some strings it can rule out in advance. <a href="../assets/f26-subtitles.txt">Lecture 10, lines 16193–16268.</a></p>
+<p>Let&#39;s design a dictionary with just two permitted strings, <code>00</code> and <code>11</code>. The sender can communicate one bit. A received <code>01</code> or <code>10</code> is evidence that something went wrong. Either invalid string is one flip away from both permitted strings, so the receiver has no basis to choose a repair. Both bits could also flip to produce the other permitted string, in which case the test passes.</p>
+<p>Try it with <code>000</code> and <code>111</code>. If you know the channel flipped at most one bit, you can take a majority vote. For example, <code>010</code> is one flip from <code>000</code> and two from <code>111</code>. If two flips are possible, the very same <code>010</code> could have come from <code>111</code>. In detection mode you reject it. In one-error correction mode you map it to <code>000</code>. The guarantee you get depends on the channel assumption and on what you ask the decoder to do.</p>
+<p><img src="../chapters/09-errors-losses-and-reliability/figures/codewords.svg" alt="All eight three-bit strings, grouped according to which of 000 and 111 is within one flip."></p>
+<p>The number of positions where two equal-length strings differ is their <strong>Hamming distance</strong>. Each permitted string is a <strong>codeword</strong>. Let the nearest pair of distinct codewords be at distance <em>d</em>. A change in at most <em>d-1</em> positions can&#39;t get you from one codeword to another. Testing membership therefore detects every nonzero error of up to <em>d-1</em> flips. To correct up to <em>t</em> flips, each string within <em>t</em> flips of a codeword must identify it uniquely. If a string were within <em>t</em> of two codewords, you could get from one codeword to the other in at most <em>2t</em> flips. So <em>d</em> ≥ 2<em>t</em> + 1 is enough. It&#39;s also necessary. Take the closest pair and walk from one to the other, changing one differing position at a time. If their distance is at most <em>2t</em>, there is a string on that walk within <em>t</em> of both. <a href="../assets/f26-subtitles.txt">Lecture 10, lines 16315–16449.</a></p>
+<p>How far apart can you space the words before you run out of room? A student noticed that the dictionary limits how many different messages can be sent. That became a classroom poll. If you encode <em>m</em> information bits in <em>n</em> transmitted bits, you need 2<sup>m</sup> codewords, and your code rate is <em>m/n</em>. For one-error correction each word needs room for itself and its <em>n</em> one-bit neighbors. The regions must be disjoint, so 2<sup>m</sup>(<em>n</em> + 1) ≤ 2<sup>n</sup>. This is a packing bound. It tells you when you have too few bits for a design, without telling you how to build a code that fits. <a href="../assets/f26-subtitles.txt">Lecture 10, lines 16440–16654.</a></p>
+<h2>Can a single bit earn its place?</h2>
+<p>If all you want is to detect a single flip, use every even-parity string. Append a 0 to a payload with an even number of ones or a 1 to one with an odd number of ones. For example, <code>1011</code> becomes <code>10111</code>. The receiver XORs all five bits and expects 0. A single flip, including a flip of the check bit, changes the XOR to 1. Two flips cancel. Try flipping the first and third bits of <code>10111</code> and see why the result passes. <a href="../assets/f26-subtitles.txt">Lecture 10, lines 16767–16787.</a></p>
+<p>A packet checksum gives a receiver a compact consistency test over the fields it covers. The protection depends on the rule. If the check is the sum of some bytes modulo 256, adding one to a byte and subtracting one from another can leave the check unchanged. Even with a stronger check, an accepted packet is one that passed the test. The receiver can treat a detected bad packet as missing, provided packet boundaries and the identity of the missing data can be established from the rest of the stream. <a href="../assets/f26-subtitles.txt">Lecture 10, lines 16789–16814.</a></p>
+<p><strong>Design this.</strong> A link flips each bit independently with probability 0.001. Each transmission attempt carries <em>N</em> bits including a 64-bit checksum. Treat the checksum as perfect and retry rejected packets. Ignore feedback costs and waiting. What fraction of all transmitted bits do you expect to deliver as useful payload? Choose a packet size. See if a fourfold increase in <em>N</em> always saves bandwidth.</p>
+<p><em>Adapted from <a href="../assets/quiz1-2025.pdf#page=7">Quiz 1 2025, Q12–Q14, p. 7</a>.</em></p>
+<details>
+<summary>Worked reasoning</summary>
+
+<p>An attempt succeeds with probability 0.999<sup>N</sup>, since all <em>N</em> bits have to survive. Each attempt costs <em>N</em> bits and yields <em>N-64</em> useful bits if successful, for efficiency 0.999<sup>N</sup> × (<em>N</em> − 64) / <em>N</em>. A search over integer packet sizes gives a maximum at 287 bits, with efficiency about 0.583. The 64-bit expense dominates at small sizes. At large sizes the probability that the whole packet survives goes down. Both effects matter even though only the smaller packets spend a large share of their bits on the checksum.</p>
+</details>
+
+<h2>What can the sender learn from a gap?</h2>
+<p>Return to packets 6, 7, and 8. Suppose each packet names its place in the stream, and the receiver sends back the next number it needs. After 6 it says <code>ACK 7</code>. When 8 arrives it can store 8 and send another <code>ACK 7</code>. If 7 arrives, the receiver can now say <code>ACK 9</code>. The latter is a <strong>cumulative acknowledgment</strong>. It covers a whole prefix of the stream. If an earlier acknowledgment disappeared in the reverse direction, the later one can still tell the sender it is safe to stop holding those packets for repair. <a href="../assets/f26-subtitles.txt">Lecture 12, lines 17707–17847.</a></p>
+<p>Imagine that you sent 7 and then sent nothing more. Your clock runs for a while and no acknowledgment arrives. List three explanations. The data could have been dropped. It could be on its way. It could have reached the receiver, which sent an acknowledgment that got dropped or delayed. Now choose what your program does when a <strong>retransmission timer</strong> expires. Sending another copy both repairs a real loss and deals with a lost acknowledgment. It also risks putting a second copy of the data on the wire. The copies must carry the same data identity, so the receiver can acknowledge an already-received copy without delivering the same data twice. A sender also has to retain the outstanding data, or be able to recreate it, until it has sufficient evidence of receipt. <a href="../assets/f26-subtitles.txt">Lecture 12, lines 18254–18282 and 18679–18734.</a></p>
+<p>How long should you wait? A short timeout buys speed on actual losses, at the cost of retransmitting when the network is merely slow. At the other extreme, a long wait can leave a fast connection idle. A student asked what happens to the round-trip measurement when the sender has transmitted the same data twice. If the acknowledgment could be for either copy, measuring from the first send may make the trip look too long, and measuring from the second can make it look too short. TCP&#39;s timer algorithm avoids using ambiguous samples from retransmitted segments. <a href="../assets/f26-subtitles.txt">Lecture 12, lines 18795–18835.</a> <a href="https://www.rfc-editor.org/rfc/rfc6298.html#section-3">RFC 6298, §§2–3.</a></p>
+<p>So far we&#39;ve let the receiver report only the first gap. If it can also describe what arrived <em>beyond</em> that gap, a sender facing several holes can spend its next transmission on data the receiver still needs. A <strong>selective acknowledgment</strong> reports such ranges. Imagine numbering the bytes of a file. A receiver that expects byte 1000 and reports the range <code>[2000, 3000)</code> already has bytes 2000 through 2999. Before deciding whether to resend the intervening bytes, see what the evidence can actually establish. <a href="../assets/f26-subtitles.txt">Lecture 12, lines 17892–17918 and 18857–18963.</a></p>
+<p><strong>Network detective.</strong> X has sent consecutive byte ranges through byte 14,999. Three receiver reports arrive at X in the order shown. Each report lists all the received ranges at the time it was made. What do the reports establish? Under what additional assumptions would you retransmit either gap?</p>
+<table>
+<thead>
+<tr>
+<th>Report</th>
+<th>Received byte ranges, with excluded right endpoints</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>First</td>
+<td><code>[0, 10000)</code>, <code>[11000, 12000)</code></td>
+</tr>
+<tr>
+<td>Second</td>
+<td><code>[0, 10000)</code>, <code>[11000, 13000)</code></td>
+</tr>
+<tr>
+<td>Third</td>
+<td><code>[0, 10000)</code>, <code>[11000, 13000)</code>, <code>[14000, 15000)</code></td>
+</tr>
+</tbody></table>
+<p><em>Adapted from <a href="../assets/cs356-quiz2-2024.pdf#page=10">Quiz 2 2024, Q13–Q14, pp. 10–12</a>. The ranges have been adapted for this trace.</em></p>
+<details>
+<summary>Worked reasoning</summary>
+
+<p>By the time of the third report, the receiver was still missing the bytes in <code>[10000, 11000)</code> and <code>[13000, 14000)</code>. The first hole persists across more evidence of later arrivals. A sender might prioritize it under an assumption that packets sent later rarely get this far ahead. If the forward path delivers data in send order whenever it delivers it at all, then arrival of a later range implies a drop in the earlier gap. If delay and reordering are unbounded, either range might still turn up. Even that last report is a snapshot. By the time it reaches the sender, the missing bytes could already be sitting in the receiver&#39;s buffer.</p>
+</details>
+
+<h2>Can you repair a packet before you can ask for it?</h2>
+<p>You&#39;re designing a live stream that has room for one equal-sized packet every 2 ms. The receiver has 25 ms to replace a packet after its expected arrival time. You can assume arrivals preserve their spacing except for one drop. The next arrival reveals the gap. A request and the return trip of the replacement together take 100 ms. What can you send in advance to help the receiver repair a packet in time?</p>
+<p>Take ten originals. Number them and give their group a known layout. Send an eleventh packet whose payload is the bitwise XOR of the ten. If the receiver has nine originals and the repair packet, it can XOR those together. Each known value appears twice and cancels, leaving the missing one. The receiver must know which original is missing and can use a packet integrity check to turn a detected corruption into a known missing position. This is <strong>forward error correction</strong>, or FEC. Advance repair information travels in the forward direction along with the data. <a href="https://www.rfc-editor.org/rfc/rfc6363.html#section-1">RFC 6363, §1.</a></p>
+<p><img src="../chapters/09-errors-losses-and-reliability/figures/repair-timing.svg" alt="Two time axes share the expected arrival of the first missing packet and its 25 ms deadline. Advance XOR repair arrives at 20 ms. An immediate request after the first gap yields a retransmission at 102 ms."></p>
+<p>Worst case for the XOR scheme is when the first original is lost. Its group repair arrives ten slots later, after 20 ms. With retransmission, the next arrival reveals the gap after 2 ms and the repair follows one round trip later, after 102 ms. If the last original is lost, advance repair takes just one slot. There is one repair for every ten originals, so the link spends one eleventh of its slots on repair and at most ten elevenths on original data. Keep those denominators straight. The repair traffic is 10% of original traffic and about 9.1% of total traffic. <a href="../assets/quiz1-2026.pdf#page=7">Quiz 1 2026, Q5–Q6, pp. 7–9.</a></p>
+<p><strong>Break this.</strong> Drop packets 1 and 2 in the same group. What does the receiver still know about them? What second repair packet could you add that would recover both in this specific case? Would your second repair cover <em>every</em> pair of losses?</p>
+<details>
+<summary>Worked reasoning</summary>
+
+<p>The receiver can recover the XOR of packets 1 and 2 after canceling the eight originals it has. Many pairs have that same XOR. Add a second repair that XORs just the odd-numbered originals. Now the receiver can recover packet 1 from that repair, then packet 2 from the full-group repair. Two lost odd-numbered packets would leave the two equations with the same unknowns. That pair still defeats the design.</p>
+</details>
+
+<p><strong>Predict–simulate–explain.</strong> Open the <a href="../chapters/09-errors-losses-and-reliability/repair-lab.html">repair timing lab</a>. Start with the ten-original group and predict what happens when packets 1 and 2 disappear. Then try making the groups five originals long and dropping packets 5 and 6. Find a loss pattern where the smaller group spends more slots on repair but delivers fewer originals on time over the same wire budget. The <a href="../chapters/09-errors-losses-and-reliability/lab.md">lab notes</a> show how to count the slots and read the trace.</p>
+<h2>Where does the repair belong?</h2>
+<p>A wireless link can check its frames and retry locally. That trip may be much shorter than asking a remote host to resend. What if the next router drops the newly repaired packet because its queue is full? Only the endpoints can verify that the data got all the way through. And if the application&#39;s contract is that an uploaded file reached durable storage, an acknowledgment from its peer&#39;s transport stack can come too early. The application may need to read back or otherwise verify the stored file and report its own result. Each layer can do the work it has enough information to do. <a href="../assets/f26-subtitles.txt">Lecture 12, lines 19059–19071 and 19244–19280.</a></p>
+<p>Ask what happens if every sender hits a full queue and immediately resends whatever fell out. A repair is another packet to carry. If senders keep offering more new data than the bottleneck can carry, the old packets compete with new ones for the same capacity. In class, this was the trouble with three fast senders sharing one slow exit. The retry rule may be perfectly sensible about <em>which</em> packet to send next and still demand far too many packets per second. <a href="../assets/f26-subtitles.txt">Lecture 13, lines 19442–19571.</a></p>
+<p>So far we&#39;ve let the receiver stand for an entire machine. Bring two file-copy programs up on the same laptop, connect both to the same server, and send a repair for byte 1000. Which program is waiting for that byte? Before either copy can use our repair rule, the endpoints have to agree on which conversation the byte belongs to.</p>
+</article>
+    <nav class="book-nav chapter-turn" aria-label="Chapter navigation"><a href="08-traffic-engineering-making-the-most-of-a-network.html">Previous · 8. Traffic Engineering: Making the Most of a Network</a>
+<a href="index.html">Contents</a>
+<a href="10-transport-protocols-and-end-to-end-communication.html">Next · 10. Transport Protocols and End-to-End Communication</a></nav>
+  </main>
+</body>
+</html>

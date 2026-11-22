@@ -1,0 +1,621 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>4. Switching and Forwarding</title>
+  <style>:root {
+  color-scheme: light;
+  background: #f3f6f5;
+  color: #182a30;
+  font: 18px/1.65 Georgia, serif;
+}
+
+body {
+  max-width: 48rem;
+  margin: 2.5rem auto;
+  padding: 2.25rem clamp(1rem, 5vw, 3.25rem);
+  background: #fff;
+  border-top: 0.3rem solid #076764;
+}
+
+h1,
+h2,
+h3 {
+  font-family: system-ui, sans-serif;
+  line-height: 1.2;
+  color: #152e37;
+}
+
+h1 {
+  margin: 0 0 1.4rem;
+  font-size: clamp(2rem, 5vw, 3rem);
+  letter-spacing: -0.035em;
+}
+
+h2 {
+  margin: 2.5rem 0 0.7rem;
+  font-size: clamp(1.4rem, 3vw, 1.75rem);
+}
+
+p {
+  margin: 0 0 1rem;
+}
+
+a {
+  color: #0a5b63;
+  overflow-wrap: anywhere;
+  text-underline-offset: 0.15em;
+}
+
+li + li {
+  margin-top: 0.7rem;
+}
+
+blockquote {
+  margin: 1.2rem 0;
+  padding: 0.65rem 1rem;
+  background: #edf6f4;
+  border-inline-start: 0.2rem solid #076764;
+}
+
+blockquote p {
+  margin: 0;
+}
+
+img {
+  display: block;
+  max-width: 100%;
+  height: auto;
+  outline: 1px solid #d3dfdf;
+}
+
+p:has(> img:only-child) {
+  margin: 1.5rem 0 0.5rem;
+}
+
+p:has(> img:only-child) + p:has(> em:only-child) {
+  color: #37525a;
+  font: 0.83rem/1.5 system-ui, sans-serif;
+  margin: 0 0 1.5rem;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 1.25rem 0;
+  font: 0.83rem/1.45 system-ui, sans-serif;
+  font-variant-numeric: tabular-nums;
+  overflow-wrap: anywhere;
+}
+
+th,
+td {
+  border: 1px solid #d3dfdf;
+  padding: 0.55rem;
+  vertical-align: top;
+}
+
+th {
+  background: #edf6f4;
+}
+
+@media (max-width: 34rem) {
+  body {
+    margin: 0;
+  }
+
+  table {
+    font-size: 0.7rem;
+  }
+
+  th,
+  td {
+    padding: 0.3rem;
+  }
+}
+
+@media print {
+  :root {
+    background: #fff;
+  }
+
+  body {
+    margin: 0;
+    padding: 0;
+    border: 0;
+  }
+
+  h2,
+  p:has(> img:only-child) {
+    break-after: avoid;
+  }
+
+  table,
+  img {
+    break-inside: avoid;
+  }
+}
+
+.chapter-lab {
+  margin: 1.5rem 0 0.65rem;
+  padding: clamp(0.75rem, 3vw, 1.25rem);
+  border: 1px solid #b7cdcd;
+  border-radius: 0.6rem;
+  background: #f7faf9;
+  font: 0.93rem/1.5 system-ui, sans-serif;
+}
+
+.chapter-lab h3 {
+  margin: 0 0 0.5rem;
+  font-size: 1.2rem;
+}
+
+.chapter-lab > p {
+  color: #334e56;
+}
+
+.chapter-lab + p:has(> em:only-child) {
+  color: #37525a;
+  font: 0.83rem/1.5 system-ui, sans-serif;
+  margin-bottom: 1.5rem;
+}
+
+#playback-lab:not([hidden]) + p:has(> img:only-child) {
+  display: none;
+}
+
+.lab-controls {
+  display: flex;
+  gap: 0.75rem;
+  align-items: end;
+  flex-wrap: wrap;
+  margin-bottom: 1rem;
+}
+
+.lab-controls label {
+  display: grid;
+  gap: 0.3rem;
+  font-weight: 700;
+  font-size: 0.8rem;
+}
+
+.lab-controls select,
+.lab-controls button {
+  min-height: 2.2rem;
+  border: 1px solid #9bb2b8;
+  border-radius: 0.3rem;
+  background: #fff;
+  color: #163440;
+  padding: 0.25rem 0.5rem;
+  font: inherit;
+}
+
+.lab-controls button {
+  font-size: 0.8rem;
+  cursor: pointer;
+}
+
+.lab-controls :focus-visible {
+  outline: 2px solid #076764;
+  outline-offset: 2px;
+}
+
+#link-race .race-timeline {
+  display: grid;
+  gap: 0.25rem;
+  margin-bottom: 0.85rem;
+}
+
+#link-race .race-timeline label,
+#link-race .race-endpoints {
+  display: flex;
+  justify-content: space-between;
+  gap: 0.35rem;
+}
+
+#link-race .race-timeline label {
+  font-size: 0.8rem;
+  font-weight: 700;
+  font-variant-numeric: tabular-nums;
+}
+
+#link-race .race-timeline input {
+  width: 100%;
+  margin: 0;
+  accent-color: #076764;
+}
+
+#link-race .race-timeline input:focus-visible {
+  outline: 2px solid #076764;
+  outline-offset: 2px;
+}
+
+#link-race [aria-disabled="true"] {
+  color: #55676e;
+  background: #edf2f1;
+  cursor: default;
+}
+
+#link-race .race-lane {
+  --race-color: #25618b;
+  --race-wire: #dce9f1;
+  padding: 0.75rem 0;
+  border-top: 1px solid #b7cdcd;
+}
+
+#link-race .race-lane[data-link="B"] {
+  --race-color: #076764;
+  --race-wire: #dbede9;
+}
+
+#link-race h4 {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 0.15rem 0.6rem;
+  margin: 0 0 0.4rem;
+  color: var(--race-color);
+  font-size: 1rem;
+}
+
+#link-race h4 span,
+#link-race .race-endpoints,
+#link-race .race-timeline p,
+#link-race .race-key {
+  color: #405961;
+  font-size: 0.8rem;
+  font-weight: 400;
+}
+
+#link-race h4 strong {
+  padding: 0.05rem 0.4rem;
+  border-radius: 0.2rem;
+  background: var(--race-wire);
+  font-size: 0.76rem;
+}
+
+#link-race .race-path {
+  margin-inline: 0.3rem;
+}
+
+#link-race [data-link="B"] .race-path {
+  width: 48%;
+}
+
+#link-race .race-track {
+  position: relative;
+  height: 0.85rem;
+  margin: 0.2rem 0 0.4rem;
+  border-radius: 1rem;
+  background: var(--race-wire);
+}
+
+#link-race .race-track::before,
+#link-race .race-track::after,
+#link-race .race-track span {
+  position: absolute;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  background: var(--race-color);
+}
+
+#link-race .race-track::before,
+#link-race .race-track::after {
+  content: "";
+  left: 0;
+  width: 0.14rem;
+  height: 100%;
+  border-radius: 1rem;
+}
+
+#link-race .race-track::after {
+  left: 100%;
+}
+
+#link-race .race-track span {
+  width: clamp(0.17rem, 0.55vw, 0.36rem);
+  aspect-ratio: 1;
+  border-radius: 50%;
+}
+
+#link-race .race-timeline p,
+#link-race .race-meter p,
+#link-race .race-finish {
+  margin: 0;
+}
+
+#link-race .race-totals {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 0.75rem;
+  margin-top: 0.6rem;
+}
+
+#link-race .race-meter p {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: 0 0.35rem;
+  font-size: 0.8rem;
+  font-variant-numeric: tabular-nums;
+}
+
+#link-race .race-meter progress {
+  display: block;
+  width: 100%;
+  height: 0.55rem;
+  margin: 0.2rem 0 0;
+  accent-color: var(--race-color);
+}
+
+#link-race .race-finish {
+  margin-top: 0.4rem;
+  font-size: 0.85rem;
+  font-variant-numeric: tabular-nums;
+}
+
+#link-race .race-announcement {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  clip-path: inset(50%);
+  overflow: hidden;
+}
+
+#link-race figcaption {
+  border-top: 1px solid #b7cdcd;
+  padding-top: 0.65rem;
+  color: #173840;
+  font-weight: 600;
+}
+
+.lab-link-policy {
+  padding-top: 0.65rem;
+  border-top: 1px solid #b7cdcd;
+}
+
+.lab-link-policy + .lab-link-policy {
+  margin-top: 0.9rem;
+}
+
+.lab-link-policy h4 {
+  margin: 0 0 0.6rem;
+  color: #173840;
+  font-size: 0.98rem;
+}
+
+.lab-sender p {
+  margin: 0 0 0.3rem;
+  font-size: 0.8rem;
+  color: #334e56;
+}
+
+.lab-sender + .lab-sender {
+  margin-top: 0.65rem;
+}
+
+.lab-packets,
+.lab-events {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.lab-packets {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.35rem;
+}
+
+.lab-packets li,
+.lab-events li {
+  margin: 0;
+}
+
+.lab-packet {
+  display: grid;
+  padding: 0.3rem 0.45rem;
+  border: 1px solid #99b9af;
+  border-radius: 0.3rem;
+  background: #e4f3ee;
+  color: #18443b;
+  font-size: 0.74rem;
+  min-width: 4.6rem;
+}
+
+.lab-packet.late {
+  border-color: #cfac85;
+  background: #fcf0dd;
+  color: #704411;
+}
+
+.lab-packet.refused {
+  border-color: #c6cfd2;
+  background: #eef1f2;
+  color: #324850;
+}
+
+.lab-plot {
+  background: #fff;
+  border: 1px solid #d3dfdf;
+  border-radius: 0.3rem;
+}
+
+.lab-plot svg {
+  display: block;
+  width: 100%;
+  color: #314d58;
+  font-size: 17px;
+}
+
+.lab-plot text {
+  fill: currentColor;
+}
+
+.lab-plot .lab-axis-title {
+  font-weight: 700;
+}
+
+.lab-plot .lab-outage-label {
+  fill: #6c441b;
+}
+
+.lab-grid {
+  stroke: #c0cfd1;
+}
+
+.lab-outage {
+  fill: #fbefde;
+}
+
+.lab-threshold {
+  stroke: #567e89;
+  stroke-dasharray: 6 5;
+}
+
+.lab-trace {
+  fill: none;
+  stroke: #076764;
+  stroke-width: 3.5;
+  stroke-linejoin: round;
+}
+
+.lab-marker {
+  fill: #076764;
+  stroke: #fff;
+  stroke-width: 1.2;
+}
+
+.lab-plot .lab-marker-text {
+  fill: #fff;
+  font-size: 13px;
+  font-weight: 700;
+}
+
+.lab-result {
+  margin: 0.6rem 0;
+  font-weight: 700;
+}
+
+.lab-events {
+  display: flex;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+  font-size: 0.78rem;
+}
+
+.lab-events li {
+  flex: 1 1 9rem;
+  display: flex;
+  align-items: start;
+  gap: 0.4rem;
+  border: 1px solid #d3dfdf;
+  border-radius: 0.3rem;
+  background: #fff;
+  padding: 0.45rem;
+}
+
+.lab-marker-label {
+  min-width: 1.2rem;
+  height: 1.2rem;
+  border-radius: 50%;
+  background: #076764;
+  color: #fff;
+  font-weight: 700;
+  text-align: center;
+}
+
+@media print {
+  .chapter-lab {
+    display: none;
+  }
+
+  #playback-lab:not([hidden]) + p:has(> img:only-child) {
+    display: block;
+  }
+}
+
+.book-nav {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: .55rem 1.4rem;
+  margin-bottom: 1.6rem;
+  color: #37525a;
+  font: .85rem/1.5 system-ui, sans-serif;
+}
+
+.chapter-turn {
+  justify-content: space-between;
+  margin: 2.4rem 0 0;
+  padding-top: 1rem;
+  border-top: 1px solid #d3dfdf;
+}
+
+.book-contents ul {
+  list-style: none;
+  padding: 0;
+}
+
+@media print {
+  .book-nav { display: none; }
+}
+</style>
+</head>
+<body>
+  <main>
+    <nav class="book-nav" aria-label="Book location"><a href="index.html">Contents</a><span>Part I — Building a Network</span></nav>
+    <article><h1>4. Switching and Forwarding</h1>
+<p>Last chapter we left Returno in the village library with a packet for the weather station. He&#39;d even found the address of the gateway at the town hall, the machine that would take the packet on its next hop. His laptop could therefore put the gateway&#39;s MAC address on an Ethernet frame and hand it to the library network. Let&#39;s stay in the library a little longer. What in the building knows which way the town hall is?</p>
+<h2>What can a switch learn from one frame?</h2>
+<p>With an early Ethernet, the answer could quite reasonably have been <em>nothing</em>. You could attach every computer to one long piece of copper. The signal would reach them all, and the town-hall gateway would recognize its address and accept the frame. You can see the appeal of this arrangement if you&#39;re the person who otherwise has to give directions. It&#39;s somewhat less appealing if you&#39;re in the library trying to print a page while two machines at the town hall are exchanging a large file. Even a conversation whose participants are both at the town hall occupies the library&#39;s wire.</p>
+<p>Suppose we cut the network into two <strong>segments</strong>, one serving each building, and put a small machine between them. This machine, called a <strong>bridge</strong>, can listen to one segment and repeat a frame onto the other. If it repeats everything it hears, we&#39;ve gone to some expense to put the copper back together. What we&#39;d like it to do is let the printer and laptop carry on locally while the town hall gets on with its transfer. Offsetting that considerable virtue is the prospect of someone having to tell the bridge where every printer in the village lives.</p>
+<p>See if you can spare that person the job. Give the bridge three ports, or connections: port 1 for the library, 2 for the town hall, and 3 for a clinic. A bridge with several ports is usually called a <strong>switch</strong>. The very first thing this switch hears on port 1 is a frame from the library laptop, L, addressed to the gateway, G. Which of those two addresses has the switch just learned something about?</p>
+<p>It has no idea where G is. It does, however, have excellent evidence that a frame intended for L ought to go back out through port 1. It can remember that fact and deal with its immediate ignorance about G by sending a copy out through both of the other ports, an operation called <strong>flooding</strong>. When the gateway replies, the switch finally discovers where G is, and the reply is already addressed to the one machine it knows how to reach. You can watch its education in Figure 4.1.</p>
+<p><img src="../chapters/04-switching-and-forwarding/figures/learning-bridge.svg" alt="Three frames at a bridge with port 1 to the library, port 2 to the town hall, and port 3 to the clinic. The first frame goes from L to G and is flooded on ports 2 and 3. The reply from G to L uses only port 1. The following frame from L to G uses only port 2."></p>
+<p><em>Figure 4.1. The bridge learns from the source and looks up the destination. Once it has heard from both L and G, neither direction needs a copy on the clinic port.</em></p>
+<p>If the laptop sends to a printer the bridge has already seen on port 1, the bridge leaves the frame on that segment. The printer can hear the original transmission, and a second copy would only spend capacity. A frame with a broadcast destination is still meant for every segment in the local network, so the bridge floods it even when its table of individual MAC addresses is full. Returno&#39;s first ARP request from Chapter 3 was such a frame. If it reaches the gateway, the bridge can learn from the request and the gateway&#39;s reply in exactly the same way.</p>
+<p>The two operations have different jobs. <strong>Forwarding</strong> uses the destination to decide what to do with the current frame. <strong>Learning</strong> uses the source to build the state that later forwarding decisions consult. An arriving frame can refresh or replace the entry for its source. An entry the bridge has seen no evidence for recently can expire, so a computer that moves and stays silent can eventually receive frames via flooding on its new segment.</p>
+<p>In class, someone argued for fewer ports because an unknown destination would require fewer copies. Another student turned the argument around. Once addresses are learned, putting fewer hosts on each port means fewer machines have to share a segment. Then a third student pointed out that two neighbors that used to communicate directly on their shared segment would have to go through the switch if they each got a separate port. Could the switch itself become the bottleneck? Count the copies during the first few frames, then compare two long transfers between disjoint pairs. The answer depends on how much traffic the bridge can handle, how often it has to flood, and which machines actually talk to each other. One port per host with a sufficiently fast switch can avoid the shared-medium contention that started the discussion.</p>
+<h2>What happens if Returno adds one cable too many?</h2>
+<p>That was one switch, and it could learn a good deal by sitting quietly between the buildings. Now suppose we give the library, school, and town hall a switch apiece. We&#39;ll use their numbers, 5, 2, and 9, so you can follow them in the drawings. Returno cables the library to the school and the school to the town hall. This works until somebody digs through the first cable and a perfectly healthy library laptop loses its path to a perfectly healthy gateway. Running a direct cable from the library to the town hall looks like a prudent investment. Before handing Returno the bill, though, try his network on a good day when all three cables work. The laptop wants to find the gateway and broadcasts one ARP request. How many requests will the gateway receive?</p>
+<p><img src="../chapters/04-switching-and-forwarding/figures/broadcast-loop.svg" alt="A triangle of switches 5, 2, and 9 with two copies of one broadcast following opposite directions. The highlighted copy travels from 5 to 2, from 2 to 9, and from 9 back to 5."></p>
+<p><em>Figure 4.2. Switch 5 sends a copy in each direction. The solid arrows trace one copy around the loop. The dashed arrows trace the other. The laptop and gateway are on the two lower switches.</em></p>
+<p>Follow the copy that first goes from 5 to 2. Switch 2 floods it out the port toward 9, and 9 floods it out the port toward 5. Switch 5 now gets a frame whose source is the library laptop but whose ingress is the town-hall cable. As far as the learning rule can tell, the laptop has moved. Switch 5 records the new evidence and floods another copy toward 2. No switch reflected the frame back through the port it arrived on. The loop brought the copy back on a different port each time. The other copy can do the same in the opposite direction. The gateway can see repeated requests, and the switches can repeatedly change their entries for a machine that never moved.</p>
+<p>One proposal in class was to have the recipient announce that it had received the message so the switches could stop forwarding it. Someone asked what would happen to that announcement. “Oh, the broadcast now itself creates a cycle. Oh, I didn&#39;t think of that.” Even if delivery notices had a separate rule, the switches would need a way to match each notice to the frame it was intended to stop, and a notice cannot help if the destination never gets the frame. Another proposal was to give every frame an ID and remember which ones had already passed. That can work with enough memory and a suitable rule for retiring IDs, but the switch would be keeping track of recent <em>frames</em> as well as the much smaller set of addresses. On the board, where our switch runs something suspiciously like Python, it&#39;s easy enough to add another table. In the device that has to consult that table for every arriving frame, we&#39;d like to know how big it needs to be. A third proposal was to shut down quiet links. Once the broadcast is looping, which links will look quiet?</p>
+<p>IP routers have a way to bound the damage from their own loops. Each IPv4 router decrements the datagram&#39;s Time to Live (TTL) when it forwards, and drops a datagram that has run out of TTL. Think of a climbing harness. You&#39;re glad it&#39;s there if you fall, although it would be a curious choice of equipment for finding the way up. The Ethernet switches in our triangle forward the frame at the link layer and leave any enclosed IP datagram alone. An ordinary Ethernet frame has no corresponding hop counter. Even if we added one, it would eventually kill the copy in Figure 4.2 without telling the switches which way the next copy ought to go.</p>
+<h2>Which links should carry frames?</h2>
+<p>A student proposed keeping the smallest number of links that still connected all the switches. For a network of <em>n</em> switches that would be <em>n − 1</em> links. The instructor drew a four-switch network with five links and cut two in the wrong places. The result left three links and an isolated switch. A second student supplied the missing condition. Pick one switch and make sure every other switch can still reach it. The two conditions together characterize a <strong>spanning tree</strong>, a connected set of links with no cycles that includes every switch.</p>
+<p>Why does flooding work on that tree? Between any two switches there is exactly one simple path. On receiving a flooded frame, each switch sends copies out its other ports. A second way for a copy to reach the same switch would require a cycle. The same unique paths give source learning its meaning. If a switch receives a frame from L, the port it arrived on really does lead back to L. Returno gets both properties by keeping the triangle&#39;s cables installed and allowing ordinary frames to use only two of them at a time.</p>
+<p>Someone in class suggested Prim&#39;s algorithm. Given a map, an administrator could compute a tree and configure the switches. Switches could also report their neighbors to a controller that computes a tree, but first they need a way to reach that controller, and somebody has to handle changes when that connection is unavailable. A student proposed something the switches could do with only their own ports. Pick a <strong>root</strong>, have it send a message to its neighbors, and let each switch keep the link by which it can reach the root. Then each switch needs just one parent, and the root needs none.</p>
+<p>The first version of the proposal was to take the first message that arrived. One student reasoned that if everybody passed it along promptly, a shorter path should have delivered it already. Another asked whether the aim was the shortest path or the fastest one. Suppose 2&#39;s direct advertisement to 9 is delayed and the copy that goes from 2 to 5 to 9 arrives first. Asking everyone to pause before relaying could work under an appropriate bound on delays, but a message can carry the hop count itself. The switch can compare two routes without coordinating clocks or interpreting the order in which the messages arrived.</p>
+<h2>How can neighbors agree on a tree?</h2>
+<p>We can ask a switch to choose a parent, but we&#39;ve rather casually assumed that everybody knows which switch deserves to be the root. From the library, the school looks much like the town hall. The switches do have distinct numbers, so let&#39;s agree that the smallest number wins. That leaves a little difficulty on the first morning: before it hears from its neighbors, the library switch knows precisely one switch number. Let it nominate itself. What could a neighbor say to change its mind?</p>
+<p>Suppose each switch periodically tells its neighbors, “Here&#39;s the smallest root I&#39;ve heard of, and here&#39;s how many links away it is.” The sender includes its own ID, so the receiver knows whose offer it&#39;s considering. Hearing about a smaller root is always grounds for changing your mind, even if it&#39;s a long way away. Once two neighbors agree on the root, it makes sense to compare the distances they offer, adding one hop for the link to the neighbor. If they&#39;re equally good, we can prefer the neighbor with the smaller ID. With that agreement in place, every switch can keep advertising its current choice, including switches that have rather recently discovered they aren&#39;t the root after all.</p>
+<p>In Cooville, switch 9 might hear switch 5 claim to be root before it hears from switch 2. It has a reason to switch from 9 to 5 and later from 5 to 2. Even among messages naming 2, it can first hear of a two-hop path via 5 and then improve to the one-hop path. When the messages have settled, 5 and 9 both choose 2 as parent. The cable between 5 and 9 still carries control messages. To carry ordinary frames, one endpoint must choose the other as a parent. Neither does here, so the switches block the cable for data. On a point-to-point link, blocking data at either end suffices to remove it from the forwarding tree.</p>
+<p><img src="../chapters/04-switching-and-forwarding/figures/tree-and-failure.svg" alt="In the initial triangle all three switches claim their own ID as root. On the settled tree both 5 and 9 choose 2 with distance one, and 5–9 is blocked for data. After link 2–5 fails, 9 still chooses 2 and 5 chooses 9 with distance two, so 5–9 forwards."></p>
+<p><em>Figure 4.3. Only switch 2, the smallest ID, remains a root once the advertisements have propagated. The middle and right panels show the active data links before and after the library-to-school cable fails.</em></p>
+<p>For an example with a tie, put a fourth switch numbered 3 at a new clinic, with links to 5 and 9 and no direct link to 2. Both neighbors can offer a two-hop trip to root 2. Which link should 3 keep? Our rule chooses 5. Choosing 9 instead would also work if 3 kept only that one. The ID rule gives the same tree regardless of which of the advertisements arrived first.</p>
+<p>Here is why the settled tree works. In a fixed, connected network where advertisements eventually arrive, the smallest ID propagates from neighbor to neighbor and wins wherever it is heard. Each switch other than that root has chosen one parent. Its parent is one hop closer to the root. Follow parent links and watch the hop count decrease at every step until it reaches zero. This gives every switch a path to the root, and the parent choices have supplied exactly one edge per non-root switch. Those are the two conditions the students asked for. Ethernet&#39;s <strong>Spanning Tree Protocol</strong> (STP) uses this general idea. Its actual rules include bridge priorities, path costs that need not equal hop counts, and port states that govern when forwarding can begin. <a href="https://www.cisco.com/c/en/us/td/docs/switches/lan/c9000/lyr2-fwd/stp/stp-configuration-guide/m-stp.html">Spanning Tree Protocol configuration guide</a></p>
+<p>What became of the student&#39;s suggestion to take the first message that arrives? In class I tried to draw a network on which that rule would produce a cycle. I went away without an example, and by the next lecture there was a good reason for that. For a fixed, connected network, consider the flood that announces the eventual root. Commit to the port where you first hear about that root, then relay the announcement. Each new switch to hear about the root attaches to a switch that had already heard about it. Trace the parents backward and every parent joined strictly earlier than its child. The chain must reach the root, so the resulting links are a tree even if messages take arbitrary amounts of time to arrive. In the delayed-advertisement example, 9 can join through 5, and the tree can still carry frames. It just used two hops where one was available. A new round in which everyone chooses the first arrival again could select different parents even if nobody moved a cable. So the student gets a tree. What the hop count buys us, beyond that, is a short path to the root even when the first message took the scenic route.</p>
+<h2>What changes when a link or switch fails?</h2>
+<p>Pull the cable between 2 and 5. The library&#39;s switch can still hear from the town-hall switch on the cable that was blocked for data. Switch 9 still has its direct path to 2, so 5 chooses 9 as its parent and reports a distance of two. The active tree now runs from 5 through 9 to 2. If the school switch itself loses power, there is no surviving route to 2. Once information from that root expires, 5 has the smallest surviving ID, and 9 can choose it across the direct cable. Both the laptop and gateway are still connected. Devices attached only to the school switch have lost their connection.</p>
+<p>A switch can detect some failures locally, for example when a port loses its signal. To detect a vanished root beyond its immediate neighbors, it needs fresh evidence that the root is still there. In the lecture&#39;s design the root periodically sends a new announcement. Information that stops being renewed expires using elapsed time on each switch&#39;s local clock. Ask what would happen if 5 and 9 could keep each other&#39;s old claim about 2 alive just by repeating it. A timer that restarts for any message about 2 would never run out. The protocol needs a way for root information to get older as it is relayed and to expire unless it is refreshed from the root.</p>
+<p>Settling on a tree and moving traffic onto it are two parts of the job. On recovery, for example, if the library-to-school link starts forwarding before the library-to-town-hall path stops forwarding, the whole original cycle briefly returns. If the old path is blocked first, some frames may have to wait or be dropped before the new one opens. The proof for a settled tree says nothing about the order in which different switches change their ports. Actual spanning-tree protocols govern when each port can start forwarding, so it does not open immediately on incomplete information. <a href="https://www.cisco.com/c/en/us/td/docs/switches/lan/c9000/lyr2-fwd/stp/stp-configuration-guide/m-stp.html">Spanning-tree interface states</a></p>
+<p>Finally, look at the library&#39;s entry for the gateway. Before the cable failed, switch 5 learned G on its port toward school switch 2. The new path starts on the port toward 9. Even after the control messages settle, that old MAC entry describes the previous tree. Discarding entries learned on a lost or blocked port and refreshing entries from new traffic both help. A simple design could clear dynamic entries after a topology change and pay for a burst of flooding while it learns again. With aging alone, an obsolete entry on a port that is still forwarding can keep sending traffic the wrong way until it expires. Returno needs both a working set of links and forwarding tables that reflect it.</p>
+<h2>When is the tree the wrong path?</h2>
+<p>With all the cables working and switch 2 as root, every switch has a shortest path to 2. Look again at a frame going from the library to the town hall. A direct cable joins 5 to 9, but the frame has to go through 2. It might have to share those active links with traffic to or from the school, while the nearby cable has data capacity sitting idle. The tree made it safe to forward with very little information about the network. It did so by making every pair of computers share the same choice of active links. Could the switches instead choose paths that depend on where a packet is going and use more of the physical network? That requires a different way to learn where to send traffic.</p>
+<h2>Try the decisions yourself</h2>
+<p><strong>Break this.</strong> <a href="../assets/quiz1-2025.pdf#page=8">Quiz 1 (2025), Q16, page 8</a> asks what happens when a cycle persists in an Ethernet network. In Figure 4.2, inject one broadcast at switch 5 with empty tables. Write the next three inter-switch transmissions of the copy that starts toward 9 and track where 5 learns L when that copy comes back. Now replace the broadcast with a unicast to a machine that remains silent, so none of the switches has learned its address. Which parts of your trace change?</p>
+<p><strong>What if the path is supposed to be shortest?</strong> <a href="../assets/quiz1-2025.pdf#page=10">Quiz 1 (2025), Q21, page 10</a> asks which algorithms guarantee shortest paths between every pair after convergence. Answer for a spanning tree, using the three Cooville switches as your example. Could you fix all three pairs&#39; paths by picking a different root?</p>
+<p><strong>Check the clock.</strong> In <a href="../assets/cs356-final-2024.pdf#page=7">Final (2024), Q12, page 7</a>, an NTP client adds half the measured round-trip time to the server&#39;s reported time. Assume each link has the same latency in both directions. Does a converged spanning tree make the path symmetric? Explain what happens to the conclusion if a link fails while the request is in flight and the reply takes the replacement path.</p>
+<p><strong>Network detective.</strong> The direct cable begins forwarding after a failure. Switch 5&#39;s capture shows control traffic reaching it on the direct cable, but laptop frames for G still leave toward 2. Assume the cable toward 2 is up and still eligible to carry data, and the failure occurred farther along that old path. What entry would you inspect? Now suppose the old entry has expired and a broadcast from the library comes back on a different port. Which property of the active topology would you check first?</p>
+<p><a href="../chapters/04-switching-and-forwarding/notes.md">Chapter 4 source notes and worked checks</a></p>
+</article>
+    <nav class="book-nav chapter-turn" aria-label="Chapter navigation"><a href="03-naming-addressing-and-finding-things.html">Previous · 3. Naming, Addressing, and Finding Things</a>
+<a href="index.html">Contents</a>
+<a href="05-learning-the-network.html">Next · 5. Learning the Network</a></nav>
+  </main>
+</body>
+</html>

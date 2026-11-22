@@ -1,0 +1,618 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>13. From Bits to Physical Signals</title>
+  <style>:root {
+  color-scheme: light;
+  background: #f3f6f5;
+  color: #182a30;
+  font: 18px/1.65 Georgia, serif;
+}
+
+body {
+  max-width: 48rem;
+  margin: 2.5rem auto;
+  padding: 2.25rem clamp(1rem, 5vw, 3.25rem);
+  background: #fff;
+  border-top: 0.3rem solid #076764;
+}
+
+h1,
+h2,
+h3 {
+  font-family: system-ui, sans-serif;
+  line-height: 1.2;
+  color: #152e37;
+}
+
+h1 {
+  margin: 0 0 1.4rem;
+  font-size: clamp(2rem, 5vw, 3rem);
+  letter-spacing: -0.035em;
+}
+
+h2 {
+  margin: 2.5rem 0 0.7rem;
+  font-size: clamp(1.4rem, 3vw, 1.75rem);
+}
+
+p {
+  margin: 0 0 1rem;
+}
+
+a {
+  color: #0a5b63;
+  overflow-wrap: anywhere;
+  text-underline-offset: 0.15em;
+}
+
+li + li {
+  margin-top: 0.7rem;
+}
+
+blockquote {
+  margin: 1.2rem 0;
+  padding: 0.65rem 1rem;
+  background: #edf6f4;
+  border-inline-start: 0.2rem solid #076764;
+}
+
+blockquote p {
+  margin: 0;
+}
+
+img {
+  display: block;
+  max-width: 100%;
+  height: auto;
+  outline: 1px solid #d3dfdf;
+}
+
+p:has(> img:only-child) {
+  margin: 1.5rem 0 0.5rem;
+}
+
+p:has(> img:only-child) + p:has(> em:only-child) {
+  color: #37525a;
+  font: 0.83rem/1.5 system-ui, sans-serif;
+  margin: 0 0 1.5rem;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 1.25rem 0;
+  font: 0.83rem/1.45 system-ui, sans-serif;
+  font-variant-numeric: tabular-nums;
+  overflow-wrap: anywhere;
+}
+
+th,
+td {
+  border: 1px solid #d3dfdf;
+  padding: 0.55rem;
+  vertical-align: top;
+}
+
+th {
+  background: #edf6f4;
+}
+
+@media (max-width: 34rem) {
+  body {
+    margin: 0;
+  }
+
+  table {
+    font-size: 0.7rem;
+  }
+
+  th,
+  td {
+    padding: 0.3rem;
+  }
+}
+
+@media print {
+  :root {
+    background: #fff;
+  }
+
+  body {
+    margin: 0;
+    padding: 0;
+    border: 0;
+  }
+
+  h2,
+  p:has(> img:only-child) {
+    break-after: avoid;
+  }
+
+  table,
+  img {
+    break-inside: avoid;
+  }
+}
+
+.chapter-lab {
+  margin: 1.5rem 0 0.65rem;
+  padding: clamp(0.75rem, 3vw, 1.25rem);
+  border: 1px solid #b7cdcd;
+  border-radius: 0.6rem;
+  background: #f7faf9;
+  font: 0.93rem/1.5 system-ui, sans-serif;
+}
+
+.chapter-lab h3 {
+  margin: 0 0 0.5rem;
+  font-size: 1.2rem;
+}
+
+.chapter-lab > p {
+  color: #334e56;
+}
+
+.chapter-lab + p:has(> em:only-child) {
+  color: #37525a;
+  font: 0.83rem/1.5 system-ui, sans-serif;
+  margin-bottom: 1.5rem;
+}
+
+#playback-lab:not([hidden]) + p:has(> img:only-child) {
+  display: none;
+}
+
+.lab-controls {
+  display: flex;
+  gap: 0.75rem;
+  align-items: end;
+  flex-wrap: wrap;
+  margin-bottom: 1rem;
+}
+
+.lab-controls label {
+  display: grid;
+  gap: 0.3rem;
+  font-weight: 700;
+  font-size: 0.8rem;
+}
+
+.lab-controls select,
+.lab-controls button {
+  min-height: 2.2rem;
+  border: 1px solid #9bb2b8;
+  border-radius: 0.3rem;
+  background: #fff;
+  color: #163440;
+  padding: 0.25rem 0.5rem;
+  font: inherit;
+}
+
+.lab-controls button {
+  font-size: 0.8rem;
+  cursor: pointer;
+}
+
+.lab-controls :focus-visible {
+  outline: 2px solid #076764;
+  outline-offset: 2px;
+}
+
+#link-race .race-timeline {
+  display: grid;
+  gap: 0.25rem;
+  margin-bottom: 0.85rem;
+}
+
+#link-race .race-timeline label,
+#link-race .race-endpoints {
+  display: flex;
+  justify-content: space-between;
+  gap: 0.35rem;
+}
+
+#link-race .race-timeline label {
+  font-size: 0.8rem;
+  font-weight: 700;
+  font-variant-numeric: tabular-nums;
+}
+
+#link-race .race-timeline input {
+  width: 100%;
+  margin: 0;
+  accent-color: #076764;
+}
+
+#link-race .race-timeline input:focus-visible {
+  outline: 2px solid #076764;
+  outline-offset: 2px;
+}
+
+#link-race [aria-disabled="true"] {
+  color: #55676e;
+  background: #edf2f1;
+  cursor: default;
+}
+
+#link-race .race-lane {
+  --race-color: #25618b;
+  --race-wire: #dce9f1;
+  padding: 0.75rem 0;
+  border-top: 1px solid #b7cdcd;
+}
+
+#link-race .race-lane[data-link="B"] {
+  --race-color: #076764;
+  --race-wire: #dbede9;
+}
+
+#link-race h4 {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 0.15rem 0.6rem;
+  margin: 0 0 0.4rem;
+  color: var(--race-color);
+  font-size: 1rem;
+}
+
+#link-race h4 span,
+#link-race .race-endpoints,
+#link-race .race-timeline p,
+#link-race .race-key {
+  color: #405961;
+  font-size: 0.8rem;
+  font-weight: 400;
+}
+
+#link-race h4 strong {
+  padding: 0.05rem 0.4rem;
+  border-radius: 0.2rem;
+  background: var(--race-wire);
+  font-size: 0.76rem;
+}
+
+#link-race .race-path {
+  margin-inline: 0.3rem;
+}
+
+#link-race [data-link="B"] .race-path {
+  width: 48%;
+}
+
+#link-race .race-track {
+  position: relative;
+  height: 0.85rem;
+  margin: 0.2rem 0 0.4rem;
+  border-radius: 1rem;
+  background: var(--race-wire);
+}
+
+#link-race .race-track::before,
+#link-race .race-track::after,
+#link-race .race-track span {
+  position: absolute;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  background: var(--race-color);
+}
+
+#link-race .race-track::before,
+#link-race .race-track::after {
+  content: "";
+  left: 0;
+  width: 0.14rem;
+  height: 100%;
+  border-radius: 1rem;
+}
+
+#link-race .race-track::after {
+  left: 100%;
+}
+
+#link-race .race-track span {
+  width: clamp(0.17rem, 0.55vw, 0.36rem);
+  aspect-ratio: 1;
+  border-radius: 50%;
+}
+
+#link-race .race-timeline p,
+#link-race .race-meter p,
+#link-race .race-finish {
+  margin: 0;
+}
+
+#link-race .race-totals {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 0.75rem;
+  margin-top: 0.6rem;
+}
+
+#link-race .race-meter p {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: 0 0.35rem;
+  font-size: 0.8rem;
+  font-variant-numeric: tabular-nums;
+}
+
+#link-race .race-meter progress {
+  display: block;
+  width: 100%;
+  height: 0.55rem;
+  margin: 0.2rem 0 0;
+  accent-color: var(--race-color);
+}
+
+#link-race .race-finish {
+  margin-top: 0.4rem;
+  font-size: 0.85rem;
+  font-variant-numeric: tabular-nums;
+}
+
+#link-race .race-announcement {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  clip-path: inset(50%);
+  overflow: hidden;
+}
+
+#link-race figcaption {
+  border-top: 1px solid #b7cdcd;
+  padding-top: 0.65rem;
+  color: #173840;
+  font-weight: 600;
+}
+
+.lab-link-policy {
+  padding-top: 0.65rem;
+  border-top: 1px solid #b7cdcd;
+}
+
+.lab-link-policy + .lab-link-policy {
+  margin-top: 0.9rem;
+}
+
+.lab-link-policy h4 {
+  margin: 0 0 0.6rem;
+  color: #173840;
+  font-size: 0.98rem;
+}
+
+.lab-sender p {
+  margin: 0 0 0.3rem;
+  font-size: 0.8rem;
+  color: #334e56;
+}
+
+.lab-sender + .lab-sender {
+  margin-top: 0.65rem;
+}
+
+.lab-packets,
+.lab-events {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.lab-packets {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.35rem;
+}
+
+.lab-packets li,
+.lab-events li {
+  margin: 0;
+}
+
+.lab-packet {
+  display: grid;
+  padding: 0.3rem 0.45rem;
+  border: 1px solid #99b9af;
+  border-radius: 0.3rem;
+  background: #e4f3ee;
+  color: #18443b;
+  font-size: 0.74rem;
+  min-width: 4.6rem;
+}
+
+.lab-packet.late {
+  border-color: #cfac85;
+  background: #fcf0dd;
+  color: #704411;
+}
+
+.lab-packet.refused {
+  border-color: #c6cfd2;
+  background: #eef1f2;
+  color: #324850;
+}
+
+.lab-plot {
+  background: #fff;
+  border: 1px solid #d3dfdf;
+  border-radius: 0.3rem;
+}
+
+.lab-plot svg {
+  display: block;
+  width: 100%;
+  color: #314d58;
+  font-size: 17px;
+}
+
+.lab-plot text {
+  fill: currentColor;
+}
+
+.lab-plot .lab-axis-title {
+  font-weight: 700;
+}
+
+.lab-plot .lab-outage-label {
+  fill: #6c441b;
+}
+
+.lab-grid {
+  stroke: #c0cfd1;
+}
+
+.lab-outage {
+  fill: #fbefde;
+}
+
+.lab-threshold {
+  stroke: #567e89;
+  stroke-dasharray: 6 5;
+}
+
+.lab-trace {
+  fill: none;
+  stroke: #076764;
+  stroke-width: 3.5;
+  stroke-linejoin: round;
+}
+
+.lab-marker {
+  fill: #076764;
+  stroke: #fff;
+  stroke-width: 1.2;
+}
+
+.lab-plot .lab-marker-text {
+  fill: #fff;
+  font-size: 13px;
+  font-weight: 700;
+}
+
+.lab-result {
+  margin: 0.6rem 0;
+  font-weight: 700;
+}
+
+.lab-events {
+  display: flex;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+  font-size: 0.78rem;
+}
+
+.lab-events li {
+  flex: 1 1 9rem;
+  display: flex;
+  align-items: start;
+  gap: 0.4rem;
+  border: 1px solid #d3dfdf;
+  border-radius: 0.3rem;
+  background: #fff;
+  padding: 0.45rem;
+}
+
+.lab-marker-label {
+  min-width: 1.2rem;
+  height: 1.2rem;
+  border-radius: 50%;
+  background: #076764;
+  color: #fff;
+  font-weight: 700;
+  text-align: center;
+}
+
+@media print {
+  .chapter-lab {
+    display: none;
+  }
+
+  #playback-lab:not([hidden]) + p:has(> img:only-child) {
+    display: block;
+  }
+}
+
+.book-nav {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: .55rem 1.4rem;
+  margin-bottom: 1.6rem;
+  color: #37525a;
+  font: .85rem/1.5 system-ui, sans-serif;
+}
+
+.chapter-turn {
+  justify-content: space-between;
+  margin: 2.4rem 0 0;
+  padding-top: 1rem;
+  border-top: 1px solid #d3dfdf;
+}
+
+.book-contents ul {
+  list-style: none;
+  padding: 0;
+}
+
+@media print {
+  .book-nav { display: none; }
+}
+</style>
+</head>
+<body>
+  <main>
+    <nav class="book-nav" aria-label="Book location"><a href="index.html">Contents</a><span>Part IV — The Physical Network</span></nav>
+    <article><h1>13. From Bits to Physical Signals</h1>
+<p>When we calculated how long a packet would occupy a link, we could divide its size by the rate printed on the box. Now suppose you&#39;re building what&#39;s inside the box. You hold a wire high for a one and low for a zero, with a new bit every microsecond. At the other end, the wire stays high for a while before it goes low. How many ones did you send?</p>
+<p>Give the receiver a microsecond clock of its own. Suppose it starts in the middle of the first bit and its clock runs a little slow. Most of the early measurements will be right. After enough bits, it will measure on the wrong side of a boundary. The sender can keep the signal clean the entire time. You can repair a corrupted packet in Chapter 9 only after some receiver has assembled bits into a packet. How could we help that receiver determine <em>when</em> to measure? <a href="../assets/f26-subtitles.txt">Lecture 15, lines 23011–23060.</a></p>
+<h2>How long can you go without a timing clue?</h2>
+<p>Start with a wire and an ideal signal. In this form of <strong>non-return-to-zero</strong> (NRZ) encoding, a bit holds its voltage for its whole slot. A change gives the receiver a boundary it can use to check its clock. While the voltage stays flat, the only way to count the bit intervals is to trust that clock. Say the sender starts with six ones and then sends a zero. The receiver begins at time 0.5 measured in transmitter slots. Its first six sample times should be 0.5, 1.5, 2.5, and so on through 5.5. Instead, its clock ticks every 1.12 slots. What is the sixth sample time? Which bit does it hit?</p>
+<p><img src="../chapters/13-from-bits-to-physical-signals/figures/clock-drift.svg" alt="Six ones occupy times 0 through 6. A receiver sampling every 1.12 slots first samples at 0.50, then samples the seventh bit at time 6.10 on its sixth measurement."></p>
+<p>At time 6.10 the sixth sample sees the zero. A student suggested measuring five times as often. That can help a receiver see a transition more precisely when there is one, but a long run at one voltage still has no internal time marks. At a guaranteed point in the signal the sender can provide an edge to help the receiver correct its timing. One design is a separate clock wire. Another inserts known symbols at suitable intervals, with rules for removing them. How much overhead would you accept to bound the longest time without an edge? <a href="../assets/f26-subtitles.txt">Lecture 15, lines 23264–23354.</a></p>
+<p><strong>Manchester encoding</strong> provides a transition in the middle of each data bit. Choose a convention in which low to high represents zero and high to low represents one. Both kinds of bit now supply a timing clue. A student asked whether the receiver still needs its own clock to know where the half-bit belongs. It does. Given initial synchronization, it uses the frequent edges to keep its estimate aligned. The transmitter now has to support half-bit intervals and the associated faster transitions. We&#39;ve bought the receiver a regular timing reference by asking the wire to carry transitions on a finer time scale. <a href="../assets/f26-subtitles.txt">Lecture 15, lines 23365–23422.</a></p>
+<p><strong>Break this.</strong> An engineer promises to insert a one after every run of five zeros. The receiver knows to remove those inserted ones. Find a legal payload that can still produce a long flat NRZ signal. How could you make the rule give both voltages a chance to change?</p>
+<h2>How many choices fit in a symbol?</h2>
+<p>A <strong>symbol</strong> is one choice from the signal states a receiver can distinguish during a symbol interval. <strong>Baud</strong> counts symbol intervals per second, including intervals that repeat the previous state. If you put four voltages on a wire, you can assign them to <code>00</code>, <code>01</code>, <code>10</code>, and <code>11</code>. At 1 million symbols per second, this carries 2 megabits per second before allowing for framing or error correction. With sixteen distinguishable states it would carry 4 megabits per second at the same symbol rate. Doubling the number of states adds one bit per symbol. <a href="../assets/f26-subtitles.txt">Lecture 15, lines 23675–23713.</a></p>
+<p>Keep the highest and lowest voltage fixed and add levels between them. Imagine the receiver measures a point just above the midpoint between two adjacent levels. It will choose one even if the transmitter sent the other and noise pushed the measurement across the threshold. The same disturbance that was harmless with two widely separated choices can break a sixteen-level design. Higher symbol rates have a different cost. If a wire behaves like a transmission line and the signal takes time to settle, an earlier symbol can affect a later measurement. The instructor described sending a clock signal that arrived as an unexpected rounded waveform. The diagram at the transmitting end was a square wave. The receiver had to work with the waveform the cable actually delivered. <a href="../assets/f26-subtitles.txt">Lecture 15, lines 23483–23557 and 23675–23713.</a></p>
+<p><strong>Predict, simulate, explain.</strong> In the <a href="../chapters/13-from-bits-to-physical-signals/signal-lab.html">signal lab</a>, put two or four levels in the same voltage range and set the noise bound to 0.40 V. Before looking at the measurements, find the greatest noise amplitude under which a nearest-level decoder is guaranteed correct. Then switch to the clock example. Which errors persist if the signal voltages are exact? <a href="../chapters/13-from-bits-to-physical-signals/lab.md">Lab instructions.</a></p>
+<h2>Why does a signal use a band of frequencies?</h2>
+<p>An unchanging sine wave at 100 MHz completes 100 million cycles per second. If you leave its amplitude, frequency, and phase fixed, it gives a receiver no new sequence of symbol choices. Now shape its amplitude with a waveform that changes with the symbols. What frequencies does the resulting signal use?</p>
+<p>Fourier analysis represents a signal as a combination of sinusoids. If you multiply a 100 MHz tone by a 1 MHz tone, the product identity for cosines gives two components, at 99 and 101 MHz. If instead you add a steady offset to the 1 MHz modulating tone before multiplying, you have those two components and the 100 MHz carrier. A data waveform can have many components. Modulating a carrier moves the baseband spectrum around the carrier frequency. Pulse shaping governs how much of that spectrum occupies the band and how hard it is to suppress leakage outside. <a href="../assets/f26-subtitles.txt">Lecture 15, lines 24036–24087 and 24122–24203.</a></p>
+<p><img src="../chapters/13-from-bits-to-physical-signals/figures/modulation.svg" alt="A narrow carrier line at 100 MHz and side components at 99 and 101 MHz illustrate why modulation requires room around a carrier."></p>
+<p>A transmitter centered at 100 MHz and one centered at 200 MHz could use the same symbol rate and the same bandwidth. Shifting the center changes where in frequency the signal lives. The speed and shape of the changes determine how much space the signal needs around that center. A useful approximation in a family of similarly shaped signals is that a faster symbol rate calls for a wider band.</p>
+<h3>Design this. What would you pay for?</h3>
+<p>Two licenses would let you transmit in 750–950 MHz and 2.7–3.0 GHz, respectively. Assume equal propagation and hardware characteristics across the two bands and equal achievable bits per second per hertz. Which license lets you deliver more bits per second? How much more? <em>Adapted from <a href="../assets/cs356-final-2024.pdf#page=1">Final 2024, Q2, p. 1</a>. The spectral-efficiency assumption is made explicit.</em></p>
+<details>
+<summary>Worked reasoning</summary>
+
+<p>The first width is 200 MHz. The second width is 300 MHz after converting both endpoints to megahertz. The second permits 1.5 times the rate under the stated assumptions. In an actual design you would ask what signal quality, permitted power, and radio hardware you can obtain in each band.</p>
+</details>
+
+<h2>What does a better signal buy?</h2>
+<p>Say you can increase signal power, reduce the background noise, or buy more spectrum. How would you compare their effects? In the idealized band-limited channel with additive white Gaussian noise, let <em>B</em> be the width in hertz and <em>S/N</em> the ratio of received signal power to noise power in the band. The <strong>Shannon capacity</strong> is <em>C</em> = <em>B</em> log₂(1 + <em>S/N</em>) bits per second. For rates below this bound, the model allows codes that drive the error probability arbitrarily low as block length grows. A practical transmission has finite delay, finite coding blocks, and implementation choices to make. The levels we crowded together on the wire illustrated one way noise can erase a distinction. The bound asks a broader question: how many distinctions per second could survive the noise even with the best choice of signaling and code? <a href="../assets/f26-subtitles.txt">Lecture 15, lines 23675–23787.</a> <a href="https://people.math.harvard.edu/~ctm/home/text/others/shannon/entropy/entropy.pdf">Shannon, “A Mathematical Theory of Communication,” §24.</a></p>
+<p>In 20 MHz at a linear SNR of 15 the model gives 80 Mb/s. Quadrupling the received signal power, with the same noise and bandwidth, produces an SNR of 60 and gives about 119 Mb/s. Doubling bandwidth at the original SNR gives 160 Mb/s <em>if</em> you can hold SNR fixed. With white noise and the same total signal power, a band twice as wide collects twice the noise power. Now SNR is 7.5 and the 40 MHz result is about 124 Mb/s. Whenever you move one control, ask which other quantities move with it.</p>
+<p><strong>What if?</strong> You move a radio farther from its receiver and have less received power. Give two changes that could help its symbol decisions. For each, name a cost. You could transmit more power, which uses energy and can create interference elsewhere, or choose a more robust signaling scheme, which can yield fewer useful bits per second. A directional antenna can concentrate energy toward a known receiver, at the cost of aiming it and keeping it aligned.</p>
+<h2>How fast does the signal travel?</h2>
+<p>Copper links guide electrical signals. Their geometry can affect reflections, and signals can attenuate with distance. A twisted pair carrying a differential signal helps a receiver reject disturbances that affect the wires similarly. Glass fiber guides light. Multiple optical wavelengths can carry separate channels on one fiber. Fiber can combine high capacity with low attenuation over long distances, even though the signal in ordinary glass fiber travels at roughly 200,000 km/s. In air or vacuum, radio waves propagate close to 300,000 km/s. Moving the same data onto a different medium changes the propagation time and the rate the link can sustain by different amounts. <a href="../assets/f26-subtitles.txt">Lecture 15, lines 23513–23557, 24465–24475, and 24703–24719.</a></p>
+<p>A geostationary satellite looks fixed from the ground. At about 35,786 km above the equator, the four legs of an ideal ground–satellite–ground round trip span at least about 143,000 km. Divide by 300,000 km/s to get about 477 ms of propagation alone. A lower orbit can sharply reduce the up-and-down distance. A low satellite also moves across the sky as seen from the ground. Continuous service may need satellites to hand users off as they enter and leave view. The time an application measures includes the rest of the path, queues, and processing. Satellite links also share spectrum and coverage capacity among terminals, with reuse and received signal strength depending on beam geometry. <a href="../assets/f26-subtitles.txt">Lecture 15, lines 24635–24748.</a> <a href="https://www.esa.int/Applications/Telecommunications_Integrated_Applications/Orbits">European Space Agency, “Orbits.”</a></p>
+<h3>What if? Put the server at the far end</h3>
+<p>Assume two paths between the same endpoints. The terrestrial path is 5,000 km of fiber and can serve 1 Gb/s. The path through a low Earth orbit constellation spans 5,700 km through air and space and can serve 50 Mb/s. Ignore queues, processing, and parallel work. Use the rates and speeds above. Which path gets a 1,000-byte message that fits in one packet to its destination first? What about a 100 MB transfer? What would you measure before moving the server? <em>Adapted from <a href="../assets/quiz3-2025.pdf#page=1">Quiz 3 2025, Q1, p. 1</a>. The numbers are new. Find the transfer size at which your answer changes.</em></p>
+<details>
+<summary>Worked reasoning</summary>
+
+<p>The assumed one-way propagation times are 25 ms on fiber and 19 ms in air and space. For a 1,000-byte packet the serialization times are 0.008 ms and 0.16 ms, so the space route is quicker. At 100 MB the serialization term is 0.8 seconds on terrestrial fiber and 16 seconds on the satellite path. The crossover in this model comes when 6 ms equals the extra serialization time on the lower-rate path, at about 39 kB. Check the actual route lengths, sustained rates under competing load, tail latency, and whether the application requires several sequential round trips. In the classroom example, a small trading message and a high-rate rendered video represented different workloads even if both cared about latency.</p>
+</details>
+
+<h2>What happens when two radios transmit?</h2>
+<p>Draw a transmitter and a receiver. Put a second transmitter beside them in the drawing. If they send in overlapping bands at the same time and both reach the receiver strongly, the receiver has to distinguish one signal in the presence of the other. Both could have worked in isolation. Far enough apart, or with well-separated directional beams, a pair of links can sometimes reuse the same band. What matters is how much of each signal arrives at each receiver. <a href="../assets/f26-subtitles.txt">Lecture 16, lines 24808–24933.</a></p>
+<p><strong>Design this.</strong> A satellite operator wants to share a 20 MHz band with terrestrial equipment. What measurements would tell you where simultaneous transmissions are feasible? Ask about received powers at each kind of receiver, the occupied bandwidth and leakage, and where the beams overlap. Where simultaneous reception fails, try giving each system time or frequency of its own. What throughput does that cost when only one system has data ready? The next chapter designs a rule for making that decision as traffic arrives. <em>Adapted from <a href="../assets/cs356-quiz2-2024.pdf#page=3">Quiz 2 2024, p. 3</a>. The measurement tasks are new.</em></p>
+</article>
+    <nav class="book-nav chapter-turn" aria-label="Chapter navigation"><a href="12-queues-scheduling-and-fairness.html">Previous · 12. Queues, Scheduling, and Fairness</a>
+<a href="index.html">Contents</a></nav>
+  </main>
+</body>
+</html>

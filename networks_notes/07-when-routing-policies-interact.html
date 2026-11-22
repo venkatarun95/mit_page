@@ -1,0 +1,758 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>7. When Routing Policies Interact</title>
+  <style>:root {
+  color-scheme: light;
+  background: #f3f6f5;
+  color: #182a30;
+  font: 18px/1.65 Georgia, serif;
+}
+
+body {
+  max-width: 48rem;
+  margin: 2.5rem auto;
+  padding: 2.25rem clamp(1rem, 5vw, 3.25rem);
+  background: #fff;
+  border-top: 0.3rem solid #076764;
+}
+
+h1,
+h2,
+h3 {
+  font-family: system-ui, sans-serif;
+  line-height: 1.2;
+  color: #152e37;
+}
+
+h1 {
+  margin: 0 0 1.4rem;
+  font-size: clamp(2rem, 5vw, 3rem);
+  letter-spacing: -0.035em;
+}
+
+h2 {
+  margin: 2.5rem 0 0.7rem;
+  font-size: clamp(1.4rem, 3vw, 1.75rem);
+}
+
+p {
+  margin: 0 0 1rem;
+}
+
+a {
+  color: #0a5b63;
+  overflow-wrap: anywhere;
+  text-underline-offset: 0.15em;
+}
+
+li + li {
+  margin-top: 0.7rem;
+}
+
+blockquote {
+  margin: 1.2rem 0;
+  padding: 0.65rem 1rem;
+  background: #edf6f4;
+  border-inline-start: 0.2rem solid #076764;
+}
+
+blockquote p {
+  margin: 0;
+}
+
+img {
+  display: block;
+  max-width: 100%;
+  height: auto;
+  outline: 1px solid #d3dfdf;
+}
+
+p:has(> img:only-child) {
+  margin: 1.5rem 0 0.5rem;
+}
+
+p:has(> img:only-child) + p:has(> em:only-child) {
+  color: #37525a;
+  font: 0.83rem/1.5 system-ui, sans-serif;
+  margin: 0 0 1.5rem;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 1.25rem 0;
+  font: 0.83rem/1.45 system-ui, sans-serif;
+  font-variant-numeric: tabular-nums;
+  overflow-wrap: anywhere;
+}
+
+th,
+td {
+  border: 1px solid #d3dfdf;
+  padding: 0.55rem;
+  vertical-align: top;
+}
+
+th {
+  background: #edf6f4;
+}
+
+@media (max-width: 34rem) {
+  body {
+    margin: 0;
+  }
+
+  table {
+    font-size: 0.7rem;
+  }
+
+  th,
+  td {
+    padding: 0.3rem;
+  }
+}
+
+@media print {
+  :root {
+    background: #fff;
+  }
+
+  body {
+    margin: 0;
+    padding: 0;
+    border: 0;
+  }
+
+  h2,
+  p:has(> img:only-child) {
+    break-after: avoid;
+  }
+
+  table,
+  img {
+    break-inside: avoid;
+  }
+}
+
+.chapter-lab {
+  margin: 1.5rem 0 0.65rem;
+  padding: clamp(0.75rem, 3vw, 1.25rem);
+  border: 1px solid #b7cdcd;
+  border-radius: 0.6rem;
+  background: #f7faf9;
+  font: 0.93rem/1.5 system-ui, sans-serif;
+}
+
+.chapter-lab h3 {
+  margin: 0 0 0.5rem;
+  font-size: 1.2rem;
+}
+
+.chapter-lab > p {
+  color: #334e56;
+}
+
+.chapter-lab + p:has(> em:only-child) {
+  color: #37525a;
+  font: 0.83rem/1.5 system-ui, sans-serif;
+  margin-bottom: 1.5rem;
+}
+
+#playback-lab:not([hidden]) + p:has(> img:only-child) {
+  display: none;
+}
+
+.lab-controls {
+  display: flex;
+  gap: 0.75rem;
+  align-items: end;
+  flex-wrap: wrap;
+  margin-bottom: 1rem;
+}
+
+.lab-controls label {
+  display: grid;
+  gap: 0.3rem;
+  font-weight: 700;
+  font-size: 0.8rem;
+}
+
+.lab-controls select,
+.lab-controls button {
+  min-height: 2.2rem;
+  border: 1px solid #9bb2b8;
+  border-radius: 0.3rem;
+  background: #fff;
+  color: #163440;
+  padding: 0.25rem 0.5rem;
+  font: inherit;
+}
+
+.lab-controls button {
+  font-size: 0.8rem;
+  cursor: pointer;
+}
+
+.lab-controls :focus-visible {
+  outline: 2px solid #076764;
+  outline-offset: 2px;
+}
+
+#link-race .race-timeline {
+  display: grid;
+  gap: 0.25rem;
+  margin-bottom: 0.85rem;
+}
+
+#link-race .race-timeline label,
+#link-race .race-endpoints {
+  display: flex;
+  justify-content: space-between;
+  gap: 0.35rem;
+}
+
+#link-race .race-timeline label {
+  font-size: 0.8rem;
+  font-weight: 700;
+  font-variant-numeric: tabular-nums;
+}
+
+#link-race .race-timeline input {
+  width: 100%;
+  margin: 0;
+  accent-color: #076764;
+}
+
+#link-race .race-timeline input:focus-visible {
+  outline: 2px solid #076764;
+  outline-offset: 2px;
+}
+
+#link-race [aria-disabled="true"] {
+  color: #55676e;
+  background: #edf2f1;
+  cursor: default;
+}
+
+#link-race .race-lane {
+  --race-color: #25618b;
+  --race-wire: #dce9f1;
+  padding: 0.75rem 0;
+  border-top: 1px solid #b7cdcd;
+}
+
+#link-race .race-lane[data-link="B"] {
+  --race-color: #076764;
+  --race-wire: #dbede9;
+}
+
+#link-race h4 {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 0.15rem 0.6rem;
+  margin: 0 0 0.4rem;
+  color: var(--race-color);
+  font-size: 1rem;
+}
+
+#link-race h4 span,
+#link-race .race-endpoints,
+#link-race .race-timeline p,
+#link-race .race-key {
+  color: #405961;
+  font-size: 0.8rem;
+  font-weight: 400;
+}
+
+#link-race h4 strong {
+  padding: 0.05rem 0.4rem;
+  border-radius: 0.2rem;
+  background: var(--race-wire);
+  font-size: 0.76rem;
+}
+
+#link-race .race-path {
+  margin-inline: 0.3rem;
+}
+
+#link-race [data-link="B"] .race-path {
+  width: 48%;
+}
+
+#link-race .race-track {
+  position: relative;
+  height: 0.85rem;
+  margin: 0.2rem 0 0.4rem;
+  border-radius: 1rem;
+  background: var(--race-wire);
+}
+
+#link-race .race-track::before,
+#link-race .race-track::after,
+#link-race .race-track span {
+  position: absolute;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  background: var(--race-color);
+}
+
+#link-race .race-track::before,
+#link-race .race-track::after {
+  content: "";
+  left: 0;
+  width: 0.14rem;
+  height: 100%;
+  border-radius: 1rem;
+}
+
+#link-race .race-track::after {
+  left: 100%;
+}
+
+#link-race .race-track span {
+  width: clamp(0.17rem, 0.55vw, 0.36rem);
+  aspect-ratio: 1;
+  border-radius: 50%;
+}
+
+#link-race .race-timeline p,
+#link-race .race-meter p,
+#link-race .race-finish {
+  margin: 0;
+}
+
+#link-race .race-totals {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 0.75rem;
+  margin-top: 0.6rem;
+}
+
+#link-race .race-meter p {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: 0 0.35rem;
+  font-size: 0.8rem;
+  font-variant-numeric: tabular-nums;
+}
+
+#link-race .race-meter progress {
+  display: block;
+  width: 100%;
+  height: 0.55rem;
+  margin: 0.2rem 0 0;
+  accent-color: var(--race-color);
+}
+
+#link-race .race-finish {
+  margin-top: 0.4rem;
+  font-size: 0.85rem;
+  font-variant-numeric: tabular-nums;
+}
+
+#link-race .race-announcement {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  clip-path: inset(50%);
+  overflow: hidden;
+}
+
+#link-race figcaption {
+  border-top: 1px solid #b7cdcd;
+  padding-top: 0.65rem;
+  color: #173840;
+  font-weight: 600;
+}
+
+.lab-link-policy {
+  padding-top: 0.65rem;
+  border-top: 1px solid #b7cdcd;
+}
+
+.lab-link-policy + .lab-link-policy {
+  margin-top: 0.9rem;
+}
+
+.lab-link-policy h4 {
+  margin: 0 0 0.6rem;
+  color: #173840;
+  font-size: 0.98rem;
+}
+
+.lab-sender p {
+  margin: 0 0 0.3rem;
+  font-size: 0.8rem;
+  color: #334e56;
+}
+
+.lab-sender + .lab-sender {
+  margin-top: 0.65rem;
+}
+
+.lab-packets,
+.lab-events {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.lab-packets {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.35rem;
+}
+
+.lab-packets li,
+.lab-events li {
+  margin: 0;
+}
+
+.lab-packet {
+  display: grid;
+  padding: 0.3rem 0.45rem;
+  border: 1px solid #99b9af;
+  border-radius: 0.3rem;
+  background: #e4f3ee;
+  color: #18443b;
+  font-size: 0.74rem;
+  min-width: 4.6rem;
+}
+
+.lab-packet.late {
+  border-color: #cfac85;
+  background: #fcf0dd;
+  color: #704411;
+}
+
+.lab-packet.refused {
+  border-color: #c6cfd2;
+  background: #eef1f2;
+  color: #324850;
+}
+
+.lab-plot {
+  background: #fff;
+  border: 1px solid #d3dfdf;
+  border-radius: 0.3rem;
+}
+
+.lab-plot svg {
+  display: block;
+  width: 100%;
+  color: #314d58;
+  font-size: 17px;
+}
+
+.lab-plot text {
+  fill: currentColor;
+}
+
+.lab-plot .lab-axis-title {
+  font-weight: 700;
+}
+
+.lab-plot .lab-outage-label {
+  fill: #6c441b;
+}
+
+.lab-grid {
+  stroke: #c0cfd1;
+}
+
+.lab-outage {
+  fill: #fbefde;
+}
+
+.lab-threshold {
+  stroke: #567e89;
+  stroke-dasharray: 6 5;
+}
+
+.lab-trace {
+  fill: none;
+  stroke: #076764;
+  stroke-width: 3.5;
+  stroke-linejoin: round;
+}
+
+.lab-marker {
+  fill: #076764;
+  stroke: #fff;
+  stroke-width: 1.2;
+}
+
+.lab-plot .lab-marker-text {
+  fill: #fff;
+  font-size: 13px;
+  font-weight: 700;
+}
+
+.lab-result {
+  margin: 0.6rem 0;
+  font-weight: 700;
+}
+
+.lab-events {
+  display: flex;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+  font-size: 0.78rem;
+}
+
+.lab-events li {
+  flex: 1 1 9rem;
+  display: flex;
+  align-items: start;
+  gap: 0.4rem;
+  border: 1px solid #d3dfdf;
+  border-radius: 0.3rem;
+  background: #fff;
+  padding: 0.45rem;
+}
+
+.lab-marker-label {
+  min-width: 1.2rem;
+  height: 1.2rem;
+  border-radius: 50%;
+  background: #076764;
+  color: #fff;
+  font-weight: 700;
+  text-align: center;
+}
+
+@media print {
+  .chapter-lab {
+    display: none;
+  }
+
+  #playback-lab:not([hidden]) + p:has(> img:only-child) {
+    display: block;
+  }
+}
+
+.book-nav {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: .55rem 1.4rem;
+  margin-bottom: 1.6rem;
+  color: #37525a;
+  font: .85rem/1.5 system-ui, sans-serif;
+}
+
+.chapter-turn {
+  justify-content: space-between;
+  margin: 2.4rem 0 0;
+  padding-top: 1rem;
+  border-top: 1px solid #d3dfdf;
+}
+
+.book-contents ul {
+  list-style: none;
+  padding: 0;
+}
+
+@media print {
+  .book-nav { display: none; }
+}
+</style>
+</head>
+<body>
+  <main>
+    <nav class="book-nav" aria-label="Book location"><a href="index.html">Contents</a><span>Part II — Routing Across a Global Network</span></nav>
+    <article><h1>7. When Routing Policies Interact</h1>
+<p>Suppose you run one of the networks from Chapter 6. A neighbor offers you a route you like better than the one you&#39;re using, so you take it and tell your other neighbors how you now reach the destination. One of them changes its route in response. If word of that change eventually reaches the neighbor who made you the offer, will the offer still be good?</p>
+<p>In class, a student pointed out that an operator could withdraw a perfectly good route every few seconds and announce it again. Fair enough. Give the network every chance to settle. Leave the cables up, have the destination announce the same prefix throughout, and hold everyone&#39;s rankings and export rules fixed. Each operator changes its decision only when the offers it sees change. When we ask whether routing <strong>converges</strong>, we mean that once those outside conditions stop changing, the routes themselves eventually settle. Can the operators keep one another busy forever under those rules? <a href="../assets/f26-subtitles.txt">Lecture 8, lines 12585–12672.</a></p>
+<h2>What would have to make progress?</h2>
+<p>One hunch in class was that the AS-path check ought to do the job. If you see your own AS number in an offer, turn it down. There are only so many ASes, so surely you have to run out of things to try. Think back to the role distance played for shortest paths in Chapter 5. Along a chosen path with positive link costs, the remaining distance goes down with each hop. Can we find a number here that goes down with each <em>change of route</em>?</p>
+<p>The student&#39;s hunch gives us something worth trying to prove. If each change permanently eliminated one candidate, a finite list would be enough. But why should an AS cross an offer off its list for good just because it turned it down once? <a href="../assets/f26-subtitles.txt">Lecture 8, lines 12677–12755.</a></p>
+<p>Draw four ASes. AS 0 originates the prefix. Each of AS 1, AS 2, and AS 3 has a direct link to 0, and all three are neighbors of one another. AS 1 likes going via 2, but only if 2 sends the traffic straight to 0. Perhaps its operator measured that particular path and decided the handoff through 2 was worth it. AS 2 makes the same choice about 3, and AS 3 about 1. Here are their exact rankings.</p>
+<table>
+<thead>
+<tr>
+<th>AS</th>
+<th>First choice</th>
+<th>Fallback</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>1</td>
+<td><code>[1, 2, 0]</code></td>
+<td><code>[1, 0]</code></td>
+</tr>
+<tr>
+<td>2</td>
+<td><code>[2, 3, 0]</code></td>
+<td><code>[2, 0]</code></td>
+</tr>
+<tr>
+<td>3</td>
+<td><code>[3, 1, 0]</code></td>
+<td><code>[3, 0]</code></td>
+</tr>
+</tbody></table>
+<p>An AS accepts just the two listed paths. When it selects a path, it tells its neighbors about that path. It can select an indirect route only if the listed neighbor is offering the exact suffix. For example, when 2 offers <code>[2, 3, 0]</code>, the candidate at 1 would be <code>[1, 2, 3, 0]</code>. There is no repeated AS in that path. AS 1 turns the offer down because it only wants to go through 2 when 2 offers <code>[2, 0]</code>. We model an update as one AS hearing its neighbors&#39; current choices, choosing again, and making its new choice available for the next update. Real advertisements can spend time in flight. For the moment, all we need is that ASes can react one at a time.</p>
+<p>Start with all three using their direct paths. Let 1 reconsider, then 3, then 2, and keep repeating that order. Predict where the choices will be after the first pass. Then give AS 1 another turn. What has it just lost?</p>
+<p><img src="../chapters/07-when-routing-policies-interact/figures/route-choices.svg" alt="The three sources prefer to use their designated neighbor when that neighbor uses its direct link to AS 0. The trace shows the repeating route selections under the update order 1, 3, 2."></p>
+<p>On the first pass, 1 takes the offer through 2. AS 3 now hears <code>[1, 2, 0]</code> and stays direct. Then 2 sees 3&#39;s direct route and switches to its own first choice. On the second pass, 1 has to fall back to direct, so 3 switches to its first choice through 1, and 2 falls back to direct. Two more turns bring us to step 8 in the figure. Compare it with step 2. AS 1 is going through 2, the other two are direct, and AS 2 has the next turn in both columns. With the same choices and the same AS about to act, those six steps will play out again. Every AS gets a turn, and although every path in the table is loop-free, the offers keep changing. This is <strong>persistent route oscillation</strong>, one way to get the repeated routing changes often called <strong>route flapping</strong>. <a href="../assets/f26-subtitles.txt">Lecture 8, lines 12761–12852.</a></p>
+<p>A student asked what happens to a packet that 3 sends to 1 expecting it to go straight to 0, if 1 has switched to 2 in the meantime. In ordinary destination-based forwarding, 1 looks at the packet&#39;s destination and uses the forwarding entry installed at 1 when the packet arrives. If its entry now points to 2 and the rest of the path is usable, the packet can travel through 2. The AS path came in the routing message. The packet carries its destination address. An update or withdrawal sent to 3 can tell it about the change, but there can still be packets and updates in flight. In other examples, routers working with choices from different times can send a packet around a loop. The packet&#39;s IP TTL limits how long that can go on. You could observe the whole cycle of <em>routing decisions</em> in this example without sending a single data packet. <a href="../assets/f26-subtitles.txt">Lecture 8, lines 12886–12938.</a> <a href="https://www.rfc-editor.org/rfc/rfc4271.html#section-9.1.2">BGP-4, §§3.1 and 9.1.2.</a></p>
+<h2>Is there anywhere the choices could settle?</h2>
+<p>Maybe we had the bad luck to pick a particular update order. Before trying another one, write down what it would mean for the experiment to end. Take a proposed choice at every AS and use those choices to work out who is offering what. Recompute every AS&#39;s best available path. If every AS would keep its proposed choice, we have a <strong>stable routing assignment</strong>. Can you write one down for our four ASes?</p>
+<p>Try starting with AS 1 direct. AS 3 must then go through 1. That makes 3&#39;s direct route unavailable to 2, so 2 has to go direct. But when 2 goes direct, 1 has its preferred route through 2. We started by giving 1 a route it would now want to abandon. Try the other case. If 1 goes indirectly, 3 must go direct, 2 must go indirectly, and 1&#39;s indirect route is unavailable. We&#39;ve exhausted the possibilities for 1 because the route from 0 stays up. In a stable assignment, going once around that circle would have to flip 1&#39;s choice three times and leave it where it started.</p>
+<p>Read each arrow in the figure as <em>depends on</em>. AS 1 depends on AS 2&#39;s offer, which gives us the first arrow in <code>1 → 2 → 3 → 1</code>. The physical links between those ASes will be there whatever path preferences the operators write. Change just one preference and see what happens to the dependency. Let AS 1 put <code>[1, 0]</code> above <code>[1, 2, 0]</code>, leaving everybody else as they were. Which AS can now make a decision you can take off the board?</p>
+<p>AS 1 can. When it learns the direct route, it has its first choice for good. Once 3 hears that offer, 3 has its first choice for good. When 2 hears 3&#39;s selection, 2 can settle on its direct route, since the only indirect route it would take has permanently disappeared. This argument works even if the ASes first pick some other routes. The only scheduling assumption we need is <strong>fairness</strong>. Every AS must eventually get to act on the updated offers. Even if AS 2 gets a dozen early turns, the choices still become permanent in the order 1, 3, 2. That was the extra step the class took after playing through the example. You can simulate a run to get the hunch. To prove convergence, find what will eventually become fixed regardless of how the run started. <a href="../assets/f26-subtitles.txt">Lecture 8, lines 12970–13048.</a></p>
+<p><strong>What if?</strong> Look at just two ASes, A and B, with a link to each other and a link each to the origin. Each prefers going via the other AS when the other AS is direct. Is there a stable assignment? Are there two? Now start with both direct and have both reconsider at once, each acting on the other&#39;s previous announcement. Repeat. What do they do after the indirect routes disappear? The experiment shows why a proof that a stable assignment <em>exists</em> leaves a second question about <em>reaching</em> one under the permitted update schedules. <a href="https://www.cs.bu.edu/faculty/gacs/courses/cs535/papers/BGP-ToN-Griffin.pdf">Griffin, Shepherd, and Wilfong, Fig. 3.</a></p>
+<h2>Can a contract tell you which decisions to make first?</h2>
+<p>Suppose you&#39;re asked to fix this without putting everyone on shortest paths. You could ask each operator to file its routing policies in a worldwide registry and have someone check for conflicts. What would the checker need to know? It would need the policies, the current links, and the links that might fail tomorrow. Some of those policies encode business arrangements operators would prefer to keep to themselves. We wanted BGP in part so that a network could say what it offers without having to publish its reasons. Can we get a convergence guarantee while keeping that property?</p>
+<p>Look again at what A was selling its customers in Chapter 6. A was happy to tell its upstream provider and its peers about its customers. Its customers were paying to be reachable. A didn&#39;t want to offer its provider a way to send traffic through A to a peer. That would make A carry traffic between networks that weren&#39;t paying A for that trip. Put those incentives into a rule. An AS can offer its own routes and selected customer routes to any neighbor. It offers a selected peer or provider route only to customers. Then let each AS rank routes learned from customers above routes learned from peers, and peer routes above provider routes. Within each class, an operator can still have its own ranking. A customer route can win even if its AS path is longer.</p>
+<p>Where could dependencies live under those rules? Draw an arrow from each customer to its provider. Draw peer links without arrows, then put the peer links aside for a minute. Could you follow the customer-to-provider arrows and get back to where you started? That would make an AS a provider to one neighbor and a paying customer, through a chain, of itself. As the instructor put it, “I&#39;m paying myself.” <a href="../assets/f26-subtitles.txt">Lecture 8, lines 13252–13268.</a> Contracts needn&#39;t follow our sketch, but it&#39;s plausible to rule out that cycle. If the arrows form a directed acyclic graph, we can order the ASes with customers before their providers. We can also read the order in reverse. See if you can use one ordering for each part of the following argument.</p>
+<ol>
+<li><strong>Settle customer routes first.</strong> An AS can learn a route from a customer only if that customer originates it or is offering its own selected customer route. A customer with no customers of its own can only offer its own prefixes upstream. Once those permanent offers are known, the next AS up can settle what it will offer to its providers and peers. Proceed up the customer hierarchy. A customer route that wins will stay selected when other kinds of offers arrive.</li>
+<li><strong>Read the peer offers.</strong> Each peer may offer its own or a customer route, choices already settled in the first step. Any AS without a customer route can now determine whether it will use one of those peer routes.</li>
+<li><strong>Settle provider routes last.</strong> An AS still looking for a route must use an offer from a provider, if it has one. A provider higher up in the order can already have a fixed customer or peer route, or settle its provider route before the ASes below it settle theirs. Follow the order down.</li>
+</ol>
+<p>This is an order in which choices <em>become fixed</em>. The ASes can keep exchanging updates throughout. The argument works by giving each AS enough time to hear the offers that will eventually stop changing. Gao and Rexford proved a convergence result for BGP policies arranged around this kind of commercial hierarchy. We&#39;ve used a version of their conditions with the strict customer, peer, provider order from the lecture. The theorem gives a <strong>sufficient condition</strong>. If the conditions hold in the model, the routes settle. If a condition fails, see what the actual policies do. For example, even a ring of customer-to-provider arrows would be quiet if every AS in the ring had a permanent direct route to the origin and accepted only that route. The graph alone gives you no witness of flapping. <a href="https://courses.cs.duke.edu/fall24/compsci514/readings/stable-internet-routing.pdf">Gao and Rexford, §§IV–V.</a></p>
+<p><strong>Break this.</strong> Suppose the customer-to-provider arrows are acyclic. An AS now starts offering a route from one provider to another provider. In the first step of our argument, which promise about the origins of customer offers can the second provider no longer rely on? What route would you look for in its update log?</p>
+<h2>How long should the bad news take?</h2>
+<p>The commercial rules tell us that the updates will eventually stop. They leave an operator with a practical question when a destination withdraws its prefix. How many other offers will the neighbors try first? Even under policies that eventually settle, one AS may still be offering a route it learned before the withdrawal. A neighbor&#39;s favorite route disappears, so it tries the next offer. By the time it hears that this other offer is gone too, it may have heard a third. In class we called this <em>path hunting</em>, or <strong>path exploration</strong>. Try to imagine writing the router&#39;s decision rule. You&#39;d like it to search for a usable alternative before giving up on a destination. The work of trying the alternatives is exactly what can make a withdrawal travel slowly.</p>
+<p>If you are watching a route collector and see three different paths in a minute, what do you know? Each path was reported at that vantage point. Check which withdrawals came first, what prefixes were involved, and whether the physical or administrative event is still changing. A short trace containing several paths could be the tail of one failure. A repeated state in a simulation can be decisive if it includes the pending messages and whatever controls future updates, and if those together determine what happens next. Out on the Internet, two identical-looking snapshots of your own routes leave a lot of the state unobserved.</p>
+<h2>Suppose everybody settles on the wrong route</h2>
+<p>Imagine you&#39;re on call for a video service. Viewers have begun reporting failures, yet your network is still advertising its prefix, your links are up, and your neighbor confirms that it can see your route. What would you ask the operator of a network where the videos won&#39;t play? Ask which route its routers use for the address of an affected server. That&#39;s a more revealing question than asking whether they can see your announcement.</p>
+<p>On February 24, 2008, YouTube was advertising <code>208.65.152.0/22</code>. Pakistan Telecom began originating <code>208.65.153.0/24</code>, a block inside it, and its upstream provider, PCCW Global, passed the announcement along. The lecture recounts the idea behind the domestic block. Traffic for the service was supposed to go somewhere it could be discarded. Once the announcement crossed the provider boundary, networks far beyond Pakistan began directing traffic there too. <a href="../assets/f26-subtitles.txt">Lecture 7, lines 11474–11506.</a> <a href="https://www.ripe.net/about-us/news/youtube-hijacking-a-ripe-ncc-ris-case-study/">RIPE NCC&#39;s observations of the incident.</a></p>
+<p><img src="../chapters/07-when-routing-policies-interact/figures/two-origins.svg" alt="A remote network learns YouTube&#39;s covering route and Pakistan Telecom&#39;s more-specific route propagated by PCCW."></p>
+<p>Take a packet for <code>208.65.153.42</code>. Both entries match, so the forwarding rule from Chapter 4 selects the longer prefix, the /24. A router could keep a perfectly good route to YouTube&#39;s /22 the entire time. Nor would a check for repeated AS numbers find anything wrong with the /24. The failure was an unauthorized <strong>origin</strong> for that address block, commonly called a prefix hijack. When the class revisited this sort of failure, a student suggested trying the service from several networks. If the working and failing probes take different paths, the addresses seen along those paths can help narrow the search to a particular AS. The next call is to an operator who can check which prefix and origin its routers actually selected for the failing address. A settled routing table can be valuable evidence in that investigation. <a href="../assets/f26-subtitles.txt">Lecture 25, lines 40964–41014.</a></p>
+<h2>What if the address book loses its route?</h2>
+<p>Try taking down only the route to the authoritative DNS servers of a service. Some users&#39; recursive resolvers still have recent answers for the service name. Other users&#39; resolvers have to ask the authoritative servers now. Which users see failures first, and what happens as the cached answers expire? Then ask a different question. If you manage to obtain an application server&#39;s address, what would you have to test separately to see whether you could use the application? The exercise has two destinations with different jobs. The routing table can tell a different story about each.</p>
+<p>On October 4, 2021, a maintenance command took down Facebook&#39;s backbone connections. The DNS sites were configured to withdraw their BGP announcements if they lost contact with the data centers. With the backbone down, that rule fired even at sites where the name servers themselves were still running. The withdrawal was a second failure from a user&#39;s perspective. Even the step of finding the service&#39;s address could fail, and the backbone outage had impaired access to the service itself. A cached address could bypass the DNS lookup while the cache entry lasted. The connection would still depend on the path to the application and on the service at the other end. <a href="https://engineering.fb.com/2021/10/05/networking-traffic/outage-details/">Facebook Engineering&#39;s outage report.</a></p>
+<p><strong>Network detective.</strong> Suppose you can see DNS responses for a failed service, BGP updates from two upstreams, and connection attempts from a user network. The cached DNS answers last ten more minutes. Both upstreams stop offering the authoritative DNS prefixes around the time the trouble begins. Design one test for reachability of a name server and another for reachability of an application endpoint during those ten minutes. What would each test tell you if it succeeded? What additional observation would you ask the service operator for before blaming the DNS servers themselves?</p>
+<h2>Try the policies yourself</h2>
+<p>Choose one ranking in the four-AS example to change. Predict which route stays fixed first, then predict how the other two respond. Run several update orders in the <a href="../chapters/07-when-routing-policies-interact/route-lab.html">routing-policy lab</a> and use the <a href="../chapters/07-when-routing-policies-interact/lab.md">lab instructions</a> to explain one trace. If every run settles, see if you can turn your explanation into an argument that covers any fair order. If one run repeats, identify the state that makes the rest of the run repeat.</p>
+<h2>Can you make the same ring flap or settle?</h2>
+<h3>Break this. Four policies around a ring</h3>
+<p>AS <code>v</code> originates a prefix and peers with <code>w</code>, <code>x</code>, <code>y</code>, and <code>z</code>. The outer links run from customer to provider as <code>w → x → y → z → w</code>. The exam gives each operator a little more freedom than the classroom rule did. A customer route must still beat a peer or provider route, but a provider route may now beat a peer route. It exports customer routes to every neighbor and exports routes learned from a peer or provider only to its customers. Exporting a peer route to customers is optional. AS <code>v</code> announces its own prefix to all four peers.</p>
+<p><img src="../chapters/07-when-routing-policies-interact/figures/exam-ring.svg" alt="Four peers surround origin v. The customer-to-provider arrows around the outside form a clockwise ring."></p>
+<p>Can you choose full-path preferences and exports that let the selected routes change indefinitely? List the paths each AS accepts in order of preference and say where it sends its selected route. Exhibit a repeating schedule that gives every AS regular turns. Then find a stable assignment under the same policies, if one exists.</p>
+<p><em>Adapted from <a href="../assets/cs356-final-2024.pdf#page=3">Final 2024, Q5, pp. 3–4</a>. The fair serial schedule and stable-assignment questions are new.</em></p>
+<details>
+<summary>Worked reasoning</summary>
+
+<p>Let each outer AS prefer the route through its provider when that provider goes directly to <code>v</code>. Keep the direct peer route as a fallback and reject all other paths.</p>
+<table>
+<thead>
+<tr>
+<th>AS</th>
+<th>First choice</th>
+<th>Fallback</th>
+<th>Advertises selected route to</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>w</code></td>
+<td><code>w x v</code></td>
+<td><code>w v</code></td>
+<td><code>z</code></td>
+</tr>
+<tr>
+<td><code>x</code></td>
+<td><code>x y v</code></td>
+<td><code>x v</code></td>
+<td><code>w</code></td>
+</tr>
+<tr>
+<td><code>y</code></td>
+<td><code>y z v</code></td>
+<td><code>y v</code></td>
+<td><code>x</code></td>
+</tr>
+<tr>
+<td><code>z</code></td>
+<td><code>z w v</code></td>
+<td><code>z v</code></td>
+<td><code>y</code></td>
+</tr>
+</tbody></table>
+<p>All accepted routes are learned from a provider or peer, and all exports in the last column go to customers. The ranking permits preferring a provider route to a peer route. Each AS picks its indirect route <code>I</code> exactly when its provider is advertising its direct route <code>D</code>.</p>
+<p>Read each state in <code>w,x,y,z</code> order. Initially the direct announcements are available and the four ASes have yet to select a route. Activate one AS at a time in repeated <code>w,x,y,z</code> order, using its neighbors’ latest advertisements. The first four activations give <code>DDDI</code>. Continue from there.</p>
+<table>
+<thead>
+<tr>
+<th>Activated AS</th>
+<th>Resulting state</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>w</code></td>
+<td><code>IDDI</code></td>
+</tr>
+<tr>
+<td><code>x</code></td>
+<td><code>IIDI</code></td>
+</tr>
+<tr>
+<td><code>y</code></td>
+<td><code>IIDI</code></td>
+</tr>
+<tr>
+<td><code>z</code></td>
+<td><code>IIDD</code></td>
+</tr>
+<tr>
+<td><code>w</code></td>
+<td><code>DIDD</code></td>
+</tr>
+<tr>
+<td><code>x</code></td>
+<td><code>DIDD</code></td>
+</tr>
+<tr>
+<td><code>y</code></td>
+<td><code>DIID</code></td>
+</tr>
+<tr>
+<td><code>z</code></td>
+<td><code>DIII</code></td>
+</tr>
+<tr>
+<td><code>w</code></td>
+<td><code>DIII</code></td>
+</tr>
+<tr>
+<td><code>x</code></td>
+<td><code>DDII</code></td>
+</tr>
+<tr>
+<td><code>y</code></td>
+<td><code>DDDI</code></td>
+</tr>
+<tr>
+<td><code>z</code></td>
+<td><code>DDDI</code></td>
+</tr>
+</tbody></table>
+<p>Now <code>w</code> has the next turn again. The same states repeat. <code>IDID</code> and <code>DIDI</code> are both stable because every route is the opposite of its provider’s route. The existence of a stable assignment leaves open whether every fair update schedule reaches one.</p>
+</details>
+
+<h3>Design this. Stabilize the same ring</h3>
+<p>Keep the topology and relationship rules of the preceding exercise. Can you choose path preferences and exports that rule out indefinite route changes for this prefix after the topology and the origin advertisement stop changing? Explain why your design works under every fair update order. Try changing a single preference from your oscillating design.</p>
+<p><em>Adapted from <a href="../assets/cs356-final-2024.pdf#page=4">Final 2024, Q6, p. 4</a>. The one-preference constraint is new.</em></p>
+<details>
+<summary>Worked reasoning</summary>
+
+<p>Put <code>w v</code> ahead of <code>w x v</code> and keep every other preference and export rule. The permanent origin advertisement fixes <code>w</code> at <code>D</code>. Once <code>z</code> sees that, its choice fixes at <code>I</code>. Then <code>y</code> fixes at <code>D</code>, and <code>x</code> fixes at <code>I</code>. Every fair update order eventually lets each of those decisions occur. The final assignment is <code>DIDI</code>. Alternatively, if every outer AS withholds its peer route from its customer, the indirect paths in the oscillating design are unavailable and each outer AS settles on its direct route.</p>
+</details>
+
+<h2>Once the routes settle</h2>
+<p>Suppose your design settles on the direct route from <code>w</code> to <code>v</code>, and <code>z</code> starts sending its traffic through <code>w</code> as well. From the point of view of the routing protocol, you&#39;re done. From the point of view of the operator at <code>w</code>, you&#39;ve just acquired a new load to carry. If you have two ways across your own network to the handoff with <code>v</code>, and a queue is building on one of them, how much traffic should you move to the other?</p>
+</article>
+    <nav class="book-nav chapter-turn" aria-label="Chapter navigation"><a href="06-routing-between-autonomous-systems.html">Previous · 6. Routing Between Autonomous Systems</a>
+<a href="index.html">Contents</a>
+<a href="08-traffic-engineering-making-the-most-of-a-network.html">Next · 8. Traffic Engineering: Making the Most of a Network</a></nav>
+  </main>
+</body>
+</html>

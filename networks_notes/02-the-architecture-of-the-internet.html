@@ -1,0 +1,632 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>2. The Architecture of the Internet</title>
+  <style>:root {
+  color-scheme: light;
+  background: #f3f6f5;
+  color: #182a30;
+  font: 18px/1.65 Georgia, serif;
+}
+
+body {
+  max-width: 48rem;
+  margin: 2.5rem auto;
+  padding: 2.25rem clamp(1rem, 5vw, 3.25rem);
+  background: #fff;
+  border-top: 0.3rem solid #076764;
+}
+
+h1,
+h2,
+h3 {
+  font-family: system-ui, sans-serif;
+  line-height: 1.2;
+  color: #152e37;
+}
+
+h1 {
+  margin: 0 0 1.4rem;
+  font-size: clamp(2rem, 5vw, 3rem);
+  letter-spacing: -0.035em;
+}
+
+h2 {
+  margin: 2.5rem 0 0.7rem;
+  font-size: clamp(1.4rem, 3vw, 1.75rem);
+}
+
+p {
+  margin: 0 0 1rem;
+}
+
+a {
+  color: #0a5b63;
+  overflow-wrap: anywhere;
+  text-underline-offset: 0.15em;
+}
+
+li + li {
+  margin-top: 0.7rem;
+}
+
+blockquote {
+  margin: 1.2rem 0;
+  padding: 0.65rem 1rem;
+  background: #edf6f4;
+  border-inline-start: 0.2rem solid #076764;
+}
+
+blockquote p {
+  margin: 0;
+}
+
+img {
+  display: block;
+  max-width: 100%;
+  height: auto;
+  outline: 1px solid #d3dfdf;
+}
+
+p:has(> img:only-child) {
+  margin: 1.5rem 0 0.5rem;
+}
+
+p:has(> img:only-child) + p:has(> em:only-child) {
+  color: #37525a;
+  font: 0.83rem/1.5 system-ui, sans-serif;
+  margin: 0 0 1.5rem;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 1.25rem 0;
+  font: 0.83rem/1.45 system-ui, sans-serif;
+  font-variant-numeric: tabular-nums;
+  overflow-wrap: anywhere;
+}
+
+th,
+td {
+  border: 1px solid #d3dfdf;
+  padding: 0.55rem;
+  vertical-align: top;
+}
+
+th {
+  background: #edf6f4;
+}
+
+@media (max-width: 34rem) {
+  body {
+    margin: 0;
+  }
+
+  table {
+    font-size: 0.7rem;
+  }
+
+  th,
+  td {
+    padding: 0.3rem;
+  }
+}
+
+@media print {
+  :root {
+    background: #fff;
+  }
+
+  body {
+    margin: 0;
+    padding: 0;
+    border: 0;
+  }
+
+  h2,
+  p:has(> img:only-child) {
+    break-after: avoid;
+  }
+
+  table,
+  img {
+    break-inside: avoid;
+  }
+}
+
+.chapter-lab {
+  margin: 1.5rem 0 0.65rem;
+  padding: clamp(0.75rem, 3vw, 1.25rem);
+  border: 1px solid #b7cdcd;
+  border-radius: 0.6rem;
+  background: #f7faf9;
+  font: 0.93rem/1.5 system-ui, sans-serif;
+}
+
+.chapter-lab h3 {
+  margin: 0 0 0.5rem;
+  font-size: 1.2rem;
+}
+
+.chapter-lab > p {
+  color: #334e56;
+}
+
+.chapter-lab + p:has(> em:only-child) {
+  color: #37525a;
+  font: 0.83rem/1.5 system-ui, sans-serif;
+  margin-bottom: 1.5rem;
+}
+
+#playback-lab:not([hidden]) + p:has(> img:only-child) {
+  display: none;
+}
+
+.lab-controls {
+  display: flex;
+  gap: 0.75rem;
+  align-items: end;
+  flex-wrap: wrap;
+  margin-bottom: 1rem;
+}
+
+.lab-controls label {
+  display: grid;
+  gap: 0.3rem;
+  font-weight: 700;
+  font-size: 0.8rem;
+}
+
+.lab-controls select,
+.lab-controls button {
+  min-height: 2.2rem;
+  border: 1px solid #9bb2b8;
+  border-radius: 0.3rem;
+  background: #fff;
+  color: #163440;
+  padding: 0.25rem 0.5rem;
+  font: inherit;
+}
+
+.lab-controls button {
+  font-size: 0.8rem;
+  cursor: pointer;
+}
+
+.lab-controls :focus-visible {
+  outline: 2px solid #076764;
+  outline-offset: 2px;
+}
+
+#link-race .race-timeline {
+  display: grid;
+  gap: 0.25rem;
+  margin-bottom: 0.85rem;
+}
+
+#link-race .race-timeline label,
+#link-race .race-endpoints {
+  display: flex;
+  justify-content: space-between;
+  gap: 0.35rem;
+}
+
+#link-race .race-timeline label {
+  font-size: 0.8rem;
+  font-weight: 700;
+  font-variant-numeric: tabular-nums;
+}
+
+#link-race .race-timeline input {
+  width: 100%;
+  margin: 0;
+  accent-color: #076764;
+}
+
+#link-race .race-timeline input:focus-visible {
+  outline: 2px solid #076764;
+  outline-offset: 2px;
+}
+
+#link-race [aria-disabled="true"] {
+  color: #55676e;
+  background: #edf2f1;
+  cursor: default;
+}
+
+#link-race .race-lane {
+  --race-color: #25618b;
+  --race-wire: #dce9f1;
+  padding: 0.75rem 0;
+  border-top: 1px solid #b7cdcd;
+}
+
+#link-race .race-lane[data-link="B"] {
+  --race-color: #076764;
+  --race-wire: #dbede9;
+}
+
+#link-race h4 {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 0.15rem 0.6rem;
+  margin: 0 0 0.4rem;
+  color: var(--race-color);
+  font-size: 1rem;
+}
+
+#link-race h4 span,
+#link-race .race-endpoints,
+#link-race .race-timeline p,
+#link-race .race-key {
+  color: #405961;
+  font-size: 0.8rem;
+  font-weight: 400;
+}
+
+#link-race h4 strong {
+  padding: 0.05rem 0.4rem;
+  border-radius: 0.2rem;
+  background: var(--race-wire);
+  font-size: 0.76rem;
+}
+
+#link-race .race-path {
+  margin-inline: 0.3rem;
+}
+
+#link-race [data-link="B"] .race-path {
+  width: 48%;
+}
+
+#link-race .race-track {
+  position: relative;
+  height: 0.85rem;
+  margin: 0.2rem 0 0.4rem;
+  border-radius: 1rem;
+  background: var(--race-wire);
+}
+
+#link-race .race-track::before,
+#link-race .race-track::after,
+#link-race .race-track span {
+  position: absolute;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  background: var(--race-color);
+}
+
+#link-race .race-track::before,
+#link-race .race-track::after {
+  content: "";
+  left: 0;
+  width: 0.14rem;
+  height: 100%;
+  border-radius: 1rem;
+}
+
+#link-race .race-track::after {
+  left: 100%;
+}
+
+#link-race .race-track span {
+  width: clamp(0.17rem, 0.55vw, 0.36rem);
+  aspect-ratio: 1;
+  border-radius: 50%;
+}
+
+#link-race .race-timeline p,
+#link-race .race-meter p,
+#link-race .race-finish {
+  margin: 0;
+}
+
+#link-race .race-totals {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 0.75rem;
+  margin-top: 0.6rem;
+}
+
+#link-race .race-meter p {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: 0 0.35rem;
+  font-size: 0.8rem;
+  font-variant-numeric: tabular-nums;
+}
+
+#link-race .race-meter progress {
+  display: block;
+  width: 100%;
+  height: 0.55rem;
+  margin: 0.2rem 0 0;
+  accent-color: var(--race-color);
+}
+
+#link-race .race-finish {
+  margin-top: 0.4rem;
+  font-size: 0.85rem;
+  font-variant-numeric: tabular-nums;
+}
+
+#link-race .race-announcement {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  clip-path: inset(50%);
+  overflow: hidden;
+}
+
+#link-race figcaption {
+  border-top: 1px solid #b7cdcd;
+  padding-top: 0.65rem;
+  color: #173840;
+  font-weight: 600;
+}
+
+.lab-link-policy {
+  padding-top: 0.65rem;
+  border-top: 1px solid #b7cdcd;
+}
+
+.lab-link-policy + .lab-link-policy {
+  margin-top: 0.9rem;
+}
+
+.lab-link-policy h4 {
+  margin: 0 0 0.6rem;
+  color: #173840;
+  font-size: 0.98rem;
+}
+
+.lab-sender p {
+  margin: 0 0 0.3rem;
+  font-size: 0.8rem;
+  color: #334e56;
+}
+
+.lab-sender + .lab-sender {
+  margin-top: 0.65rem;
+}
+
+.lab-packets,
+.lab-events {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.lab-packets {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.35rem;
+}
+
+.lab-packets li,
+.lab-events li {
+  margin: 0;
+}
+
+.lab-packet {
+  display: grid;
+  padding: 0.3rem 0.45rem;
+  border: 1px solid #99b9af;
+  border-radius: 0.3rem;
+  background: #e4f3ee;
+  color: #18443b;
+  font-size: 0.74rem;
+  min-width: 4.6rem;
+}
+
+.lab-packet.late {
+  border-color: #cfac85;
+  background: #fcf0dd;
+  color: #704411;
+}
+
+.lab-packet.refused {
+  border-color: #c6cfd2;
+  background: #eef1f2;
+  color: #324850;
+}
+
+.lab-plot {
+  background: #fff;
+  border: 1px solid #d3dfdf;
+  border-radius: 0.3rem;
+}
+
+.lab-plot svg {
+  display: block;
+  width: 100%;
+  color: #314d58;
+  font-size: 17px;
+}
+
+.lab-plot text {
+  fill: currentColor;
+}
+
+.lab-plot .lab-axis-title {
+  font-weight: 700;
+}
+
+.lab-plot .lab-outage-label {
+  fill: #6c441b;
+}
+
+.lab-grid {
+  stroke: #c0cfd1;
+}
+
+.lab-outage {
+  fill: #fbefde;
+}
+
+.lab-threshold {
+  stroke: #567e89;
+  stroke-dasharray: 6 5;
+}
+
+.lab-trace {
+  fill: none;
+  stroke: #076764;
+  stroke-width: 3.5;
+  stroke-linejoin: round;
+}
+
+.lab-marker {
+  fill: #076764;
+  stroke: #fff;
+  stroke-width: 1.2;
+}
+
+.lab-plot .lab-marker-text {
+  fill: #fff;
+  font-size: 13px;
+  font-weight: 700;
+}
+
+.lab-result {
+  margin: 0.6rem 0;
+  font-weight: 700;
+}
+
+.lab-events {
+  display: flex;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+  font-size: 0.78rem;
+}
+
+.lab-events li {
+  flex: 1 1 9rem;
+  display: flex;
+  align-items: start;
+  gap: 0.4rem;
+  border: 1px solid #d3dfdf;
+  border-radius: 0.3rem;
+  background: #fff;
+  padding: 0.45rem;
+}
+
+.lab-marker-label {
+  min-width: 1.2rem;
+  height: 1.2rem;
+  border-radius: 50%;
+  background: #076764;
+  color: #fff;
+  font-weight: 700;
+  text-align: center;
+}
+
+@media print {
+  .chapter-lab {
+    display: none;
+  }
+
+  #playback-lab:not([hidden]) + p:has(> img:only-child) {
+    display: block;
+  }
+}
+
+.book-nav {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: .55rem 1.4rem;
+  margin-bottom: 1.6rem;
+  color: #37525a;
+  font: .85rem/1.5 system-ui, sans-serif;
+}
+
+.chapter-turn {
+  justify-content: space-between;
+  margin: 2.4rem 0 0;
+  padding-top: 1rem;
+  border-top: 1px solid #d3dfdf;
+}
+
+.book-contents ul {
+  list-style: none;
+  padding: 0;
+}
+
+@media print {
+  .book-nav { display: none; }
+}
+</style>
+</head>
+<body>
+  <main>
+    <nav class="book-nav" aria-label="Book location"><a href="index.html">Contents</a><span>Part I — Building a Network</span></nav>
+    <article><h1>2. The Architecture of the Internet</h1>
+<p>In Chapter 1, a request from the campus library passed through several routers before reaching the server that held the cat video. The routers were connected by links, but how much did the request depend on the particular technology used for each one? Suppose we replaced a link between two routers with something entirely different. How different could it be before we would have to change the software on the laptop or the server?</p>
+<p>To explore that question, imagine a mountain village called Cooville, where the computers already communicate over a local network. Across the valley lies Buffering Heights, a village with an Internet connection, but the terrain prevents the residents from laying a cable or establishing a radio link between them.</p>
+<p>Returno, a Cooville resident who wants to bring Internet access to his village, has found someone willing to help: Homer, who lives in Buffering Heights and has offered to share his connection. Together they have trained homing pigeons. When Returno takes one of Homer&#39;s birds to Cooville and releases it, the bird flies back to Homer&#39;s coop, carrying a small package if one has been attached. Could that package contain something Homer&#39;s computer could forward onto the Internet?</p>
+<h2>How do you get one message across the valley?</h2>
+<p>Sending data toward Buffering Heights is only half the problem, since Homer also needs a way to reply. Once one of his pigeons has flown home, it has no reason to return to Cooville; a reply therefore needs a different bird, one whose home is in Cooville. By the end of the day, both flocks have returned to their home villages, which are the wrong places for the next day&#39;s departures. Each morning, Returno walks to Buffering Heights carrying the Cooville birds that flew home the previous day, then returns with Homer&#39;s birds so that both flocks are ready to fly in the required direction. Flights operate only between sunrise and sunset.</p>
+<p><img src="../chapters/02-the-architecture-of-the-internet/figures/valley-link.png" alt="The flock that lives in Buffering Heights flies there from Cooville, and the Cooville flock flies the other way. Returno walks each flock back to its launch village in the morning."></p>
+<p><em>Figure 2.1. Each flock can fly only toward its home village, as indicated by the arrows. The lower panel shows Returno returning both flocks to their departure villages each morning.</em></p>
+<p>Start with the simplest task: getting one message from Returno&#39;s computer to Homer&#39;s. Sketch what you would attach to the bird and how Homer would get its contents into his computer, keeping in mind that the load can weigh no more than about 30 grams. One student suggested printing a QR code, while another proposed putting the bytes on a USB stick. Either could work, but each raises questions about how the receiver interprets what arrives. If a printed code is smudged and Homer can recover only half of it, how will his computer recognize the damage? If a USB stick contains several messages, how will the computer know where one ends and the next begins?</p>
+<p>If you chose paper, you would not be the first to consider it. On April 1, 1990, a networking engineer published a proposal for printing a packet, attaching it to a pigeon, and scanning it at the receiving end, complete with a specification for duct tape. Assume now that Returno and Homer have agreed on a way to carry bytes and have begun offering Internet service over their new link, FeatherNet. Each flight takes fifteen minutes, and on a well-stocked morning each village has fifty birds available for that day&#39;s departures. With those limits in place, what happens when two customers want to send a message to Homer at the same time?</p>
+<h2>Who gets the next departure?</h2>
+<p>Returno and Homer could reserve a share of the birds for each customer, or they could give the next available bird to whichever message is waiting. To understand what a reservation changes, return to the private wires considered in Chapter 1. Because connecting every pair of computers directly required so much wiring, we introduced a <strong>switch</strong>, a machine that receives data on one link and sends it out on another. In Figure 2.2, A and B can transmit to the switch simultaneously, but when both are sending to D, their packets must share the outgoing link from the switch to D.</p>
+<p><img src="../chapters/02-the-architecture-of-the-internet/figures/private-or-switched.png" alt="Four computers need six wires when each pair is directly connected. In the switched arrangement each computer has one wire to the switch, and A and B both need the outgoing link to D."></p>
+<p><em>Figure 2.2. Although A and B can transmit to the switch simultaneously, traffic destined for D must share the switch&#39;s outgoing link to D.</em></p>
+<p>Suppose A and B have each been promised half the capacity of that outgoing link. We could enforce the agreement by dividing time into slots and assigning alternate slots to the two senders. This is one way to implement a reservation: in <strong>circuit switching</strong>, a connection reserves capacity along its path before sending data. The telephone operator from our earlier example made a reservation by physically connecting wires, whereas our switch does it by setting aside transmission time. Both approaches give a connection a predictable share of capacity once it has been established, but they can also waste that capacity. If A has nothing to send in its assigned slot, the slot remains unused even when B has packets waiting.</p>
+<p>A <strong>packet switch</strong>, by contrast, can decide what to forward separately for each packet, using an available slot for traffic that is actually waiting. Compare the two designs using the same arrivals: at time zero, A has packet A1 while B has B1 and B2; B3 arrives at the beginning of slot 2. Each packet takes one slot to transmit, and the packet switch serves packets in arrival order, choosing A1 first when the initial arrivals are tied. Under each design, when can B2 leave?</p>
+<p><img src="../chapters/02-the-architecture-of-the-internet/figures/shared-link-timeline.png" alt="The reserved link sends A1 in slot 0, B1 in slot 1, B2 in slot 3, and B3 in slot 5. Packet switching sends those four packets in slots 0, 1, 2, and 3."></p>
+<p><em>Figure 2.3. In slot 2, B2 is waiting while A has nothing to send, so the packet switch can use the slot that a reservation would leave idle. When both senders are continuously busy, packets still have to wait for capacity.</em></p>
+<p>By sharing capacity according to changing demand, the packet switch uses an approach called <strong>statistical multiplexing</strong>. It can make especially good use of a link when different senders become idle at different times, although it must then decide which waiting packet to send next, how many packets to keep in its queue, and what to discard if the queue fills. Reserving capacity can make a customer&#39;s wait more predictable, but doing so takes coordination and may leave usable capacity idle. Extending that promise across a path with several links also requires arranging a reservation on every link along the way.</p>
+<p>FeatherNet faces a related choice, although a pigeon departure is not quite like a slot on a wire. As soon as one packet finishes crossing a wire, another can begin; once a bird leaves, however, that departure is gone for the day. Returno can get more use from each flight by loading several packets onto one bird, but waiting for a full load creates another problem. Imagine that the village has been uploading files all morning and, late in the afternoon, one small urgent message arrives with nothing else behind it. A bird is still available and could reach Buffering Heights before dark, yet a rule requiring full loads would leave the message waiting indefinitely. Sending every message immediately avoids that particular delay, but if fifty small messages arrive at breakfast, they could use every bird before the urgent afternoon message appears.</p>
+<p>A compromise worth testing is to release a bird either when its load is full or when the oldest packet has waited a specified amount of time, whichever happens first. Returno might also reserve a few birds for messages that arrive later, though doing so could delay or prevent some morning traffic from crossing. The time a packet spends waiting to depart is its <strong>queueing delay</strong>, which is separate from the fifteen minutes the bird spends in flight. Packing more bytes onto a stick improves the amount of data delivered per departure, but it does not make the first byte cross the valley any faster. Which tradeoff should the service make for its customers?</p>
+<h2>How does the message get beyond the coop?</h2>
+<p>Suppose the dispatch rule works and Homer receives a load from Cooville. The load has crossed the valley, but the computer that sent it was trying to reach a server somewhere on the Internet, not Homer&#39;s coop. If its only label identifies the coop, Homer knows where the pigeon was supposed to land but has no basis for deciding where the data should go next.</p>
+<p>The sending computer can solve this problem by including the server&#39;s <strong>IP address</strong> as the packet&#39;s destination and its own IP address as the source. The <strong>Internet Protocol</strong>, or <strong>IP</strong>, defines a common format for these addressed packets, known as <strong>IP datagrams</strong>, so that hosts and routers can handle them across different networks. Rather than planning the entire trip for each datagram, a router reads its destination address and consults a forwarding table to choose a <strong>next hop</strong>: the next machine to which it should pass the datagram. For now, we will assume that the necessary forwarding tables have already been set up.</p>
+<p><img src="../chapters/02-the-architecture-of-the-internet/figures/to-the-server.png" alt="A Cooville computer sends through the Cooville router, then across FeatherNet to the Buffering Heights router, then through the Internet to the server. A reply needs a route in the other direction."></p>
+<p><em>Figure 2.4. The pigeon carries the datagram for one hop, to the router in Buffering Heights, even though the datagram&#39;s destination is the server beyond it.</em></p>
+<p>As Figure 2.4 shows, a Cooville computer first sends its datagram across the village network to the Cooville router. That router&#39;s forwarding table identifies the Buffering Heights router as the next hop toward the server, so it hands the datagram to FeatherNet for the valley crossing. After Homer recovers the load, the Buffering Heights router reads the same destination address and forwards the datagram over its Internet connection. Routers farther along the path make their own forwarding decisions in turn. Because the destination address retains its meaning throughout these handoffs, each router can distinguish the machine that should receive the datagram next from the server that should ultimately receive it.</p>
+<p>The return journey requires forwarding information in the opposite direction. When the server replies, it uses the Cooville computer&#39;s IP address as the destination, and the wider Internet needs a route that directs traffic for Cooville toward Buffering Heights. The Buffering Heights router must then know to send that traffic across FeatherNet, while the Cooville router must know how to deliver it on the local village network. Routers elsewhere do not need to know which bird will make the crossing; that decision belongs to the equipment at the valley. Draw the return route separately and notice the distinction: including the original sender&#39;s address gives the server somewhere to address its reply, but only appropriate forwarding information can bring that reply home.</p>
+<p>Now imagine that someone sets out a sunflower-seed buffet in the middle of the valley and a pigeon never completes its flight. Does that mean IP has failed to meet its promise? Not necessarily, because IP provides <strong>best-effort</strong> delivery rather than a guarantee that every datagram will arrive. It can forward an addressed datagram without first reserving a route, but datagrams may be lost, arrive out of order, or take an unpredictable amount of time. When FeatherNet stops flying at sunset, its own policy may hold waiting datagrams until morning or discard them. Owls might extend the hours of service, but choosing them is not IP&#39;s responsibility.</p>
+<p>What IP does require from a link is a way to submit a datagram for delivery to the next hop and to recover its bytes if delivery succeeds. The link therefore needs an agreed format and a usable size limit. If a datagram must be divided into smaller pieces to fit the carrier, the receiving link equipment can reassemble those pieces before handing the datagram back to IP. A smudged printout that is mistakenly accepted as an intact packet, or a link unable to carry the packet sizes it claims to support, reveals a problem with the link&#39;s design. A properly formatted load that disappears with its pigeon, or waits until morning for a departure, presents a different problem: either can occur on a best-effort path without violating IP&#39;s delivery model.</p>
+<h2>How does the server know which program should get it?</h2>
+<p>Reaching the right computer is not always enough. Suppose the datagram that has just reached the server contains a request for a weather forecast, but that server also runs a program for accepting crop reports. The destination IP address identifies the computer, not which of its programs should handle the request, so the receiving system needs another piece of information.</p>
+<p>That information is a <strong>port</strong> number, which the receiving computer uses to direct data to the appropriate program. We might assign port 4000 to the crop-report program and port 4001 to the weather program, while the client chooses an available source port, such as 51000, to identify where the reply should be delivered. These numbers appear in a <strong>transport header</strong> attached to the application&#39;s data. For the weather query, we can use <strong>UDP</strong>, a transport protocol that sends each message the application supplies as a separate unit. If a UDP message arrives, the receiving application gets that message as a unit, although the message might instead be lost or arrive after a later one. A weather client may be able to tolerate that uncertainty by retrying a query or ignoring a reply that has become stale.</p>
+<p>To see how the query travels, follow it down through the sender&#39;s software. UDP first places its transport header in front of the weather request; IP then adds a header identifying the source and destination computers and indicating that the contents should be passed to UDP at the receiving end. Finally, the local link wraps the IP datagram in the information needed for the next hop, producing a <strong>link frame</strong>. This process of placing a header around data received from the layer above is called <strong>encapsulation</strong>. The idea is much like packing a labeled box inside another box, with each recipient opening only the wrapping relevant to its part of the journey.</p>
+<p><img src="../chapters/02-the-architecture-of-the-internet/figures/encapsulation.png" alt="The sender adds UDP, IP, and local link headers in succession. The Cooville router removes the local wrapper and adds a FeatherNet wrapper around the IP datagram. The receiver unwraps the final link frame, IP, and UDP to hand the query to the weather program."></p>
+<p><em>Figure 2.5. The query passes down through the sender&#39;s layers and back up to the appropriate program at the server. Routers replace the wrapping for each local link, while the IP addresses and UDP ports in this example remain the same.</em></p>
+<p>When the frame reaches the Cooville router, its original link wrapper has served its purpose. The router removes that wrapper, examines the IP destination, and passes the datagram to FeatherNet, which adds its own wrapping—perhaps a record containing the load&#39;s length and a check for damage to the data on the stick. Some IP header fields can change as the datagram travels: for example, each router reduces its remaining hop allowance to prevent it from circulating indefinitely. In our example, however, the source and destination IP addresses and the UDP ports remain unchanged, and the router has no need to inspect the UDP header merely to forward the datagram. At Buffering Heights, the FeatherNet wrapper is removed and replaced by one suitable for the Internet-facing link. When the datagram finally reaches the server, the server removes its final link wrapper, uses the IP protocol field to pass the contents to UDP, and then uses UDP&#39;s destination port to deliver the query to the weather program.</p>
+<p>A weather query may be useful even if an occasional message goes missing, but uploading a crop-report file raises different concerns. A report with missing numbers may be unusable, so Returno&#39;s computer could choose <strong>TCP</strong>, which provides the communicating programs with an ordered stream of bytes. The sending program can write a thousand bytes without deciding how to divide them into packets, while TCP handles transmission and can resend missing data if a packet is lost. The receiver may hold later bytes until a gap has been filled, allowing the receiving program to read the bytes in their original order. That guarantee does not mean the entire file will necessarily arrive: if the connection fails, the program may have received only its beginning. Nor does TCP identify file boundaries within the stream, so the application might need to put a length at the start of each file. This is the essential contrast: TCP preserves byte order in a stream, whereas UDP preserves the boundaries of individual messages.</p>
+<p>The system we have built can now be described in four layers. The <strong>application</strong> determines what the data means; <strong>transport</strong> identifies the receiving program and provides either messages or a byte stream; <strong>IP</strong> carries addressed datagrams across networks through a sequence of hops; and the <strong>link</strong>, together with its physical medium, carries data across the next hop. IP&#39;s position between the varied services above it and the varied links below it is sometimes called the Internet&#39;s <strong>narrow waist</strong>. Many transports and applications can rely on the same IP service, while IP can operate over many different kinds of links. If someone eventually digs a tunnel between the villages and installs fiber, the routers at either end will need equipment for that new link, but the weather application need not be rewritten. Provided the addresses and routes still work, someone in Cooville could ask whether rain is coming and receive the answer quickly enough to bring a coat.</p>
+<h2>Who can tell whether the whole file arrived?</h2>
+<p>Suppose Homer receives the final packet of a file across FeatherNet and acknowledges its arrival, only for that packet to be dropped on the next link beyond Buffering Heights. If Returno now tells the sending program, “Your file arrived,” what has he actually confirmed? Receiving a load at the end of the valley is not the same as delivering it to the server, much less saving the complete file there.</p>
+<p>Homer&#39;s acknowledgment can establish that a load crossed the valley, while TCP acknowledgments can tell the sending transport that bytes reached the receiving transport. Even that is not proof that the file was saved successfully: the server might run out of disk space after receiving every byte. Only the receiving file program can check whether it saved the entire file and verified its contents, perhaps by comparing its length and a fingerprint of the saved data with the sender&#39;s expectations. It could then send a receipt describing what it checked, although the receipt itself might be lost. If the sender hears nothing, it cannot distinguish between a file that never arrived and one that was saved successfully but whose receipt disappeared. How could it ask again without accidentally creating a second copy?</p>
+<p>This illustrates the <strong>end-to-end principle</strong>: when success means that a complete, intact file has been saved, the applications at the two ends possess information that the intermediate machines do not. Lower layers can still perform useful parts of the work. A Wi-Fi link, for example, may retry a lost transmission locally instead of forcing the sender to retransmit data across the whole route. FeatherNet could likewise retain copies of loads and resend them when a pigeon disappears, although acknowledgments and replacement flights would consume birds that other customers might need. Such measures can improve delivery along the way, but they cannot replace verification by the receiving application when that is where successful delivery is defined.</p>
+<p>Reliability is not the only issue that the application must consider; the time spent waiting for replies can matter just as much. If an entire file is ready at dawn and the sender is allowed to have several loads in flight, many pigeons can depart together. An application that needs an answer before it can decide what to ask next behaves differently, because each dependent request must wait for a reply to cross the valley. Figure 2.6 compares that situation with an ordinary link, assuming that birds are available at both ends, departures happen immediately, and reading or writing a load takes negligible time.</p>
+<p><img src="../chapters/02-the-architecture-of-the-internet/figures/flight-and-reply.png" alt="On an illustrative ordinary link the trip takes 10 milliseconds each way. On FeatherNet a load takes 15 minutes each way. Three dependent exchanges take at least 60 milliseconds or 90 minutes respectively, and there are no flights at night."></p>
+<p><em>Figure 2.6. Multiple ready loads can travel concurrently, but a client that depends on each reply must wait for a full round trip before continuing. The timelines use different scales and exclude extra delays from queueing, loss, or nightfall.</em></p>
+<p>In this model, fifty loads that each fit on a bird can all be airborne at once, yet three dependent request–reply exchanges still require at least ninety minutes of valley-crossing time, even if each message contains only a few bytes. TCP file transfers also involve traffic from the receiver, so connection setup, acknowledgments, recovery from losses, and limits on unacknowledged data can further affect completion time. A client with a ten-second timeout will give up before the first reply could possibly return, whereas one designed to wait may still function. An interactive application that depends on prompt responses, such as the castle game from Chapter 1, would behave very differently over FeatherNet. If tonight&#39;s work depended on confirming a completed file transfer before sunset, what would you change in the file-sending application?</p>
+<h2>What would you tell the FeatherNet designers?</h2>
+<p>Homer and Returno have named the Internet service they are building Wingternet. Before they accept more customers, prepare a design brief explaining what they should test, using your sketch of the first message crossing as a starting point. Your brief should address the following questions.</p>
+<ol>
+<li><strong>Make a link for IP.</strong> What information and data should a bird carry, and under what conditions can the receiving router hand the recovered bytes to IP? Explain how the link handles a damaged load, a missing bird, and the end of the flying day.</li>
+<li><strong>Set a departure rule.</strong> Decide how much data to accumulate on each bird, when a partly filled load should depart, and whether some flights should be reserved for later traffic. Propose one measure of useful bytes delivered per day and another of the waiting time that matters to a customer.</li>
+<li><strong>Choose what to change above IP.</strong> Compare a file transfer that can prepare all its data in advance with an application that must wait for each reply before continuing. Which could operate unchanged, which would need tuning, and which would require a different way of working? Justify each decision with a concrete timer or dependency.</li>
+<li><strong>Make packets find Cooville.</strong> The computers in Cooville already have electricity and an ordinary local network. Explain how you would give them distinct, ordinary IP addresses reachable through the village router, then trace a packet to an Internet server and a reply back home. Identify what the routers in the two villages and the wider Internet must know. For now, assume someone can assign addresses and install routes; later chapters will explain how.</li>
+</ol>
+<p><strong>Break this.</strong> Imagine that forty-nine routine departures have already taken place, leaving just one bird. A routine load is ready now, but an urgent message might arrive five minutes before the latest departure that could reach Buffering Heights before dark, and the two loads will not fit together. Test your rule both on a day when the urgent message arrives and on a day when it never does. What does the rule sacrifice in each case? Revise your brief accordingly, identifying which machines need to know about the new rule. If the Internet server itself must learn how to release a pigeon, reconsider what you decided to put on the bird.</p>
+<p><a href="../chapters/02-the-architecture-of-the-internet/notes.md">Chapter 2 source notes</a></p>
+</article>
+    <nav class="book-nav chapter-turn" aria-label="Chapter navigation"><a href="01-what-should-a-network-do.html">Previous · 1. What Should a Network Do?</a>
+<a href="index.html">Contents</a>
+<a href="03-naming-addressing-and-finding-things.html">Next · 3. Naming, Addressing, and Finding Things</a></nav>
+  </main>
+</body>
+</html>
