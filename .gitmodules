@@ -1,0 +1,4 @@
+[submodule "networks_lecture_notes"]
+	path = networks_lecture_notes
+	url = git@github.com:venkatarun95/networks_lecture_notes
+	branch = main

@@ -7,6 +7,7 @@ def prep_navigation(active: str):
         {"name": "Home", "url": "index.html"},
         {"name": "Schedule", "url": "schedule.html"},
         {"name": "Assignments", "url": "assignments.html"},
+        {"name": "Lecture Notes", "url": "../networks_notes/index.html"},
         {"name": "Ed Discussion", "url": "https://edstem.org/us/courses/102831/discussion"},
         {"name": "Canvas", "url": "https://utexas.instructure.com/courses/1450929"},
     ]
