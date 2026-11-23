@@ -1,0 +1,23 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="700" height="267" viewBox="0 0 700 267" role="img" aria-labelledby="ttl ds">
+  <title id="ttl">Carrier sensing and interference can disagree</title>
+  <desc id="ds">Top: A and C both transmit to B, and cannot sense each other. Bottom: B to A can coexist with C to D even though B and C can hear each other.</desc>
+  <defs><marker id="arr" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto"><path d="M0 0L10 5L0 10Z" fill="#315e55"/></marker></defs>
+  <rect x="1" y="1" width="698" height="265" rx="17" fill="#f7faf8"/>
+  <path d="M24 134H676" stroke="#c5d8cf"/>
+  <g fill="none" stroke="#315e55" stroke-width="2.5" marker-end="url(#arr)">
+    <path d="M211 63H324"/><path d="M490 63H377"/><path d="M244 191H150"/><path d="M459 191H551"/>
+  </g>
+  <g stroke="#315e55" stroke-width="2" fill="white">
+    <circle cx="189" cy="63" r="22"/><circle cx="350" cy="63" r="22"/><circle cx="513" cy="63" r="22"/>
+    <circle cx="127" cy="191" r="22"/><circle cx="267" cy="191" r="22"/><circle cx="436" cy="191" r="22"/><circle cx="574" cy="191" r="22"/>
+  </g>
+  <path d="M289 191H414" stroke="#95472d" stroke-width="2.7" stroke-dasharray="6 5"/>
+  <g fill="#163532" font-family="system-ui, sans-serif" font-size="16">
+    <text x="24" y="28" font-weight="700">Hidden terminals</text><text x="24" y="158" font-weight="700">Exposed terminals</text>
+    <g text-anchor="middle">
+      <g font-weight="700"><text x="189" y="69">A</text><text x="350" y="69">B</text><text x="513" y="69">C</text><text x="127" y="197">A</text><text x="267" y="197">B</text><text x="436" y="197">C</text><text x="574" y="197">D</text></g>
+      <text x="350" y="111">A and C cannot sense one another. Their packets overlap at B.</text>
+      <text x="351" y="234">B and C sense each other. A and D could both receive.</text>
+    </g>
+  </g>
+</svg>

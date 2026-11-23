@@ -1,0 +1,15 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 760 232" role="img" aria-labelledby="title">
+ <title id="title">What can a router read along an encrypted path?</title>
+ <rect x="1" y="1" width="758" height="230" rx="14" fill="#f6f8fb" stroke="#d6dfe8"/>
+ <defs><marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0 0L10 5L0 10Z" fill="#35617c"/></marker></defs>
+ <g font-family="system-ui,sans-serif" fill="#1d2938" text-anchor="middle">
+  <g font-size="19" font-weight="700"><text x="112" y="41">Sender</text><text x="380" y="41">Forwarding path</text><text x="648" y="41">Receiver</text></g>
+  <g fill="#e3edf4" stroke="#b5c8d8"><rect x="40" y="62" width="144" height="50" rx="6"/><rect x="576" y="62" width="144" height="50" rx="6"/></g>
+  <text x="112" y="92" font-size="17">Encrypts bytes</text><text x="648" y="92" font-size="17">Decrypts bytes</text>
+  <g stroke="#35617c" stroke-width="2" marker-end="url(#arrow)"><path d="M190 86H246"/><path d="M513 86H570"/></g>
+  <rect x="251" y="61" width="258" height="52" rx="7" fill="#23677a"/><path d="M251 69Q251 61 259 61H376V113H259Q251 113 251 105Z" fill="#dceaf0"/>
+  <text x="311" y="92" font-size="16">Outer header</text><text x="441" y="92" font-size="16" fill="#fff">Ciphertext</text>
+  <text x="380" y="156" font-size="16">On-path observations include addresses, length, and timing.</text>
+  <text x="380" y="184" font-size="16">The encrypted content crosses each forwarding hop.</text>
+ </g>
+</svg>

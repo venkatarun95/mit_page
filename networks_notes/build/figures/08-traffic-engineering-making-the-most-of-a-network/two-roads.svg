@@ -1,0 +1,18 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="650" height="251" viewBox="0 0 650 251" role="img" aria-labelledby="title desc">
+  <title id="title">Two roads to the egress</title>
+  <desc id="desc">Eight megabits per second arrive at router A for B. The direct link and both detour links have a five-megabit-per-second capacity.</desc>
+  <defs><marker id="head" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto"><path d="M0 0L10 5L0 10Z" fill="#315e55"/></marker></defs>
+  <rect x="1" y="1" width="648" height="249" rx="16" fill="#f7faf8"/>
+  <g fill="none" stroke="#315e55" stroke-width="2.5" marker-end="url(#head)">
+    <path d="M31 121H147"/>
+    <path d="M197 121H486"/>
+    <path d="M190 136L325 195"/>
+    <path d="M370 195L491 136"/>
+  </g>
+  <g fill="#fff" stroke="#315e55" stroke-width="2"><circle cx="172" cy="121" r="24"/><circle cx="348" cy="203" r="24"/><circle cx="511" cy="121" r="24"/></g>
+  <g fill="#163532" font-family="system-ui, sans-serif" font-size="17" text-anchor="middle">
+    <g font-weight="700"><text x="172" y="127">A</text><text x="348" y="209">C</text><text x="511" y="127">B</text></g>
+    <text x="92" y="101">8 Mbit/s</text><text x="345" y="103">5 Mbit/s</text><text x="240" y="192">5 Mbit/s</text><text x="453" y="190">5 Mbit/s</text>
+    <text x="172" y="70">Ingress</text><text x="511" y="70">Egress</text>
+  </g>
+</svg>

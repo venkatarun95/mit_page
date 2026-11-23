@@ -1,0 +1,55 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="760" height="277" viewBox="0 0 760 277" role="img" aria-labelledby="title desc">
+  <title id="title">A tree settles and then recovers from a cut cable</title>
+  <desc id="desc">Every switch initially claims to be root. Switch 2 wins, and 5 and 9 block their direct path for data. When the link from 2 to 5 fails, the backup link from 5 to 9 carries frames.</desc>
+  <defs>
+    <marker id="blue-arrow" markerWidth="10" markerHeight="10" refX="9" refY="5" orient="auto" markerUnits="userSpaceOnUse">
+      <path d="M0,0 L10,5 L0,10 Z" fill="#126084"/>
+    </marker>
+    <marker id="gray-arrow" markerWidth="10" markerHeight="10" refX="9" refY="5" orient="auto" markerUnits="userSpaceOnUse">
+      <path d="M0,0 L10,5 L0,10 Z" fill="#516b77"/>
+    </marker>
+  </defs>
+  <rect width="760" height="277" fill="#f7faf9"/>
+  <rect x="14" y="13" width="232" height="251" rx="7" fill="white" stroke="#a6bcbf"/>
+  <text x="130.0" y="42" font-family="system-ui, sans-serif" font-size="17" font-weight="650" fill="#173544" text-anchor="middle">1. At startup</text>
+  <line x1="76.5" y1="170.9" x2="115.5" y2="119.1" stroke="#a6bcbf" stroke-width="2" stroke-linecap="round" stroke-dasharray="4 5"/>
+  <line x1="183.5" y1="170.9" x2="144.5" y2="119.1" stroke="#a6bcbf" stroke-width="2" stroke-linecap="round" stroke-dasharray="4 5"/>
+  <line x1="86.0" y1="190.0" x2="174.0" y2="190.0" stroke="#a6bcbf" stroke-width="2" stroke-linecap="round" stroke-dasharray="4 5"/>
+  <circle cx="130" cy="100" r="20" fill="#e2f2ed" stroke="#076764" stroke-width="1.7"/>
+  <text x="130" y="106" font-family="system-ui, sans-serif" font-size="18" font-weight="700" fill="#173544" text-anchor="middle">2</text>
+  <circle cx="62" cy="190" r="20" fill="#e2f2ed" stroke="#076764" stroke-width="1.7"/>
+  <text x="62" y="196" font-family="system-ui, sans-serif" font-size="18" font-weight="700" fill="#173544" text-anchor="middle">5</text>
+  <circle cx="198" cy="190" r="20" fill="#e2f2ed" stroke="#076764" stroke-width="1.7"/>
+  <text x="198" y="196" font-family="system-ui, sans-serif" font-size="18" font-weight="700" fill="#173544" text-anchor="middle">9</text>
+  <text x="130" y="229" font-family="system-ui, sans-serif" font-size="14" font-weight="550" fill="#173544" text-anchor="middle">Each switch claims to be root.</text>
+  <text x="130" y="248" font-family="system-ui, sans-serif" font-size="13" font-weight="400" fill="#516b77" text-anchor="middle">Dashed links show the cables.</text>
+  <rect x="264" y="13" width="232" height="251" rx="7" fill="white" stroke="#a6bcbf"/>
+  <text x="380.0" y="42" font-family="system-ui, sans-serif" font-size="17" font-weight="650" fill="#173544" text-anchor="middle">2. After settling</text>
+  <line x1="326.5" y1="170.9" x2="365.5" y2="119.1" stroke="#076764" stroke-width="3" stroke-linecap="round"/>
+  <line x1="433.5" y1="170.9" x2="394.5" y2="119.1" stroke="#076764" stroke-width="3" stroke-linecap="round"/>
+  <line x1="336.0" y1="190.0" x2="424.0" y2="190.0" stroke="#516b77" stroke-width="2" stroke-linecap="round" stroke-dasharray="5 5"/>
+  <circle cx="380" cy="100" r="20" fill="#e2f2ed" stroke="#076764" stroke-width="1.7"/>
+  <text x="380" y="106" font-family="system-ui, sans-serif" font-size="18" font-weight="700" fill="#173544" text-anchor="middle">2</text>
+  <circle cx="312" cy="190" r="20" fill="white" stroke="#a6bcbf" stroke-width="1.7"/>
+  <text x="312" y="196" font-family="system-ui, sans-serif" font-size="18" font-weight="700" fill="#173544" text-anchor="middle">5</text>
+  <circle cx="448" cy="190" r="20" fill="white" stroke="#a6bcbf" stroke-width="1.7"/>
+  <text x="448" y="196" font-family="system-ui, sans-serif" font-size="18" font-weight="700" fill="#173544" text-anchor="middle">9</text>
+  <text x="380" y="229" font-family="system-ui, sans-serif" font-size="14" font-weight="550" fill="#173544" text-anchor="middle">5 and 9 both choose 2.</text>
+  <text x="380" y="248" font-family="system-ui, sans-serif" font-size="13" font-weight="400" fill="#516b77" text-anchor="middle">5–9 is blocked for data.</text>
+  <rect x="514" y="13" width="232" height="251" rx="7" fill="white" stroke="#a6bcbf"/>
+  <text x="630.0" y="42" font-family="system-ui, sans-serif" font-size="17" font-weight="650" fill="#173544" text-anchor="middle">3. After a cable fails</text>
+  <line x1="576.5" y1="170.9" x2="615.5" y2="119.1" stroke="#9b4a32" stroke-width="2" stroke-linecap="round" stroke-dasharray="5 5"/>
+  <line x1="683.5" y1="170.9" x2="644.5" y2="119.1" stroke="#076764" stroke-width="3" stroke-linecap="round"/>
+  <line x1="586.0" y1="190.0" x2="674.0" y2="190.0" stroke="#076764" stroke-width="3" stroke-linecap="round"/>
+  <circle cx="596.0" cy="145.0" r="10" fill="#f7faf9" stroke="#9b4a32" stroke-width="1.7"/>
+  <line x1="592.0" y1="141.0" x2="600.0" y2="149.0" stroke="#9b4a32" stroke-width="1.8" stroke-linecap="round"/>
+  <line x1="592.0" y1="149.0" x2="600.0" y2="141.0" stroke="#9b4a32" stroke-width="1.8" stroke-linecap="round"/>
+  <circle cx="630" cy="100" r="20" fill="#e2f2ed" stroke="#076764" stroke-width="1.7"/>
+  <text x="630" y="106" font-family="system-ui, sans-serif" font-size="18" font-weight="700" fill="#173544" text-anchor="middle">2</text>
+  <circle cx="562" cy="190" r="20" fill="white" stroke="#a6bcbf" stroke-width="1.7"/>
+  <text x="562" y="196" font-family="system-ui, sans-serif" font-size="18" font-weight="700" fill="#173544" text-anchor="middle">5</text>
+  <circle cx="698" cy="190" r="20" fill="white" stroke="#a6bcbf" stroke-width="1.7"/>
+  <text x="698" y="196" font-family="system-ui, sans-serif" font-size="18" font-weight="700" fill="#173544" text-anchor="middle">9</text>
+  <text x="630" y="229" font-family="system-ui, sans-serif" font-size="14" font-weight="550" fill="#173544" text-anchor="middle">9 still chooses 2.</text>
+  <text x="630" y="248" font-family="system-ui, sans-serif" font-size="13" font-weight="400" fill="#516b77" text-anchor="middle">5 now reaches 2 via 9.</text>
+</svg>

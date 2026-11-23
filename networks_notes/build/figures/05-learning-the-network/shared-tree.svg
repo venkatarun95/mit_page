@@ -1,0 +1,32 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 680 190" role="img">
+  <title>One shared spanning tree and two destination trees</title>
+  <defs>
+    <marker id="arrow" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto"><path d="M0 0L8 4L0 8z" fill="#147c70"/></marker>
+  </defs>
+  <rect width="680" height="190" rx="10" fill="#f1f6f5"/>
+  <g font-family="system-ui,sans-serif" text-anchor="middle" fill="#143437" font-size="16">
+    <text x="115" y="30" font-weight="650">Shared tree</text>
+    <text x="340" y="30" font-weight="650">Destination C</text>
+    <text x="565" y="30" font-weight="650">Destination B</text>
+    <g fill="none" stroke="#516d6b" stroke-width="3">
+      <path d="M58 131L115 65L172 131"/>
+      <path d="M58 131H172" stroke="#a35640" stroke-dasharray="6 6"/>
+      <path d="M283 131L340 65" stroke="#b0bfbc"/>
+      <path d="M508 131H622" stroke="#b0bfbc"/>
+    </g>
+    <g fill="none" stroke="#147c70" stroke-width="3" marker-end="url(#arrow)">
+      <path d="M295 131H380"/><path d="M350 77L386 119"/>
+      <path d="M518 119L555 77"/><path d="M612 119L575 77"/>
+    </g>
+    <g fill="#fff" stroke="#516d6b" stroke-width="2">
+      <circle cx="115" cy="65" r="15"/><circle cx="58" cy="131" r="15"/><circle cx="172" cy="131" r="15"/>
+      <circle cx="340" cy="65" r="15"/><circle cx="283" cy="131" r="15"/><circle cx="397" cy="131" r="15"/>
+      <circle cx="565" cy="65" r="15"/><circle cx="508" cy="131" r="15"/><circle cx="622" cy="131" r="15"/>
+    </g>
+    <text x="115" y="71">B</text><text x="58" y="137">A</text><text x="172" y="137">C</text>
+    <text x="340" y="71">B</text><text x="283" y="137">A</text><text x="397" y="137">C</text>
+    <text x="565" y="71">B</text><text x="508" y="137">A</text><text x="622" y="137">C</text>
+    <text x="69" y="92">4</text><text x="161" y="92">4</text><text x="115" y="119" fill="#8e432e">3</text>
+    <text x="115" y="168" font-size="13">A–C blocked</text>
+  </g>
+</svg>

@@ -1,0 +1,31 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 680 257" role="img">
+  <title>M has two routes to R and prefers the longer route through B and T</title>
+  <defs>
+    <marker id="preferred" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto"><path d="M0 0L8 4L0 8Z" fill="#147c70"/></marker>
+    <marker id="backup" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto"><path d="M0 0L8 4L0 8Z" fill="#4e6173"/></marker>
+  </defs>
+  <rect width="680" height="257" rx="10" fill="#f1f6f5"/>
+  <g font-family="system-ui,sans-serif" text-anchor="middle" fill="#143437">
+    <g fill="none" stroke-width="2.5">
+      <g stroke="#4e6173" stroke-dasharray="6 5" marker-end="url(#backup)">
+        <path d="M106 106Q199 61 316 57"/><path d="M364 57Q481 61 574 106"/>
+      </g>
+      <g stroke="#147c70" marker-end="url(#preferred)">
+        <path d="M100 130L222 177"/><path d="M271 185H409"/><path d="M458 177L580 130"/>
+      </g>
+    </g>
+    <g fill="#fff" stroke="#516d6b" stroke-width="2">
+      <rect x="57" y="95" width="47" height="46" rx="8"/>
+      <circle cx="340" cy="55" r="21"/><circle cx="247" cy="184" r="21"/><circle cx="433" cy="184" r="21"/><circle cx="600" cy="117" r="23"/>
+    </g>
+    <g font-size="18" font-weight="650">
+      <text x="80" y="124">M</text><text x="340" y="61">A</text><text x="247" y="190">B</text>
+      <text x="433" y="190">T</text><text x="600" y="123">R</text>
+    </g>
+    <g font-size="14">
+      <text x="80" y="164">enterprise</text>
+      <text x="340" y="23">M’s backup via A · 2 AS hops</text>
+      <text x="340" y="231">M’s lower-cost contract via B · 3 AS hops</text>
+    </g>
+  </g>
+</svg>

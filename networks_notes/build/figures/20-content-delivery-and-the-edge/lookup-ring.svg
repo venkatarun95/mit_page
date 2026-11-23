@@ -1,0 +1,62 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 292" role="img" aria-labelledby="title desc">
+  <title id="title">A key and its responsible node</title>
+  <desc id="desc">The key is at position 7, colored ochre. Moving clockwise reaches node 11 before node 2 or node 5.</desc>
+  <style>text { font-family: system-ui,sans-serif; fill: #162436 }</style>
+  <rect x="8" y="8" width="704" height="276" rx="14" fill="#f7f9fb" stroke="#d0dbe5"/>
+  <circle cx="196" cy="143" r="104" fill="#e4edf4"/>
+  <circle cx="196" cy="143" r="101" fill="#fff"/>
+  <circle cx="196.00" cy="39.00" r="3" fill="#a9bbc9"/>
+  <circle cx="235.80" cy="46.92" r="3" fill="#a9bbc9"/>
+  <circle cx="269.54" cy="69.46" r="3" fill="#a9bbc9"/>
+  <circle cx="292.08" cy="103.20" r="3" fill="#a9bbc9"/>
+  <circle cx="300.00" cy="143.00" r="3" fill="#a9bbc9"/>
+  <circle cx="292.08" cy="182.80" r="3" fill="#a9bbc9"/>
+  <circle cx="269.54" cy="216.54" r="3" fill="#a9bbc9"/>
+  <circle cx="235.80" cy="239.08" r="3" fill="#a9bbc9"/>
+  <circle cx="196.00" cy="247.00" r="3" fill="#a9bbc9"/>
+  <circle cx="156.20" cy="239.08" r="3" fill="#a9bbc9"/>
+  <circle cx="122.46" cy="216.54" r="3" fill="#a9bbc9"/>
+  <circle cx="99.92" cy="182.80" r="3" fill="#a9bbc9"/>
+  <circle cx="92.00" cy="143.00" r="3" fill="#a9bbc9"/>
+  <circle cx="99.92" cy="103.20" r="3" fill="#a9bbc9"/>
+  <circle cx="122.46" cy="69.46" r="3" fill="#a9bbc9"/>
+  <circle cx="156.20" cy="46.92" r="3" fill="#a9bbc9"/>
+  <circle cx="269.54" cy="69.46" r="8" fill="#347d9d"/>
+  <text x="291.4594154601839" y="52.54058453981608" text-anchor="middle" font-size="16" font-weight="650">2</text>
+  <circle cx="292.08" cy="182.80" r="8" fill="#347d9d"/>
+  <text x="320.7237368890237" y="199.6622633692871" text-anchor="middle" font-size="16" font-weight="650">5</text>
+  <circle cx="235.80" cy="239.08" r="8" fill="#9e651f"/>
+  <text x="247.66226336928713" y="272.7237368890237" text-anchor="middle" font-size="16" font-weight="650">7</text>
+  <circle cx="99.92" cy="182.80" r="8" fill="#18705d"/>
+  <text x="71.27626311097632" y="199.6622633692872" text-anchor="middle" font-size="16" font-weight="650">11</text>
+  <polygon points="231.20,238.20 225.31,240.18 226.90,244.92 232.79,242.94" fill="#18705d"/>
+  <polygon points="225.46,240.13 219.46,241.75 220.76,246.58 226.76,244.96" fill="#18705d"/>
+  <polygon points="219.61,241.72 213.52,242.98 214.54,247.87 220.62,246.61" fill="#18705d"/>
+  <polygon points="213.67,242.95 207.53,243.84 208.25,248.79 214.39,247.90" fill="#18705d"/>
+  <polygon points="207.67,243.83 201.49,244.35 201.91,249.33 208.10,248.81" fill="#18705d"/>
+  <polygon points="201.64,244.34 195.43,244.50 195.55,249.50 201.76,249.34" fill="#18705d"/>
+  <polygon points="195.58,244.50 189.37,244.28 189.20,249.28 195.40,249.50" fill="#18705d"/>
+  <polygon points="189.52,244.29 183.34,243.71 182.86,248.69 189.05,249.27" fill="#18705d"/>
+  <polygon points="183.48,243.73 177.35,242.77 176.58,247.71 182.72,248.67" fill="#18705d"/>
+  <polygon points="177.49,242.80 171.43,241.48 170.36,246.37 176.43,247.69" fill="#18705d"/>
+  <polygon points="171.57,241.52 165.59,239.84 164.24,244.65 170.22,246.33" fill="#18705d"/>
+  <polygon points="165.73,239.88 159.87,237.85 158.23,242.58 164.10,244.61" fill="#18705d"/>
+  <polygon points="160.01,237.90 154.27,235.53 152.35,240.14 158.09,242.52" fill="#18705d"/>
+  <polygon points="154.40,235.59 148.82,232.87 146.63,237.37 152.22,240.08" fill="#18705d"/>
+  <polygon points="148.95,232.94 143.54,229.89 141.09,234.25 146.50,237.30" fill="#18705d"/>
+  <polygon points="143.67,229.97 138.45,226.61 135.74,230.81 140.96,234.17" fill="#18705d"/>
+  <polygon points="138.57,226.69 133.56,223.02 130.61,227.06 135.62,230.73" fill="#18705d"/>
+  <polygon points="133.68,223.11 128.89,219.15 125.71,223.00 130.49,226.97" fill="#18705d"/>
+  <polygon points="129.01,219.25 124.47,215.01 121.06,218.67 125.59,222.91" fill="#18705d"/>
+  <polygon points="124.58,215.12 120.30,210.61 116.67,214.06 120.95,218.56" fill="#18705d"/>
+  <polygon points="120.40,210.73 116.40,205.98 112.57,209.20 116.57,213.95" fill="#18705d"/>
+  <polygon points="116.49,206.09 112.78,201.11 108.77,204.10 112.48,209.08" fill="#18705d"/>
+  <polygon points="112.87,201.23 109.46,196.04 105.28,198.78 108.69,203.98" fill="#18705d"/>
+  <polygon points="109.54,196.17 106.45,190.78 102.11,193.27 105.20,198.66" fill="#18705d"/>
+  <polygon points="101.55310992219154,186.54061270389252 99.8030857309276,194.25136725933112 108.75729128461457,189.79915400047645" fill="#18705d"/>
+  <rect x="368" y="61" width="312" height="160" rx="7" fill="#fff" stroke="#c1cedb"/>
+  <text x="389" y="96" text-anchor="start" font-size="18" font-weight="650">Ring positions 0 through 15</text>
+  <text x="389" y="128" text-anchor="start" font-size="16" font-weight="400">Nodes are at 2, 5 and 11.</text>
+  <text x="389" y="155" text-anchor="start" font-size="16" font-weight="400">The requested key maps to 7.</text>
+  <text x="389" y="194" text-anchor="start" font-size="16" font-weight="650">Node 11 is the first clockwise.</text>
+</svg>

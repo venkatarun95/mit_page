@@ -1,0 +1,24 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 760 240" role="img" aria-labelledby="title desc">
+<title id="title">Two routes visible on 24 February 2008</title>
+<desc id="desc">YouTube's covering prefix and an unauthorized more-specific prefix originated by Pakistan Telecom and propagated by PCCW both reach an observing network.</desc>
+<rect width="760" height="240" rx="12" fill="#f8faf9"/>
+<g font-family="system-ui,sans-serif" fill="#173b46">
+<text x="24" y="34" font-size="20" font-weight="bold">What a remote network could learn</text>
+<text x="24" y="61" font-size="15">Arrows follow the announcements. Traffic follows a selected route back.</text>
+<g fill="#41746f">
+<rect x="235" y="107" width="310" height="2"/>
+<polygon points="543,103 552,108 543,113"/>
+<rect x="235" y="187" width="66" height="2"/>
+<polygon points="299,183 308,188 299,193"/>
+<rect x="460" y="187" width="85" height="2"/>
+<polygon points="543,183 552,188 543,193"/></g>
+<g font-size="17" font-weight="bold">
+<text x="24" y="105">YouTube</text><text x="24" y="185">Pakistan Telecom</text>
+<text x="325" y="185">PCCW Global</text>
+</g>
+<g font-size="15"><text x="24" y="129">208.65.152.0/22</text><text x="24" y="209">208.65.153.0/24</text>
+<text x="309" y="98">via other ASes</text><text x="325" y="209">upstream provider</text></g>
+<rect x="560" y="84" width="178" height="129" rx="9" fill="#e2eeec" stroke="#41746f"/>
+<text x="575" y="123" font-size="16" font-weight="bold">Remote network</text>
+<text x="575" y="153" font-size="15">Both entries fit in</text><text x="575" y="175" font-size="15">the routing table.</text>
+</g></svg>

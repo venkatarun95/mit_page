@@ -1,0 +1,28 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 680 278" role="img">
+  <title>Three customers, two regional carriers and a larger transit provider</title>
+  <defs>
+    <marker id="customer" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto"><path d="M0 0L8 4L0 8Z" fill="#147c70"/></marker>
+  </defs>
+  <rect width="680" height="278" rx="10" fill="#f1f6f5"/>
+  <g font-family="system-ui,sans-serif" text-anchor="middle" fill="#143437">
+    <g fill="none" stroke="#147c70" stroke-width="2.5" marker-end="url(#customer)">
+      <path d="M218 110L317 59"/><path d="M462 110L363 59"/>
+      <path d="M124 189L182 141"/><path d="M272 188L219 142"/><path d="M480 185V151"/>
+    </g>
+    <path d="M223 122H457" stroke="#4e6173" stroke-width="2.5" stroke-dasharray="7 5"/>
+    <g fill="#fff" stroke="#516d6b" stroke-width="2">
+      <circle cx="340" cy="48" r="21"/>
+      <circle cx="200" cy="122" r="21"/><circle cx="480" cy="122" r="21"/>
+      <circle cx="110" cy="205" r="18"/><circle cx="287" cy="205" r="18"/><circle cx="480" cy="205" r="18"/>
+    </g>
+    <g font-size="18" font-weight="650">
+      <text x="340" y="54">U</text><text x="200" y="128">A</text><text x="480" y="128">B</text>
+      <text x="110" y="211">P</text><text x="287" y="211">Q</text><text x="480" y="211">R</text>
+    </g>
+    <text x="340" y="110" font-size="14">regional peering</text>
+    <path d="M135 249h38" stroke="#147c70" stroke-width="2.5" marker-end="url(#customer)"/>
+    <text x="187" y="254" font-size="14" text-anchor="start">customer to provider</text>
+    <path d="M392 249h38" stroke="#4e6173" stroke-width="2.5" stroke-dasharray="7 5"/>
+    <text x="441" y="254" font-size="14" text-anchor="start">peer to peer</text>
+  </g>
+</svg>

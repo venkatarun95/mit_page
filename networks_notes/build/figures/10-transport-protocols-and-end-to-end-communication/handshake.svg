@@ -1,0 +1,15 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 308" role="img" aria-labelledby="title">
+  <title id="title">Three messages synchronize two TCP sequence spaces</title>
+  <defs><marker id="tip" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0 0L10 5L0 10Z" fill="#2b5f82"/></marker></defs>
+  <rect x="1" y="1" width="718" height="306" rx="14" fill="#f6f8fb" stroke="#d6dfe8"/>
+  <g font-family="system-ui,sans-serif" fill="#1d2938" text-anchor="middle">
+    <text x="148" y="37" font-size="21" font-weight="700">Client</text>
+    <text x="572" y="37" font-size="21" font-weight="700">Server</text>
+    <text x="148" y="63" font-size="17">192.0.2.7:50000</text>
+    <text x="572" y="63" font-size="17">198.51.100.8:443</text>
+    <g stroke="#abb9c7" stroke-width="2"><path d="M148 78V270M572 78V270"/></g>
+    <g stroke="#2b5f82" stroke-width="2.5" marker-end="url(#tip)"><path d="M149 115H570"/><path d="M571 174H150"/><path d="M149 233H570"/></g>
+    <g fill="#214a68" font-weight="650" font-size="18"><text x="360" y="105">SYN · seq 100</text><text x="360" y="164">SYN + ACK · seq 700 · ACK 101</text><text x="360" y="223">ACK · seq 101 · ACK 701</text></g>
+    <text x="360" y="286" font-size="16">First data can use byte 101 → and byte 701 ←</text>
+  </g>
+</svg>

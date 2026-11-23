@@ -1,0 +1,644 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>17. Authentication, Identity, and Trust</title>
+  <style>:root {
+  color-scheme: light;
+  background: #f3f6f5;
+  color: #182a30;
+  font: 18px/1.65 Georgia, serif;
+}
+
+body {
+  max-width: 48rem;
+  margin: 2.5rem auto;
+  padding: 2.25rem clamp(1rem, 5vw, 3.25rem);
+  background: #fff;
+  border-top: 0.3rem solid #076764;
+}
+
+h1,
+h2,
+h3 {
+  font-family: system-ui, sans-serif;
+  line-height: 1.2;
+  color: #152e37;
+}
+
+h1 {
+  margin: 0 0 1.4rem;
+  font-size: clamp(2rem, 5vw, 3rem);
+  letter-spacing: -0.035em;
+}
+
+h2 {
+  margin: 2.5rem 0 0.7rem;
+  font-size: clamp(1.4rem, 3vw, 1.75rem);
+}
+
+p {
+  margin: 0 0 1rem;
+}
+
+a {
+  color: #0a5b63;
+  overflow-wrap: anywhere;
+  text-underline-offset: 0.15em;
+}
+
+li + li {
+  margin-top: 0.7rem;
+}
+
+blockquote {
+  margin: 1.2rem 0;
+  padding: 0.65rem 1rem;
+  background: #edf6f4;
+  border-inline-start: 0.2rem solid #076764;
+}
+
+blockquote p {
+  margin: 0;
+}
+
+img {
+  display: block;
+  max-width: 100%;
+  height: auto;
+  outline: 1px solid #d3dfdf;
+}
+
+p:has(> img:only-child) {
+  margin: 1.5rem 0 0.5rem;
+}
+
+p:has(> img:only-child) + p:has(> em:only-child) {
+  color: #37525a;
+  font: 0.83rem/1.5 system-ui, sans-serif;
+  margin: 0 0 1.5rem;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 1.25rem 0;
+  font: 0.83rem/1.45 system-ui, sans-serif;
+  font-variant-numeric: tabular-nums;
+  overflow-wrap: anywhere;
+}
+
+th,
+td {
+  border: 1px solid #d3dfdf;
+  padding: 0.55rem;
+  vertical-align: top;
+}
+
+th {
+  background: #edf6f4;
+}
+
+@media (max-width: 34rem) {
+  body {
+    margin: 0;
+  }
+
+  table {
+    font-size: 0.7rem;
+  }
+
+  th,
+  td {
+    padding: 0.3rem;
+  }
+}
+
+@media print {
+  :root {
+    background: #fff;
+  }
+
+  body {
+    margin: 0;
+    padding: 0;
+    border: 0;
+  }
+
+  h2,
+  p:has(> img:only-child) {
+    break-after: avoid;
+  }
+
+  table,
+  img {
+    break-inside: avoid;
+  }
+}
+
+.chapter-lab {
+  margin: 1.5rem 0 0.65rem;
+  padding: clamp(0.75rem, 3vw, 1.25rem);
+  border: 1px solid #b7cdcd;
+  border-radius: 0.6rem;
+  background: #f7faf9;
+  font: 0.93rem/1.5 system-ui, sans-serif;
+}
+
+.chapter-lab h3 {
+  margin: 0 0 0.5rem;
+  font-size: 1.2rem;
+}
+
+.chapter-lab > p {
+  color: #334e56;
+}
+
+.chapter-lab + p:has(> em:only-child) {
+  color: #37525a;
+  font: 0.83rem/1.5 system-ui, sans-serif;
+  margin-bottom: 1.5rem;
+}
+
+#playback-lab:not([hidden]) + p:has(> img:only-child) {
+  display: none;
+}
+
+.lab-controls {
+  display: flex;
+  gap: 0.75rem;
+  align-items: end;
+  flex-wrap: wrap;
+  margin-bottom: 1rem;
+}
+
+.lab-controls label {
+  display: grid;
+  gap: 0.3rem;
+  font-weight: 700;
+  font-size: 0.8rem;
+}
+
+.lab-controls select,
+.lab-controls button {
+  min-height: 2.2rem;
+  border: 1px solid #9bb2b8;
+  border-radius: 0.3rem;
+  background: #fff;
+  color: #163440;
+  padding: 0.25rem 0.5rem;
+  font: inherit;
+}
+
+.lab-controls button {
+  font-size: 0.8rem;
+  cursor: pointer;
+}
+
+.lab-controls :focus-visible {
+  outline: 2px solid #076764;
+  outline-offset: 2px;
+}
+
+#link-race .race-timeline {
+  display: grid;
+  gap: 0.25rem;
+  margin-bottom: 0.85rem;
+}
+
+#link-race .race-timeline label,
+#link-race .race-endpoints {
+  display: flex;
+  justify-content: space-between;
+  gap: 0.35rem;
+}
+
+#link-race .race-timeline label {
+  font-size: 0.8rem;
+  font-weight: 700;
+  font-variant-numeric: tabular-nums;
+}
+
+#link-race .race-timeline input {
+  width: 100%;
+  margin: 0;
+  accent-color: #076764;
+}
+
+#link-race .race-timeline input:focus-visible {
+  outline: 2px solid #076764;
+  outline-offset: 2px;
+}
+
+#link-race [aria-disabled="true"] {
+  color: #55676e;
+  background: #edf2f1;
+  cursor: default;
+}
+
+#link-race .race-lane {
+  --race-color: #25618b;
+  --race-wire: #dce9f1;
+  padding: 0.75rem 0;
+  border-top: 1px solid #b7cdcd;
+}
+
+#link-race .race-lane[data-link="B"] {
+  --race-color: #076764;
+  --race-wire: #dbede9;
+}
+
+#link-race h4 {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 0.15rem 0.6rem;
+  margin: 0 0 0.4rem;
+  color: var(--race-color);
+  font-size: 1rem;
+}
+
+#link-race h4 span,
+#link-race .race-endpoints,
+#link-race .race-timeline p,
+#link-race .race-key {
+  color: #405961;
+  font-size: 0.8rem;
+  font-weight: 400;
+}
+
+#link-race h4 strong {
+  padding: 0.05rem 0.4rem;
+  border-radius: 0.2rem;
+  background: var(--race-wire);
+  font-size: 0.76rem;
+}
+
+#link-race .race-path {
+  margin-inline: 0.3rem;
+}
+
+#link-race [data-link="B"] .race-path {
+  width: 48%;
+}
+
+#link-race .race-track {
+  position: relative;
+  height: 0.85rem;
+  margin: 0.2rem 0 0.4rem;
+  border-radius: 1rem;
+  background: var(--race-wire);
+}
+
+#link-race .race-track::before,
+#link-race .race-track::after,
+#link-race .race-track span {
+  position: absolute;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  background: var(--race-color);
+}
+
+#link-race .race-track::before,
+#link-race .race-track::after {
+  content: "";
+  left: 0;
+  width: 0.14rem;
+  height: 100%;
+  border-radius: 1rem;
+}
+
+#link-race .race-track::after {
+  left: 100%;
+}
+
+#link-race .race-track span {
+  width: clamp(0.17rem, 0.55vw, 0.36rem);
+  aspect-ratio: 1;
+  border-radius: 50%;
+}
+
+#link-race .race-timeline p,
+#link-race .race-meter p,
+#link-race .race-finish {
+  margin: 0;
+}
+
+#link-race .race-totals {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 0.75rem;
+  margin-top: 0.6rem;
+}
+
+#link-race .race-meter p {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: 0 0.35rem;
+  font-size: 0.8rem;
+  font-variant-numeric: tabular-nums;
+}
+
+#link-race .race-meter progress {
+  display: block;
+  width: 100%;
+  height: 0.55rem;
+  margin: 0.2rem 0 0;
+  accent-color: var(--race-color);
+}
+
+#link-race .race-finish {
+  margin-top: 0.4rem;
+  font-size: 0.85rem;
+  font-variant-numeric: tabular-nums;
+}
+
+#link-race .race-announcement {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  clip-path: inset(50%);
+  overflow: hidden;
+}
+
+#link-race figcaption {
+  border-top: 1px solid #b7cdcd;
+  padding-top: 0.65rem;
+  color: #173840;
+  font-weight: 600;
+}
+
+.lab-link-policy {
+  padding-top: 0.65rem;
+  border-top: 1px solid #b7cdcd;
+}
+
+.lab-link-policy + .lab-link-policy {
+  margin-top: 0.9rem;
+}
+
+.lab-link-policy h4 {
+  margin: 0 0 0.6rem;
+  color: #173840;
+  font-size: 0.98rem;
+}
+
+.lab-sender p {
+  margin: 0 0 0.3rem;
+  font-size: 0.8rem;
+  color: #334e56;
+}
+
+.lab-sender + .lab-sender {
+  margin-top: 0.65rem;
+}
+
+.lab-packets,
+.lab-events {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.lab-packets {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.35rem;
+}
+
+.lab-packets li,
+.lab-events li {
+  margin: 0;
+}
+
+.lab-packet {
+  display: grid;
+  padding: 0.3rem 0.45rem;
+  border: 1px solid #99b9af;
+  border-radius: 0.3rem;
+  background: #e4f3ee;
+  color: #18443b;
+  font-size: 0.74rem;
+  min-width: 4.6rem;
+}
+
+.lab-packet.late {
+  border-color: #cfac85;
+  background: #fcf0dd;
+  color: #704411;
+}
+
+.lab-packet.refused {
+  border-color: #c6cfd2;
+  background: #eef1f2;
+  color: #324850;
+}
+
+.lab-plot {
+  background: #fff;
+  border: 1px solid #d3dfdf;
+  border-radius: 0.3rem;
+}
+
+.lab-plot svg {
+  display: block;
+  width: 100%;
+  color: #314d58;
+  font-size: 17px;
+}
+
+.lab-plot text {
+  fill: currentColor;
+}
+
+.lab-plot .lab-axis-title {
+  font-weight: 700;
+}
+
+.lab-plot .lab-outage-label {
+  fill: #6c441b;
+}
+
+.lab-grid {
+  stroke: #c0cfd1;
+}
+
+.lab-outage {
+  fill: #fbefde;
+}
+
+.lab-threshold {
+  stroke: #567e89;
+  stroke-dasharray: 6 5;
+}
+
+.lab-trace {
+  fill: none;
+  stroke: #076764;
+  stroke-width: 3.5;
+  stroke-linejoin: round;
+}
+
+.lab-marker {
+  fill: #076764;
+  stroke: #fff;
+  stroke-width: 1.2;
+}
+
+.lab-plot .lab-marker-text {
+  fill: #fff;
+  font-size: 13px;
+  font-weight: 700;
+}
+
+.lab-result {
+  margin: 0.6rem 0;
+  font-weight: 700;
+}
+
+.lab-events {
+  display: flex;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+  font-size: 0.78rem;
+}
+
+.lab-events li {
+  flex: 1 1 9rem;
+  display: flex;
+  align-items: start;
+  gap: 0.4rem;
+  border: 1px solid #d3dfdf;
+  border-radius: 0.3rem;
+  background: #fff;
+  padding: 0.45rem;
+}
+
+.lab-marker-label {
+  min-width: 1.2rem;
+  height: 1.2rem;
+  border-radius: 50%;
+  background: #076764;
+  color: #fff;
+  font-weight: 700;
+  text-align: center;
+}
+
+@media print {
+  .chapter-lab {
+    display: none;
+  }
+
+  #playback-lab:not([hidden]) + p:has(> img:only-child) {
+    display: block;
+  }
+}
+
+.book-nav {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: .55rem 1.4rem;
+  margin-bottom: 1.6rem;
+  color: #37525a;
+  font: .85rem/1.5 system-ui, sans-serif;
+}
+
+.chapter-turn {
+  justify-content: space-between;
+  margin: 2.4rem 0 0;
+  padding-top: 1rem;
+  border-top: 1px solid #d3dfdf;
+}
+
+.book-contents ul {
+  list-style: none;
+  padding: 0;
+}
+
+@media print {
+  .book-nav { display: none; }
+}
+</style>
+</head>
+<body>
+  <main>
+    <nav class="book-nav" aria-label="Book location"><a href="index.html">Contents</a><span>Part V — Security and Trust</span></nav>
+    <article><h1>17. Authentication, Identity, and Trust</h1>
+<p>A stranger sends you a public key and says, “I&#39;m Alice. Send me a challenge.” You pick a fresh random value and get back a valid signature over it. The signature verifies with the key the stranger supplied. What did you learn about the person on the other side? Would you use that key to send a message you intended only for the Alice you know? <a href="assets/quiz2-2026.pdf#page=4">Quiz 2 2026, Question 3(a), pp. 4–5.</a></p>
+<p>Chapter 16 gave the endpoints a way to encrypt traffic once they can share a secret. Imagine your program establishes such a channel and receives an encrypted reply that quotes its message back. That is good evidence that the peer could read what you sent. How could it tell whether the endpoint is Alice? Start by writing down one fact about Alice that the program knew <em>before</em> that first reply came back.</p>
+<h2>What did the signature prove?</h2>
+<p>A <strong>digital signature</strong> ties a message to a signing key. Someone holding the private key uses it to sign. A verifier needs the message, the signature, and the matching public key. The verifier can check the signature without gaining the ability to sign different messages. This gives our verifier a way to ask for evidence about the <em>current</em> exchange. Pick a fresh, unpredictable challenge, known as a <strong>nonce</strong>, and check a signature on that value. An old response to a different challenge won&#39;t verify. In the opening exchange, the evidence tells you that someone with access to the corresponding signing key signed your fresh challenge. Anyone can make a new key pair and claim that the public half belongs to Alice.</p>
+<p>A student pushed the example further. What if the stranger relays your challenge to the real Alice and forwards her response back to you? Suppose you already know Alice&#39;s real public key. This time the signature verifies under that key. Yet Alice may have no idea which connection you expect to protect. She may have signed the challenge over a separate connection. If the rest of your exchange used a key negotiated with the stranger, the signature on the nonce has left that key untouched. Have the signer sign evidence that includes the proposed key exchange, the roles, and the relevant conversation so far. Then check the signature against the conversation <em>you</em> saw.</p>
+<p>Imagine a person in the middle of an unauthenticated key exchange. They can establish one secret with you and another secret with Alice. Both sides will see encryption working, and the intermediary is a legitimate endpoint of each encrypted channel. If Alice signs her view of the handshake with a key you already associate with her, passing along her signature doesn&#39;t fix the changed key shares. You and Alice would be verifying different conversations. If the intermediary simply forwards the genuine handshake without changing it, the endpoints can still establish a secret with each other. A relay that can observe packets doesn&#39;t thereby learn the secret.</p>
+<p><img src="figures/17-authentication-identity-and-trust/two-channels.svg" alt="With unauthenticated key exchange, an intermediary can finish a different encrypted session with each endpoint. A signature over the actual exchange under a trusted key lets the verifier check the key shares it saw."></p>
+<p><strong>What if?</strong> You already have a copy of Alice&#39;s public key from a meeting in person. Which parts of the design would you keep? You can still need fresh evidence that the present exchange includes Alice. The meeting supplies the binding of name to key. A signature tied to the exchange supplies evidence that the corresponding private key participated in it.</p>
+<h2>Who says this key belongs to that name?</h2>
+<p>Suppose you&#39;re opening <code>https://www.example.com</code>. Your browser has the name it expects because you selected that URL. A DNS lookup gives it an address at which to try the connection. How can it check that the key it receives is authorized for the expected name? It can&#39;t have a current copy of every site&#39;s public key. It can come with a shorter list of public keys it trusts to certify other keys.</p>
+<p>A <strong>certificate authority</strong>, or CA, signs a statement that binds a public key to a name. The signed fields include the validity interval and can restrict what the key may be used for. In a common arrangement, the server presents a leaf certificate for its name and an intermediate CA certificate. The browser works toward a <strong>trust anchor</strong> it already has through its own or the operating system&#39;s trust configuration. A root&#39;s appearance in a message from the server cannot put it in that trust store. Root keys can sign a small number of intermediate certificates and stay offline between those operations. An intermediate can issue and renew leaf certificates without using the root key each time.</p>
+<p><img src="figures/17-authentication-identity-and-trust/certificate-path.svg" alt="A trusted root key verifies an intermediate CA certificate. The intermediate key verifies the service certificate, whose key verifies the signature on the handshake. The browser independently checks its expected hostname against the certificate."></p>
+<p>Trace the browser&#39;s decision backwards from the claim it wants to make: the peer on this connection is authorized to speak for the hostname in the URL. Three different pieces of evidence have to agree.</p>
+<ol>
+<li>Build a path to a configured trust anchor. Verify the certificate signatures, dates and applicable constraints. An intermediate needs authority to issue a certificate on that path, and the leaf needs to be usable for server authentication.</li>
+<li>Check the leaf&#39;s presented identities against the name you expected from the URL. For a DNS hostname, look for a matching DNS identifier in the certificate&#39;s subject alternative names. A certificate that chains to an accepted root for <code>other.example</code> leaves the <code>www.example.com</code> check unsatisfied.</li>
+<li>Check that the peer in this connection can use the certified key. In a certificate-authenticated TLS 1.3 handshake, the server sends a <strong>CertificateVerify</strong> signature over a context and the handshake transcript hash. That transcript includes the messages by which the client and server negotiated the connection and exchanged key shares. The <strong>Finished</strong> message separately uses a key derived from the handshake to check the transcript and confirm the shared secret. A copied certificate by itself cannot supply the server signature for a fresh handshake. <a href="https://www.rfc-editor.org/rfc/rfc5280.html#section-6">RFC 5280, §6.</a> <a href="https://www.rfc-editor.org/rfc/rfc9525.html">RFC 9525, §§4 and 6.</a> <a href="https://www.rfc-editor.org/rfc/rfc9846.html#section-4.5.2">RFC 9846, §§4.5.2–4.5.3.</a></li>
+</ol>
+<p>Where did the CA get its evidence? A domain-validation service can ask an applicant to publish a particular value at a location under the requested hostname or place a particular record in DNS. It can look up the result itself. That is evidence of control at validation time. Moving a site to a new server might change the answer to DNS without changing the name at all. The new server still needs an appropriate certificate and access to its matching private key. Consider how much the CA is relying on the path it uses to observe the challenge. At verification time, the browser can check the existing signatures without asking the root to sign again or be online. Revocation information and trust-store changes have their own distribution paths. If a CA key is compromised, clients need ways to stop trusting the affected certificates. <a href="https://letsencrypt.org/docs/challenge-types/">Let&#39;s Encrypt, <em>Challenge Types</em>.</a></p>
+<p><strong>Network detective.</strong> A browser reports a name mismatch. The leaf certificate chains to a trusted root and is within its validity period. Which name should you ask the browser to show you? Compare the URL, the identities listed in the certificate, and the destination address returned by DNS. If a shared host serves the wrong certificate at the right address, which of those comparisons catches the failure? Could a different certificate for the right name still fail a different check?</p>
+<h2>What happens to a recorded session?</h2>
+<p>Suppose a client sends a session secret encrypted directly to a server&#39;s long-term public key. If a person records the handshake and later obtains the server&#39;s long-term private key, they can recover that session secret. To limit this exposure, use fresh <strong>ephemeral</strong> key shares for the key agreement and use the long-term key to sign the exchange. After use, erase the temporary private values and session secrets. The later disclosure of the signing key alone doesn&#39;t recover the session secret from a recording. This property is <strong>forward secrecy</strong> with respect to the long-term key. A compromised signing key may still let someone impersonate the server in a future connection while the key remains trusted. In the two cases, which key did the past session use to derive its secret, and which one will the next session use to verify a signature? <a href="https://www.rfc-editor.org/rfc/rfc9846.html#appendix-F.1">RFC 9846, Appendix F.1.</a></p>
+<h3>Design this. What can each endpoint be sure of?</h3>
+<p>Alice and Bob want confidential messages that each can verify as coming from the other. Consider two channels. The first delivers messages between those two endpoints and allows other people to listen. The second also allows someone to intercept and modify messages and to pose as either endpoint. Now vary what the endpoints start with. Neither may know a key for the other, Alice may already know Bob&#39;s public key, or both may know each other&#39;s public keys. For each combination, what can they build without adding another source of trust?</p>
+<p><em>Adapted from <a href="assets/cs356-final-2024.pdf#page=2">Final 2024, Q4, p. 2</a>. The delivery-only channel explicitly supplies the endpoint identity assumption.</em></p>
+<details>
+<summary>Worked reasoning</summary>
+
+<table>
+<thead>
+<tr>
+<th>What they already know</th>
+<th>Channel delivers between the intended peers</th>
+<th>Channel permits active impersonation</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Neither has a trusted key for the other</td>
+<td>A key agreement can give them a secret. The channel assumption supplies the assurance about who is at each end.</td>
+<td>A key agreement alone gives no basis to verify the named peer.</td>
+</tr>
+<tr>
+<td>Alice knows Bob&#39;s public key</td>
+<td>They can agree on a secret under the same channel assumption.</td>
+<td>Bob can authenticate himself to Alice by signing the exchange. Bob still needs evidence about Alice&#39;s identity.</td>
+</tr>
+<tr>
+<td>Each knows the other&#39;s public key</td>
+<td>They can agree on a secret.</td>
+<td>Both can sign their roles and the exchange under the expected keys, then confirm the secret.</td>
+</tr>
+</tbody></table>
+<p>On the first channel, the key agreement still relies on the cryptographic assumption that a listener cannot derive the shared secret from public messages. On the second channel, a single trusted key gives <em>one-way</em> named authentication. Even if Bob can tell that a message came from the peer that completed the handshake, he cannot put Alice&#39;s name on that peer without an additional fact.</p>
+</details>
+
+<h2>Can the browser trust the script as well as the connection?</h2>
+<p>In class, the instructor loaded the course schedule and showed that the HTML came from a university server while some JavaScript came from a content delivery network, or CDN. The CDN can serve copies of a file near readers. The browser can verify the CDN&#39;s TLS connection and still receive a legitimate response containing a version of the script that the course page didn&#39;t expect. The JavaScript runs in the page&#39;s context. How could the page author give the browser a way to check those exact bytes?</p>
+<p>A <strong>cryptographic hash</strong> maps a file to a fixed-length digest. The computation is public. Since there are more possible files than digests, collisions exist. The useful assumption is that finding a different file with the same digest as a given approved file is computationally infeasible. You can hash two copies to check whether they agree, as the lecture suggested. First ask where you got the reference digest. If a party can change both the file and your expected digest, it can compute a digest of its own file.</p>
+<p>With <strong>Subresource Integrity</strong> (SRI), the author puts an expected digest in the HTML script element&#39;s <code>integrity</code> attribute. The browser obtains that metadata from the page and the bytes from the CDN. It hashes the fetched bytes and checks the result before executing the script. A cross-origin script load with integrity metadata also needs an eligible response under the browser&#39;s cross-origin rules. A mismatch can mean the CDN delivered a different version, even when the delivery was honest and the TLS connection valid. To update the script, the author needs to publish new approved bytes and their expected digest. <a href="assets/cs356-final-2024.pdf#page=2">Final 2024, Q3, p. 2.</a> <a href="https://www.w3.org/TR/2016/REC-SRI-20160623/#framework">W3C, <em>Subresource Integrity</em>, §3.</a></p>
+<p><img src="figures/17-authentication-identity-and-trust/resource-integrity.svg" alt="The page supplies the expected digest, the CDN supplies the script bytes, and the browser compares the expected digest with its own digest of those bytes before execution."></p>
+<p><strong>Break this.</strong> A page pins a script&#39;s digest. Which of these changes could let unexpected bytes run with the check in place? The CDN replaces the script. The page origin replaces the script URL and expected digest together. The CDN serves a byte-for-byte copy from a different edge. What extra evidence would a user need to tell a planned page update from a compromise of the page origin?</p>
+<details>
+<summary>Worked reasoning</summary>
+
+<p>Replacing the script alone leaves the original digest in place, so different bytes normally fail the check. A byte-for-byte copy has the same digest at any edge. An origin able to replace the HTML can declare a different script and its matching digest. The integrity check enforces the page author&#39;s choice of bytes. The user&#39;s question about who approved that choice calls for trust in an external reference, such as a separately authenticated release statement.</p>
+</details>
+
+<p>The browser now has a way to verify a server&#39;s identity and a way to verify the bytes of a separately fetched object. Put both checks back in a real page load. Before the browser can compute a script&#39;s digest, it has to get the HTML, discover the script URL, and connect to a server that can answer. Which of those steps can start in parallel, and which ones are still waiting for information?</p>
+</article>
+    <nav class="book-nav chapter-turn" aria-label="Chapter navigation"><a href="16-encryption-and-secrecy.html">Previous · 16. Encryption and Secrecy</a>
+<a href="index.html">Contents</a>
+<a href="18-what-happens-when-you-open-a-website.html">Next · 18. What Happens When You Open a Website?</a></nav>
+  </main>
+</body>
+</html>

@@ -1,0 +1,26 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 280" role="img" aria-labelledby="title desc">
+  <title id="title">Reactive and proactive repair on the same arrival timeline</title>
+  <desc id="desc">The first original is missing at zero. The retransmission request is sent at 2 milliseconds, and the resend arrives at 102 milliseconds. An XOR repair packet arrives at 20 milliseconds. The deadline is at 25 milliseconds.</desc>
+  <style>
+    text {font-family:system-ui,sans-serif;font-size:16px;fill:#162436}
+    .label {font-weight:650}
+    .axis {stroke:#57728c;stroke-width:2}
+  </style>
+  <rect x="8" y="8" width="704" height="264" rx="14" fill="#f6f8fa" stroke="#d1dbe4"/>
+  <rect x="66" y="67" width="142" height="154" fill="#e4f2ee"/>
+  <path d="M208 57V233" stroke="#187860" stroke-width="2" stroke-dasharray="5 5"/>
+  <text x="218" y="65" class="label">Deadline · 25 ms</text>
+  <text x="66" y="44">Expected arrival of missing packet · 0 ms</text>
+  <text x="66" y="97" class="label">Retransmission</text>
+  <path class="axis" d="M66 121H657"/>
+  <path d="M78 121H644" stroke="#527ea2" stroke-width="5" opacity=".5"/>
+  <circle cx="78" cy="121" r="6" fill="#315879"/>
+  <circle cx="644" cy="121" r="6" fill="#315879"/>
+  <text x="78" y="150">Request · 2 ms</text>
+  <text x="650" y="150" text-anchor="end">Replacement · 102 ms</text>
+  <text x="66" y="188" class="label">Forward error correction</text>
+  <path class="axis" d="M66 209H657"/>
+  <path d="M66 209H179" stroke="#187860" stroke-width="5" opacity=".5"/>
+  <circle cx="179" cy="209" r="6" fill="#187860"/>
+  <text x="179" y="239" text-anchor="middle">Repair · 20 ms</text>
+</svg>

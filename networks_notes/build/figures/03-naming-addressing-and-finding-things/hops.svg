@@ -1,0 +1,40 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="760" height="359" viewBox="0 0 760 359" role="img" aria-labelledby="title desc">
+  <title id="title">One IP datagram through four links</title>
+  <desc id="desc">The Ethernet source and destination change on each Ethernet hop, while FeatherNet supplies its own link wrapper and IP addresses remain the same.</desc>
+<rect x="0" y="0" width="760" height="359" rx="0" fill="#f7faf9" stroke="none"/>
+<rect x="18" y="16" width="724" height="53" rx="7" fill="#e2f2ed" stroke="none"/>
+<text x="34" y="39" text-anchor="start" font-family="system-ui, sans-serif" font-size="17" font-weight="700" fill="#076764">IP datagram on every hop</text>
+<text x="34" y="57" text-anchor="start" font-family="ui-monospace, Menlo, monospace" font-size="14" font-weight="400" fill="#076764">192.0.2.34 → 198.51.100.70</text>
+<rect x="19" y="95" width="170" height="39" rx="7" fill="white" stroke="#a6bcbf"/>
+<text x="104" y="120" text-anchor="middle" font-family="system-ui, sans-serif" font-size="14" font-weight="700" fill="#182f38">Laptop</text>
+<rect x="568" y="95" width="173" height="39" rx="7" fill="white" stroke="#a6bcbf"/>
+<text x="654.5" y="120" text-anchor="middle" font-family="system-ui, sans-serif" font-size="14" font-weight="700" fill="#182f38">Cooville router</text>
+<text x="380" y="103" text-anchor="middle" font-family="system-ui, sans-serif" font-size="15" font-weight="700" fill="#245b81">Village Ethernet</text>
+<line x1="199" y1="114" x2="557" y2="114" stroke="#245b81" stroke-width="2"/>
+<path d="M 557 114 L 546 109 L 546 119 Z" fill="#245b81"/>
+<text x="380" y="134" text-anchor="middle" font-family="system-ui, sans-serif" font-size="14" font-weight="400" fill="#405a62">Laptop MAC → Cooville MAC</text>
+<rect x="19" y="159" width="170" height="39" rx="7" fill="white" stroke="#a6bcbf"/>
+<text x="104" y="184" text-anchor="middle" font-family="system-ui, sans-serif" font-size="14" font-weight="700" fill="#182f38">Cooville router</text>
+<rect x="568" y="159" width="173" height="39" rx="7" fill="white" stroke="#a6bcbf"/>
+<text x="654.5" y="184" text-anchor="middle" font-family="system-ui, sans-serif" font-size="14" font-weight="700" fill="#182f38">Buffering Hts. router</text>
+<text x="380" y="167" text-anchor="middle" font-family="system-ui, sans-serif" font-size="15" font-weight="700" fill="#864716">FeatherNet</text>
+<line x1="199" y1="178" x2="557" y2="178" stroke="#864716" stroke-width="2"/>
+<path d="M 557 178 L 546 173 L 546 183 Z" fill="#864716"/>
+<text x="380" y="198" text-anchor="middle" font-family="system-ui, sans-serif" font-size="14" font-weight="400" fill="#405a62">Cooville → Buffering Heights</text>
+<rect x="19" y="223" width="170" height="39" rx="7" fill="white" stroke="#a6bcbf"/>
+<text x="104" y="248" text-anchor="middle" font-family="system-ui, sans-serif" font-size="14" font-weight="700" fill="#182f38">Buffering Hts. router</text>
+<rect x="568" y="223" width="173" height="39" rx="7" fill="white" stroke="#a6bcbf"/>
+<text x="654.5" y="248" text-anchor="middle" font-family="system-ui, sans-serif" font-size="14" font-weight="700" fill="#182f38">Weather router</text>
+<text x="380" y="231" text-anchor="middle" font-family="system-ui, sans-serif" font-size="15" font-weight="700" fill="#245b81">Router-to-router Ethernet</text>
+<line x1="199" y1="242" x2="557" y2="242" stroke="#245b81" stroke-width="2"/>
+<path d="M 557 242 L 546 237 L 546 247 Z" fill="#245b81"/>
+<text x="380" y="262" text-anchor="middle" font-family="system-ui, sans-serif" font-size="14" font-weight="400" fill="#405a62">Buffering Heights MAC → Weather router MAC</text>
+<rect x="19" y="287" width="170" height="39" rx="7" fill="white" stroke="#a6bcbf"/>
+<text x="104" y="312" text-anchor="middle" font-family="system-ui, sans-serif" font-size="14" font-weight="700" fill="#182f38">Weather router</text>
+<rect x="568" y="287" width="173" height="39" rx="7" fill="white" stroke="#a6bcbf"/>
+<text x="654.5" y="312" text-anchor="middle" font-family="system-ui, sans-serif" font-size="14" font-weight="700" fill="#182f38">Website server</text>
+<text x="380" y="295" text-anchor="middle" font-family="system-ui, sans-serif" font-size="15" font-weight="700" fill="#245b81">Server Ethernet</text>
+<line x1="199" y1="306" x2="557" y2="306" stroke="#245b81" stroke-width="2"/>
+<path d="M 557 306 L 546 301 L 546 311 Z" fill="#245b81"/>
+<text x="380" y="326" text-anchor="middle" font-family="system-ui, sans-serif" font-size="14" font-weight="400" fill="#405a62">Weather router MAC → Server MAC</text>
+</svg>

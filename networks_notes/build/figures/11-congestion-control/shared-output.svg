@@ -1,0 +1,24 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="670" height="215" viewBox="0 0 670 215" role="img" aria-labelledby="ttl ds">
+  <title id="ttl">Two senders share one output link</title>
+  <desc id="ds">Sender A and sender B each can send eight megabits per second. Their packets enter one queue served by an eight megabit per second output link.</desc>
+  <defs><marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0 0L10 5L0 10Z" fill="#315e55"/></marker></defs>
+  <rect x="1" y="1" width="668" height="213" rx="16" fill="#f7faf8"/>
+  <g fill="none" stroke="#315e55" stroke-width="3" marker-end="url(#arrow)">
+    <path d="M129 52L247 98"/>
+    <path d="M129 160L247 114"/>
+    <path d="M386 106H552"/>
+  </g>
+  <g stroke="#315e55" stroke-width="2" fill="#fff">
+    <rect x="25" y="31" width="104" height="42" rx="7"/>
+    <rect x="25" y="139" width="104" height="42" rx="7"/>
+    <rect x="248" y="85" width="139" height="42" rx="7"/>
+    <rect x="556" y="85" width="91" height="42" rx="7"/>
+  </g>
+  <g stroke="#315e55"><rect x="262" y="94" width="23" height="24" fill="#c5e3d8"/><rect x="290" y="94" width="23" height="24" fill="#e9c7a8"/><rect x="318" y="94" width="23" height="24" fill="#c5e3d8"/><rect x="346" y="94" width="23" height="24" fill="#e9c7a8"/></g>
+  <g fill="#163532" font-family="system-ui, sans-serif" font-size="16" text-anchor="middle">
+    <text x="77" y="58">Sender A</text><text x="77" y="166">Sender B</text>
+    <text x="176" y="55">8 Mbit/s</text><text x="178" y="171">8 Mbit/s</text>
+    <text x="318" y="72">Output queue</text>
+    <text x="471" y="88">8 Mbit/s</text><text x="602" y="111">Receivers</text>
+  </g>
+</svg>

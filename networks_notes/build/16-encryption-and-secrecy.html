@@ -1,0 +1,643 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>16. Encryption and Secrecy</title>
+  <style>:root {
+  color-scheme: light;
+  background: #f3f6f5;
+  color: #182a30;
+  font: 18px/1.65 Georgia, serif;
+}
+
+body {
+  max-width: 48rem;
+  margin: 2.5rem auto;
+  padding: 2.25rem clamp(1rem, 5vw, 3.25rem);
+  background: #fff;
+  border-top: 0.3rem solid #076764;
+}
+
+h1,
+h2,
+h3 {
+  font-family: system-ui, sans-serif;
+  line-height: 1.2;
+  color: #152e37;
+}
+
+h1 {
+  margin: 0 0 1.4rem;
+  font-size: clamp(2rem, 5vw, 3rem);
+  letter-spacing: -0.035em;
+}
+
+h2 {
+  margin: 2.5rem 0 0.7rem;
+  font-size: clamp(1.4rem, 3vw, 1.75rem);
+}
+
+p {
+  margin: 0 0 1rem;
+}
+
+a {
+  color: #0a5b63;
+  overflow-wrap: anywhere;
+  text-underline-offset: 0.15em;
+}
+
+li + li {
+  margin-top: 0.7rem;
+}
+
+blockquote {
+  margin: 1.2rem 0;
+  padding: 0.65rem 1rem;
+  background: #edf6f4;
+  border-inline-start: 0.2rem solid #076764;
+}
+
+blockquote p {
+  margin: 0;
+}
+
+img {
+  display: block;
+  max-width: 100%;
+  height: auto;
+  outline: 1px solid #d3dfdf;
+}
+
+p:has(> img:only-child) {
+  margin: 1.5rem 0 0.5rem;
+}
+
+p:has(> img:only-child) + p:has(> em:only-child) {
+  color: #37525a;
+  font: 0.83rem/1.5 system-ui, sans-serif;
+  margin: 0 0 1.5rem;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 1.25rem 0;
+  font: 0.83rem/1.45 system-ui, sans-serif;
+  font-variant-numeric: tabular-nums;
+  overflow-wrap: anywhere;
+}
+
+th,
+td {
+  border: 1px solid #d3dfdf;
+  padding: 0.55rem;
+  vertical-align: top;
+}
+
+th {
+  background: #edf6f4;
+}
+
+@media (max-width: 34rem) {
+  body {
+    margin: 0;
+  }
+
+  table {
+    font-size: 0.7rem;
+  }
+
+  th,
+  td {
+    padding: 0.3rem;
+  }
+}
+
+@media print {
+  :root {
+    background: #fff;
+  }
+
+  body {
+    margin: 0;
+    padding: 0;
+    border: 0;
+  }
+
+  h2,
+  p:has(> img:only-child) {
+    break-after: avoid;
+  }
+
+  table,
+  img {
+    break-inside: avoid;
+  }
+}
+
+.chapter-lab {
+  margin: 1.5rem 0 0.65rem;
+  padding: clamp(0.75rem, 3vw, 1.25rem);
+  border: 1px solid #b7cdcd;
+  border-radius: 0.6rem;
+  background: #f7faf9;
+  font: 0.93rem/1.5 system-ui, sans-serif;
+}
+
+.chapter-lab h3 {
+  margin: 0 0 0.5rem;
+  font-size: 1.2rem;
+}
+
+.chapter-lab > p {
+  color: #334e56;
+}
+
+.chapter-lab + p:has(> em:only-child) {
+  color: #37525a;
+  font: 0.83rem/1.5 system-ui, sans-serif;
+  margin-bottom: 1.5rem;
+}
+
+#playback-lab:not([hidden]) + p:has(> img:only-child) {
+  display: none;
+}
+
+.lab-controls {
+  display: flex;
+  gap: 0.75rem;
+  align-items: end;
+  flex-wrap: wrap;
+  margin-bottom: 1rem;
+}
+
+.lab-controls label {
+  display: grid;
+  gap: 0.3rem;
+  font-weight: 700;
+  font-size: 0.8rem;
+}
+
+.lab-controls select,
+.lab-controls button {
+  min-height: 2.2rem;
+  border: 1px solid #9bb2b8;
+  border-radius: 0.3rem;
+  background: #fff;
+  color: #163440;
+  padding: 0.25rem 0.5rem;
+  font: inherit;
+}
+
+.lab-controls button {
+  font-size: 0.8rem;
+  cursor: pointer;
+}
+
+.lab-controls :focus-visible {
+  outline: 2px solid #076764;
+  outline-offset: 2px;
+}
+
+#link-race .race-timeline {
+  display: grid;
+  gap: 0.25rem;
+  margin-bottom: 0.85rem;
+}
+
+#link-race .race-timeline label,
+#link-race .race-endpoints {
+  display: flex;
+  justify-content: space-between;
+  gap: 0.35rem;
+}
+
+#link-race .race-timeline label {
+  font-size: 0.8rem;
+  font-weight: 700;
+  font-variant-numeric: tabular-nums;
+}
+
+#link-race .race-timeline input {
+  width: 100%;
+  margin: 0;
+  accent-color: #076764;
+}
+
+#link-race .race-timeline input:focus-visible {
+  outline: 2px solid #076764;
+  outline-offset: 2px;
+}
+
+#link-race [aria-disabled="true"] {
+  color: #55676e;
+  background: #edf2f1;
+  cursor: default;
+}
+
+#link-race .race-lane {
+  --race-color: #25618b;
+  --race-wire: #dce9f1;
+  padding: 0.75rem 0;
+  border-top: 1px solid #b7cdcd;
+}
+
+#link-race .race-lane[data-link="B"] {
+  --race-color: #076764;
+  --race-wire: #dbede9;
+}
+
+#link-race h4 {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 0.15rem 0.6rem;
+  margin: 0 0 0.4rem;
+  color: var(--race-color);
+  font-size: 1rem;
+}
+
+#link-race h4 span,
+#link-race .race-endpoints,
+#link-race .race-timeline p,
+#link-race .race-key {
+  color: #405961;
+  font-size: 0.8rem;
+  font-weight: 400;
+}
+
+#link-race h4 strong {
+  padding: 0.05rem 0.4rem;
+  border-radius: 0.2rem;
+  background: var(--race-wire);
+  font-size: 0.76rem;
+}
+
+#link-race .race-path {
+  margin-inline: 0.3rem;
+}
+
+#link-race [data-link="B"] .race-path {
+  width: 48%;
+}
+
+#link-race .race-track {
+  position: relative;
+  height: 0.85rem;
+  margin: 0.2rem 0 0.4rem;
+  border-radius: 1rem;
+  background: var(--race-wire);
+}
+
+#link-race .race-track::before,
+#link-race .race-track::after,
+#link-race .race-track span {
+  position: absolute;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  background: var(--race-color);
+}
+
+#link-race .race-track::before,
+#link-race .race-track::after {
+  content: "";
+  left: 0;
+  width: 0.14rem;
+  height: 100%;
+  border-radius: 1rem;
+}
+
+#link-race .race-track::after {
+  left: 100%;
+}
+
+#link-race .race-track span {
+  width: clamp(0.17rem, 0.55vw, 0.36rem);
+  aspect-ratio: 1;
+  border-radius: 50%;
+}
+
+#link-race .race-timeline p,
+#link-race .race-meter p,
+#link-race .race-finish {
+  margin: 0;
+}
+
+#link-race .race-totals {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 0.75rem;
+  margin-top: 0.6rem;
+}
+
+#link-race .race-meter p {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: 0 0.35rem;
+  font-size: 0.8rem;
+  font-variant-numeric: tabular-nums;
+}
+
+#link-race .race-meter progress {
+  display: block;
+  width: 100%;
+  height: 0.55rem;
+  margin: 0.2rem 0 0;
+  accent-color: var(--race-color);
+}
+
+#link-race .race-finish {
+  margin-top: 0.4rem;
+  font-size: 0.85rem;
+  font-variant-numeric: tabular-nums;
+}
+
+#link-race .race-announcement {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  clip-path: inset(50%);
+  overflow: hidden;
+}
+
+#link-race figcaption {
+  border-top: 1px solid #b7cdcd;
+  padding-top: 0.65rem;
+  color: #173840;
+  font-weight: 600;
+}
+
+.lab-link-policy {
+  padding-top: 0.65rem;
+  border-top: 1px solid #b7cdcd;
+}
+
+.lab-link-policy + .lab-link-policy {
+  margin-top: 0.9rem;
+}
+
+.lab-link-policy h4 {
+  margin: 0 0 0.6rem;
+  color: #173840;
+  font-size: 0.98rem;
+}
+
+.lab-sender p {
+  margin: 0 0 0.3rem;
+  font-size: 0.8rem;
+  color: #334e56;
+}
+
+.lab-sender + .lab-sender {
+  margin-top: 0.65rem;
+}
+
+.lab-packets,
+.lab-events {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.lab-packets {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.35rem;
+}
+
+.lab-packets li,
+.lab-events li {
+  margin: 0;
+}
+
+.lab-packet {
+  display: grid;
+  padding: 0.3rem 0.45rem;
+  border: 1px solid #99b9af;
+  border-radius: 0.3rem;
+  background: #e4f3ee;
+  color: #18443b;
+  font-size: 0.74rem;
+  min-width: 4.6rem;
+}
+
+.lab-packet.late {
+  border-color: #cfac85;
+  background: #fcf0dd;
+  color: #704411;
+}
+
+.lab-packet.refused {
+  border-color: #c6cfd2;
+  background: #eef1f2;
+  color: #324850;
+}
+
+.lab-plot {
+  background: #fff;
+  border: 1px solid #d3dfdf;
+  border-radius: 0.3rem;
+}
+
+.lab-plot svg {
+  display: block;
+  width: 100%;
+  color: #314d58;
+  font-size: 17px;
+}
+
+.lab-plot text {
+  fill: currentColor;
+}
+
+.lab-plot .lab-axis-title {
+  font-weight: 700;
+}
+
+.lab-plot .lab-outage-label {
+  fill: #6c441b;
+}
+
+.lab-grid {
+  stroke: #c0cfd1;
+}
+
+.lab-outage {
+  fill: #fbefde;
+}
+
+.lab-threshold {
+  stroke: #567e89;
+  stroke-dasharray: 6 5;
+}
+
+.lab-trace {
+  fill: none;
+  stroke: #076764;
+  stroke-width: 3.5;
+  stroke-linejoin: round;
+}
+
+.lab-marker {
+  fill: #076764;
+  stroke: #fff;
+  stroke-width: 1.2;
+}
+
+.lab-plot .lab-marker-text {
+  fill: #fff;
+  font-size: 13px;
+  font-weight: 700;
+}
+
+.lab-result {
+  margin: 0.6rem 0;
+  font-weight: 700;
+}
+
+.lab-events {
+  display: flex;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+  font-size: 0.78rem;
+}
+
+.lab-events li {
+  flex: 1 1 9rem;
+  display: flex;
+  align-items: start;
+  gap: 0.4rem;
+  border: 1px solid #d3dfdf;
+  border-radius: 0.3rem;
+  background: #fff;
+  padding: 0.45rem;
+}
+
+.lab-marker-label {
+  min-width: 1.2rem;
+  height: 1.2rem;
+  border-radius: 50%;
+  background: #076764;
+  color: #fff;
+  font-weight: 700;
+  text-align: center;
+}
+
+@media print {
+  .chapter-lab {
+    display: none;
+  }
+
+  #playback-lab:not([hidden]) + p:has(> img:only-child) {
+    display: block;
+  }
+}
+
+.book-nav {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: .55rem 1.4rem;
+  margin-bottom: 1.6rem;
+  color: #37525a;
+  font: .85rem/1.5 system-ui, sans-serif;
+}
+
+.chapter-turn {
+  justify-content: space-between;
+  margin: 2.4rem 0 0;
+  padding-top: 1rem;
+  border-top: 1px solid #d3dfdf;
+}
+
+.book-contents ul {
+  list-style: none;
+  padding: 0;
+}
+
+@media print {
+  .book-nav { display: none; }
+}
+</style>
+</head>
+<body>
+  <main>
+    <nav class="book-nav" aria-label="Book location"><a href="index.html">Contents</a><span>Part V — Security and Trust</span></nav>
+    <article><h1>16. Encryption and Secrecy</h1>
+<p>At the output of the switch we built in Chapter 15, the next packet happens to be carrying a customer&#39;s message to a bank. The switch has to read enough of the header to choose an output. Does doing that job entitle its operator to read the message? Imagine you&#39;re the customer, about to send your password. Which bytes could your laptop conceal all the way to the bank, and which must remain visible for the packet to get there?</p>
+<p>Start by giving an observer a copy of everything on one link. That is a <strong>passive</strong> observer. Later we will give an intermediary the ability to change what crosses the link. It matters which of these two problems you are solving. If the browser and the bank transform the password at the ends of the path, the inner bytes can be ciphertext throughout the trip. Routers can still see the outer IP addresses needed for forwarding. An observer may also see packet lengths and timing. If two activity patterns produce different traffic, the observer may learn something from that difference even when it cannot read either conversation. In class, the discussion of onion routing raised the question of what one relay sees and what someone observing more than one link could infer. Write down the observation you want your design to protect before deciding what to encrypt.</p>
+<p><img src="figures/16-encryption-and-secrecy/end-to-end.svg" alt="A sender encrypts before the first router and a receiver decrypts after the last router. The packets between them still have outer forwarding headers."></p>
+<p><strong>Design this.</strong> An appointment site sends one of two messages. The first is 20 bytes long and the second is 200 bytes long. Suppose your encryption adds the same fixed number of bytes to either message, and either fits in one packet. What does an observer learn without reading a single byte of the message? How could you give both messages the same visible length, and what would that cost?</p>
+<h2>What could a ciphertext tell you?</h2>
+<p>Try the smallest useful case. Alice wants to send one bit to Bob. They already share a secret bit chosen uniformly at random. If the secret bit is zero, Alice sends the original bit. If it is one, she flips it. Bob applies the same rule to the received bit. Flipping twice gives him the original. If the observer sees a zero, Alice might have sent a zero with key zero, or a one with key one. Those keys were equally likely before Alice chose what to send. The observation has given the observer no reason to revise whatever it believed about the message.</p>
+<p>For a longer message, choose a uniformly random secret pad of the same length, independent of the message. Use each bit of the pad once. Alice computes the bitwise exclusive OR of message and pad. Bob takes the exclusive OR of ciphertext and pad to undo it. For any fixed ciphertext and any candidate plaintext of that length, exactly one pad maps the candidate to that ciphertext. For three bits, each ciphertext therefore has probability 1/8 for <em>every</em> three-bit plaintext. If one candidate was already twice as likely as another, it stays twice as likely. The ciphertext leaves those odds alone. This is <strong>perfect secrecy</strong> for messages of the fixed length in the model. The argument does not depend on how much computation the observer can do.</p>
+<table>
+<thead>
+<tr>
+<th>Operation</th>
+<th>Three-bit value</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Message</td>
+<td><code>101</code></td>
+</tr>
+<tr>
+<td>Secret pad</td>
+<td><code>011</code></td>
+</tr>
+<tr>
+<td>Message XOR pad</td>
+<td><code>110</code></td>
+</tr>
+<tr>
+<td>Ciphertext XOR pad</td>
+<td><code>101</code></td>
+</tr>
+</tbody></table>
+<p>Use the <a href="../chapters/16-encryption-and-secrecy/pad-lab.html">pad lab</a> to try several possible plaintexts for the same ciphertext. Predict which pad goes with each one, then ask whether the calculation gives you any evidence about the original message. Compare the table for uniform pads with the one for biased pads. <a href="../chapters/16-encryption-and-secrecy/lab.md">Lab instructions.</a></p>
+<h2>Why use each pad only once?</h2>
+<p>A fresh pad for every message sounds expensive. Suppose Alice and Bob save the first pad for a second transmission. Bob can still undo both encryptions, so a test that only checks delivery would pass. What could an observer do with the two ciphertexts together? The first is the first message XOR the pad, and the second is the second message XOR the same pad. XOR the two ciphertexts. Each pad bit appears twice and cancels. The result says exactly where the original messages agreed and where they differed. For example, if the two three-bit ciphertexts were <code>110</code> and <code>010</code>, the observer learns that the first message bit differs and the two remaining bits match. That is useful evidence even if neither message has been identified.</p>
+<p><strong>What if?</strong> Both endpoints can securely store a terabyte of independently uniform pad bits. How many bytes can they exchange with perfect secrecy if both directions draw from that store? What bookkeeping would keep two simultaneous sessions from using the same bits, including after either machine restarts?</p>
+<p>Even with that bookkeeping, the pad must arrive at both endpoints before they communicate, and sending another terabyte uses up another terabyte of key material. If you already had a private channel with that capacity whenever you wanted it, you could send the data through it. A more practical goal is to get a confidential conversation from a much shorter secret and accept a guarantee formulated in terms of what an observer can compute.</p>
+<h2>When is a reversible operation a cipher?</h2>
+<p>You start with a block of 128 bits and a secret key. The recipient will have the same key. For any fixed key, the encryption must map different blocks to different outputs. If two inputs produce the same output, the recipient cannot know which input to return.</p>
+<p><strong>AES</strong> is a standardized block cipher. Its block size is 128 bits and the key may be 128, 192, or 256 bits. It views the block as a state and repeatedly transforms it. There are substitutions of individual byte values, rearrangements of bytes, mixing within columns, and XOR with round-key material derived from the key. Each operation preserves the information the decryptor needs. A substitution can be undone if each input maps to a different output. A rearrangement can be reversed if every byte keeps a place in the result. The operations also need to work together as a cipher. Moving all the bytes one place to the right is reversible and trivially predictable. Reversibility only establishes that decryption is possible. <a href="https://csrc.nist.gov/pubs/fips/197/final">NIST FIPS 197, §§3 and 5.</a></p>
+<h3>Break this. Does a new step preserve the block?</h3>
+<p>A colleague proposes adding a step to every full AES round. For the fixed 128-bit constant, assume some bits are one and some are zero. Decide which of the following can be undone for every possible state. For each one that fails, give two inputs that collide. For each one that works, state the inverse.</p>
+<ul>
+<li>Interpret the block as an unsigned integer and divide it by two, rounding down.</li>
+<li>XOR it with the constant.</li>
+<li>Replace the integer <em>x</em> with 2¹²⁸ − 1 − <em>x</em>.</li>
+<li>Take its bitwise OR with the constant.</li>
+<li>Take its bitwise AND with the constant.</li>
+</ul>
+<p><em>Adapted from <a href="assets/quiz2-2025.pdf#page=1">Quiz 2 2025, Q2–Q3, pp. 1–2</a>. The witnesses and inverses are requested explicitly here.</em></p>
+<details>
+<summary>Worked reasoning</summary>
+
+<p>Division maps 0 and 1 to the same integer. OR forces a bit to one wherever the constant has a one. AND forces a bit to zero wherever the constant has a zero. For either operation, pick two states differing only in a position whose value will be forced. Once the states merge, later operations see the same input and cannot separate them. XOR with the constant is its own inverse. So is the subtraction, which flips every bit. Those two steps pass the reversibility test. Determining security would require a different argument.</p>
+</details>
+
+<h2>What goes around the block cipher?</h2>
+<p>Our reversible map takes exactly one block as input. To send a file, the obvious first design is to cut it into blocks and apply that map to each in turn. Keep the key fixed and any two identical plaintext blocks will produce identical ciphertext blocks. The lecture used an image of the Linux penguin to motivate the problem. If you encrypt each equal-size block independently, large regions with repeated blocks can leave visible structure behind. To see the weakness without an image, imagine an observer can request an encryption of one of two equally long candidate blocks and then receives an encryption of one unknown candidate under the same key. If encryption is deterministic, equality can identify which one was sent. Give the candidates different lengths and an unpadded encryption could disclose the answer even if each encryption uses fresh randomness. A useful indistinguishability game therefore asks about <em>equal-length</em> candidates. <a href="assets/quiz2-2026.pdf#page=6">Adapted from Quiz 2 2026, Q3(b), p. 6.</a></p>
+<p>A network protocol needs to specify how the cipher is used across messages and what it promises. In a computational secrecy guarantee, an observer with realistically bounded computational resources should have negligible advantage over guessing in the specified experiment. A <strong>nonce</strong> can let a protocol encrypt successive records under one key with distinct inputs. The protocol must respect the rules of the chosen construction, such as never repeating a nonce with the same key when uniqueness is required.</p>
+<p>Give the intermediary the ability to change packets. A valid one-time-pad ciphertext can be changed into another ciphertext that decrypts to a changed message. Bob has no test in this scheme that distinguishes the two. <strong>Authenticated encryption</strong> gives the decryptor such a test. It produces ciphertext and authentication information, and decryption returns a verified plaintext or failure. It may also authenticate associated data that remain visible. A protocol further needs rules for freshness. A previously valid record stays valid cryptographically unless the protocol tracks whether it belongs at that point in the conversation. <a href="https://www.rfc-editor.org/rfc/rfc5116.html#section-2">Authenticated Encryption Interface, §§2–3.</a></p>
+<h2>How can strangers agree on a key?</h2>
+<p>Alice has never met Bob and has no shared symmetric secret with him. Imagine Bob could hand out something that anyone can use to lock a box, while only Bob has what opens it. Alice could lock a freshly generated secret for Bob, and then both could use keys derived from it to protect the rest of the exchange. This is one use of <strong>public-key encryption</strong>. The public key is for senders. The corresponding private key stays with the recipient. For a classroom example, the instructor showed a public key to the room and asked what the students could safely do with it. Publishing it lets them use it. Their earlier observation also gives them independent evidence about whose key it was.</p>
+<p>RSA uses modular arithmetic. Multiplication and exponentiation take place among remainders modulo a product <em>n</em> of two distinct primes. The public exponent <em>e</em> and private exponent <em>d</em> are chosen so applying one exponent and then the other recovers the original residue. One way to arrange this is to make <em>ed</em> leave remainder 1 modulo the totient of <em>n</em>, which is (<em>p</em> − 1)(<em>q</em> − 1). For residues coprime to <em>n</em>, Euler&#39;s theorem shows why raising a message to <em>ed</em> recovers it. The same property holds for the other residues by checking the result separately modulo each prime.</p>
+<p>For a hand calculation use <em>p</em> = 3, <em>q</em> = 11, <em>n</em> = 33, <em>e</em> = 3, and <em>d</em> = 7. The totient is 20 and 3 × 7 = 21. For message 4, 4³ mod 33 is 31. The receiver can calculate 31⁷ mod 33 by treating 31 as −2, which yields remainder 4. These tiny numbers expose the arithmetic. Actual RSA encryption uses a specified scheme that encodes the message with randomized padding, such as RSA-OAEP. Knowing the factorization lets you compute the private exponent. Multiplying large primes is easy compared with the known methods of factoring their product. <a href="https://www.rfc-editor.org/rfc/rfc8017.html#section-7.1">PKCS #1, §§3, 5 and 7.1.</a></p>
+<p>There is another way to arrange a shared secret. In <strong>Diffie–Hellman</strong> key agreement, each side publishes a value made from a private exponent. By combining its own private exponent with the other&#39;s public value, each side obtains the same result. A key derivation function turns the resulting shared secret and context into session keys. With fresh ephemeral private values, the parties can arrange for later compromise of a long-term authentication key to leave old session keys protected, assuming the ephemeral secrets have been erased. TLS 1.3 can authenticate an ephemeral key exchange and use symmetric authenticated encryption for the resulting connection. <a href="https://www.rfc-editor.org/rfc/rfc8446.html#section-2">TLS 1.3, §§2 and 7.</a></p>
+<h2>Whose key is it?</h2>
+<p>Return to the bank. The browser has a public key in front of it and the string naming the bank beside it. If it received both over the same path, did the string prove anything about the key? An intermediary could supply a different key and attach the same label. The browser would then be doing correct encryption for whoever owned that private key. A similar question arises when the browser receives a public value for a key agreement. It needs evidence that the value belongs to a specific conversation with the right peer.</p>
+<p><strong>Network detective.</strong> You have a trace showing that a client and a server established an encrypted channel. What extra evidence would let you say the client spoke to the intended bank? Think of what a trusted directory could attest, and what the server must demonstrate about the key during <em>this</em> conversation. The next chapter builds that evidence from signatures and certificates.</p>
+</article>
+    <nav class="book-nav chapter-turn" aria-label="Chapter navigation"><a href="15-inside-a-high-speed-switch.html">Previous · 15. Inside a High-Speed Switch</a>
+<a href="index.html">Contents</a>
+<a href="17-authentication-identity-and-trust.html">Next · 17. Authentication, Identity, and Trust</a></nav>
+  </main>
+</body>
+</html>

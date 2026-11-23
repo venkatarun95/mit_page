@@ -1,0 +1,58 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="760" height="446" viewBox="0 0 760 446" role="img" aria-labelledby="title desc">
+  <title id="title">Following DNS referrals</title>
+  <desc id="desc">The laptop sends a query to its resolver. The resolver asks three servers in order, then gives the address to the laptop.</desc>
+<rect x="0" y="0" width="760" height="446" rx="0" fill="#f7faf9" stroke="none"/>
+<text x="380" y="29" text-anchor="middle" font-family="ui-monospace, Menlo, monospace" font-size="16" font-weight="700" fill="#182f38">Look up the A record for forecasts.valley.example</text>
+<rect x="15.5" y="45" width="135" height="58" rx="7" fill="#e2f2ed" stroke="none"/>
+<text x="83" y="69" text-anchor="middle" font-family="system-ui, sans-serif" font-size="17" font-weight="700" fill="#076764">Laptop</text>
+<text x="83" y="90" text-anchor="middle" font-family="system-ui, sans-serif" font-size="14" font-weight="400" fill="#405a62">Cooville</text>
+<line x1="83" y1="103" x2="83" y2="427" stroke="#a6bcbf" stroke-width="1.5" stroke-dasharray="5 5"/>
+<rect x="164.5" y="45" width="135" height="58" rx="7" fill="#e2f2ed" stroke="none"/>
+<text x="232" y="69" text-anchor="middle" font-family="system-ui, sans-serif" font-size="17" font-weight="700" fill="#076764">Local resolver</text>
+<text x="232" y="90" text-anchor="middle" font-family="system-ui, sans-serif" font-size="14" font-weight="400" fill="#405a62">192.0.2.53</text>
+<line x1="232" y1="103" x2="232" y2="427" stroke="#a6bcbf" stroke-width="1.5" stroke-dasharray="5 5"/>
+<rect x="312.5" y="45" width="135" height="58" rx="7" fill="#e5f0f7" stroke="none"/>
+<text x="380" y="69" text-anchor="middle" font-family="system-ui, sans-serif" font-size="17" font-weight="700" fill="#245b81">Root server</text>
+<text x="380" y="90" text-anchor="middle" font-family="system-ui, sans-serif" font-size="14" font-weight="400" fill="#405a62">Already known</text>
+<line x1="380" y1="103" x2="380" y2="427" stroke="#a6bcbf" stroke-width="1.5" stroke-dasharray="5 5"/>
+<rect x="460.5" y="45" width="135" height="58" rx="7" fill="#e5f0f7" stroke="none"/>
+<text x="528" y="69" text-anchor="middle" font-family="system-ui, sans-serif" font-size="17" font-weight="700" fill="#245b81">.example</text>
+<text x="528" y="90" text-anchor="middle" font-family="system-ui, sans-serif" font-size="14" font-weight="400" fill="#405a62">Name server</text>
+<line x1="528" y1="103" x2="528" y2="427" stroke="#a6bcbf" stroke-width="1.5" stroke-dasharray="5 5"/>
+<rect x="610.5" y="45" width="135" height="58" rx="7" fill="#e5f0f7" stroke="none"/>
+<text x="678" y="69" text-anchor="middle" font-family="system-ui, sans-serif" font-size="17" font-weight="700" fill="#245b81">valley.example</text>
+<text x="678" y="90" text-anchor="middle" font-family="system-ui, sans-serif" font-size="14" font-weight="400" fill="#405a62">Authoritative</text>
+<line x1="678" y1="103" x2="678" y2="427" stroke="#a6bcbf" stroke-width="1.5" stroke-dasharray="5 5"/>
+<line x1="83" y1="139" x2="230" y2="139" stroke="#076764" stroke-width="2"/>
+<path d="M 230 139 L 219 134 L 219 144 Z" fill="#076764"/>
+<rect x="114.5" y="114" width="84" height="19" rx="0" fill="#f7faf9" stroke="none"/>
+<text x="156.5" y="129" text-anchor="middle" font-family="system-ui, sans-serif" font-size="15" font-weight="700" fill="#076764">A record?</text>
+<line x1="232" y1="179" x2="378" y2="179" stroke="#076764" stroke-width="2"/>
+<path d="M 378 179 L 367 174 L 367 184 Z" fill="#076764"/>
+<rect x="251.0" y="154" width="108" height="19" rx="0" fill="#f7faf9" stroke="none"/>
+<text x="305.0" y="169" text-anchor="middle" font-family="system-ui, sans-serif" font-size="15" font-weight="700" fill="#076764">Ask the root</text>
+<line x1="380" y1="219" x2="234" y2="219" stroke="#245b81" stroke-width="2"/>
+<path d="M 234 219 L 245 214 L 245 224 Z" fill="#245b81"/>
+<rect x="253.0" y="194" width="108" height="19" rx="0" fill="#f7faf9" stroke="none"/>
+<text x="307.0" y="209" text-anchor="middle" font-family="system-ui, sans-serif" font-size="15" font-weight="700" fill="#245b81">Try .example</text>
+<line x1="232" y1="259" x2="526" y2="259" stroke="#076764" stroke-width="2"/>
+<path d="M 526 259 L 515 254 L 515 264 Z" fill="#076764"/>
+<rect x="289.0" y="234" width="180" height="19" rx="0" fill="#f7faf9" stroke="none"/>
+<text x="379.0" y="249" text-anchor="middle" font-family="system-ui, sans-serif" font-size="15" font-weight="700" fill="#076764">Ask a .example server</text>
+<line x1="528" y1="299" x2="234" y2="299" stroke="#245b81" stroke-width="2"/>
+<path d="M 234 299 L 245 294 L 245 304 Z" fill="#245b81"/>
+<rect x="303.0" y="274" width="156" height="19" rx="0" fill="#f7faf9" stroke="none"/>
+<text x="381.0" y="289" text-anchor="middle" font-family="system-ui, sans-serif" font-size="15" font-weight="700" fill="#245b81">Try valley.example</text>
+<line x1="232" y1="339" x2="676" y2="339" stroke="#076764" stroke-width="2"/>
+<path d="M 676 339 L 665 334 L 665 344 Z" fill="#076764"/>
+<rect x="340.0" y="314" width="228" height="19" rx="0" fill="#f7faf9" stroke="none"/>
+<text x="454.0" y="329" text-anchor="middle" font-family="system-ui, sans-serif" font-size="15" font-weight="700" fill="#076764">Ask a valley.example server</text>
+<line x1="678" y1="379" x2="234" y2="379" stroke="#245b81" stroke-width="2"/>
+<path d="M 234 379 L 245 374 L 245 384 Z" fill="#245b81"/>
+<rect x="358.0" y="354" width="196" height="19" rx="0" fill="#f7faf9" stroke="none"/>
+<text x="456.0" y="369" text-anchor="middle" font-family="system-ui, sans-serif" font-size="15" font-weight="700" fill="#245b81">A record: 198.51.100.70</text>
+<line x1="232" y1="419" x2="85" y2="419" stroke="#245b81" stroke-width="2"/>
+<path d="M 85 419 L 96 414 L 96 424 Z" fill="#245b81"/>
+<rect x="100.5" y="394" width="116" height="19" rx="0" fill="#f7faf9" stroke="none"/>
+<text x="158.5" y="409" text-anchor="middle" font-family="system-ui, sans-serif" font-size="15" font-weight="700" fill="#245b81">198.51.100.70</text>
+</svg>

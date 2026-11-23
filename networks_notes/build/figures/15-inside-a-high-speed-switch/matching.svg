@@ -1,0 +1,33 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 249" role="img" aria-labelledby="title desc">
+  <title id="title">Changing the queues changes the matching</title>
+  <desc id="desc">In the FIFO case both inputs request A. With virtual output queues, input 1 also requests B. Grants are input 2 to A in both cases, plus input 1 to B with virtual queues.</desc>
+  <style>text { font-family: system-ui,sans-serif; fill: #162436 }</style>
+  <rect x="8" y="8" width="704" height="233" rx="14" fill="#f7f9fb" stroke="#d0dbe5"/>
+  <rect x="25" y="24" width="320" height="203" rx="9" fill="#fff" stroke="#c1cedb"/>
+  <text x="185" y="55" text-anchor="middle" font-size="17" font-weight="650">One FIFO per input</text>
+  <polygon points="108.00,92.00 262.00,92.00 262.00,90.00 108.00,90.00" fill="#a3b4c3"/>
+  <polygon points="108.93,155.32 262.93,93.32 261.07,88.68 107.07,150.68" fill="#176b57"/>
+  <rect x="48" y="76" width="68" height="30" rx="6" fill="#e5eef4" stroke="#b1c3d2"/>
+  <text x="82" y="96" text-anchor="middle" font-size="14" font-weight="400">In 1</text>
+  <rect x="48" y="138" width="68" height="30" rx="6" fill="#e5eef4" stroke="#b1c3d2"/>
+  <text x="82" y="158" text-anchor="middle" font-size="14" font-weight="400">In 2</text>
+  <rect x="254" y="76" width="68" height="30" rx="6" fill="#e5eef4" stroke="#b1c3d2"/>
+  <text x="288" y="96" text-anchor="middle" font-size="14" font-weight="400">Out A</text>
+  <rect x="254" y="138" width="68" height="30" rx="6" fill="#e5eef4" stroke="#b1c3d2"/>
+  <text x="288" y="158" text-anchor="middle" font-size="14" font-weight="400">Out B</text>
+  <text x="185" y="206" text-anchor="middle" font-size="15" font-weight="400">1 transfer · B idle</text>
+  <rect x="375" y="24" width="320" height="203" rx="9" fill="#fff" stroke="#c1cedb"/>
+  <text x="535" y="55" text-anchor="middle" font-size="17" font-weight="650">Virtual output queues</text>
+  <polygon points="458.00,92.00 612.00,92.00 612.00,90.00 458.00,90.00" fill="#a3b4c3"/>
+  <polygon points="457.07,93.32 611.07,155.32 612.93,150.68 458.93,88.68" fill="#176b57"/>
+  <polygon points="458.93,155.32 612.93,93.32 611.07,88.68 457.07,150.68" fill="#176b57"/>
+  <rect x="398" y="76" width="68" height="30" rx="6" fill="#e5eef4" stroke="#b1c3d2"/>
+  <text x="432" y="96" text-anchor="middle" font-size="14" font-weight="400">In 1</text>
+  <rect x="398" y="138" width="68" height="30" rx="6" fill="#e5eef4" stroke="#b1c3d2"/>
+  <text x="432" y="158" text-anchor="middle" font-size="14" font-weight="400">In 2</text>
+  <rect x="604" y="76" width="68" height="30" rx="6" fill="#e5eef4" stroke="#b1c3d2"/>
+  <text x="638" y="96" text-anchor="middle" font-size="14" font-weight="400">Out A</text>
+  <rect x="604" y="138" width="68" height="30" rx="6" fill="#e5eef4" stroke="#b1c3d2"/>
+  <text x="638" y="158" text-anchor="middle" font-size="14" font-weight="400">Out B</text>
+  <text x="535" y="206" text-anchor="middle" font-size="15" font-weight="400">2 transfers · both outputs busy</text>
+</svg>

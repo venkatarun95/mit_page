@@ -1,0 +1,36 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="760" height="307" viewBox="0 0 760 307" role="img" aria-labelledby="title desc">
+  <title id="title">A broadcast loops around three switches</title>
+  <desc id="desc">After switch 5 floods a broadcast, one copy travels through 2 then 9 and returns to 5. Another copy traverses the triangle in reverse.</desc>
+  <defs>
+    <marker id="blue-arrow" markerWidth="10" markerHeight="10" refX="9" refY="5" orient="auto" markerUnits="userSpaceOnUse">
+      <path d="M0,0 L10,5 L0,10 Z" fill="#126084"/>
+    </marker>
+    <marker id="gray-arrow" markerWidth="10" markerHeight="10" refX="9" refY="5" orient="auto" markerUnits="userSpaceOnUse">
+      <path d="M0,0 L10,5 L0,10 Z" fill="#516b77"/>
+    </marker>
+  </defs>
+  <rect width="760" height="307" fill="#f7faf9"/>
+  <line x1="30.0" y1="27.0" x2="72.0" y2="27.0" stroke="#126084" stroke-width="3.1" stroke-linecap="round" marker-end="url(#blue-arrow)"/>
+  <text x="85" y="32" font-family="system-ui, sans-serif" font-size="15" font-weight="650" fill="#173544" text-anchor="start">One copy</text>
+  <line x1="590.0" y1="27.0" x2="632.0" y2="27.0" stroke="#516b77" stroke-width="2.5" stroke-linecap="round" stroke-dasharray="6 5" marker-end="url(#gray-arrow)"/>
+  <text x="644" y="32" font-family="system-ui, sans-serif" font-size="15" font-weight="650" fill="#173544" text-anchor="start">Other copy</text>
+  <line x1="231.8" y1="204.9" x2="362.2" y2="86.1" stroke="#d4dfdf" stroke-width="1.1" stroke-linecap="round"/>
+  <line x1="236.5" y1="210.0" x2="367.0" y2="91.3" stroke="#126084" stroke-width="3.1" stroke-linecap="round" marker-end="url(#blue-arrow)"/>
+  <line x1="357.5" y1="81.0" x2="227.0" y2="199.7" stroke="#516b77" stroke-width="2.5" stroke-linecap="round" stroke-dasharray="6 5" marker-end="url(#gray-arrow)"/>
+  <line x1="397.8" y1="86.1" x2="528.2" y2="204.9" stroke="#d4dfdf" stroke-width="1.1" stroke-linecap="round"/>
+  <line x1="393.0" y1="91.3" x2="523.5" y2="210.0" stroke="#126084" stroke-width="3.1" stroke-linecap="round" marker-end="url(#blue-arrow)"/>
+  <line x1="533.0" y1="199.7" x2="402.5" y2="81.0" stroke="#516b77" stroke-width="2.5" stroke-linecap="round" stroke-dasharray="6 5" marker-end="url(#gray-arrow)"/>
+  <line x1="522.0" y1="221.0" x2="238.0" y2="221.0" stroke="#d4dfdf" stroke-width="1.1" stroke-linecap="round"/>
+  <line x1="522.0" y1="214.0" x2="238.0" y2="214.0" stroke="#126084" stroke-width="3.1" stroke-linecap="round" marker-end="url(#blue-arrow)"/>
+  <line x1="238.0" y1="228.0" x2="522.0" y2="228.0" stroke="#516b77" stroke-width="2.5" stroke-linecap="round" stroke-dasharray="6 5" marker-end="url(#gray-arrow)"/>
+  <circle cx="380" cy="70" r="22" fill="white" stroke="#516b77" stroke-width="1.7"/>
+  <text x="380" y="76" font-family="system-ui, sans-serif" font-size="19" font-weight="700" fill="#173544" text-anchor="middle">2</text>
+  <circle cx="214" cy="221" r="22" fill="white" stroke="#516b77" stroke-width="1.7"/>
+  <text x="214" y="227" font-family="system-ui, sans-serif" font-size="19" font-weight="700" fill="#173544" text-anchor="middle">5</text>
+  <circle cx="546" cy="221" r="22" fill="white" stroke="#516b77" stroke-width="1.7"/>
+  <text x="546" y="227" font-family="system-ui, sans-serif" font-size="19" font-weight="700" fill="#173544" text-anchor="middle">9</text>
+  <line x1="214.0" y1="244.0" x2="214.0" y2="267.0" stroke="#a6bcbf" stroke-width="2" stroke-linecap="round"/>
+  <line x1="546.0" y1="244.0" x2="546.0" y2="267.0" stroke="#a6bcbf" stroke-width="2" stroke-linecap="round"/>
+  <text x="214" y="287" font-family="system-ui, sans-serif" font-size="15" font-weight="550" fill="#516b77" text-anchor="middle">Library laptop (L)</text>
+  <text x="546" y="287" font-family="system-ui, sans-serif" font-size="15" font-weight="550" fill="#516b77" text-anchor="middle">Town hall gateway (G)</text>
+</svg>

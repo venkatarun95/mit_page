@@ -1,0 +1,660 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>18. What Happens When You Open a Website?</title>
+  <style>:root {
+  color-scheme: light;
+  background: #f3f6f5;
+  color: #182a30;
+  font: 18px/1.65 Georgia, serif;
+}
+
+body {
+  max-width: 48rem;
+  margin: 2.5rem auto;
+  padding: 2.25rem clamp(1rem, 5vw, 3.25rem);
+  background: #fff;
+  border-top: 0.3rem solid #076764;
+}
+
+h1,
+h2,
+h3 {
+  font-family: system-ui, sans-serif;
+  line-height: 1.2;
+  color: #152e37;
+}
+
+h1 {
+  margin: 0 0 1.4rem;
+  font-size: clamp(2rem, 5vw, 3rem);
+  letter-spacing: -0.035em;
+}
+
+h2 {
+  margin: 2.5rem 0 0.7rem;
+  font-size: clamp(1.4rem, 3vw, 1.75rem);
+}
+
+p {
+  margin: 0 0 1rem;
+}
+
+a {
+  color: #0a5b63;
+  overflow-wrap: anywhere;
+  text-underline-offset: 0.15em;
+}
+
+li + li {
+  margin-top: 0.7rem;
+}
+
+blockquote {
+  margin: 1.2rem 0;
+  padding: 0.65rem 1rem;
+  background: #edf6f4;
+  border-inline-start: 0.2rem solid #076764;
+}
+
+blockquote p {
+  margin: 0;
+}
+
+img {
+  display: block;
+  max-width: 100%;
+  height: auto;
+  outline: 1px solid #d3dfdf;
+}
+
+p:has(> img:only-child) {
+  margin: 1.5rem 0 0.5rem;
+}
+
+p:has(> img:only-child) + p:has(> em:only-child) {
+  color: #37525a;
+  font: 0.83rem/1.5 system-ui, sans-serif;
+  margin: 0 0 1.5rem;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 1.25rem 0;
+  font: 0.83rem/1.45 system-ui, sans-serif;
+  font-variant-numeric: tabular-nums;
+  overflow-wrap: anywhere;
+}
+
+th,
+td {
+  border: 1px solid #d3dfdf;
+  padding: 0.55rem;
+  vertical-align: top;
+}
+
+th {
+  background: #edf6f4;
+}
+
+@media (max-width: 34rem) {
+  body {
+    margin: 0;
+  }
+
+  table {
+    font-size: 0.7rem;
+  }
+
+  th,
+  td {
+    padding: 0.3rem;
+  }
+}
+
+@media print {
+  :root {
+    background: #fff;
+  }
+
+  body {
+    margin: 0;
+    padding: 0;
+    border: 0;
+  }
+
+  h2,
+  p:has(> img:only-child) {
+    break-after: avoid;
+  }
+
+  table,
+  img {
+    break-inside: avoid;
+  }
+}
+
+.chapter-lab {
+  margin: 1.5rem 0 0.65rem;
+  padding: clamp(0.75rem, 3vw, 1.25rem);
+  border: 1px solid #b7cdcd;
+  border-radius: 0.6rem;
+  background: #f7faf9;
+  font: 0.93rem/1.5 system-ui, sans-serif;
+}
+
+.chapter-lab h3 {
+  margin: 0 0 0.5rem;
+  font-size: 1.2rem;
+}
+
+.chapter-lab > p {
+  color: #334e56;
+}
+
+.chapter-lab + p:has(> em:only-child) {
+  color: #37525a;
+  font: 0.83rem/1.5 system-ui, sans-serif;
+  margin-bottom: 1.5rem;
+}
+
+#playback-lab:not([hidden]) + p:has(> img:only-child) {
+  display: none;
+}
+
+.lab-controls {
+  display: flex;
+  gap: 0.75rem;
+  align-items: end;
+  flex-wrap: wrap;
+  margin-bottom: 1rem;
+}
+
+.lab-controls label {
+  display: grid;
+  gap: 0.3rem;
+  font-weight: 700;
+  font-size: 0.8rem;
+}
+
+.lab-controls select,
+.lab-controls button {
+  min-height: 2.2rem;
+  border: 1px solid #9bb2b8;
+  border-radius: 0.3rem;
+  background: #fff;
+  color: #163440;
+  padding: 0.25rem 0.5rem;
+  font: inherit;
+}
+
+.lab-controls button {
+  font-size: 0.8rem;
+  cursor: pointer;
+}
+
+.lab-controls :focus-visible {
+  outline: 2px solid #076764;
+  outline-offset: 2px;
+}
+
+#link-race .race-timeline {
+  display: grid;
+  gap: 0.25rem;
+  margin-bottom: 0.85rem;
+}
+
+#link-race .race-timeline label,
+#link-race .race-endpoints {
+  display: flex;
+  justify-content: space-between;
+  gap: 0.35rem;
+}
+
+#link-race .race-timeline label {
+  font-size: 0.8rem;
+  font-weight: 700;
+  font-variant-numeric: tabular-nums;
+}
+
+#link-race .race-timeline input {
+  width: 100%;
+  margin: 0;
+  accent-color: #076764;
+}
+
+#link-race .race-timeline input:focus-visible {
+  outline: 2px solid #076764;
+  outline-offset: 2px;
+}
+
+#link-race [aria-disabled="true"] {
+  color: #55676e;
+  background: #edf2f1;
+  cursor: default;
+}
+
+#link-race .race-lane {
+  --race-color: #25618b;
+  --race-wire: #dce9f1;
+  padding: 0.75rem 0;
+  border-top: 1px solid #b7cdcd;
+}
+
+#link-race .race-lane[data-link="B"] {
+  --race-color: #076764;
+  --race-wire: #dbede9;
+}
+
+#link-race h4 {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 0.15rem 0.6rem;
+  margin: 0 0 0.4rem;
+  color: var(--race-color);
+  font-size: 1rem;
+}
+
+#link-race h4 span,
+#link-race .race-endpoints,
+#link-race .race-timeline p,
+#link-race .race-key {
+  color: #405961;
+  font-size: 0.8rem;
+  font-weight: 400;
+}
+
+#link-race h4 strong {
+  padding: 0.05rem 0.4rem;
+  border-radius: 0.2rem;
+  background: var(--race-wire);
+  font-size: 0.76rem;
+}
+
+#link-race .race-path {
+  margin-inline: 0.3rem;
+}
+
+#link-race [data-link="B"] .race-path {
+  width: 48%;
+}
+
+#link-race .race-track {
+  position: relative;
+  height: 0.85rem;
+  margin: 0.2rem 0 0.4rem;
+  border-radius: 1rem;
+  background: var(--race-wire);
+}
+
+#link-race .race-track::before,
+#link-race .race-track::after,
+#link-race .race-track span {
+  position: absolute;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  background: var(--race-color);
+}
+
+#link-race .race-track::before,
+#link-race .race-track::after {
+  content: "";
+  left: 0;
+  width: 0.14rem;
+  height: 100%;
+  border-radius: 1rem;
+}
+
+#link-race .race-track::after {
+  left: 100%;
+}
+
+#link-race .race-track span {
+  width: clamp(0.17rem, 0.55vw, 0.36rem);
+  aspect-ratio: 1;
+  border-radius: 50%;
+}
+
+#link-race .race-timeline p,
+#link-race .race-meter p,
+#link-race .race-finish {
+  margin: 0;
+}
+
+#link-race .race-totals {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 0.75rem;
+  margin-top: 0.6rem;
+}
+
+#link-race .race-meter p {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: 0 0.35rem;
+  font-size: 0.8rem;
+  font-variant-numeric: tabular-nums;
+}
+
+#link-race .race-meter progress {
+  display: block;
+  width: 100%;
+  height: 0.55rem;
+  margin: 0.2rem 0 0;
+  accent-color: var(--race-color);
+}
+
+#link-race .race-finish {
+  margin-top: 0.4rem;
+  font-size: 0.85rem;
+  font-variant-numeric: tabular-nums;
+}
+
+#link-race .race-announcement {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  clip-path: inset(50%);
+  overflow: hidden;
+}
+
+#link-race figcaption {
+  border-top: 1px solid #b7cdcd;
+  padding-top: 0.65rem;
+  color: #173840;
+  font-weight: 600;
+}
+
+.lab-link-policy {
+  padding-top: 0.65rem;
+  border-top: 1px solid #b7cdcd;
+}
+
+.lab-link-policy + .lab-link-policy {
+  margin-top: 0.9rem;
+}
+
+.lab-link-policy h4 {
+  margin: 0 0 0.6rem;
+  color: #173840;
+  font-size: 0.98rem;
+}
+
+.lab-sender p {
+  margin: 0 0 0.3rem;
+  font-size: 0.8rem;
+  color: #334e56;
+}
+
+.lab-sender + .lab-sender {
+  margin-top: 0.65rem;
+}
+
+.lab-packets,
+.lab-events {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.lab-packets {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.35rem;
+}
+
+.lab-packets li,
+.lab-events li {
+  margin: 0;
+}
+
+.lab-packet {
+  display: grid;
+  padding: 0.3rem 0.45rem;
+  border: 1px solid #99b9af;
+  border-radius: 0.3rem;
+  background: #e4f3ee;
+  color: #18443b;
+  font-size: 0.74rem;
+  min-width: 4.6rem;
+}
+
+.lab-packet.late {
+  border-color: #cfac85;
+  background: #fcf0dd;
+  color: #704411;
+}
+
+.lab-packet.refused {
+  border-color: #c6cfd2;
+  background: #eef1f2;
+  color: #324850;
+}
+
+.lab-plot {
+  background: #fff;
+  border: 1px solid #d3dfdf;
+  border-radius: 0.3rem;
+}
+
+.lab-plot svg {
+  display: block;
+  width: 100%;
+  color: #314d58;
+  font-size: 17px;
+}
+
+.lab-plot text {
+  fill: currentColor;
+}
+
+.lab-plot .lab-axis-title {
+  font-weight: 700;
+}
+
+.lab-plot .lab-outage-label {
+  fill: #6c441b;
+}
+
+.lab-grid {
+  stroke: #c0cfd1;
+}
+
+.lab-outage {
+  fill: #fbefde;
+}
+
+.lab-threshold {
+  stroke: #567e89;
+  stroke-dasharray: 6 5;
+}
+
+.lab-trace {
+  fill: none;
+  stroke: #076764;
+  stroke-width: 3.5;
+  stroke-linejoin: round;
+}
+
+.lab-marker {
+  fill: #076764;
+  stroke: #fff;
+  stroke-width: 1.2;
+}
+
+.lab-plot .lab-marker-text {
+  fill: #fff;
+  font-size: 13px;
+  font-weight: 700;
+}
+
+.lab-result {
+  margin: 0.6rem 0;
+  font-weight: 700;
+}
+
+.lab-events {
+  display: flex;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+  font-size: 0.78rem;
+}
+
+.lab-events li {
+  flex: 1 1 9rem;
+  display: flex;
+  align-items: start;
+  gap: 0.4rem;
+  border: 1px solid #d3dfdf;
+  border-radius: 0.3rem;
+  background: #fff;
+  padding: 0.45rem;
+}
+
+.lab-marker-label {
+  min-width: 1.2rem;
+  height: 1.2rem;
+  border-radius: 50%;
+  background: #076764;
+  color: #fff;
+  font-weight: 700;
+  text-align: center;
+}
+
+@media print {
+  .chapter-lab {
+    display: none;
+  }
+
+  #playback-lab:not([hidden]) + p:has(> img:only-child) {
+    display: block;
+  }
+}
+
+.book-nav {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: .55rem 1.4rem;
+  margin-bottom: 1.6rem;
+  color: #37525a;
+  font: .85rem/1.5 system-ui, sans-serif;
+}
+
+.chapter-turn {
+  justify-content: space-between;
+  margin: 2.4rem 0 0;
+  padding-top: 1rem;
+  border-top: 1px solid #d3dfdf;
+}
+
+.book-contents ul {
+  list-style: none;
+  padding: 0;
+}
+
+@media print {
+  .book-nav { display: none; }
+}
+</style>
+</head>
+<body>
+  <main>
+    <nav class="book-nav" aria-label="Book location"><a href="index.html">Contents</a><span>Part VI — Networks in Practice</span></nav>
+    <article><h1>18. What Happens When You Open a Website?</h1>
+<p>You open a transit website to check the next bus. The browser shows a logo and an empty departures panel. A second later, the times appear. At the next stop you try again, and this time the panel fills almost immediately. Which work did the browser have to repeat? Which work might it have been able to skip?</p>
+<p>We will follow <code>https://arrivals.example/</code> on one particular afternoon. The page contains a logo and a stylesheet, and it names a short JavaScript program. The program fetches the current departures. Call the page <em>ready</em> when the styled list of departures is visible. A slow logo can affect the appearance of the page, but it need not hold up that list. Keep this outcome in mind when deciding which part of the load to speed up.</p>
+<h2>What has to work before the browser can ask?</h2>
+<p>Start with a laptop on a new Wi-Fi network. It has just joined the access point, completed the link&#39;s authentication, and can exchange link-layer frames. It has no IPv4 address for this link. The application cannot invent an address and assume all other hosts will know how to reply. In the classroom packet capture, link authentication came first, then the laptop asked for configuration using DHCP.</p>
+<p>In our example a <strong>DHCP</strong> client broadcasts a discovery message from IPv4 address <code>0.0.0.0</code> and UDP source port 68 to <code>255.255.255.255</code> and destination port 67. A server offers a configuration, the client requests it, and the server acknowledges the lease. Assume the laptop gets <code>192.0.2.10/24</code>, default gateway <code>192.0.2.1</code>, and recursive DNS resolver <code>198.51.100.53</code>. The wireless access point offers the local link. The gateway forwards packets beyond it. One box can fill both roles, and a DHCP server can be a different machine again. <a href="https://www.rfc-editor.org/rfc/rfc2131.html#section-3.1">DHCP, §3.1.</a></p>
+<p>The resolver is outside the laptop&#39;s subnet. Before sending a frame to it, the host&#39;s route lookup selects the gateway as the next hop. The laptop needs the gateway&#39;s link-layer address, so it uses <strong>ARP</strong> on the local link. The gateway&#39;s address ends up in the frame&#39;s local forwarding information while the resolver&#39;s IP address stays in the IP header. At the gateway, the packet can be put in a different frame for the next hop. IP routers decrement the TTL. In this example there is no address translation, so the endpoint IP addresses remain the same along the path.</p>
+<p><strong>What if?</strong> Put the resolver at <code>192.0.2.53</code> on the same local subnet instead. Which IP address would the laptop ask for with ARP? When it later sends a packet to the distant web server, which next hop would it use then?</p>
+<h2>Which names and numbers matter?</h2>
+<p>The browser wants to contact <code>arrivals.example</code>. Assume a plain IPv4 DNS lookup through the configured recursive resolver. The laptop has no cached answer and the resolver has to obtain one. It returns <code>203.0.113.8</code> for the name. The browser connects to that IP address on TCP port 443. The name stays with the request. It is the identity the browser will check during TLS, and HTTP carries the requested authority so the server can distinguish sites even if they share the same address.</p>
+<p>For this load, choose HTTP/2 over a fresh TCP connection with a full TLS 1.3 handshake, no resumption or early data. First the TCP SYN, SYN+ACK, and ACK open the connection from Chapter 10. In the model the client can send its TLS ClientHello along with the final TCP ACK, so TCP adds one round trip before the client can start TLS. The TLS exchange derives session keys and authenticates the server for the requested name. After receiving and verifying the server&#39;s handshake flight, the client sends its final handshake message and can send the request. We allocate one round trip to that TLS step. Other protocol choices produce different timelines. HTTP/3 runs over QUIC, where transport and cryptographic setup are integrated. <a href="https://www.rfc-editor.org/rfc/rfc8446.html#section-2">TLS 1.3, §2.</a></p>
+<p>The browser sends a request for the root path <code>/</code>. Trace those bytes outward. HTTP says what resource the browser wants. TLS protects that request inside records. TCP carries the bytes and their positions in the stream. IP contains the addresses used for routing. A frame sends the packet over the local link. A packet capture at the laptop can show the TCP handshake, sizes, and times. The browser can show the decrypted HTTP request and response because it is one endpoint of the TLS connection. Comparing those views was the point of moving back and forth between Wireshark and the browser in the lecture.</p>
+<h2>Why didn&#39;t the first response contain the page?</h2>
+<p>The response to <code>/</code> contains HTML. The browser parses it into a document it can render and update. It discovers the URLs of <code>/site.css</code>, <code>/logo.svg</code>, and <code>/departures.js</code>. These are separate resources. The browser can start fetching them as it discovers them. Suppose it already has the complete HTML by the time it starts all three, for easy arithmetic. The stylesheet supplies the rules for rendering the styled list. The logo can download alongside the other work. When the downloaded program begins running, it requests <code>/api/departures</code>. Only when that response comes back can the script fill in the list.</p>
+<p><img src="figures/18-what-happens-when-you-open-a-website/dependencies.svg" alt="The root HTML makes CSS, logo and script requests possible. The departures request waits for the script. Styled content waits for the stylesheet and departures."></p>
+<p>In class, a student pointed out that starting a program can give it time for work that does not fit into the original download. Here that work is another network exchange. A slow stylesheet can delay rendering, and a slow program can delay discovering the next URL. Even an infinitely fast link would leave the time for those sequential round trips and the browser&#39;s own work. HTTP/2 can multiplex requests over one connection. The dependencies apply even when the browser and server can work on several streams concurrently.</p>
+<p>There is one more dependency the browser cannot see. The address returned by DNS could belong to a service front end. That process can terminate TLS, serve a stored copy of the stylesheet, and route the API request to a backend that gets current bus times. The browser sees the delay until the first byte of the API response, which includes network travel time and the work on the server side. For the moment, leave that internal work inside the time we assign to the API response.</p>
+<h3>Design this. Give the browser enough to start</h3>
+<p>The course quiz uses a social feed. HTML discloses a program and basic layout resources. The program must run before requesting the first ten posts. Assume the browser can issue multiple requests in one round trip, the server sends responses in request order on one TCP connection, and nothing is cached. Which object would you request as soon as you learn about it? Under what size and timing assumptions should it be sent before the layout resources? Then redesign the HTML so it gives the browser the information needed to start the posts request sooner. <em>Adapted from <a href="assets/quiz3-2025.pdf#page=5">Quiz 3 2025, Q6, pp. 5–6</a>. The assumptions question and redesign are new.</em></p>
+<h2>Which part of the wait is on the critical path?</h2>
+<p>Give each operation a time in one model. Start the clock with the laptop beginning to join. Wi-Fi setup takes 25 ms, DHCP 20 ms, and ARP 2 ms. DNS takes 30 ms including the recursive resolver&#39;s work. The server is one 40 ms round trip away. TCP takes 40 ms and TLS takes another 40 ms. The HTML response is complete 45 ms after the first HTTP request. At this point the timestamp is 202 ms. This is an invented trace with illustrative timings.</p>
+<table>
+<thead>
+<tr>
+<th>Work</th>
+<th align="right">Starts at</th>
+<th align="right">Ends at</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Link setup, DHCP, and ARP</td>
+<td align="right">0 ms</td>
+<td align="right">47 ms</td>
+</tr>
+<tr>
+<td>DNS</td>
+<td align="right">47 ms</td>
+<td align="right">77 ms</td>
+</tr>
+<tr>
+<td>TCP and TLS</td>
+<td align="right">77 ms</td>
+<td align="right">157 ms</td>
+</tr>
+<tr>
+<td>HTML request</td>
+<td align="right">157 ms</td>
+<td align="right">202 ms</td>
+</tr>
+<tr>
+<td>CSS request</td>
+<td align="right">202 ms</td>
+<td align="right">246 ms</td>
+</tr>
+<tr>
+<td>Logo request</td>
+<td align="right">202 ms</td>
+<td align="right">262 ms</td>
+</tr>
+<tr>
+<td>Script request</td>
+<td align="right">202 ms</td>
+<td align="right">250 ms</td>
+</tr>
+<tr>
+<td>Script executes and issues API request</td>
+<td align="right">250 ms</td>
+<td align="right">255 ms</td>
+</tr>
+<tr>
+<td>Departures response</td>
+<td align="right">255 ms</td>
+<td align="right">310 ms</td>
+</tr>
+</tbody></table>
+<p>Treat the resource rows as concurrently scheduled network work, with fixed completion times that already include response processing and transfer. The CSS is done at 246 ms. The script and its API dependency determine when the styled list can appear, at 310 ms if rendering time beyond the table is negligible. Cutting the logo&#39;s transfer time in half does not move that timestamp. Making the API return 20 ms sooner does, under these timings. If you make one path through the dependency graph short enough, another path can determine when the list appears.</p>
+<p>Now make a second navigation to the same URL from the same network. Define <em>warm</em> precisely. The Wi-Fi link, lease, and gateway&#39;s ARP entry are still usable. The host has a valid DNS result and the browser has the same authenticated HTTP/2 connection open. The HTTP cache has fresh copies of the logo, stylesheet, and script. The HTML and API results must still be fetched because we set them to <code>Cache-Control: no-store</code>. No service worker is involved. Then the browser has the HTML at 45 ms, uses the cached assets as they are discovered, runs the script by 50 ms, and gets the list at 105 ms. Here <em>warm</em> describes several separate pieces of state with separate lifetimes. <a href="https://www.rfc-editor.org/rfc/rfc9111.html#section-4">HTTP Caching, §§4–5.</a></p>
+<p>A cache entry can also be stale but have a validator such as an ETag. A server response of 304 can permit reuse of the stored bytes, leaving the round trip for validation in the dependency chain. Reusing a connection saves handshakes even when every object must be fetched again. A valid DNS entry helps establish a new connection, and when the browser can use an existing connection in this example it avoids looking up the address in the first place. <a href="https://www.rfc-editor.org/rfc/rfc9111.html#section-4.3">HTTP Caching, §4.3.</a></p>
+<h3>Network detective. The screenshot is the same</h3>
+<p>Two passengers both report, “I&#39;ve been waiting a quarter of a second and I still can&#39;t see the departures.” In load A the browser has drawn the page shell and the API request remains open. In load B the browser has yet to complete the TLS handshake for the document. What packet and browser observations would separate the two? Which tests would tell you about the name lookup, reachability of the server, and work inside the page?</p>
+<p>Try removing one warm assumption at a time in the <a href="../chapters/18-what-happens-when-you-open-a-website/load-lab.html">page-load lab</a>. Find three ways to make the same API request start later. Before running the model, predict whether each change will show up as a new row in a browser waterfall or as a new wait inside an existing request. Then use the <a href="../chapters/18-what-happens-when-you-open-a-website/lab.md">lab instructions</a> to compare a real browser waterfall with the model.</p>
+<h2>Why can the browser run bytes from another machine?</h2>
+<p>In the lecture, inspecting the rendered page showed elements the server had never sent as part of the original HTML. The script had changed the document. A browser gives this code access to controlled interfaces such as a document tree and functions that request resources. The <strong>same-origin policy</strong> restricts readable access across origins, normally defined by scheme, host, and port. Browsers also use process isolation and operating-system sandboxing to restrict what their web-content processes can do. These are different boundaries. One governs which web documents and data can interact, and another limits the privileges of the code executing on the host. <a href="https://html.spec.whatwg.org/multipage/browsers.html#origins">HTML Living Standard, §7.1.</a></p>
+<p>Take care over who supplies the departures program. A script embedded by the page can run with access to that page&#39;s document even when the script was fetched from a different host. Suppose the page&#39;s own trusted HTML pins the expected cryptographic digest of that script using <strong>Subresource Integrity</strong> and fetches it under conditions that allow the check. The browser verifies the downloaded bytes before executing them. Serving exactly the expected version saves the transit site from delivering every script byte itself. The pinned digest can reject unexpected bytes from the script host, while the authenticity of that digest depends on how the browser obtained the HTML containing it. <a href="assets/cs356-final-2024.pdf#page=2">Final 2024, Q3, p. 2.</a> <a href="https://www.w3.org/TR/SRI/">W3C Subresource Integrity.</a></p>
+<p>Return to the passenger at the second stop. Suppose the script started on time and the API request left the laptop at 50 ms, just as predicted, yet the list still took a second to appear. The browser can tell you that it waited for the first byte. It can&#39;t tell you whether the front end spent that second waiting for another machine. To follow that request any farther, we&#39;ll have to go inside the data center.</p>
+</article>
+    <nav class="book-nav chapter-turn" aria-label="Chapter navigation"><a href="17-authentication-identity-and-trust.html">Previous · 17. Authentication, Identity, and Trust</a>
+<a href="index.html">Contents</a>
+<a href="19-data-centers-and-cloud-networks.html">Next · 19. Data Centers and Cloud Networks</a></nav>
+  </main>
+</body>
+</html>

@@ -1,0 +1,19 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 540 250" role="img" aria-labelledby="t d"><title id="t">The final exam’s five networks</title><desc id="d">v peers with w, x, y, z. Each outer network is a customer of the next clockwise.</desc><rect width="540" height="250" rx="12" fill="#f8faf9"/>
+<line x1="170" y1="39" x2="269.27355122961706" y2="111.97030261322278" stroke="#286656" stroke-width="3"/>
+<polygon points="269.27355122961706,111.97030261322278 258.2547796551754,110.07645124886562 264.1773693764378,102.01897453505521" fill="#286656"/>
+<line x1="170" y1="39" x2="170" y2="125" stroke="#597386" stroke-width="2" stroke-dasharray="5 4"/>
+<line x1="287" y1="125" x2="187.72644877038294" y2="197.9703026132228" stroke="#286656" stroke-width="3"/>
+<polygon points="187.72644877038294,197.9703026132228 192.82263062356222,188.0189745350552 198.74522034482456,196.07645124886565" fill="#286656"/>
+<line x1="287" y1="125" x2="170" y2="125" stroke="#597386" stroke-width="2" stroke-dasharray="5 4"/>
+<line x1="170" y1="211" x2="70.72644877038294" y2="138.0296973867772" stroke="#286656" stroke-width="3"/>
+<polygon points="70.72644877038294,138.0296973867772 81.74522034482456,139.92354875113435 75.82263062356219,147.9810254649448" fill="#286656"/>
+<line x1="170" y1="211" x2="170" y2="125" stroke="#597386" stroke-width="2" stroke-dasharray="5 4"/>
+<line x1="53" y1="125" x2="152.27355122961706" y2="52.02969738677721" stroke="#286656" stroke-width="3"/>
+<polygon points="152.27355122961706,52.02969738677721 147.17736937643778,61.98102546494479 141.25477965517544,53.92354875113436" fill="#286656"/>
+<line x1="53" y1="125" x2="170" y2="125" stroke="#597386" stroke-width="2" stroke-dasharray="5 4"/>
+<circle cx="170" cy="39" r="19" fill="#e2eeec" stroke="#28594e"/><text text-anchor="middle" x="170" y="45" font-family="system-ui,sans-serif" font-weight="bold" font-size="20" fill="#173b46">w</text>
+<circle cx="287" cy="125" r="19" fill="#e2eeec" stroke="#28594e"/><text text-anchor="middle" x="287" y="131" font-family="system-ui,sans-serif" font-weight="bold" font-size="20" fill="#173b46">x</text>
+<circle cx="170" cy="211" r="19" fill="#e2eeec" stroke="#28594e"/><text text-anchor="middle" x="170" y="217" font-family="system-ui,sans-serif" font-weight="bold" font-size="20" fill="#173b46">y</text>
+<circle cx="53" cy="125" r="19" fill="#e2eeec" stroke="#28594e"/><text text-anchor="middle" x="53" y="131" font-family="system-ui,sans-serif" font-weight="bold" font-size="20" fill="#173b46">z</text>
+<circle cx="170" cy="125" r="19" fill="#e2eeec" stroke="#28594e"/><text text-anchor="middle" x="170" y="131" font-family="system-ui,sans-serif" font-weight="bold" font-size="20" fill="#173b46">v</text>
+<g fill="#173b46" font-family="system-ui,sans-serif" font-size="17"><text x="330" y="87" font-weight="bold">Solid arrows</text><text x="330" y="110">Customer to provider</text><text x="330" y="157" font-weight="bold">Dashed spokes</text><text x="330" y="180">Peering with origin v</text></g></svg>

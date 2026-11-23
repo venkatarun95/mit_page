@@ -1,0 +1,688 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>11. Congestion Control</title>
+  <style>:root {
+  color-scheme: light;
+  background: #f3f6f5;
+  color: #182a30;
+  font: 18px/1.65 Georgia, serif;
+}
+
+body {
+  max-width: 48rem;
+  margin: 2.5rem auto;
+  padding: 2.25rem clamp(1rem, 5vw, 3.25rem);
+  background: #fff;
+  border-top: 0.3rem solid #076764;
+}
+
+h1,
+h2,
+h3 {
+  font-family: system-ui, sans-serif;
+  line-height: 1.2;
+  color: #152e37;
+}
+
+h1 {
+  margin: 0 0 1.4rem;
+  font-size: clamp(2rem, 5vw, 3rem);
+  letter-spacing: -0.035em;
+}
+
+h2 {
+  margin: 2.5rem 0 0.7rem;
+  font-size: clamp(1.4rem, 3vw, 1.75rem);
+}
+
+p {
+  margin: 0 0 1rem;
+}
+
+a {
+  color: #0a5b63;
+  overflow-wrap: anywhere;
+  text-underline-offset: 0.15em;
+}
+
+li + li {
+  margin-top: 0.7rem;
+}
+
+blockquote {
+  margin: 1.2rem 0;
+  padding: 0.65rem 1rem;
+  background: #edf6f4;
+  border-inline-start: 0.2rem solid #076764;
+}
+
+blockquote p {
+  margin: 0;
+}
+
+img {
+  display: block;
+  max-width: 100%;
+  height: auto;
+  outline: 1px solid #d3dfdf;
+}
+
+p:has(> img:only-child) {
+  margin: 1.5rem 0 0.5rem;
+}
+
+p:has(> img:only-child) + p:has(> em:only-child) {
+  color: #37525a;
+  font: 0.83rem/1.5 system-ui, sans-serif;
+  margin: 0 0 1.5rem;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 1.25rem 0;
+  font: 0.83rem/1.45 system-ui, sans-serif;
+  font-variant-numeric: tabular-nums;
+  overflow-wrap: anywhere;
+}
+
+th,
+td {
+  border: 1px solid #d3dfdf;
+  padding: 0.55rem;
+  vertical-align: top;
+}
+
+th {
+  background: #edf6f4;
+}
+
+@media (max-width: 34rem) {
+  body {
+    margin: 0;
+  }
+
+  table {
+    font-size: 0.7rem;
+  }
+
+  th,
+  td {
+    padding: 0.3rem;
+  }
+}
+
+@media print {
+  :root {
+    background: #fff;
+  }
+
+  body {
+    margin: 0;
+    padding: 0;
+    border: 0;
+  }
+
+  h2,
+  p:has(> img:only-child) {
+    break-after: avoid;
+  }
+
+  table,
+  img {
+    break-inside: avoid;
+  }
+}
+
+.chapter-lab {
+  margin: 1.5rem 0 0.65rem;
+  padding: clamp(0.75rem, 3vw, 1.25rem);
+  border: 1px solid #b7cdcd;
+  border-radius: 0.6rem;
+  background: #f7faf9;
+  font: 0.93rem/1.5 system-ui, sans-serif;
+}
+
+.chapter-lab h3 {
+  margin: 0 0 0.5rem;
+  font-size: 1.2rem;
+}
+
+.chapter-lab > p {
+  color: #334e56;
+}
+
+.chapter-lab + p:has(> em:only-child) {
+  color: #37525a;
+  font: 0.83rem/1.5 system-ui, sans-serif;
+  margin-bottom: 1.5rem;
+}
+
+#playback-lab:not([hidden]) + p:has(> img:only-child) {
+  display: none;
+}
+
+.lab-controls {
+  display: flex;
+  gap: 0.75rem;
+  align-items: end;
+  flex-wrap: wrap;
+  margin-bottom: 1rem;
+}
+
+.lab-controls label {
+  display: grid;
+  gap: 0.3rem;
+  font-weight: 700;
+  font-size: 0.8rem;
+}
+
+.lab-controls select,
+.lab-controls button {
+  min-height: 2.2rem;
+  border: 1px solid #9bb2b8;
+  border-radius: 0.3rem;
+  background: #fff;
+  color: #163440;
+  padding: 0.25rem 0.5rem;
+  font: inherit;
+}
+
+.lab-controls button {
+  font-size: 0.8rem;
+  cursor: pointer;
+}
+
+.lab-controls :focus-visible {
+  outline: 2px solid #076764;
+  outline-offset: 2px;
+}
+
+#link-race .race-timeline {
+  display: grid;
+  gap: 0.25rem;
+  margin-bottom: 0.85rem;
+}
+
+#link-race .race-timeline label,
+#link-race .race-endpoints {
+  display: flex;
+  justify-content: space-between;
+  gap: 0.35rem;
+}
+
+#link-race .race-timeline label {
+  font-size: 0.8rem;
+  font-weight: 700;
+  font-variant-numeric: tabular-nums;
+}
+
+#link-race .race-timeline input {
+  width: 100%;
+  margin: 0;
+  accent-color: #076764;
+}
+
+#link-race .race-timeline input:focus-visible {
+  outline: 2px solid #076764;
+  outline-offset: 2px;
+}
+
+#link-race [aria-disabled="true"] {
+  color: #55676e;
+  background: #edf2f1;
+  cursor: default;
+}
+
+#link-race .race-lane {
+  --race-color: #25618b;
+  --race-wire: #dce9f1;
+  padding: 0.75rem 0;
+  border-top: 1px solid #b7cdcd;
+}
+
+#link-race .race-lane[data-link="B"] {
+  --race-color: #076764;
+  --race-wire: #dbede9;
+}
+
+#link-race h4 {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 0.15rem 0.6rem;
+  margin: 0 0 0.4rem;
+  color: var(--race-color);
+  font-size: 1rem;
+}
+
+#link-race h4 span,
+#link-race .race-endpoints,
+#link-race .race-timeline p,
+#link-race .race-key {
+  color: #405961;
+  font-size: 0.8rem;
+  font-weight: 400;
+}
+
+#link-race h4 strong {
+  padding: 0.05rem 0.4rem;
+  border-radius: 0.2rem;
+  background: var(--race-wire);
+  font-size: 0.76rem;
+}
+
+#link-race .race-path {
+  margin-inline: 0.3rem;
+}
+
+#link-race [data-link="B"] .race-path {
+  width: 48%;
+}
+
+#link-race .race-track {
+  position: relative;
+  height: 0.85rem;
+  margin: 0.2rem 0 0.4rem;
+  border-radius: 1rem;
+  background: var(--race-wire);
+}
+
+#link-race .race-track::before,
+#link-race .race-track::after,
+#link-race .race-track span {
+  position: absolute;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  background: var(--race-color);
+}
+
+#link-race .race-track::before,
+#link-race .race-track::after {
+  content: "";
+  left: 0;
+  width: 0.14rem;
+  height: 100%;
+  border-radius: 1rem;
+}
+
+#link-race .race-track::after {
+  left: 100%;
+}
+
+#link-race .race-track span {
+  width: clamp(0.17rem, 0.55vw, 0.36rem);
+  aspect-ratio: 1;
+  border-radius: 50%;
+}
+
+#link-race .race-timeline p,
+#link-race .race-meter p,
+#link-race .race-finish {
+  margin: 0;
+}
+
+#link-race .race-totals {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 0.75rem;
+  margin-top: 0.6rem;
+}
+
+#link-race .race-meter p {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: 0 0.35rem;
+  font-size: 0.8rem;
+  font-variant-numeric: tabular-nums;
+}
+
+#link-race .race-meter progress {
+  display: block;
+  width: 100%;
+  height: 0.55rem;
+  margin: 0.2rem 0 0;
+  accent-color: var(--race-color);
+}
+
+#link-race .race-finish {
+  margin-top: 0.4rem;
+  font-size: 0.85rem;
+  font-variant-numeric: tabular-nums;
+}
+
+#link-race .race-announcement {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  clip-path: inset(50%);
+  overflow: hidden;
+}
+
+#link-race figcaption {
+  border-top: 1px solid #b7cdcd;
+  padding-top: 0.65rem;
+  color: #173840;
+  font-weight: 600;
+}
+
+.lab-link-policy {
+  padding-top: 0.65rem;
+  border-top: 1px solid #b7cdcd;
+}
+
+.lab-link-policy + .lab-link-policy {
+  margin-top: 0.9rem;
+}
+
+.lab-link-policy h4 {
+  margin: 0 0 0.6rem;
+  color: #173840;
+  font-size: 0.98rem;
+}
+
+.lab-sender p {
+  margin: 0 0 0.3rem;
+  font-size: 0.8rem;
+  color: #334e56;
+}
+
+.lab-sender + .lab-sender {
+  margin-top: 0.65rem;
+}
+
+.lab-packets,
+.lab-events {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.lab-packets {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.35rem;
+}
+
+.lab-packets li,
+.lab-events li {
+  margin: 0;
+}
+
+.lab-packet {
+  display: grid;
+  padding: 0.3rem 0.45rem;
+  border: 1px solid #99b9af;
+  border-radius: 0.3rem;
+  background: #e4f3ee;
+  color: #18443b;
+  font-size: 0.74rem;
+  min-width: 4.6rem;
+}
+
+.lab-packet.late {
+  border-color: #cfac85;
+  background: #fcf0dd;
+  color: #704411;
+}
+
+.lab-packet.refused {
+  border-color: #c6cfd2;
+  background: #eef1f2;
+  color: #324850;
+}
+
+.lab-plot {
+  background: #fff;
+  border: 1px solid #d3dfdf;
+  border-radius: 0.3rem;
+}
+
+.lab-plot svg {
+  display: block;
+  width: 100%;
+  color: #314d58;
+  font-size: 17px;
+}
+
+.lab-plot text {
+  fill: currentColor;
+}
+
+.lab-plot .lab-axis-title {
+  font-weight: 700;
+}
+
+.lab-plot .lab-outage-label {
+  fill: #6c441b;
+}
+
+.lab-grid {
+  stroke: #c0cfd1;
+}
+
+.lab-outage {
+  fill: #fbefde;
+}
+
+.lab-threshold {
+  stroke: #567e89;
+  stroke-dasharray: 6 5;
+}
+
+.lab-trace {
+  fill: none;
+  stroke: #076764;
+  stroke-width: 3.5;
+  stroke-linejoin: round;
+}
+
+.lab-marker {
+  fill: #076764;
+  stroke: #fff;
+  stroke-width: 1.2;
+}
+
+.lab-plot .lab-marker-text {
+  fill: #fff;
+  font-size: 13px;
+  font-weight: 700;
+}
+
+.lab-result {
+  margin: 0.6rem 0;
+  font-weight: 700;
+}
+
+.lab-events {
+  display: flex;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+  font-size: 0.78rem;
+}
+
+.lab-events li {
+  flex: 1 1 9rem;
+  display: flex;
+  align-items: start;
+  gap: 0.4rem;
+  border: 1px solid #d3dfdf;
+  border-radius: 0.3rem;
+  background: #fff;
+  padding: 0.45rem;
+}
+
+.lab-marker-label {
+  min-width: 1.2rem;
+  height: 1.2rem;
+  border-radius: 50%;
+  background: #076764;
+  color: #fff;
+  font-weight: 700;
+  text-align: center;
+}
+
+@media print {
+  .chapter-lab {
+    display: none;
+  }
+
+  #playback-lab:not([hidden]) + p:has(> img:only-child) {
+    display: block;
+  }
+}
+
+.book-nav {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: .55rem 1.4rem;
+  margin-bottom: 1.6rem;
+  color: #37525a;
+  font: .85rem/1.5 system-ui, sans-serif;
+}
+
+.chapter-turn {
+  justify-content: space-between;
+  margin: 2.4rem 0 0;
+  padding-top: 1rem;
+  border-top: 1px solid #d3dfdf;
+}
+
+.book-contents ul {
+  list-style: none;
+  padding: 0;
+}
+
+@media print {
+  .book-nav { display: none; }
+}
+</style>
+</head>
+<body>
+  <main>
+    <nav class="book-nav" aria-label="Book location"><a href="index.html">Contents</a><span>Part III — Moving Data Reliably and Efficiently</span></nav>
+    <article><h1>11. Congestion Control</h1>
+<p>Let the two file copies from Chapter 10 run. Each sender can deliver eight Mbit/s on its own, and each receiver advertises enough space to accept that rate. Halfway across their routes, though, the copies meet at a link that can carry eight Mbit/s in total. If you start both at full speed, where do the other eight megabits go during the first second? What information could reach either sender in time to change what happens during the second?</p>
+<p><img src="figures/11-congestion-control/shared-output.svg" alt="Two senders can each offer 8 Mbit/s to a router whose shared output link can serve 8 Mbit/s total. Their receivers are beyond that link."></p>
+<p>While both senders offer eight, eight more megabits arrive each second than the link can serve. A buffer can hold some of the excess. When it fills, newly arriving packets are dropped under a tail-drop policy. A student asked why we couldn&#39;t simply retransmit the lost packets. That tells you which bytes to send next, but the link can still deliver at most eight Mbit/s. If the senders continue adding new data at their old rates, the delivery backlog keeps growing. Recovering a missing packet therefore creates a second decision: which new transmission should give way to the repair? The class considered what happens if the sender gets even the first decision wrong. If packets wait so long that the sender mistakenly retransmits bytes already received, successful transmissions can use up capacity without delivering new data. Measure <strong>goodput</strong>, the rate of delivery of distinct useful data, to see that failure.</p>
+<p><strong>Flow control</strong> limits a sender to what its receiver can accept. <strong>Congestion control</strong> limits what the sender puts into the network while other senders are using it too. Chapter 8 gave a single operator tools to move traffic between paths. A sender on the public Internet usually has no list of the competing demands or even a map of the links. Before inventing a rule, list what it does see. It knows when it sent data, when an acknowledgment arrived, and which data the acknowledgment covers. How far can those observations take us?</p>
+<h2>Can acknowledgments set the pace?</h2>
+<p>Add a second limit alongside the receive window. Call it the <strong>congestion window</strong>, or <code>cwnd</code>. The sender uses the smaller of the two limits and compares it with how much data it estimates is still in flight. In the simplest case, this is the data it has sent and has yet to have acknowledged. During recovery a sender also accounts separately for data it believes was lost. As acknowledgments free space in the window, the sender can send more. A reduction in the window may leave more data in flight than the new limit. The sender waits for the flight size to fall before sending again.</p>
+<p>Set the window to two packets and send them back to back. The fast access link might pass them just a microsecond apart. Suppose the bottleneck needs 100 microseconds to transmit each. A receiver that immediately acknowledges each packet gets them roughly 100 microseconds apart. If the return path preserves that spacing, the acknowledgments release two new transmissions 100 microseconds apart. After the initial burst, the bottleneck&#39;s service has begun to set the sender&#39;s pace. This is <strong>ACK-clocking</strong>. If the return path collects acknowledgments in a queue and releases them close together, the sender can burst again. If the application has no data ready, an acknowledgment may release unused space. ACKs can tell the sender when there is room in the window it chose. They leave open how big that window ought to be.</p>
+<p><strong>What if?</strong> Keep <code>cwnd</code> at two and make the path a hundred times longer while holding the bottleneck rate fixed. The ACK spacing within each pair could stay the same. What happens to the time between pairs? How many packets should the sender be able to have outstanding before you expect a continuous stream at the bottleneck?</p>
+<h2>How much data keeps a link busy?</h2>
+<p>Hold the window fixed for now. Assume one saturated sender with a large receive window, one bottleneck with capacity <code>C</code>, and an uncongested acknowledgment path. Work in equal-sized packets. Let <code>R₀</code> be the round-trip time with an empty queue, including the trip back. At a steady rate <code>r</code> and round-trip time <code>R</code>, the number in flight is <code>rR</code>. During the average lifetime of one packet from send to acknowledgment, roughly that many are sent. With a full window <code>W</code>, this gives <code>r = W/R</code>. If <code>Q</code> packets are waiting at the bottleneck in our continuous approximation, <code>R = R₀ + Q/C</code>.</p>
+<p>The <strong>bandwidth-delay product</strong> is <code>C × R₀</code>. It counts how many packets can be outstanding while the link is busy and its queue is empty. For an eight-Mbit/s bottleneck, 1,000-byte packets, and a 100 ms empty-queue round trip, the link serves 1,000 packets per second and the bandwidth-delay product is 100 packets. Predict the rate and queue at three different windows.</p>
+<table>
+<thead>
+<tr>
+<th align="right">Window</th>
+<th align="right">Delivery rate</th>
+<th align="right">Waiting at bottleneck</th>
+<th align="right">Round-trip time</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="right">50 packets</td>
+<td align="right">500 packets/s</td>
+<td align="right">0 packets</td>
+<td align="right">100 ms</td>
+</tr>
+<tr>
+<td align="right">100 packets</td>
+<td align="right">1,000 packets/s</td>
+<td align="right">0 packets</td>
+<td align="right">100 ms</td>
+</tr>
+<tr>
+<td align="right">150 packets</td>
+<td align="right">1,000 packets/s</td>
+<td align="right">50 packets</td>
+<td align="right">150 ms</td>
+</tr>
+</tbody></table>
+<p>Below 100 packets, the link spends part of its time idle as the sender waits for acknowledgments. Above 100, it is already busy, so any extra in-flight data waits upstream of the bottleneck. Substitute <code>r = C</code> into the steady-state equations and you get <code>Q = W − C × R₀</code>. This model assumes room in the queue. If the router can hold only 40 waiting packets, you cannot sustain that last row without exceeding the buffer. The model also freezes the window and looks after the startup burst. It lets you reason about where a controller might aim before asking how a real one reaches that point.</p>
+<p>For two saturated senders with the same empty-queue RTT crossing the same single bottleneck, use the sum of their windows. Both share the same queuing delay in this model. If their total is 150 packets and each has a 75-packet window, each can deliver 500 packets per second. If one holds 50 and the other 100, the second delivers twice as much. An operator can read both windows in our table and spot the unequal split. Each sender sees only its own window and its own ACKs. What local rule could bring the rates closer together?</p>
+<h2>Why give up half?</h2>
+<p>Suppose the only signal available is an indication of loss. You can start with a small window, increase it to see if the link can take more, and cut it when you encounter a drop. What cut would you choose? In class, a student suggested subtracting just enough to stop losing packets. For a single flow that knows exactly where the threshold is, that sounds attractive. Why would a second flow object?</p>
+<p>Use the lecture&#39;s two-flow InstaPoll. Start windows at 10 and 20 packets. Both increase by one each round, and in this exercise both get a congestion signal when their total reaches 200. Think of a path that holds 100 packets in flight with an empty queue and has room for another 100 at the bottleneck. The two senders have the same RTT and react together. What are the two windows just before the first decrease? What happens to the gap if both subtract one? What if both halve?</p>
+<table>
+<thead>
+<tr>
+<th>Event</th>
+<th align="right">Window A</th>
+<th align="right">Window B</th>
+<th align="right">Gap</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Start</td>
+<td align="right">10</td>
+<td align="right">20</td>
+<td align="right">10</td>
+</tr>
+<tr>
+<td>First threshold</td>
+<td align="right">95</td>
+<td align="right">105</td>
+<td align="right">10</td>
+</tr>
+<tr>
+<td>After halving</td>
+<td align="right">47.5</td>
+<td align="right">52.5</td>
+<td align="right">5</td>
+</tr>
+<tr>
+<td>Second threshold</td>
+<td align="right">97.5</td>
+<td align="right">102.5</td>
+<td align="right">5</td>
+</tr>
+<tr>
+<td>After halving</td>
+<td align="right">48.75</td>
+<td align="right">51.25</td>
+<td align="right">2.5</td>
+</tr>
+</tbody></table>
+<p>Adding the same number leaves the difference unchanged. Subtracting the same number would also leave it unchanged. Multiplying by a number between zero and one shrinks it. <strong>Additive increase, multiplicative decrease</strong>, or <strong>AIMD</strong>, probes for extra capacity and gradually moves the two windows closer together. Their sum still rises and falls. If you plot the window pair as a point, increase moves it diagonally up and to the right, parallel to the line of equal windows. A simultaneous multiplicative decrease moves it toward the origin. The gap shrinks by the same factor at every such decrease. This is the argument for fairness under the poll&#39;s assumptions. A sender with a shorter RTT can increase more times per second. An overloaded router can drop from one flow and let the other continue. Try tracing two increases for A for every one increase for B and see what changes.</p>
+<p>The sawtooth also tells you something about queues. In the simplified single-flow model, the window is approximately <code>C × R₀ + B</code> when a buffer that holds <code>B</code> packets fills. A halving leaves at least one bandwidth-delay product outstanding only if <code>B ≥ C × R₀</code>. A smaller buffer can leave the bottleneck temporarily idle after the reduction. A bigger buffer lets the sender build a longer queue before getting the signal. Run the same large transfer along with a stream of short requests and ask which of those measurements you would care about.</p>
+<p><strong>What if?</strong> A link serves 24 Mbit/s, the empty-queue RTT is 40 ms, and the buffer holds 80,000 bytes. Start just as the buffer fills and halve the window. Is there enough data outstanding to keep the link busy? The empty pipe holds 120,000 bytes, so the cut takes the sender from about 200,000 bytes to 100,000. Explain where the idle time comes from even though the sender has a whole file left to send. <a href="assets/cs356-quiz2-2024.pdf#page=8">Adapted from Quiz 2 2024, Q10–Q12, pp. 8–10.</a></p>
+<p>A real TCP sender needs a rule for startup and another for loss recovery. TCP Reno&#39;s congestion avoidance uses additive growth, with reductions for congestion. In slow start the window can grow much faster, roughly doubling each RTT under prompt acknowledgments. In the loss detector from Chapter 10, duplicate acknowledgments can be triggered by reordering, as in Chapter 8&#39;s shuffle exercise. A sender looking only at those signals has to reason under uncertainty. <a href="https://www.rfc-editor.org/rfc/rfc5681#section-3">RFC 5681, §3.</a></p>
+<h2>What else could the sender measure?</h2>
+<p>Loss tells us the buffer ran out of room in the model. A growing RTT may give earlier warning. If the empty-queue RTT stays fixed and only the bottleneck queue changes, an extra ten milliseconds means roughly <code>C × 10 ms</code> packets are waiting there. A packet may also take a new path or encounter a queue on the way back. Chapter 8&#39;s two-path example gave different delays even with both queues empty. Can you make a trace in which the RTT rises while the bottleneck queue gets shorter?</p>
+<p>One way to design a controller is to maintain a model of the path. The original BBR description uses samples of the delivery rate to estimate bottleneck bandwidth and low RTT samples to estimate the round-trip time without queuing. The two estimates give it a target scale for how much to keep in flight, and a pacing rate helps spread transmissions over time. Measuring both quantities is itself a control problem. A sender that always holds back may never discover newly available bandwidth. One that always fills the queue may never see an empty-queue RTT. The algorithm has to vary its behavior to learn what its observations mean. <a href="https://research.google/pubs/bbr-congestion-based-congestion-control-2/">Cardwell et al., BBR.</a></p>
+<p><strong>Network detective.</strong> A flow reaches the same delivery rate throughout an experiment. Its RTT grows from 20 to 35 ms and then stays there. What would a queue-length trace at the bottleneck tell you? If it cannot be collected, what could you learn by briefly giving the queue time to drain and measuring RTT again? Identify one reason the test could be inconclusive.</p>
+<h2>Can you grab bandwidth fast and give it up slowly?</h2>
+<h3>Break this. Reverse both operations</h3>
+<p>An engineer proposes <strong>multiplicative increase, additive decrease</strong>, or <strong>MIAD</strong>. Once per RTT, double the window if there was no loss and subtract one packet if there was loss, stopping the decrease at a window of one. Every application always has data. If overload occurs, assume every sender gets a loss signal and finds exactly the data it should retransmit. First trace a single sender. At one point its window is exactly large enough to fill the pipe and the buffer without a drop. What happens for the next several rounds? Then trace two unequal windows. Which operation changes the gap, and in which direction?</p>
+<p><em>Adapted from <a href="assets/quiz2-2025.pdf#page=3">Quiz 2, 2025, Q4, p. 3</a>. The window floor and starting point are specified here.</em></p>
+<details>
+<summary>Worked reasoning</summary>
+
+<p>For one flow with a 100-packet pipe and a 100-packet buffer, the threshold is 200 packets. A clean round at 200 leads to a 400-packet window. With a one-packet cut each round, it takes 200 loss rounds to get back to 200. In the steady-window model, the link stays busy throughout. Many bytes still require retransmission. The original quiz assumes perfect loss recovery, so a saturated link can deliver high goodput despite persistent loss. A full utilization counter alone would hide how wasteful the transmission attempts are. For two flows with windows above the floor, doubling doubles their gap and subtracting one from both leaves it alone. A smaller flow can reach the floor first, at which point the rule no longer subtracts equally. This does not supply the repeated contraction that made AIMD approach equality.</p>
+</details>
+
+<p><strong>Predict–simulate–explain.</strong> Start with the poll&#39;s windows in the <a href="../chapters/11-congestion-control/window-lab.html">congestion-window lab</a>. The simulated signal arrives when a round&#39;s total exceeds the pipe and buffer combined. Predict how far the windows go past 200 before backing off, then run both controllers. Use the trace to compare the largest gap, how many rounds signal overload, and how many leave the link underused. Reduce the buffer and predict what changes. The <a href="../chapters/11-congestion-control/lab.md">lab instructions</a> give a way to test a rule of your own.</p>
+<h3>Design this. Use the topology you already know</h3>
+<p>A training cluster has four groups of four computers, with one switch per group. Each group switch connects to each of four core switches. Every link can send at 10 Gbit/s in each direction. The empty-queue RTT is 8 μs and each packet is 1,000 bytes. The computers communicate in pairs. At any moment every active computer sends to at most one other computer and receives only from its partner. Assume the routing team can install an assignment of routes with no two streams on the same directed link and can change it instantly as the pairs change. Derive a sending rate and a window for each stream. Which guarantee does your design depend on most, and how could you detect its failure? <a href="assets/quiz2-2026.pdf#page=6">Quiz 2, 2026, Q4, pp. 6–7.</a></p>
+<details>
+<summary>Worked reasoning</summary>
+
+<p>Each stream with an exclusive route can pace at 10 Gbit/s. At that rate, an 8 μs empty-queue RTT gives 80,000 bits in flight, or ten packets. That is the nominal window in the ideal model with timely ACKs. Pacing helps against startup bursts, and headers, feedback timing, and operating margin matter in an implementation. The link-disjoint routing assumption is plausible for the pairing workload. Represent each inter-group directed demand as an edge from a source group to a destination group in a bipartite graph. Each group has at most four sending and four receiving endpoints. A maximum degree of four lets you color these edges with four colors so that each source and destination uses each color at most once. Assign each color a core switch. Chapter 19 returns to this construction and asks what happens when traffic patterns or hardware change. A transition that temporarily assigns two active streams the same output calls for coordination or feedback. Watch for a growing queue or a drop when routes change.</p>
+</details>
+
+<p>So far, the shared router has let packets arrive, wait, and sometimes drop. Suppose one sender ignores the congestion signal, or a short interactive request arrives behind a long transfer. What can the router do if it gets to choose which packet to transmit next?</p>
+</article>
+    <nav class="book-nav chapter-turn" aria-label="Chapter navigation"><a href="10-transport-protocols-and-end-to-end-communication.html">Previous · 10. Transport Protocols and End-to-End Communication</a>
+<a href="index.html">Contents</a>
+<a href="12-queues-scheduling-and-fairness.html">Next · 12. Queues, Scheduling, and Fairness</a></nav>
+  </main>
+</body>
+</html>

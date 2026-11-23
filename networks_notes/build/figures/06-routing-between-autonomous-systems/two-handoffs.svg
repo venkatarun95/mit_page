@@ -1,0 +1,24 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 680 250" role="img">
+  <title>Two possible handoffs between a content network and a carrier</title>
+  <rect width="680" height="250" rx="10" fill="#f1f6f5"/>
+  <g font-family="system-ui,sans-serif" fill="#143437">
+    <rect x="112" y="54" width="518" height="60" rx="9" fill="#dcecea"/>
+    <rect x="112" y="167" width="518" height="60" rx="9" fill="#e5eaf0"/>
+    <g text-anchor="middle" font-size="16" font-weight="650">
+      <text x="230" y="34">Seattle</text><text x="512" y="34">Austin</text>
+    </g>
+    <g font-size="14" text-anchor="middle">
+      <text x="84" y="79">Content</text><text x="84" y="97">network</text>
+      <text x="80" y="202">Carrier</text>
+      <text x="371" y="76">content network backbone</text>
+      <text x="371" y="188">carrier backbone</text>
+      <text x="230" y="146">early handoff</text><text x="512" y="146">late handoff</text>
+    </g>
+    <path d="M230 92H512" stroke="#147c70" stroke-width="3"/>
+    <path d="M230 205H512" stroke="#4e6173" stroke-width="3"/>
+    <path d="M230 99v30m0 23v46m282-99v30m0 23v46" stroke="#7a5748" stroke-width="2.5"/>
+    <g fill="#fff" stroke="#516d6b" stroke-width="2">
+      <circle cx="230" cy="92" r="7"/><circle cx="512" cy="92" r="7"/><circle cx="230" cy="205" r="7"/><circle cx="512" cy="205" r="7"/>
+    </g>
+  </g>
+</svg>

@@ -1,0 +1,36 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="760" height="339" viewBox="0 0 760 339" role="img" aria-labelledby="title desc">
+  <title id="title">Aggregating the Market routes</title>
+  <desc id="desc">The original table uses two /26 Market entries. The compressed table uses one /25 Market entry. Both keep the Weather /27 and the same forwarding decisions.</desc>
+<rect x="0" y="0" width="760" height="339" rx="0" fill="#f7faf9" stroke="none"/>
+<text x="35" y="27" text-anchor="start" font-family="system-ui, sans-serif" font-size="17" font-weight="700" fill="#182f38">Before aggregation</text>
+<rect x="207.5" y="38" width="86.25" height="32" rx="3" fill="#f9eedf" stroke="#f7faf9"/>
+<text x="250.625" y="59" text-anchor="middle" font-family="system-ui, sans-serif" font-size="14" font-weight="700" fill="#864716">Weather /27</text>
+<rect x="35.0" y="72" width="172.5" height="32" rx="3" fill="#e2f2ed" stroke="#f7faf9"/>
+<text x="121.25" y="93" text-anchor="middle" font-family="system-ui, sans-serif" font-size="14" font-weight="700" fill="#076764">Market /26</text>
+<rect x="207.5" y="72" width="172.5" height="32" rx="3" fill="#e2f2ed" stroke="#f7faf9"/>
+<text x="293.75" y="93" text-anchor="middle" font-family="system-ui, sans-serif" font-size="14" font-weight="700" fill="#076764">Market /26</text>
+<text x="35" y="143" text-anchor="start" font-family="system-ui, sans-serif" font-size="17" font-weight="700" fill="#182f38">After aggregation</text>
+<rect x="207.5" y="154" width="86.25" height="32" rx="3" fill="#f9eedf" stroke="#f7faf9"/>
+<text x="250.625" y="175" text-anchor="middle" font-family="system-ui, sans-serif" font-size="14" font-weight="700" fill="#864716">Weather /27</text>
+<rect x="35.0" y="188" width="345.0" height="32" rx="3" fill="#e2f2ed" stroke="#f7faf9"/>
+<text x="207.5" y="209" text-anchor="middle" font-family="system-ui, sans-serif" font-size="14" font-weight="700" fill="#076764">Market /25</text>
+<text x="35" y="259" text-anchor="start" font-family="system-ui, sans-serif" font-size="17" font-weight="700" fill="#182f38">Next hop in both tables</text>
+<rect x="35.0" y="270" width="172.5" height="32" rx="3" fill="#e2f2ed" stroke="#f7faf9"/>
+<text x="121.25" y="291" text-anchor="middle" font-family="system-ui, sans-serif" font-size="14" font-weight="700" fill="#076764">Market</text>
+<rect x="207.5" y="270" width="86.25" height="32" rx="3" fill="#f9eedf" stroke="#f7faf9"/>
+<text x="250.625" y="291" text-anchor="middle" font-family="system-ui, sans-serif" font-size="14" font-weight="700" fill="#864716">Weather</text>
+<rect x="293.75" y="270" width="86.25" height="32" rx="3" fill="#e2f2ed" stroke="#f7faf9"/>
+<text x="336.875" y="291" text-anchor="middle" font-family="system-ui, sans-serif" font-size="14" font-weight="700" fill="#076764">Market</text>
+<rect x="380.0" y="270" width="345.0" height="32" rx="3" fill="#e5f0f7" stroke="#f7faf9"/>
+<text x="552.5" y="291" text-anchor="middle" font-family="system-ui, sans-serif" font-size="14" font-weight="700" fill="#245b81">Uplink (default)</text>
+<line x1="35.0" y1="304" x2="35.0" y2="311" stroke="#a6bcbf" stroke-width="1.5"/>
+<text x="35.0" y="327" text-anchor="middle" font-family="ui-monospace, Menlo, monospace" font-size="13" font-weight="400" fill="#405a62">0</text>
+<line x1="207.5" y1="304" x2="207.5" y2="311" stroke="#a6bcbf" stroke-width="1.5"/>
+<text x="207.5" y="327" text-anchor="middle" font-family="ui-monospace, Menlo, monospace" font-size="13" font-weight="400" fill="#405a62">64</text>
+<line x1="293.75" y1="304" x2="293.75" y2="311" stroke="#a6bcbf" stroke-width="1.5"/>
+<text x="293.75" y="327" text-anchor="middle" font-family="ui-monospace, Menlo, monospace" font-size="13" font-weight="400" fill="#405a62">96</text>
+<line x1="380.0" y1="304" x2="380.0" y2="311" stroke="#a6bcbf" stroke-width="1.5"/>
+<text x="380.0" y="327" text-anchor="middle" font-family="ui-monospace, Menlo, monospace" font-size="13" font-weight="400" fill="#405a62">128</text>
+<line x1="725.0" y1="304" x2="725.0" y2="311" stroke="#a6bcbf" stroke-width="1.5"/>
+<text x="725.0" y="327" text-anchor="end" font-family="ui-monospace, Menlo, monospace" font-size="13" font-weight="400" fill="#405a62">255</text>
+</svg>

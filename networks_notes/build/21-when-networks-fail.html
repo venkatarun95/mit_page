@@ -1,0 +1,658 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>21. When Networks Fail</title>
+  <style>:root {
+  color-scheme: light;
+  background: #f3f6f5;
+  color: #182a30;
+  font: 18px/1.65 Georgia, serif;
+}
+
+body {
+  max-width: 48rem;
+  margin: 2.5rem auto;
+  padding: 2.25rem clamp(1rem, 5vw, 3.25rem);
+  background: #fff;
+  border-top: 0.3rem solid #076764;
+}
+
+h1,
+h2,
+h3 {
+  font-family: system-ui, sans-serif;
+  line-height: 1.2;
+  color: #152e37;
+}
+
+h1 {
+  margin: 0 0 1.4rem;
+  font-size: clamp(2rem, 5vw, 3rem);
+  letter-spacing: -0.035em;
+}
+
+h2 {
+  margin: 2.5rem 0 0.7rem;
+  font-size: clamp(1.4rem, 3vw, 1.75rem);
+}
+
+p {
+  margin: 0 0 1rem;
+}
+
+a {
+  color: #0a5b63;
+  overflow-wrap: anywhere;
+  text-underline-offset: 0.15em;
+}
+
+li + li {
+  margin-top: 0.7rem;
+}
+
+blockquote {
+  margin: 1.2rem 0;
+  padding: 0.65rem 1rem;
+  background: #edf6f4;
+  border-inline-start: 0.2rem solid #076764;
+}
+
+blockquote p {
+  margin: 0;
+}
+
+img {
+  display: block;
+  max-width: 100%;
+  height: auto;
+  outline: 1px solid #d3dfdf;
+}
+
+p:has(> img:only-child) {
+  margin: 1.5rem 0 0.5rem;
+}
+
+p:has(> img:only-child) + p:has(> em:only-child) {
+  color: #37525a;
+  font: 0.83rem/1.5 system-ui, sans-serif;
+  margin: 0 0 1.5rem;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 1.25rem 0;
+  font: 0.83rem/1.45 system-ui, sans-serif;
+  font-variant-numeric: tabular-nums;
+  overflow-wrap: anywhere;
+}
+
+th,
+td {
+  border: 1px solid #d3dfdf;
+  padding: 0.55rem;
+  vertical-align: top;
+}
+
+th {
+  background: #edf6f4;
+}
+
+@media (max-width: 34rem) {
+  body {
+    margin: 0;
+  }
+
+  table {
+    font-size: 0.7rem;
+  }
+
+  th,
+  td {
+    padding: 0.3rem;
+  }
+}
+
+@media print {
+  :root {
+    background: #fff;
+  }
+
+  body {
+    margin: 0;
+    padding: 0;
+    border: 0;
+  }
+
+  h2,
+  p:has(> img:only-child) {
+    break-after: avoid;
+  }
+
+  table,
+  img {
+    break-inside: avoid;
+  }
+}
+
+.chapter-lab {
+  margin: 1.5rem 0 0.65rem;
+  padding: clamp(0.75rem, 3vw, 1.25rem);
+  border: 1px solid #b7cdcd;
+  border-radius: 0.6rem;
+  background: #f7faf9;
+  font: 0.93rem/1.5 system-ui, sans-serif;
+}
+
+.chapter-lab h3 {
+  margin: 0 0 0.5rem;
+  font-size: 1.2rem;
+}
+
+.chapter-lab > p {
+  color: #334e56;
+}
+
+.chapter-lab + p:has(> em:only-child) {
+  color: #37525a;
+  font: 0.83rem/1.5 system-ui, sans-serif;
+  margin-bottom: 1.5rem;
+}
+
+#playback-lab:not([hidden]) + p:has(> img:only-child) {
+  display: none;
+}
+
+.lab-controls {
+  display: flex;
+  gap: 0.75rem;
+  align-items: end;
+  flex-wrap: wrap;
+  margin-bottom: 1rem;
+}
+
+.lab-controls label {
+  display: grid;
+  gap: 0.3rem;
+  font-weight: 700;
+  font-size: 0.8rem;
+}
+
+.lab-controls select,
+.lab-controls button {
+  min-height: 2.2rem;
+  border: 1px solid #9bb2b8;
+  border-radius: 0.3rem;
+  background: #fff;
+  color: #163440;
+  padding: 0.25rem 0.5rem;
+  font: inherit;
+}
+
+.lab-controls button {
+  font-size: 0.8rem;
+  cursor: pointer;
+}
+
+.lab-controls :focus-visible {
+  outline: 2px solid #076764;
+  outline-offset: 2px;
+}
+
+#link-race .race-timeline {
+  display: grid;
+  gap: 0.25rem;
+  margin-bottom: 0.85rem;
+}
+
+#link-race .race-timeline label,
+#link-race .race-endpoints {
+  display: flex;
+  justify-content: space-between;
+  gap: 0.35rem;
+}
+
+#link-race .race-timeline label {
+  font-size: 0.8rem;
+  font-weight: 700;
+  font-variant-numeric: tabular-nums;
+}
+
+#link-race .race-timeline input {
+  width: 100%;
+  margin: 0;
+  accent-color: #076764;
+}
+
+#link-race .race-timeline input:focus-visible {
+  outline: 2px solid #076764;
+  outline-offset: 2px;
+}
+
+#link-race [aria-disabled="true"] {
+  color: #55676e;
+  background: #edf2f1;
+  cursor: default;
+}
+
+#link-race .race-lane {
+  --race-color: #25618b;
+  --race-wire: #dce9f1;
+  padding: 0.75rem 0;
+  border-top: 1px solid #b7cdcd;
+}
+
+#link-race .race-lane[data-link="B"] {
+  --race-color: #076764;
+  --race-wire: #dbede9;
+}
+
+#link-race h4 {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 0.15rem 0.6rem;
+  margin: 0 0 0.4rem;
+  color: var(--race-color);
+  font-size: 1rem;
+}
+
+#link-race h4 span,
+#link-race .race-endpoints,
+#link-race .race-timeline p,
+#link-race .race-key {
+  color: #405961;
+  font-size: 0.8rem;
+  font-weight: 400;
+}
+
+#link-race h4 strong {
+  padding: 0.05rem 0.4rem;
+  border-radius: 0.2rem;
+  background: var(--race-wire);
+  font-size: 0.76rem;
+}
+
+#link-race .race-path {
+  margin-inline: 0.3rem;
+}
+
+#link-race [data-link="B"] .race-path {
+  width: 48%;
+}
+
+#link-race .race-track {
+  position: relative;
+  height: 0.85rem;
+  margin: 0.2rem 0 0.4rem;
+  border-radius: 1rem;
+  background: var(--race-wire);
+}
+
+#link-race .race-track::before,
+#link-race .race-track::after,
+#link-race .race-track span {
+  position: absolute;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  background: var(--race-color);
+}
+
+#link-race .race-track::before,
+#link-race .race-track::after {
+  content: "";
+  left: 0;
+  width: 0.14rem;
+  height: 100%;
+  border-radius: 1rem;
+}
+
+#link-race .race-track::after {
+  left: 100%;
+}
+
+#link-race .race-track span {
+  width: clamp(0.17rem, 0.55vw, 0.36rem);
+  aspect-ratio: 1;
+  border-radius: 50%;
+}
+
+#link-race .race-timeline p,
+#link-race .race-meter p,
+#link-race .race-finish {
+  margin: 0;
+}
+
+#link-race .race-totals {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 0.75rem;
+  margin-top: 0.6rem;
+}
+
+#link-race .race-meter p {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: 0 0.35rem;
+  font-size: 0.8rem;
+  font-variant-numeric: tabular-nums;
+}
+
+#link-race .race-meter progress {
+  display: block;
+  width: 100%;
+  height: 0.55rem;
+  margin: 0.2rem 0 0;
+  accent-color: var(--race-color);
+}
+
+#link-race .race-finish {
+  margin-top: 0.4rem;
+  font-size: 0.85rem;
+  font-variant-numeric: tabular-nums;
+}
+
+#link-race .race-announcement {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  clip-path: inset(50%);
+  overflow: hidden;
+}
+
+#link-race figcaption {
+  border-top: 1px solid #b7cdcd;
+  padding-top: 0.65rem;
+  color: #173840;
+  font-weight: 600;
+}
+
+.lab-link-policy {
+  padding-top: 0.65rem;
+  border-top: 1px solid #b7cdcd;
+}
+
+.lab-link-policy + .lab-link-policy {
+  margin-top: 0.9rem;
+}
+
+.lab-link-policy h4 {
+  margin: 0 0 0.6rem;
+  color: #173840;
+  font-size: 0.98rem;
+}
+
+.lab-sender p {
+  margin: 0 0 0.3rem;
+  font-size: 0.8rem;
+  color: #334e56;
+}
+
+.lab-sender + .lab-sender {
+  margin-top: 0.65rem;
+}
+
+.lab-packets,
+.lab-events {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.lab-packets {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.35rem;
+}
+
+.lab-packets li,
+.lab-events li {
+  margin: 0;
+}
+
+.lab-packet {
+  display: grid;
+  padding: 0.3rem 0.45rem;
+  border: 1px solid #99b9af;
+  border-radius: 0.3rem;
+  background: #e4f3ee;
+  color: #18443b;
+  font-size: 0.74rem;
+  min-width: 4.6rem;
+}
+
+.lab-packet.late {
+  border-color: #cfac85;
+  background: #fcf0dd;
+  color: #704411;
+}
+
+.lab-packet.refused {
+  border-color: #c6cfd2;
+  background: #eef1f2;
+  color: #324850;
+}
+
+.lab-plot {
+  background: #fff;
+  border: 1px solid #d3dfdf;
+  border-radius: 0.3rem;
+}
+
+.lab-plot svg {
+  display: block;
+  width: 100%;
+  color: #314d58;
+  font-size: 17px;
+}
+
+.lab-plot text {
+  fill: currentColor;
+}
+
+.lab-plot .lab-axis-title {
+  font-weight: 700;
+}
+
+.lab-plot .lab-outage-label {
+  fill: #6c441b;
+}
+
+.lab-grid {
+  stroke: #c0cfd1;
+}
+
+.lab-outage {
+  fill: #fbefde;
+}
+
+.lab-threshold {
+  stroke: #567e89;
+  stroke-dasharray: 6 5;
+}
+
+.lab-trace {
+  fill: none;
+  stroke: #076764;
+  stroke-width: 3.5;
+  stroke-linejoin: round;
+}
+
+.lab-marker {
+  fill: #076764;
+  stroke: #fff;
+  stroke-width: 1.2;
+}
+
+.lab-plot .lab-marker-text {
+  fill: #fff;
+  font-size: 13px;
+  font-weight: 700;
+}
+
+.lab-result {
+  margin: 0.6rem 0;
+  font-weight: 700;
+}
+
+.lab-events {
+  display: flex;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+  font-size: 0.78rem;
+}
+
+.lab-events li {
+  flex: 1 1 9rem;
+  display: flex;
+  align-items: start;
+  gap: 0.4rem;
+  border: 1px solid #d3dfdf;
+  border-radius: 0.3rem;
+  background: #fff;
+  padding: 0.45rem;
+}
+
+.lab-marker-label {
+  min-width: 1.2rem;
+  height: 1.2rem;
+  border-radius: 50%;
+  background: #076764;
+  color: #fff;
+  font-weight: 700;
+  text-align: center;
+}
+
+@media print {
+  .chapter-lab {
+    display: none;
+  }
+
+  #playback-lab:not([hidden]) + p:has(> img:only-child) {
+    display: block;
+  }
+}
+
+.book-nav {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: .55rem 1.4rem;
+  margin-bottom: 1.6rem;
+  color: #37525a;
+  font: .85rem/1.5 system-ui, sans-serif;
+}
+
+.chapter-turn {
+  justify-content: space-between;
+  margin: 2.4rem 0 0;
+  padding-top: 1rem;
+  border-top: 1px solid #d3dfdf;
+}
+
+.book-contents ul {
+  list-style: none;
+  padding: 0;
+}
+
+@media print {
+  .book-nav { display: none; }
+}
+</style>
+</head>
+<body>
+  <main>
+    <nav class="book-nav" aria-label="Book location"><a href="index.html">Contents</a><span>Part VI — Networks in Practice</span></nav>
+    <article><h1>21. When Networks Fail</h1>
+<p>At 20:03, the transit website from Chapter 18 starts missing its one-second response target. The logo still appears. The front end&#39;s health check still answers. Users of one access network are hit first, but within a few minutes the complaints come from elsewhere too. The routing dashboard says a link went down at 20:03. The application dashboard says the departures service had more traffic than it could handle.</p>
+<p>Suppose you are the person on call. You can ask for one more measurement before deciding whom to wake. What observation would help you decide whether the reported link failure is a cause, an effect, or another name for the symptom? In the last lecture, the class played this as an investigation. The instructor supplied an observation. Students asked for measurements that ought to differ depending on what actually broke. We will do the same with a fictional incident.</p>
+<h2>What does “link down” tell you?</h2>
+<p>Make the first question precise. Did the link lose its physical signal, or did a routing process stop hearing from its neighbor? We can examine events at both ends of the same link. A loss-of-signal alarm is evidence about the medium. A missed hello is evidence about the delivery of a small control message. Both conditions can lead to a withdrawn route, and a withdrawal can redirect traffic while every cable remains intact.</p>
+<p>At your request, the two operators line up their interface logs. Neither reports a loss of signal. The first switch generated its hellos on schedule, but its transmit queue filled and dropped several of them. At the other end, three hello intervals passed in silence and the switch declared its neighbor down. The revealing detail is in the byte counters: some data packets crossed the link in those very intervals. Those observations are consistent with the class hypothesis that control packets were waiting behind bursts of evening traffic. They narrow the explanation further than the coincidence between link events and peak load.</p>
+<p>You want to know whether the queue caused the withdrawal. Replay the buffered trace on two equivalent simulator instances. Preserve the same offered traffic and hello schedule. Give control packets a small protected service budget in one run. Observe the queue drops, received hellos, and adjacency transitions in both. Then repeat with a physical outage. If the first change prevents withdrawals under congestion but both configurations detect the physical outage, you have learned something about the particular causal path and something about the cost of the fix. If you only doubled the detector&#39;s threshold, the number of declarations might fall for many kinds of short disturbances. It would also take longer to declare a real failure.</p>
+<h3>Predict, simulate, explain. Find three timestamps</h3>
+<p>In the course quiz a bidirectional link between S0 and S2 goes down at 3,000 ms. S9 previously reaches the destination at S2 through S8, S3, and S0. A surviving route exists through S3 and S6. Your program receives no direct notification. In a simulator trace, find the true failure time, the first time a forwarding entry actually changes its next hop for this destination, and the first successful end-to-end delivery after the failure. Explain why those timestamps can differ. If an update rewrites an entry with the same next hop, what will a packet do differently? <em>Adapted from <a href="assets/quiz1-2026.pdf#page=1">Quiz 1 2026, Q1–Q2, pp. 1–4</a>. The successful-delivery comparison is new.</em></p>
+<p>A different course quiz starts a burst at different times relative to the program&#39;s measurement timer. If a program evaluates load every 500 ms and acts at its first observation, a burst starting just before a check can produce an almost immediate response. A burst starting just after a check can wait almost 500 ms. A plot of response delay against burst start time slopes down and then jumps after each check. A fixed transport or installation delay would raise the curve. Looking only at average reaction time hides the timer&#39;s role and the worst gap. <a href="assets/quiz2-2026.pdf#page=10">Quiz 2 2026, Q6, pp. 10–11.</a></p>
+<h2>Did losing a route stop every packet?</h2>
+<p>Return to the outage. After a withdrawal, the two routers along the old and new paths may receive updates in different orders. Suppose A just switched its route to point through B, and B still points back to A. A packet can loop until its TTL expires. If A instead continues sending to a withdrawn or failed next hop with no usable forwarding path, packets can disappear into a <strong>black hole</strong>. The routers can converge later. You would miss the event if you only looked at the table they had after recovery.</p>
+<p>Probe from a group that fails and another that succeeds. Send both to the same service name and record what IP address each group obtains, then measure a connection to a chosen common endpoint with the intended server name. Compare routes for that destination from the relevant operators, if available. A routing snapshot demonstrates what one vantage point selected. A packet capture demonstrates what one direction did at one observation point. Missing responses to traceroute can also reflect how a router handles probes. Put those results beside each other before deciding which AS stopped delivering. Chapter 7 followed a real event in which a newly announced more-specific prefix attracted traffic even though the correct covering route was still present.</p>
+<p>Later in this incident, two affected access networks can resolve the same address, finish a TLS handshake, and receive the page shell. Both still wait on the departures response. The route has stabilized. The front end says requests are arriving. What would you measure now? A health check that only asks the front end to answer for itself can stay green while a dependency is failing. Ask whether a request that exercises the departures service gets through and which dependency takes the time. In class, the students proposed comparing affected and healthy services that run on the same machine to test a hardware explanation. The same idea applies here. Compare one operation that uses the suspect dependency and one that does not, from the same point.</p>
+<h2>What is the service counting?</h2>
+<p>The departures service reports twice as many requests as usual. This could reflect new users, retries from the same users, or a flood unrelated to the original demand. A <strong>distributed denial-of-service</strong> incident can present as high traffic from many sources. Diversity of source addresses by itself does not establish that explanation. A transit disruption can also send many real riders to the same endpoint. When possible, distinguish first attempts from repeat attempts using request identifiers and trusted observations inside the infrastructure. Count successful responses within the deadline alongside packets and requests per second. From the user&#39;s point of view, one useful response matters more than four attempts.</p>
+<p>Defensive filtering or rate limiting has to happen at a place that can still carry and inspect the traffic. If the inbound link is full, dropping at the application after traffic has crossed that link may protect server work while leaving legitimate packets unable to reach it. An upstream filter can save that capacity when it can identify unwanted traffic with acceptable collateral losses. An application admission limit can protect expensive processing when the link itself has room. In both cases, measure how many legitimate requests succeed and whose requests are being rejected. The people harmed by a filter can be the same people who started calling when the outage began.</p>
+<h2>Why does the incident last after the trigger goes away?</h2>
+<p>The engineering team lines up three measurements. When the route changed, the backend temporarily lost capacity it could use. Waiting requests crossed their deadlines. Clients retried before the first attempts stopped consuming work. Then the route recovered, but the service was still handling many abandoned or duplicate attempts. Some of the additional attempts delayed new work long enough to cause more retries.</p>
+<p><img src="figures/21-when-networks-fail/retry-feedback.svg" alt="Lower capacity causes deadline misses. Retried work then consumes capacity. When capacity recovers, repeated attempts can keep useful completions low until retries are limited."></p>
+<p>A <strong>metastable failure</strong> has a trigger and a sustaining effect. Picture a small service that can finish 100 attempts per interval and gets 70 fresh requests. An impaired route drops effective capacity to 40 for two intervals. For this teaching model, each fresh request that misses its deadline causes two redundant attempts the next interval. The server processes retries before fresh work, up to a total of 90 retries offered each interval. A completed redundant attempt consumes capacity without contributing a useful response before a deadline. Before reading the fourth row of the table, predict how many fresh requests will finish in the first interval with all 100 units of capacity back. The number depends on what happened during the <em>preceding</em> interval.</p>
+<table>
+<thead>
+<tr>
+<th>Interval</th>
+<th align="right">Capacity</th>
+<th align="right">Fresh attempts</th>
+<th align="right">Retry attempts offered</th>
+<th align="right">Fresh responses in time</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Healthy</td>
+<td align="right">100</td>
+<td align="right">70</td>
+<td align="right">0</td>
+<td align="right">70</td>
+</tr>
+<tr>
+<td>First impaired interval</td>
+<td align="right">40</td>
+<td align="right">70</td>
+<td align="right">0</td>
+<td align="right">40</td>
+</tr>
+<tr>
+<td>Second impaired interval</td>
+<td align="right">40</td>
+<td align="right">70</td>
+<td align="right">60</td>
+<td align="right">0</td>
+</tr>
+<tr>
+<td>Capacity restored</td>
+<td align="right">100</td>
+<td align="right">70</td>
+<td align="right">90</td>
+<td align="right">10</td>
+</tr>
+<tr>
+<td>Next interval</td>
+<td align="right">100</td>
+<td align="right">70</td>
+<td align="right">90</td>
+<td align="right">10</td>
+</tr>
+<tr>
+<td>Retry budget of 30 applied</td>
+<td align="right">100</td>
+<td align="right">70</td>
+<td align="right">30</td>
+<td align="right">70</td>
+</tr>
+</tbody></table>
+<p>At restored capacity, the 10 useful responses leave 60 deadlines missed. Doubling 60 can refill the 90-attempt retry cap for the next interval. This is a stable bad outcome alongside the healthy outcome at the same fresh demand and capacity. In a real system, retries can be helpful and can finish work that would otherwise be lost. The harmful part here is the self-sustaining load. If the operator only restores the route or rolls back the initiating deployment, the duplicate work can remain. A rollback can also leave state behind, such as queued work, clients in backoff, or caches that need to refill. Recovery depends on which state is still driving the feedback. <a href="https://www.usenix.org/conference/osdi22/presentation/huang-lexiang">Huang et al., “Metastable Failures in the Wild,” §§2–3.</a></p>
+<p><strong>Design this.</strong> Choose where you would put a retry budget and how you&#39;d enforce it across many independent clients. Give a request an end-to-end deadline, limit how much retry work can run, and consider spreading retries out in time. Decide how to tell when it is safe to relax the temporary limit. An abandoned operation that can change state may need an idempotency key so that a repeated attempt does not apply the operation twice. Compare your design against a transient loss in an otherwise healthy system. How many of those useful retry opportunities does your budget preserve?</p>
+<h2>Can you diagnose the incident from partial evidence?</h2>
+<p>Open the <a href="../chapters/21-when-networks-fail/incident-lab.html">incident lab</a>. You get a report that useful responses dropped shortly after a route event. Ask for one observation at a time. Write down two plausible stories and say what each measurement should look like under both. Follow the incident through recovery before proposing a fix. Your incident report should include the earliest evidence of the trigger, the mechanism that kept useful responses low, one explanation the evidence weakens, and the limits of the evidence. <a href="../chapters/21-when-networks-fail/lab.md">Lab instructions.</a></p>
+<p><strong>What if?</strong> The outage is currently affecting one group. Over the next minute your tentative fix can cause requests to move to a backup with room for only half the failing group&#39;s usual traffic. What can you measure at the backup before acting? What traffic would you move first, what would make you stop, and how would you tell whether the intervention improved delivery for both groups? Pick what counts as recovery before the graphs start moving.</p>
+<h2>Operate an autonomous system with other teams</h2>
+<p>Now carry those decisions into the course&#39;s existing <a href="../network_arena/docs/course/assignments-flow.md">NetworkArena multi-team competition</a>. Your team runs one autonomous system on a shared map. Other teams run the networks around yours. Traffic and customers respond to what those networks can deliver and to the arrangements the operators make. You have equipment costs or a budget to consider, and interconnection decisions can change your performance and your relationships in subsequent rounds. In class, students debated what spending rules made an equipment budget a meaningful constraint across worlds. The staff used a practice round before counting results.</p>
+<p>Start with a claim about which customers you can serve well and what you need from neighboring ASes. Decide what your network can promise about bandwidth, delay, or resilience under the allowed conditions. Choose what to buy, what to exchange, and which counters would tell you the promise is at risk. Use what you built in the earlier individual labs to test routing correctness and recovery, queues and congestion, and delivery under a changed workload. Before each round, record what you expect a real competing team to change and what observation could disconfirm that expectation. After the round, review delivered traffic against the service promises, the cost of serving that traffic, who moved to a different network, and what was happening when service degraded. Defend one change for the next round using an observation that separates two explanations.</p>
+<p>An instructor running the competition needs the course simulator, the tournament configuration, and multiple independently run student teams. A single team can rehearse its forwarding and monitoring and improve its response to controlled failure. The strategic exercise happens when each team makes its own interconnection, equipment, and service decisions and then sees the others respond. Preserve a practice round, team submissions, shared measurements, and repeated rounds with a chance to revise. Use the actual course configuration for scoring and prices. The <a href="../network_arena/docs/course/cs356.md">NetworkArena course documentation</a> and <a href="../network_arena/README.md">operator notes</a> describe the platform.</p>
+<p>During the first round, a link on your route to a profitable customer stops carrying packets. Your own switch declares it down and the other team&#39;s switch still shows it as up. Which measurement will you ask that team for, and what will you do differently depending on the answer?</p>
+</article>
+    <nav class="book-nav chapter-turn" aria-label="Chapter navigation"><a href="20-content-delivery-and-the-edge.html">Previous · 20. Content Delivery and the Edge</a>
+<a href="index.html">Contents</a></nav>
+  </main>
+</body>
+</html>

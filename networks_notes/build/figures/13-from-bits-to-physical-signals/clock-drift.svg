@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 760 290" role="img" aria-labelledby="title">
+ <title id="title">A slow clock misses the sixth high bit</title>
+ <rect x="1" y="1" width="758" height="288" rx="14" fill="#f6f8fb" stroke="#d6dfe8"/>
+ <g font-family="system-ui,sans-serif" fill="#1d2938">
+  <text x="35" y="39" font-size="22" font-weight="700">Six ones followed by a zero</text>
+  <path d="M98 82V228M185 82V228M272 82V228M359 82V228M446 82V228M533 82V228M620 82V228M707 82V228" stroke="#d0dce8" stroke-width="2"/>
+  <path d="M98 118H620V185H707" stroke="#206477" stroke-width="4" fill="none"/>
+  <g text-anchor="middle" font-size="16"><text x="98" y="252">0</text><text x="185" y="252">1</text><text x="272" y="252">2</text><text x="359" y="252">3</text><text x="446" y="252">4</text><text x="533" y="252">5</text><text x="620" y="252">6</text><text x="707" y="252">7</text></g>
+  <text x="48" y="123" font-size="16">High</text><text x="48" y="190" font-size="16">Low</text>
+  <g fill="#214a68"><circle cx="141.5" cy="118" r="7"/><circle cx="238.94" cy="118" r="7"/><circle cx="336.38" cy="118" r="7"/><circle cx="433.82" cy="118" r="7"/><circle cx="531.26" cy="118" r="7"/></g>
+  <circle cx="628.7" cy="185" r="8" fill="#ac481c"/><text x="628" y="158" font-size="16" text-anchor="middle" fill="#833612">Sample 6 at 6.10</text>
+  <text x="402" y="275" text-anchor="middle" font-size="15">Time in transmitter slots</text>
+ </g>
+</svg>

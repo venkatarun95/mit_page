@@ -1,0 +1,612 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>15. Inside a High-Speed Switch</title>
+  <style>:root {
+  color-scheme: light;
+  background: #f3f6f5;
+  color: #182a30;
+  font: 18px/1.65 Georgia, serif;
+}
+
+body {
+  max-width: 48rem;
+  margin: 2.5rem auto;
+  padding: 2.25rem clamp(1rem, 5vw, 3.25rem);
+  background: #fff;
+  border-top: 0.3rem solid #076764;
+}
+
+h1,
+h2,
+h3 {
+  font-family: system-ui, sans-serif;
+  line-height: 1.2;
+  color: #152e37;
+}
+
+h1 {
+  margin: 0 0 1.4rem;
+  font-size: clamp(2rem, 5vw, 3rem);
+  letter-spacing: -0.035em;
+}
+
+h2 {
+  margin: 2.5rem 0 0.7rem;
+  font-size: clamp(1.4rem, 3vw, 1.75rem);
+}
+
+p {
+  margin: 0 0 1rem;
+}
+
+a {
+  color: #0a5b63;
+  overflow-wrap: anywhere;
+  text-underline-offset: 0.15em;
+}
+
+li + li {
+  margin-top: 0.7rem;
+}
+
+blockquote {
+  margin: 1.2rem 0;
+  padding: 0.65rem 1rem;
+  background: #edf6f4;
+  border-inline-start: 0.2rem solid #076764;
+}
+
+blockquote p {
+  margin: 0;
+}
+
+img {
+  display: block;
+  max-width: 100%;
+  height: auto;
+  outline: 1px solid #d3dfdf;
+}
+
+p:has(> img:only-child) {
+  margin: 1.5rem 0 0.5rem;
+}
+
+p:has(> img:only-child) + p:has(> em:only-child) {
+  color: #37525a;
+  font: 0.83rem/1.5 system-ui, sans-serif;
+  margin: 0 0 1.5rem;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 1.25rem 0;
+  font: 0.83rem/1.45 system-ui, sans-serif;
+  font-variant-numeric: tabular-nums;
+  overflow-wrap: anywhere;
+}
+
+th,
+td {
+  border: 1px solid #d3dfdf;
+  padding: 0.55rem;
+  vertical-align: top;
+}
+
+th {
+  background: #edf6f4;
+}
+
+@media (max-width: 34rem) {
+  body {
+    margin: 0;
+  }
+
+  table {
+    font-size: 0.7rem;
+  }
+
+  th,
+  td {
+    padding: 0.3rem;
+  }
+}
+
+@media print {
+  :root {
+    background: #fff;
+  }
+
+  body {
+    margin: 0;
+    padding: 0;
+    border: 0;
+  }
+
+  h2,
+  p:has(> img:only-child) {
+    break-after: avoid;
+  }
+
+  table,
+  img {
+    break-inside: avoid;
+  }
+}
+
+.chapter-lab {
+  margin: 1.5rem 0 0.65rem;
+  padding: clamp(0.75rem, 3vw, 1.25rem);
+  border: 1px solid #b7cdcd;
+  border-radius: 0.6rem;
+  background: #f7faf9;
+  font: 0.93rem/1.5 system-ui, sans-serif;
+}
+
+.chapter-lab h3 {
+  margin: 0 0 0.5rem;
+  font-size: 1.2rem;
+}
+
+.chapter-lab > p {
+  color: #334e56;
+}
+
+.chapter-lab + p:has(> em:only-child) {
+  color: #37525a;
+  font: 0.83rem/1.5 system-ui, sans-serif;
+  margin-bottom: 1.5rem;
+}
+
+#playback-lab:not([hidden]) + p:has(> img:only-child) {
+  display: none;
+}
+
+.lab-controls {
+  display: flex;
+  gap: 0.75rem;
+  align-items: end;
+  flex-wrap: wrap;
+  margin-bottom: 1rem;
+}
+
+.lab-controls label {
+  display: grid;
+  gap: 0.3rem;
+  font-weight: 700;
+  font-size: 0.8rem;
+}
+
+.lab-controls select,
+.lab-controls button {
+  min-height: 2.2rem;
+  border: 1px solid #9bb2b8;
+  border-radius: 0.3rem;
+  background: #fff;
+  color: #163440;
+  padding: 0.25rem 0.5rem;
+  font: inherit;
+}
+
+.lab-controls button {
+  font-size: 0.8rem;
+  cursor: pointer;
+}
+
+.lab-controls :focus-visible {
+  outline: 2px solid #076764;
+  outline-offset: 2px;
+}
+
+#link-race .race-timeline {
+  display: grid;
+  gap: 0.25rem;
+  margin-bottom: 0.85rem;
+}
+
+#link-race .race-timeline label,
+#link-race .race-endpoints {
+  display: flex;
+  justify-content: space-between;
+  gap: 0.35rem;
+}
+
+#link-race .race-timeline label {
+  font-size: 0.8rem;
+  font-weight: 700;
+  font-variant-numeric: tabular-nums;
+}
+
+#link-race .race-timeline input {
+  width: 100%;
+  margin: 0;
+  accent-color: #076764;
+}
+
+#link-race .race-timeline input:focus-visible {
+  outline: 2px solid #076764;
+  outline-offset: 2px;
+}
+
+#link-race [aria-disabled="true"] {
+  color: #55676e;
+  background: #edf2f1;
+  cursor: default;
+}
+
+#link-race .race-lane {
+  --race-color: #25618b;
+  --race-wire: #dce9f1;
+  padding: 0.75rem 0;
+  border-top: 1px solid #b7cdcd;
+}
+
+#link-race .race-lane[data-link="B"] {
+  --race-color: #076764;
+  --race-wire: #dbede9;
+}
+
+#link-race h4 {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 0.15rem 0.6rem;
+  margin: 0 0 0.4rem;
+  color: var(--race-color);
+  font-size: 1rem;
+}
+
+#link-race h4 span,
+#link-race .race-endpoints,
+#link-race .race-timeline p,
+#link-race .race-key {
+  color: #405961;
+  font-size: 0.8rem;
+  font-weight: 400;
+}
+
+#link-race h4 strong {
+  padding: 0.05rem 0.4rem;
+  border-radius: 0.2rem;
+  background: var(--race-wire);
+  font-size: 0.76rem;
+}
+
+#link-race .race-path {
+  margin-inline: 0.3rem;
+}
+
+#link-race [data-link="B"] .race-path {
+  width: 48%;
+}
+
+#link-race .race-track {
+  position: relative;
+  height: 0.85rem;
+  margin: 0.2rem 0 0.4rem;
+  border-radius: 1rem;
+  background: var(--race-wire);
+}
+
+#link-race .race-track::before,
+#link-race .race-track::after,
+#link-race .race-track span {
+  position: absolute;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  background: var(--race-color);
+}
+
+#link-race .race-track::before,
+#link-race .race-track::after {
+  content: "";
+  left: 0;
+  width: 0.14rem;
+  height: 100%;
+  border-radius: 1rem;
+}
+
+#link-race .race-track::after {
+  left: 100%;
+}
+
+#link-race .race-track span {
+  width: clamp(0.17rem, 0.55vw, 0.36rem);
+  aspect-ratio: 1;
+  border-radius: 50%;
+}
+
+#link-race .race-timeline p,
+#link-race .race-meter p,
+#link-race .race-finish {
+  margin: 0;
+}
+
+#link-race .race-totals {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 0.75rem;
+  margin-top: 0.6rem;
+}
+
+#link-race .race-meter p {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: 0 0.35rem;
+  font-size: 0.8rem;
+  font-variant-numeric: tabular-nums;
+}
+
+#link-race .race-meter progress {
+  display: block;
+  width: 100%;
+  height: 0.55rem;
+  margin: 0.2rem 0 0;
+  accent-color: var(--race-color);
+}
+
+#link-race .race-finish {
+  margin-top: 0.4rem;
+  font-size: 0.85rem;
+  font-variant-numeric: tabular-nums;
+}
+
+#link-race .race-announcement {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  clip-path: inset(50%);
+  overflow: hidden;
+}
+
+#link-race figcaption {
+  border-top: 1px solid #b7cdcd;
+  padding-top: 0.65rem;
+  color: #173840;
+  font-weight: 600;
+}
+
+.lab-link-policy {
+  padding-top: 0.65rem;
+  border-top: 1px solid #b7cdcd;
+}
+
+.lab-link-policy + .lab-link-policy {
+  margin-top: 0.9rem;
+}
+
+.lab-link-policy h4 {
+  margin: 0 0 0.6rem;
+  color: #173840;
+  font-size: 0.98rem;
+}
+
+.lab-sender p {
+  margin: 0 0 0.3rem;
+  font-size: 0.8rem;
+  color: #334e56;
+}
+
+.lab-sender + .lab-sender {
+  margin-top: 0.65rem;
+}
+
+.lab-packets,
+.lab-events {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.lab-packets {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.35rem;
+}
+
+.lab-packets li,
+.lab-events li {
+  margin: 0;
+}
+
+.lab-packet {
+  display: grid;
+  padding: 0.3rem 0.45rem;
+  border: 1px solid #99b9af;
+  border-radius: 0.3rem;
+  background: #e4f3ee;
+  color: #18443b;
+  font-size: 0.74rem;
+  min-width: 4.6rem;
+}
+
+.lab-packet.late {
+  border-color: #cfac85;
+  background: #fcf0dd;
+  color: #704411;
+}
+
+.lab-packet.refused {
+  border-color: #c6cfd2;
+  background: #eef1f2;
+  color: #324850;
+}
+
+.lab-plot {
+  background: #fff;
+  border: 1px solid #d3dfdf;
+  border-radius: 0.3rem;
+}
+
+.lab-plot svg {
+  display: block;
+  width: 100%;
+  color: #314d58;
+  font-size: 17px;
+}
+
+.lab-plot text {
+  fill: currentColor;
+}
+
+.lab-plot .lab-axis-title {
+  font-weight: 700;
+}
+
+.lab-plot .lab-outage-label {
+  fill: #6c441b;
+}
+
+.lab-grid {
+  stroke: #c0cfd1;
+}
+
+.lab-outage {
+  fill: #fbefde;
+}
+
+.lab-threshold {
+  stroke: #567e89;
+  stroke-dasharray: 6 5;
+}
+
+.lab-trace {
+  fill: none;
+  stroke: #076764;
+  stroke-width: 3.5;
+  stroke-linejoin: round;
+}
+
+.lab-marker {
+  fill: #076764;
+  stroke: #fff;
+  stroke-width: 1.2;
+}
+
+.lab-plot .lab-marker-text {
+  fill: #fff;
+  font-size: 13px;
+  font-weight: 700;
+}
+
+.lab-result {
+  margin: 0.6rem 0;
+  font-weight: 700;
+}
+
+.lab-events {
+  display: flex;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+  font-size: 0.78rem;
+}
+
+.lab-events li {
+  flex: 1 1 9rem;
+  display: flex;
+  align-items: start;
+  gap: 0.4rem;
+  border: 1px solid #d3dfdf;
+  border-radius: 0.3rem;
+  background: #fff;
+  padding: 0.45rem;
+}
+
+.lab-marker-label {
+  min-width: 1.2rem;
+  height: 1.2rem;
+  border-radius: 50%;
+  background: #076764;
+  color: #fff;
+  font-weight: 700;
+  text-align: center;
+}
+
+@media print {
+  .chapter-lab {
+    display: none;
+  }
+
+  #playback-lab:not([hidden]) + p:has(> img:only-child) {
+    display: block;
+  }
+}
+
+.book-nav {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: .55rem 1.4rem;
+  margin-bottom: 1.6rem;
+  color: #37525a;
+  font: .85rem/1.5 system-ui, sans-serif;
+}
+
+.chapter-turn {
+  justify-content: space-between;
+  margin: 2.4rem 0 0;
+  padding-top: 1rem;
+  border-top: 1px solid #d3dfdf;
+}
+
+.book-contents ul {
+  list-style: none;
+  padding: 0;
+}
+
+@media print {
+  .book-nav { display: none; }
+}
+</style>
+</head>
+<body>
+  <main>
+    <nav class="book-nav" aria-label="Book location"><a href="index.html">Contents</a><span>Part IV — The Physical Network</span></nav>
+    <article><h1>15. Inside a High-Speed Switch</h1>
+<p>Bring the scheduling problem from the radio into a switch. Two packets are waiting at input 1, the first for output A and the second for output B. Input 2 has just one packet, also for A. Both outputs are free. You can move one packet out of each input and into each output at a time. What would you move now? Where should the other packets wait?</p>
+<p>In Chapter 12 we stood at one output and looked back at a waiting line. This time, the first thing to decide is which packets the fabric can bring to that line. A switch may know where every packet needs to go and still leave a usable output idle.</p>
+<h2>What happens after a port receives a packet?</h2>
+<p>On a full-duplex port, reception and transmission can proceed independently. Draw them on opposite sides of the switch even if they use the same connector. The receive circuitry turns the incoming signal into bits. The ingress pipeline parses the headers it cares about and uses fields such as the destination address to look up a forwarding decision. It may also update a header or record a counter. In our example, the pipeline has determined the output before putting the packet on an input queue. The packet waits until a scheduler tells the <strong>switching fabric</strong> which input and output to connect. On the far side, the egress circuitry transmits it when the outbound link is ready.</p>
+<p><img src="figures/15-inside-a-high-speed-switch/pipeline.svg" alt="The packet moves from receive and header lookup to an input queue, across the fabric when granted, and out through the transmitter. An egress buffer can hold a packet if the port cannot send it yet."></p>
+<p>In class, the instructor opened a TCP connection from one process on a laptop to another on the same laptop. The transfer never needed a wire, and the experiment still used substantial kernel CPU time. The particular throughput depended on that laptop and software path. Try to identify the work the benchmark was paying for. A general-purpose implementation can copy or reference data, fetch instructions, parse the header, access a table, update state, and move queue descriptors. A specialized pipeline assigns independent circuits to stages and can process different packets at different stages at once. The point of a pipeline is to accept a new packet before the previous one has completed all its work.</p>
+<p>At 100 Gbit/s, a sequence of 100-byte units gives you 8 ns between units on one port, ignoring wire overhead. A 16-port switch could face sixteen such arrivals every 8 ns. That arithmetic suggests several designs. You could distribute parsing across ports, divide it between stages, and limit the operations any one stage may perform. That last choice is why a programmable forwarding pipeline may let you add a custom header, match its fields, and update counters while placing tight bounds on memory accesses and computation. A CPU still has a job for tasks like computing routing tables, where the work responds to changes in the network and needn&#39;t run at the same cadence as packet forwarding.</p>
+<h2>Which transfers can happen together?</h2>
+<p>Imagine a grid of horizontal input wires and vertical output wires. A controllable switch at each crossing can connect that row and column. That&#39;s a <strong>crossbar</strong>. In our unicast model, turn on only one crosspoint per input and one per output during a slot. Although several crosspoints lead to A, they all connect to the same output wire. Closing two of them would give two inputs the wire during the same slot. Two sends from one input would require that input to supply two units at once.</p>
+<p>Now erase the crosspoints that have no packets ready. List the inputs on the left and the outputs on the right, and draw an edge wherever an input can send a pending packet to an output. A feasible choice is a <strong>matching</strong> in this bipartite graph. In a matching, no two selected edges share a port. This drawing describes the work waiting <em>now</em>. A crosspoint can exist in the hardware and be missing from today&#39;s request graph.</p>
+<p>Start with one FIFO per input. Only the head of each queue can request passage. In our snapshot both visible requests point at A. Choose one and B sits idle even though input 1 is holding data for B. That&#39;s <strong>head-of-line blocking</strong>. A queue enforcing a single order has tied two unrelated output opportunities together. Choosing the best matching among visible heads cannot make the packet behind a head eligible.</p>
+<p>Give each input a separate FIFO for each output. At input 1, the packet for B can now request B while the older packet requests A. These are <strong>virtual output queues</strong>, named for the output they feed even though they live at the inputs. What&#39;s the largest matching now? Select input 1 to B and input 2 to A. A single input can have requests on multiple edges, but the scheduler still grants at most one.</p>
+<p><img src="figures/15-inside-a-high-speed-switch/matching.svg" alt="With FIFO heads only, both inputs request A and only one transfer fits. With virtual output queues, input 1 can also request B, and it can use B while input 2 uses A."></p>
+<p>Suppose a scheduler instead grants input 1 to A as soon as it sees the edge, then looks for more edges to add. Can it add either remaining edge? Neither can fit alongside the first. That choice is <strong>maximal</strong>, meaning nothing can be added to it. The two-edge choice is <strong>maximum</strong>, meaning it has as many edges as any matching for that slot. A fast greedy scheduler may stop at the first kind of answer. Also consider what happens when a maximum-size scheduler repeatedly breaks ties the same way. A packet can stay queued while the switch keeps picking other packets. To seek good service over many slots, a scheduler can weigh a request by queue length or age, or rotate priorities. At the 100 Gbit/s port we priced earlier, a clever tie-breaker earns its keep only if the circuitry can produce grants as fast as packets need them. <a href="https://web.stanford.edu/class/cs244/papers/mckeown02.pdf">McKeown et al., <em>Achieving 100% Throughput in an Input-Queued Switch</em>, §§I–II.</a></p>
+<p><strong>Predict–simulate–explain.</strong> In the <a href="../chapters/15-inside-a-high-speed-switch/switch-lab.html">crossbar lab</a>, run the opening snapshot with one FIFO per input and then with virtual output queues. Try greedy and maximum-size scheduling. Predict which output is idle in the first slot, and identify the first missing edge or rejected grant that explains it. The <a href="../chapters/15-inside-a-high-speed-switch/lab.md">lab notes</a> give a second three-input example you can reproduce before changing the scheduler.</p>
+<h2>How much memory traffic buys one trip through the switch?</h2>
+<p>Suppose every arriving byte travels through one shared memory. Each byte is written once and read once. If the <em>N</em> input ports and <em>N</em> output ports can each run at <em>R</em> bits per second, filling and draining all of them at line rate costs <em>NR</em> bits per second of writes and <em>NR</em> of reads. A memory interface that counts both has to carry at least <strong>2NR</strong> of packet traffic, before bookkeeping. For sixteen 100 Gbit/s ports that is 3.2 Tbit/s across the memory interface even though at most 1.6 Tbit/s leaves the switch.</p>
+<p>One fabric-and-buffer design spreads this load across the inputs. Each input can write at <em>R</em> and read at <em>R</em> if granted. At crossbar speed equal to port speed, a single input&#39;s buffering system now needs service for at most 2<em>R</em> in aggregate. All the input buffers collectively still perform the work. Separate queue names for each output don&#39;t require separate memory chips. The logical queues at an input can share packet storage. If you reserve a separate fixed physical bank for each queue, what happens when nearly all packets at that input want one output? One bank can fill while space in the others sits idle.</p>
+<p>Could all the waiting happen on the output side instead? In one external slot, all <em>N</em> inputs can receive a unit for output A. An output-only design that moves every accepted arrival immediately must bring up to <em>N</em> units to A in that slot, although A can transmit only one. Plan for <em>N</em> writes and, if it transmits, one read at that output&#39;s queueing system. That entails a faster fabric or multiple transfer paths, and enough memory bandwidth where the arrivals concentrate. With a crossbar moving at line rate and at most one transfer per output per slot, persistent <em>new</em> backlog cannot accumulate at an initially empty, always-ready output. The congestion we just created has to wait upstream of it. If the transmitter slows or pauses, that premise changes. Count competing arrivals at each stage before drawing the buffer in one place or the other.</p>
+<h2>Design this. Fill every input and leave fifteen outputs idle</h2>
+<p>Take the quiz&#39;s 16-port switch. One slot lasts 1 μs, and each input, output and selected fabric edge handles at most one 100-byte unit per slot. Begin with empty output queues.</p>
+<ol>
+<li>Choose a destination for the traffic at each input that attains maximum total egress bandwidth. What is it in bytes per second?</li>
+<li>Keep every input backlogged and choose destinations that attain the least total egress bandwidth possible if the scheduler always makes at least one feasible transfer. What grows if each input keeps receiving one unit per slot?</li>
+<li>Now double the fabric speed and allow two independent matchings per external slot. Keep the same arrivals and egress rates. Where does the queue grow if the scheduler uses both matches whenever it can?</li>
+</ol>
+<p><em>Adapted from <a href="assets/quiz2-2025.pdf#page=6">Quiz 2 2025, Q12–Q15, pp. 6–7</a>. Part 3 adds fabric speedup.</em></p>
+<details>
+<summary>Worked reasoning</summary>
+
+<p>Give the inputs distinct destinations. The fabric can transfer sixteen units per slot, and the output links can send all sixteen. The maximum is 1.6 × 10<sup>9</sup> bytes/s. The least is 10<sup>8</sup> bytes/s when all inputs target just one output. Only one of the sixteen arrivals&#39; worth of work can move through the fabric per slot. The remaining work accumulates at the inputs. The input backlog grows by fifteen units per slot. Starting empty, the output drains its one arrival per slot, up to a one-unit boundary effect depending on the slot convention.</p>
+<p>With two fabric transfers into that output per external slot, one can depart and the other can join the output queue. With unbounded buffers and sustained arrivals, the input backlog now grows by fourteen units per slot and the output backlog by one. The sum still grows by fifteen. You can change where the packets wait, but the rate at which they leave is still limited by one output link.</p>
+</details>
+
+<p>In Chapter 12 we asked whether treating flows equally inside each queue guaranteed equal end-to-end service. The fabric explains why it doesn&#39;t. It grants edges in a graph of port pairs. A grant to an input queue with ten flows looks like a grant to one with a single flow unless you give the scheduler more information. A faster scheduler or different weights can alter which packet receives a grant. They cannot make an output transmit above its line rate. <a href="assets/quiz2-2026.pdf#page=7">Quiz 2 2026, Question 5, pp. 7–10.</a></p>
+<p>Our packet has finally left the switch. The operator could read the header fields needed to get it there. Depending on what the sender put on the wire, the operator might be able to read the contents too. What would the two endpoints have to change to keep those contents private across all the switches on the path?</p>
+</article>
+    <nav class="book-nav chapter-turn" aria-label="Chapter navigation"><a href="14-sharing-a-wireless-medium.html">Previous · 14. Sharing a Wireless Medium</a>
+<a href="index.html">Contents</a>
+<a href="16-encryption-and-secrecy.html">Next · 16. Encryption and Secrecy</a></nav>
+  </main>
+</body>
+</html>

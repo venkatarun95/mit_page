@@ -1,0 +1,83 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="760" height="311" viewBox="0 0 760 311" role="img" aria-labelledby="title desc">
+  <title id="title">How a bridge learns where to send frames</title>
+  <desc id="desc">The first frame floods on ports 2 and 3. The reply goes only to port 1. The next frame goes only to port 2.</desc>
+  <defs>
+    <marker id="blue-arrow" markerWidth="10" markerHeight="10" refX="9" refY="5" orient="auto" markerUnits="userSpaceOnUse">
+      <path d="M0,0 L10,5 L0,10 Z" fill="#126084"/>
+    </marker>
+    <marker id="gray-arrow" markerWidth="10" markerHeight="10" refX="9" refY="5" orient="auto" markerUnits="userSpaceOnUse">
+      <path d="M0,0 L10,5 L0,10 Z" fill="#516b77"/>
+    </marker>
+  </defs>
+  <rect width="760" height="311" fill="#f7faf9"/>
+  <rect x="14" y="13" width="232" height="285" rx="7" fill="white" stroke="#a6bcbf"/>
+  <text x="130.0" y="42" font-family="system-ui, sans-serif" font-size="17" font-weight="650" fill="#173544" text-anchor="middle">1. L sends to G</text>
+  <line x1="49.0" y1="137.0" x2="104.0" y2="137.0" stroke="#a6bcbf" stroke-width="2" stroke-linecap="round"/>
+  <line x1="156.0" y1="137.0" x2="211.0" y2="137.0" stroke="#a6bcbf" stroke-width="2" stroke-linecap="round"/>
+  <line x1="130.0" y1="162.0" x2="130.0" y2="200.0" stroke="#a6bcbf" stroke-width="2" stroke-linecap="round"/>
+  <line x1="66.0" y1="137.0" x2="103.0" y2="137.0" stroke="#126084" stroke-width="3" stroke-linecap="round" marker-end="url(#blue-arrow)"/>
+  <line x1="157.0" y1="137.0" x2="194.0" y2="137.0" stroke="#126084" stroke-width="3" stroke-linecap="round" marker-end="url(#blue-arrow)"/>
+  <line x1="130.0" y1="162.0" x2="130.0" y2="198.0" stroke="#126084" stroke-width="3" stroke-linecap="round" marker-end="url(#blue-arrow)"/>
+  <rect x="104" y="112" width="52" height="50" rx="7" fill="#e2f2ed" stroke="#076764"/>
+  <text x="130" y="142" font-family="system-ui, sans-serif" font-size="12" font-weight="700" fill="#076764" text-anchor="middle">Bridge</text>
+  <text x="49" y="100" font-family="system-ui, sans-serif" font-size="13" font-weight="400" fill="#516b77" text-anchor="middle">Laptop</text>
+  <text x="211" y="100" font-family="system-ui, sans-serif" font-size="13" font-weight="400" fill="#516b77" text-anchor="middle">Gateway</text>
+  <text x="79" y="161" font-family="system-ui, sans-serif" font-size="12" font-weight="400" fill="#516b77" text-anchor="middle">1</text>
+  <text x="181" y="161" font-family="system-ui, sans-serif" font-size="12" font-weight="400" fill="#516b77" text-anchor="middle">2</text>
+  <text x="143" y="192" font-family="system-ui, sans-serif" font-size="12" font-weight="400" fill="#516b77" text-anchor="middle">3</text>
+  <text x="130" y="246" font-family="system-ui, sans-serif" font-size="13" font-weight="400" fill="#516b77" text-anchor="middle">Clinic</text>
+  <circle cx="49" cy="137" r="15" fill="white" stroke="#516b77" stroke-width="1.7"/>
+  <text x="49" y="142" font-family="system-ui, sans-serif" font-size="13" font-weight="700" fill="#173544" text-anchor="middle">L</text>
+  <circle cx="211" cy="137" r="15" fill="white" stroke="#516b77" stroke-width="1.7"/>
+  <text x="211" y="142" font-family="system-ui, sans-serif" font-size="13" font-weight="700" fill="#173544" text-anchor="middle">G</text>
+  <circle cx="130" cy="215" r="15" fill="white" stroke="#516b77" stroke-width="1.7"/>
+  <text x="130" y="220" font-family="system-ui, sans-serif" font-size="13" font-weight="700" fill="#173544" text-anchor="middle">C</text>
+  <line x1="30.0" y1="258.0" x2="230.0" y2="258.0" stroke="#d6e1df" stroke-width="1" stroke-linecap="round"/>
+  <text x="130" y="281" font-family="system-ui, sans-serif" font-size="14" font-weight="550" fill="#173544" text-anchor="middle">Table: L on port 1</text>
+  <rect x="264" y="13" width="232" height="285" rx="7" fill="white" stroke="#a6bcbf"/>
+  <text x="380.0" y="42" font-family="system-ui, sans-serif" font-size="17" font-weight="650" fill="#173544" text-anchor="middle">2. G replies to L</text>
+  <line x1="299.0" y1="137.0" x2="354.0" y2="137.0" stroke="#a6bcbf" stroke-width="2" stroke-linecap="round"/>
+  <line x1="406.0" y1="137.0" x2="461.0" y2="137.0" stroke="#a6bcbf" stroke-width="2" stroke-linecap="round"/>
+  <line x1="380.0" y1="162.0" x2="380.0" y2="200.0" stroke="#a6bcbf" stroke-width="2" stroke-linecap="round"/>
+  <line x1="444.0" y1="137.0" x2="407.0" y2="137.0" stroke="#126084" stroke-width="3" stroke-linecap="round" marker-end="url(#blue-arrow)"/>
+  <line x1="353.0" y1="137.0" x2="316.0" y2="137.0" stroke="#126084" stroke-width="3" stroke-linecap="round" marker-end="url(#blue-arrow)"/>
+  <rect x="354" y="112" width="52" height="50" rx="7" fill="#e2f2ed" stroke="#076764"/>
+  <text x="380" y="142" font-family="system-ui, sans-serif" font-size="12" font-weight="700" fill="#076764" text-anchor="middle">Bridge</text>
+  <text x="299" y="100" font-family="system-ui, sans-serif" font-size="13" font-weight="400" fill="#516b77" text-anchor="middle">Laptop</text>
+  <text x="461" y="100" font-family="system-ui, sans-serif" font-size="13" font-weight="400" fill="#516b77" text-anchor="middle">Gateway</text>
+  <text x="329" y="161" font-family="system-ui, sans-serif" font-size="12" font-weight="400" fill="#516b77" text-anchor="middle">1</text>
+  <text x="431" y="161" font-family="system-ui, sans-serif" font-size="12" font-weight="400" fill="#516b77" text-anchor="middle">2</text>
+  <text x="393" y="192" font-family="system-ui, sans-serif" font-size="12" font-weight="400" fill="#516b77" text-anchor="middle">3</text>
+  <text x="380" y="246" font-family="system-ui, sans-serif" font-size="13" font-weight="400" fill="#516b77" text-anchor="middle">Clinic</text>
+  <circle cx="299" cy="137" r="15" fill="white" stroke="#516b77" stroke-width="1.7"/>
+  <text x="299" y="142" font-family="system-ui, sans-serif" font-size="13" font-weight="700" fill="#173544" text-anchor="middle">L</text>
+  <circle cx="461" cy="137" r="15" fill="white" stroke="#516b77" stroke-width="1.7"/>
+  <text x="461" y="142" font-family="system-ui, sans-serif" font-size="13" font-weight="700" fill="#173544" text-anchor="middle">G</text>
+  <circle cx="380" cy="215" r="15" fill="white" stroke="#516b77" stroke-width="1.7"/>
+  <text x="380" y="220" font-family="system-ui, sans-serif" font-size="13" font-weight="700" fill="#173544" text-anchor="middle">C</text>
+  <line x1="280.0" y1="258.0" x2="480.0" y2="258.0" stroke="#d6e1df" stroke-width="1" stroke-linecap="round"/>
+  <text x="380" y="281" font-family="system-ui, sans-serif" font-size="14" font-weight="550" fill="#173544" text-anchor="middle">Table: L on 1, G on 2</text>
+  <rect x="514" y="13" width="232" height="285" rx="7" fill="white" stroke="#a6bcbf"/>
+  <text x="630.0" y="42" font-family="system-ui, sans-serif" font-size="17" font-weight="650" fill="#173544" text-anchor="middle">3. L sends again</text>
+  <line x1="549.0" y1="137.0" x2="604.0" y2="137.0" stroke="#a6bcbf" stroke-width="2" stroke-linecap="round"/>
+  <line x1="656.0" y1="137.0" x2="711.0" y2="137.0" stroke="#a6bcbf" stroke-width="2" stroke-linecap="round"/>
+  <line x1="630.0" y1="162.0" x2="630.0" y2="200.0" stroke="#a6bcbf" stroke-width="2" stroke-linecap="round"/>
+  <line x1="566.0" y1="137.0" x2="603.0" y2="137.0" stroke="#126084" stroke-width="3" stroke-linecap="round" marker-end="url(#blue-arrow)"/>
+  <line x1="657.0" y1="137.0" x2="694.0" y2="137.0" stroke="#126084" stroke-width="3" stroke-linecap="round" marker-end="url(#blue-arrow)"/>
+  <rect x="604" y="112" width="52" height="50" rx="7" fill="#e2f2ed" stroke="#076764"/>
+  <text x="630" y="142" font-family="system-ui, sans-serif" font-size="12" font-weight="700" fill="#076764" text-anchor="middle">Bridge</text>
+  <text x="549" y="100" font-family="system-ui, sans-serif" font-size="13" font-weight="400" fill="#516b77" text-anchor="middle">Laptop</text>
+  <text x="711" y="100" font-family="system-ui, sans-serif" font-size="13" font-weight="400" fill="#516b77" text-anchor="middle">Gateway</text>
+  <text x="579" y="161" font-family="system-ui, sans-serif" font-size="12" font-weight="400" fill="#516b77" text-anchor="middle">1</text>
+  <text x="681" y="161" font-family="system-ui, sans-serif" font-size="12" font-weight="400" fill="#516b77" text-anchor="middle">2</text>
+  <text x="643" y="192" font-family="system-ui, sans-serif" font-size="12" font-weight="400" fill="#516b77" text-anchor="middle">3</text>
+  <text x="630" y="246" font-family="system-ui, sans-serif" font-size="13" font-weight="400" fill="#516b77" text-anchor="middle">Clinic</text>
+  <circle cx="549" cy="137" r="15" fill="white" stroke="#516b77" stroke-width="1.7"/>
+  <text x="549" y="142" font-family="system-ui, sans-serif" font-size="13" font-weight="700" fill="#173544" text-anchor="middle">L</text>
+  <circle cx="711" cy="137" r="15" fill="white" stroke="#516b77" stroke-width="1.7"/>
+  <text x="711" y="142" font-family="system-ui, sans-serif" font-size="13" font-weight="700" fill="#173544" text-anchor="middle">G</text>
+  <circle cx="630" cy="215" r="15" fill="white" stroke="#516b77" stroke-width="1.7"/>
+  <text x="630" y="220" font-family="system-ui, sans-serif" font-size="13" font-weight="700" fill="#173544" text-anchor="middle">C</text>
+  <line x1="530.0" y1="258.0" x2="730.0" y2="258.0" stroke="#d6e1df" stroke-width="1" stroke-linecap="round"/>
+  <text x="630" y="281" font-family="system-ui, sans-serif" font-size="14" font-weight="550" fill="#173544" text-anchor="middle">Table: L on 1, G on 2</text>
+</svg>

@@ -1,0 +1,622 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>19. Data Centers and Cloud Networks</title>
+  <style>:root {
+  color-scheme: light;
+  background: #f3f6f5;
+  color: #182a30;
+  font: 18px/1.65 Georgia, serif;
+}
+
+body {
+  max-width: 48rem;
+  margin: 2.5rem auto;
+  padding: 2.25rem clamp(1rem, 5vw, 3.25rem);
+  background: #fff;
+  border-top: 0.3rem solid #076764;
+}
+
+h1,
+h2,
+h3 {
+  font-family: system-ui, sans-serif;
+  line-height: 1.2;
+  color: #152e37;
+}
+
+h1 {
+  margin: 0 0 1.4rem;
+  font-size: clamp(2rem, 5vw, 3rem);
+  letter-spacing: -0.035em;
+}
+
+h2 {
+  margin: 2.5rem 0 0.7rem;
+  font-size: clamp(1.4rem, 3vw, 1.75rem);
+}
+
+p {
+  margin: 0 0 1rem;
+}
+
+a {
+  color: #0a5b63;
+  overflow-wrap: anywhere;
+  text-underline-offset: 0.15em;
+}
+
+li + li {
+  margin-top: 0.7rem;
+}
+
+blockquote {
+  margin: 1.2rem 0;
+  padding: 0.65rem 1rem;
+  background: #edf6f4;
+  border-inline-start: 0.2rem solid #076764;
+}
+
+blockquote p {
+  margin: 0;
+}
+
+img {
+  display: block;
+  max-width: 100%;
+  height: auto;
+  outline: 1px solid #d3dfdf;
+}
+
+p:has(> img:only-child) {
+  margin: 1.5rem 0 0.5rem;
+}
+
+p:has(> img:only-child) + p:has(> em:only-child) {
+  color: #37525a;
+  font: 0.83rem/1.5 system-ui, sans-serif;
+  margin: 0 0 1.5rem;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 1.25rem 0;
+  font: 0.83rem/1.45 system-ui, sans-serif;
+  font-variant-numeric: tabular-nums;
+  overflow-wrap: anywhere;
+}
+
+th,
+td {
+  border: 1px solid #d3dfdf;
+  padding: 0.55rem;
+  vertical-align: top;
+}
+
+th {
+  background: #edf6f4;
+}
+
+@media (max-width: 34rem) {
+  body {
+    margin: 0;
+  }
+
+  table {
+    font-size: 0.7rem;
+  }
+
+  th,
+  td {
+    padding: 0.3rem;
+  }
+}
+
+@media print {
+  :root {
+    background: #fff;
+  }
+
+  body {
+    margin: 0;
+    padding: 0;
+    border: 0;
+  }
+
+  h2,
+  p:has(> img:only-child) {
+    break-after: avoid;
+  }
+
+  table,
+  img {
+    break-inside: avoid;
+  }
+}
+
+.chapter-lab {
+  margin: 1.5rem 0 0.65rem;
+  padding: clamp(0.75rem, 3vw, 1.25rem);
+  border: 1px solid #b7cdcd;
+  border-radius: 0.6rem;
+  background: #f7faf9;
+  font: 0.93rem/1.5 system-ui, sans-serif;
+}
+
+.chapter-lab h3 {
+  margin: 0 0 0.5rem;
+  font-size: 1.2rem;
+}
+
+.chapter-lab > p {
+  color: #334e56;
+}
+
+.chapter-lab + p:has(> em:only-child) {
+  color: #37525a;
+  font: 0.83rem/1.5 system-ui, sans-serif;
+  margin-bottom: 1.5rem;
+}
+
+#playback-lab:not([hidden]) + p:has(> img:only-child) {
+  display: none;
+}
+
+.lab-controls {
+  display: flex;
+  gap: 0.75rem;
+  align-items: end;
+  flex-wrap: wrap;
+  margin-bottom: 1rem;
+}
+
+.lab-controls label {
+  display: grid;
+  gap: 0.3rem;
+  font-weight: 700;
+  font-size: 0.8rem;
+}
+
+.lab-controls select,
+.lab-controls button {
+  min-height: 2.2rem;
+  border: 1px solid #9bb2b8;
+  border-radius: 0.3rem;
+  background: #fff;
+  color: #163440;
+  padding: 0.25rem 0.5rem;
+  font: inherit;
+}
+
+.lab-controls button {
+  font-size: 0.8rem;
+  cursor: pointer;
+}
+
+.lab-controls :focus-visible {
+  outline: 2px solid #076764;
+  outline-offset: 2px;
+}
+
+#link-race .race-timeline {
+  display: grid;
+  gap: 0.25rem;
+  margin-bottom: 0.85rem;
+}
+
+#link-race .race-timeline label,
+#link-race .race-endpoints {
+  display: flex;
+  justify-content: space-between;
+  gap: 0.35rem;
+}
+
+#link-race .race-timeline label {
+  font-size: 0.8rem;
+  font-weight: 700;
+  font-variant-numeric: tabular-nums;
+}
+
+#link-race .race-timeline input {
+  width: 100%;
+  margin: 0;
+  accent-color: #076764;
+}
+
+#link-race .race-timeline input:focus-visible {
+  outline: 2px solid #076764;
+  outline-offset: 2px;
+}
+
+#link-race [aria-disabled="true"] {
+  color: #55676e;
+  background: #edf2f1;
+  cursor: default;
+}
+
+#link-race .race-lane {
+  --race-color: #25618b;
+  --race-wire: #dce9f1;
+  padding: 0.75rem 0;
+  border-top: 1px solid #b7cdcd;
+}
+
+#link-race .race-lane[data-link="B"] {
+  --race-color: #076764;
+  --race-wire: #dbede9;
+}
+
+#link-race h4 {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 0.15rem 0.6rem;
+  margin: 0 0 0.4rem;
+  color: var(--race-color);
+  font-size: 1rem;
+}
+
+#link-race h4 span,
+#link-race .race-endpoints,
+#link-race .race-timeline p,
+#link-race .race-key {
+  color: #405961;
+  font-size: 0.8rem;
+  font-weight: 400;
+}
+
+#link-race h4 strong {
+  padding: 0.05rem 0.4rem;
+  border-radius: 0.2rem;
+  background: var(--race-wire);
+  font-size: 0.76rem;
+}
+
+#link-race .race-path {
+  margin-inline: 0.3rem;
+}
+
+#link-race [data-link="B"] .race-path {
+  width: 48%;
+}
+
+#link-race .race-track {
+  position: relative;
+  height: 0.85rem;
+  margin: 0.2rem 0 0.4rem;
+  border-radius: 1rem;
+  background: var(--race-wire);
+}
+
+#link-race .race-track::before,
+#link-race .race-track::after,
+#link-race .race-track span {
+  position: absolute;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  background: var(--race-color);
+}
+
+#link-race .race-track::before,
+#link-race .race-track::after {
+  content: "";
+  left: 0;
+  width: 0.14rem;
+  height: 100%;
+  border-radius: 1rem;
+}
+
+#link-race .race-track::after {
+  left: 100%;
+}
+
+#link-race .race-track span {
+  width: clamp(0.17rem, 0.55vw, 0.36rem);
+  aspect-ratio: 1;
+  border-radius: 50%;
+}
+
+#link-race .race-timeline p,
+#link-race .race-meter p,
+#link-race .race-finish {
+  margin: 0;
+}
+
+#link-race .race-totals {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 0.75rem;
+  margin-top: 0.6rem;
+}
+
+#link-race .race-meter p {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: 0 0.35rem;
+  font-size: 0.8rem;
+  font-variant-numeric: tabular-nums;
+}
+
+#link-race .race-meter progress {
+  display: block;
+  width: 100%;
+  height: 0.55rem;
+  margin: 0.2rem 0 0;
+  accent-color: var(--race-color);
+}
+
+#link-race .race-finish {
+  margin-top: 0.4rem;
+  font-size: 0.85rem;
+  font-variant-numeric: tabular-nums;
+}
+
+#link-race .race-announcement {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  clip-path: inset(50%);
+  overflow: hidden;
+}
+
+#link-race figcaption {
+  border-top: 1px solid #b7cdcd;
+  padding-top: 0.65rem;
+  color: #173840;
+  font-weight: 600;
+}
+
+.lab-link-policy {
+  padding-top: 0.65rem;
+  border-top: 1px solid #b7cdcd;
+}
+
+.lab-link-policy + .lab-link-policy {
+  margin-top: 0.9rem;
+}
+
+.lab-link-policy h4 {
+  margin: 0 0 0.6rem;
+  color: #173840;
+  font-size: 0.98rem;
+}
+
+.lab-sender p {
+  margin: 0 0 0.3rem;
+  font-size: 0.8rem;
+  color: #334e56;
+}
+
+.lab-sender + .lab-sender {
+  margin-top: 0.65rem;
+}
+
+.lab-packets,
+.lab-events {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.lab-packets {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.35rem;
+}
+
+.lab-packets li,
+.lab-events li {
+  margin: 0;
+}
+
+.lab-packet {
+  display: grid;
+  padding: 0.3rem 0.45rem;
+  border: 1px solid #99b9af;
+  border-radius: 0.3rem;
+  background: #e4f3ee;
+  color: #18443b;
+  font-size: 0.74rem;
+  min-width: 4.6rem;
+}
+
+.lab-packet.late {
+  border-color: #cfac85;
+  background: #fcf0dd;
+  color: #704411;
+}
+
+.lab-packet.refused {
+  border-color: #c6cfd2;
+  background: #eef1f2;
+  color: #324850;
+}
+
+.lab-plot {
+  background: #fff;
+  border: 1px solid #d3dfdf;
+  border-radius: 0.3rem;
+}
+
+.lab-plot svg {
+  display: block;
+  width: 100%;
+  color: #314d58;
+  font-size: 17px;
+}
+
+.lab-plot text {
+  fill: currentColor;
+}
+
+.lab-plot .lab-axis-title {
+  font-weight: 700;
+}
+
+.lab-plot .lab-outage-label {
+  fill: #6c441b;
+}
+
+.lab-grid {
+  stroke: #c0cfd1;
+}
+
+.lab-outage {
+  fill: #fbefde;
+}
+
+.lab-threshold {
+  stroke: #567e89;
+  stroke-dasharray: 6 5;
+}
+
+.lab-trace {
+  fill: none;
+  stroke: #076764;
+  stroke-width: 3.5;
+  stroke-linejoin: round;
+}
+
+.lab-marker {
+  fill: #076764;
+  stroke: #fff;
+  stroke-width: 1.2;
+}
+
+.lab-plot .lab-marker-text {
+  fill: #fff;
+  font-size: 13px;
+  font-weight: 700;
+}
+
+.lab-result {
+  margin: 0.6rem 0;
+  font-weight: 700;
+}
+
+.lab-events {
+  display: flex;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+  font-size: 0.78rem;
+}
+
+.lab-events li {
+  flex: 1 1 9rem;
+  display: flex;
+  align-items: start;
+  gap: 0.4rem;
+  border: 1px solid #d3dfdf;
+  border-radius: 0.3rem;
+  background: #fff;
+  padding: 0.45rem;
+}
+
+.lab-marker-label {
+  min-width: 1.2rem;
+  height: 1.2rem;
+  border-radius: 50%;
+  background: #076764;
+  color: #fff;
+  font-weight: 700;
+  text-align: center;
+}
+
+@media print {
+  .chapter-lab {
+    display: none;
+  }
+
+  #playback-lab:not([hidden]) + p:has(> img:only-child) {
+    display: block;
+  }
+}
+
+.book-nav {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: .55rem 1.4rem;
+  margin-bottom: 1.6rem;
+  color: #37525a;
+  font: .85rem/1.5 system-ui, sans-serif;
+}
+
+.chapter-turn {
+  justify-content: space-between;
+  margin: 2.4rem 0 0;
+  padding-top: 1rem;
+  border-top: 1px solid #d3dfdf;
+}
+
+.book-contents ul {
+  list-style: none;
+  padding: 0;
+}
+
+@media print {
+  .book-nav { display: none; }
+}
+</style>
+</head>
+<body>
+  <main>
+    <nav class="book-nav" aria-label="Book location"><a href="index.html">Contents</a><span>Part VI — Networks in Practice</span></nav>
+    <article><h1>19. Data Centers and Cloud Networks</h1>
+<p>The passenger from Chapter 18 waited a second for the next bus. You can now see the front end&#39;s logs: the request arrived on time, and the front end asked three machines for upcoming departures on the routes serving that stop. Two came back quickly. The third answered almost a second later. Where would you look next?</p>
+<p>Start at the slow worker. How much time elapsed on its own clock between receiving the request and handing the reply to the network? Compare that interval with the front end&#39;s round trip. A worker that finished in a millisecond leaves almost the entire second to account for elsewhere. Suppose it did finish promptly, and its reply shared a link with the other two. You&#39;ve met the bottleneck from Chapter 11 again. This time you can decide where the machines go, which switches they use, and how the program asks them to send.</p>
+<h2>How far does the request travel inside the building?</h2>
+<p>The lecture started with a picture of a building that looked more like a factory than a cloud. The machines go into racks. A switch at the top of a rack often connects the servers in that rack. A request to a server in the same rack can stay on that switch. A request to another rack has to cross an uplink and enter the destination rack. Now place the front end, its three timetable services, and a storage service. Putting them together can remove traffic from the uplinks. What happens if their one rack switch or power supply fails? You can spread replicas across racks to reduce shared failure risk, trading some locality for access to a replica after a failure.</p>
+<p>Why put any of this in the same building? Several things are easier to share there, including power, cooling, maintenance, storage, and short high-capacity links. If the transit service sees holiday traffic surge, it can rent more compute for that spike and release it after demand recedes. In class a student imagined needing a thousand computers for a day. A public cloud pools equipment so workloads with different peaks can use it at different times. An organization can also operate a private cloud and keep control of the underlying equipment or place it under a dedicated operator. Either model needs a plan for the cases where many workloads peak together or a failed machine takes some service with it. A storage service can replicate data and take over replacement of failed disks. What deployment would prevent both replicas from disappearing when one rack loses power?</p>
+<p>Some computations benefit from putting their machines close to one another. In class, students compared a social feed built from everyone&#39;s posts with copying all posts to every phone so it could build its own. If <em>n</em> users each publish a fixed amount, sending every post to every phone takes a number of deliveries proportional to <em>n</em>². A service can rank and filter closer to where it stores the data, using only some of it to build each response. There are distributed designs between those two choices, for example storing data on multiple cooperating services and exchanging summaries or subscriptions. The design question is how much data must move and how often each operation waits for it.</p>
+<h2>What if the uplink is always busy?</h2>
+<p>Start with a tree. Each rack switch has one uplink and two servers below it. If the two servers each send 10 Gbit/s to another rack and the uplink also carries 10 Gbit/s, only half the offered load can get out. If both destinations are local and distinct, their packets need no uplink. Up the tree, switches can end up serving whole groups of competing racks. One direct answer is to buy bigger and faster switches toward the root. Can we use more of the same kind of switch instead?</p>
+<p>Replace a single upper switch with several. Every rack switch is now a <strong>leaf</strong> with a link to every <strong>spine</strong>. For traffic between distinct racks, go up to one spine and back down to the destination leaf. With three spines we now have three paths of the same hop count. Losing a spine leaves two alternatives after forwarding adapts. This is a small <strong>Clos</strong> fabric. A fat-tree design uses multiple paths and more aggregate capacity where a tree would funnel many links into one. At larger scales operators can assemble additional stages of switches. For example, the early generations in Google&#39;s Jupiter paper used Clos fabrics and centralized control to build a fabric out of smaller switches. <a href="https://research.google/pubs/jupiter-rising-a-decade-of-clos-topologies-and-centralized-control-in-googles-datacenter-network-2/">Singh et al., Jupiter Rising.</a></p>
+<p><img src="figures/19-data-centers-and-cloud-networks/leaf-spine.svg" alt="Three spine switches connect to both leaf switches. The foreground path runs from a server attached to leaf A, through spine 2, to a server attached to leaf B. Spines 1 and 3 give alternative paths."></p>
+<p>Count the links crossing the boundary of a rack. If four 10-Gbit/s server ports have only two 10-Gbit/s uplinks, the rack&#39;s downlink capacity is twice its uplink capacity. The rack is <strong>oversubscribed</strong> two to one across that boundary. You may accept this design if servers mostly communicate within the rack or most are idle. Four equally fast uplinks let the four servers send their entire aggregate rate out of the rack in principle. Now send all four streams to the same destination server. Its one 10-Gbit/s port becomes the bottleneck even if every stream uses a different spine. When a design advertises capacity, ask which traffic matrix it promises to carry.</p>
+<p><strong>Break this.</strong> Buy four uplinks per rack to support arbitrary pairings among four servers per rack. Before you test a workload, unplug one uplink. Construct a pairing your network could have carried before the failure that it cannot carry at full rate afterward. Identify the boundary where a capacity argument proves your case.</p>
+<h2>Which spine should carry the next packet?</h2>
+<p>Think back to Chapter 8. Send each packet through the next spine in rotation and a single large transfer can put packets into all the paths. In exchange, the receiver might get several later packets while a packet on a busier spine is still queued. Ordered delivery has to wait, and the loss detector in the final exam treats three duplicate acknowledgments as evidence that a packet is missing. Some transports and receivers can be engineered to tolerate more reordering, but have to account for the cost of waiting and buffering. <a href="assets/cs356-final-2024.pdf#page=5">Final 2024, Q7–Q9, p. 5.</a></p>
+<p>Now hash the flow&#39;s stable header fields and give every packet in that flow the same spine. This is the per-flow ECMP split from Chapter 8. Ten thousand small flows can give similar counts of flows on each path. But if two of those flows carry most of the bytes, the placement of just those two can dominate the utilization counters. With an ideal independent uniform hash and three spines, the second transfer has a one-in-three chance to pick the same spine as the first. If the two use the same source and destination leaf, both then use the same two fabric links. Contrast three large transfers of 8 Gbit/s with 300 small flows of 80 Mbit/s. The offered rate is the same. Could you expect the same spread across three 10-Gbit/s paths? In class, the distinction was between how many flows are short and how many bytes are in long flows.</p>
+<p>A controller can identify large flows and reassign them. What should it measure? Current congestion could fade before the reassignment reaches the switches, as in Chapter 8. Moving the flow immediately may make the first packet on its new path overtake packets from the old one. One option is to switch paths during a gap between bursts, choosing a gap large enough that the old packets should already have arrived. What would you do if the flow sends continuously or the old route is failing? Give the operator a way to notice a worse outcome after the move.</p>
+<p><strong>Network detective.</strong> Your trace shows two large rack-to-rack transfers carrying only about 5 Gbit/s each. The peer spines report almost no load. Propose a way to distinguish a collision on one common spine link from a bottleneck on a source NIC or destination NIC. Which port counters should go up after moving just one flow? Which graphs would make you suspect the limit is the rate at which a CPU can generate or process packets? The lecture demonstrated a useful control experiment by sending from a computer to itself over its loopback interface. Individual packets still needed processing despite never traversing a physical cable.</p>
+<h2>What if everyone answers at once?</h2>
+<p>Return to the departures service. It sends requests to three workers, and each sends back a reply at 10 Gbit/s for 20 μs. Suppose their replies arrive together at the link to the front end, which can serve 10 Gbit/s. For 20 μs the output has 20 Gbit/s more work arriving than it can do. That amounts to 50,000 bytes of extra data in the fluid model. With a 32 kB buffer and no other traffic, how much cannot fit? If the workers send at different times, how much of the problem goes away? The aggregate traffic over a whole second might look unremarkable on the monitoring dashboard.</p>
+<p><img src="figures/19-data-centers-and-cloud-networks/incast.svg" alt="Three workers each send 10 Gbit/s to a single front end. The shared output serves 10 Gbit/s and temporarily receives 30 Gbit/s."></p>
+<p>This is an <strong>incast</strong> workload. When replies synchronize, the output queue can overflow even with plenty of unused fabric elsewhere. If a small reply loses its last packet, the sender may have no later packets to elicit the duplicate ACKs needed for fast retransmission. Recovery can then wait for a loss timer. The front end still waits for the slowest reply if its answer depends on all three. To shorten that tail, you could pace worker replies, cap the number of requests outstanding, or give the receiver a way to grant transmission credits. All three depend on who can see what is about to arrive. Can the workers pace themselves if they do not know how many other workers were asked? <a href="https://www.cs.cmu.edu/~dga/papers/incast-sigcomm2009.pdf">Vasudevan et al., Safe and Effective Fine-grained TCP Retransmissions, §§1–2.</a></p>
+<p>A training job can produce related timing effects. Suppose four workers each compute an update on a different batch, then all need the sum before continuing. They could send all updates to one worker and have it send the result to everyone. Or they could exchange and combine partial results in rounds. This is an example of a <strong>collective communication</strong> operation. Each schedule creates a different traffic matrix at each stage, and a delayed transfer can hold up the next round. When you know which phase comes next, you can arrange routes and start times in advance. When several independent jobs share the same fabric, their phases may coincide. Chapter 11&#39;s feedback logic still has work to do.</p>
+<h3>Design this. Route pairs, then change the workload</h3>
+<p>Use the cluster from Chapter 11. Four racks contain four servers each. Each rack has a link to each of four spines. All the links run at 10 Gbit/s in each direction. At most one stream leaves and at most one stream enters each server. Can you route a set of paired servers so no two streams use the same directed link at the same time? First pick any example pairing that uses at least three rack switches. Color the streams according to the spine you plan to use. Now let A1, B1, and C1 send to D1 at the same time. Which part of your argument has changed? Find the maximum aggregate incoming rate that D1&#39;s link can serve. <a href="assets/quiz2-2026.pdf#page=6">Quiz 2, 2026, Q4, pp. 6–7.</a></p>
+<details>
+<summary>Worked reasoning</summary>
+
+<p>Draw a copy of every rack on the source side and again on the destination side. Each cross-rack stream is an edge, with parallel edges allowed. An upstream rack port to a particular spine can carry one stream at full rate, and the corresponding downstream port at a destination rack can carry one. The color therefore cannot repeat among edges at either copy of a rack. Every vertex has degree at most four. One way to see why four colors suffice is to add dummy edges until every vertex has degree four, which is possible because each side has the same total deficit. In a regular bipartite graph, any group of sources has at least as many neighboring destinations as sources. Count the edges leaving the group and compare with how many each destination can receive. Hall&#39;s theorem gives a matching covering both sides. Remove it, repeat for the remaining edges, and then discard the dummy edges. The four matchings can each use one spine. Within a rack, local streams can stay on the rack switch.</p>
+<p>The three streams to D1 violate the one-stream-per-receiver assumption. They might still use different spine-to-rack links. D1&#39;s one port can only deliver 10 Gbit/s total, so no route assignment can deliver 10 Gbit/s to D1 for each stream. A schedule or a congestion controller now has to divide a shared resource. If D1 always has to wait for the last reply, compare how quickly the final byte arrives under paced and unpaced sending with the same total capacity.</p>
+</details>
+
+<h2>What can one tenant do to another?</h2>
+<p>Imagine the timetable service shares machines and switches with a training job. The provider gets to decide which controls to build into the hosts and which to build into the fabric. One property is <strong>reachability isolation</strong>. If two tenants choose the same private IP address, the network still has to send each packet to the right virtual network. Include a tenant or virtual-network identifier in the forwarding context, and constrain the traffic that can cross between contexts. A network firewall can limit which peers may reach a service even if application code has its own access checks. In class, a student asked whether traffic inside a data center could relax encryption. What threats would disappear when you move inside? Which processes or machines are still trusted to see or change the packets? Make the decision by naming those parties and the protections each layer gives.</p>
+<p>Another property is <strong>performance isolation</strong>. The timetable service can still see longer delays if it shares a physical queue with the training job. Separate virtual networks may use the same link. To make the timetable service predictable you could reserve a rate, shape the job&#39;s bursts, or choose a distinct queue for short requests. Chapter 12&#39;s scheduling choices let you say which traffic gets service when both want it. What happens to the reservation if a failed uplink cuts the remaining capacity in half? Check that the provider&#39;s promise fits through the surviving cut.</p>
+<h2>Which work should move closer to the passenger?</h2>
+<p>The lecture asked how you would locate a data center. Students suggested proximity to customers. The class added power, land, and proximity to interconnection sites. Chapter 13&#39;s propagation estimate gives you a way to test a claim about where the response came from. If a server 2,000 km away were reached by a straight fiber route and the reply came straight back along it, propagation alone would take about 20 ms. A min-RTT markedly smaller than that suggests the responding endpoint is closer, or that your route assumptions need revision. The endpoint that answers a probe might be a front end or a nearby edge node. Its RTT cannot locate every backend it happens to use.</p>
+<h3>What if? The same machines are spread across cities</h3>
+<p>You can put the same total compute and storage in one site or spread it across cities. Consider a tightly synchronized model training job, an interactive game rendered on a server, a live final thousands want to watch, and a recording requested a few dozen times over several years. For each, identify which costs dominate and decide where you would put the work or data. What changes if one city contributes all the demand for the recording, or if running the game requires machines that only a few cities can support?</p>
+<p><em>Adapted from <a href="assets/cs356-final-2024.pdf#page=1">Final 2024, Q1, p. 1</a>. The follow-up workloads are new.</em></p>
+<details>
+<summary>Worked reasoning</summary>
+
+<p>The training workers frequently exchange large updates, so putting them on a fast, nearby fabric can save every synchronized step time. The game reacts to a player&#39;s next command, so the propagation time to the rendering machine is paid throughout the session. Holding a copy of the live final near viewers can avoid carrying each viewer&#39;s identical data across long-haul links. A rarely requested recording may make sense in central storage because few requests can repay the cost of copies at many sites. If requests are concentrated in a city, putting a shared copy there can pay even if the object is globally unpopular. The same total compute divided into small sites can also leave a single site without enough capacity for a task that needs many machines together.</p>
+</details>
+
+<p>The departures list needed live replies from backend services. The site&#39;s logo has been the same all week. If the two cost different amounts to reproduce and go stale at different times, should the browser have to fetch both from the same place?</p>
+</article>
+    <nav class="book-nav chapter-turn" aria-label="Chapter navigation"><a href="18-what-happens-when-you-open-a-website.html">Previous · 18. What Happens When You Open a Website?</a>
+<a href="index.html">Contents</a>
+<a href="20-content-delivery-and-the-edge.html">Next · 20. Content Delivery and the Edge</a></nav>
+  </main>
+</body>
+</html>

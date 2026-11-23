@@ -1,0 +1,29 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 227" role="img" aria-labelledby="title desc">
+  <title id="title">Certificate chain and live peer verification</title>
+  <desc id="desc">The trust store supplies a root, which verifies the intermediate, which verifies the leaf. The leaf key verifies a signature on the handshake. The URL hostname must also match the leaf.</desc>
+  <style>text { font-family: system-ui,sans-serif; fill: #162436 }</style>
+  <rect x="8" y="8" width="704" height="211" rx="14" fill="#f7f9fb" stroke="#d0dbe5"/>
+  <rect x="28" y="72" width="150" height="61" rx="7" fill="#dcebf3" stroke="#a9becf"/>
+  <text x="103" y="97" text-anchor="middle" font-size="16" font-weight="650">Trusted root</text>
+  <text x="103" y="119" text-anchor="middle" font-size="14" font-weight="400">Local trust store</text>
+  <rect x="196" y="72" width="150" height="61" rx="7" fill="#fff" stroke="#a9becf"/>
+  <text x="271" y="97" text-anchor="middle" font-size="16" font-weight="650">Intermediate CA</text>
+  <text x="271" y="119" text-anchor="middle" font-size="14" font-weight="400">CA signing key</text>
+  <rect x="364" y="72" width="150" height="61" rx="7" fill="#fff" stroke="#a9becf"/>
+  <text x="439" y="97" text-anchor="middle" font-size="16" font-weight="650">Service leaf</text>
+  <text x="439" y="119" text-anchor="middle" font-size="14" font-weight="400">Service public key</text>
+  <rect x="532" y="72" width="150" height="61" rx="7" fill="#fff" stroke="#a9becf"/>
+  <text x="607" y="97" text-anchor="middle" font-size="16" font-weight="650">Live handshake</text>
+  <text x="607" y="119" text-anchor="middle" font-size="14" font-weight="400">Transcript signature</text>
+  <polygon points="178.00,104.50 187.00,104.50 187.00,101.50 178.00,101.50" fill="#2c6a8c"/>
+  <polygon points="187,98 195,103 187,108" fill="#2c6a8c"/>
+  <polygon points="346.00,104.50 355.00,104.50 355.00,101.50 346.00,101.50" fill="#2c6a8c"/>
+  <polygon points="355,98 363,103 355,108" fill="#2c6a8c"/>
+  <polygon points="514.00,104.50 523.00,104.50 523.00,101.50 514.00,101.50" fill="#2c6a8c"/>
+  <polygon points="523,98 531,103 523,108" fill="#2c6a8c"/>
+  <text x="360" y="45" text-anchor="middle" font-size="19" font-weight="650">Use each key to verify the next signature</text>
+  <rect x="345" y="157" width="187" height="49" rx="7" fill="#f3e5c7" stroke="#d9be8b"/>
+  <text x="439" y="177" text-anchor="middle" font-size="15" font-weight="650">Expected hostname</text>
+  <text x="439" y="195" text-anchor="middle" font-size="13" font-weight="400">Matches a name on the leaf</text>
+  <polygon points="438.00,133.00 438.00,157.00 440.00,157.00 440.00,133.00" fill="#a87637"/>
+</svg>

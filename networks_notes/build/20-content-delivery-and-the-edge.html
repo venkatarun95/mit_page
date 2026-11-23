@@ -1,0 +1,643 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>20. Content Delivery and the Edge</title>
+  <style>:root {
+  color-scheme: light;
+  background: #f3f6f5;
+  color: #182a30;
+  font: 18px/1.65 Georgia, serif;
+}
+
+body {
+  max-width: 48rem;
+  margin: 2.5rem auto;
+  padding: 2.25rem clamp(1rem, 5vw, 3.25rem);
+  background: #fff;
+  border-top: 0.3rem solid #076764;
+}
+
+h1,
+h2,
+h3 {
+  font-family: system-ui, sans-serif;
+  line-height: 1.2;
+  color: #152e37;
+}
+
+h1 {
+  margin: 0 0 1.4rem;
+  font-size: clamp(2rem, 5vw, 3rem);
+  letter-spacing: -0.035em;
+}
+
+h2 {
+  margin: 2.5rem 0 0.7rem;
+  font-size: clamp(1.4rem, 3vw, 1.75rem);
+}
+
+p {
+  margin: 0 0 1rem;
+}
+
+a {
+  color: #0a5b63;
+  overflow-wrap: anywhere;
+  text-underline-offset: 0.15em;
+}
+
+li + li {
+  margin-top: 0.7rem;
+}
+
+blockquote {
+  margin: 1.2rem 0;
+  padding: 0.65rem 1rem;
+  background: #edf6f4;
+  border-inline-start: 0.2rem solid #076764;
+}
+
+blockquote p {
+  margin: 0;
+}
+
+img {
+  display: block;
+  max-width: 100%;
+  height: auto;
+  outline: 1px solid #d3dfdf;
+}
+
+p:has(> img:only-child) {
+  margin: 1.5rem 0 0.5rem;
+}
+
+p:has(> img:only-child) + p:has(> em:only-child) {
+  color: #37525a;
+  font: 0.83rem/1.5 system-ui, sans-serif;
+  margin: 0 0 1.5rem;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 1.25rem 0;
+  font: 0.83rem/1.45 system-ui, sans-serif;
+  font-variant-numeric: tabular-nums;
+  overflow-wrap: anywhere;
+}
+
+th,
+td {
+  border: 1px solid #d3dfdf;
+  padding: 0.55rem;
+  vertical-align: top;
+}
+
+th {
+  background: #edf6f4;
+}
+
+@media (max-width: 34rem) {
+  body {
+    margin: 0;
+  }
+
+  table {
+    font-size: 0.7rem;
+  }
+
+  th,
+  td {
+    padding: 0.3rem;
+  }
+}
+
+@media print {
+  :root {
+    background: #fff;
+  }
+
+  body {
+    margin: 0;
+    padding: 0;
+    border: 0;
+  }
+
+  h2,
+  p:has(> img:only-child) {
+    break-after: avoid;
+  }
+
+  table,
+  img {
+    break-inside: avoid;
+  }
+}
+
+.chapter-lab {
+  margin: 1.5rem 0 0.65rem;
+  padding: clamp(0.75rem, 3vw, 1.25rem);
+  border: 1px solid #b7cdcd;
+  border-radius: 0.6rem;
+  background: #f7faf9;
+  font: 0.93rem/1.5 system-ui, sans-serif;
+}
+
+.chapter-lab h3 {
+  margin: 0 0 0.5rem;
+  font-size: 1.2rem;
+}
+
+.chapter-lab > p {
+  color: #334e56;
+}
+
+.chapter-lab + p:has(> em:only-child) {
+  color: #37525a;
+  font: 0.83rem/1.5 system-ui, sans-serif;
+  margin-bottom: 1.5rem;
+}
+
+#playback-lab:not([hidden]) + p:has(> img:only-child) {
+  display: none;
+}
+
+.lab-controls {
+  display: flex;
+  gap: 0.75rem;
+  align-items: end;
+  flex-wrap: wrap;
+  margin-bottom: 1rem;
+}
+
+.lab-controls label {
+  display: grid;
+  gap: 0.3rem;
+  font-weight: 700;
+  font-size: 0.8rem;
+}
+
+.lab-controls select,
+.lab-controls button {
+  min-height: 2.2rem;
+  border: 1px solid #9bb2b8;
+  border-radius: 0.3rem;
+  background: #fff;
+  color: #163440;
+  padding: 0.25rem 0.5rem;
+  font: inherit;
+}
+
+.lab-controls button {
+  font-size: 0.8rem;
+  cursor: pointer;
+}
+
+.lab-controls :focus-visible {
+  outline: 2px solid #076764;
+  outline-offset: 2px;
+}
+
+#link-race .race-timeline {
+  display: grid;
+  gap: 0.25rem;
+  margin-bottom: 0.85rem;
+}
+
+#link-race .race-timeline label,
+#link-race .race-endpoints {
+  display: flex;
+  justify-content: space-between;
+  gap: 0.35rem;
+}
+
+#link-race .race-timeline label {
+  font-size: 0.8rem;
+  font-weight: 700;
+  font-variant-numeric: tabular-nums;
+}
+
+#link-race .race-timeline input {
+  width: 100%;
+  margin: 0;
+  accent-color: #076764;
+}
+
+#link-race .race-timeline input:focus-visible {
+  outline: 2px solid #076764;
+  outline-offset: 2px;
+}
+
+#link-race [aria-disabled="true"] {
+  color: #55676e;
+  background: #edf2f1;
+  cursor: default;
+}
+
+#link-race .race-lane {
+  --race-color: #25618b;
+  --race-wire: #dce9f1;
+  padding: 0.75rem 0;
+  border-top: 1px solid #b7cdcd;
+}
+
+#link-race .race-lane[data-link="B"] {
+  --race-color: #076764;
+  --race-wire: #dbede9;
+}
+
+#link-race h4 {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 0.15rem 0.6rem;
+  margin: 0 0 0.4rem;
+  color: var(--race-color);
+  font-size: 1rem;
+}
+
+#link-race h4 span,
+#link-race .race-endpoints,
+#link-race .race-timeline p,
+#link-race .race-key {
+  color: #405961;
+  font-size: 0.8rem;
+  font-weight: 400;
+}
+
+#link-race h4 strong {
+  padding: 0.05rem 0.4rem;
+  border-radius: 0.2rem;
+  background: var(--race-wire);
+  font-size: 0.76rem;
+}
+
+#link-race .race-path {
+  margin-inline: 0.3rem;
+}
+
+#link-race [data-link="B"] .race-path {
+  width: 48%;
+}
+
+#link-race .race-track {
+  position: relative;
+  height: 0.85rem;
+  margin: 0.2rem 0 0.4rem;
+  border-radius: 1rem;
+  background: var(--race-wire);
+}
+
+#link-race .race-track::before,
+#link-race .race-track::after,
+#link-race .race-track span {
+  position: absolute;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  background: var(--race-color);
+}
+
+#link-race .race-track::before,
+#link-race .race-track::after {
+  content: "";
+  left: 0;
+  width: 0.14rem;
+  height: 100%;
+  border-radius: 1rem;
+}
+
+#link-race .race-track::after {
+  left: 100%;
+}
+
+#link-race .race-track span {
+  width: clamp(0.17rem, 0.55vw, 0.36rem);
+  aspect-ratio: 1;
+  border-radius: 50%;
+}
+
+#link-race .race-timeline p,
+#link-race .race-meter p,
+#link-race .race-finish {
+  margin: 0;
+}
+
+#link-race .race-totals {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 0.75rem;
+  margin-top: 0.6rem;
+}
+
+#link-race .race-meter p {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: 0 0.35rem;
+  font-size: 0.8rem;
+  font-variant-numeric: tabular-nums;
+}
+
+#link-race .race-meter progress {
+  display: block;
+  width: 100%;
+  height: 0.55rem;
+  margin: 0.2rem 0 0;
+  accent-color: var(--race-color);
+}
+
+#link-race .race-finish {
+  margin-top: 0.4rem;
+  font-size: 0.85rem;
+  font-variant-numeric: tabular-nums;
+}
+
+#link-race .race-announcement {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  clip-path: inset(50%);
+  overflow: hidden;
+}
+
+#link-race figcaption {
+  border-top: 1px solid #b7cdcd;
+  padding-top: 0.65rem;
+  color: #173840;
+  font-weight: 600;
+}
+
+.lab-link-policy {
+  padding-top: 0.65rem;
+  border-top: 1px solid #b7cdcd;
+}
+
+.lab-link-policy + .lab-link-policy {
+  margin-top: 0.9rem;
+}
+
+.lab-link-policy h4 {
+  margin: 0 0 0.6rem;
+  color: #173840;
+  font-size: 0.98rem;
+}
+
+.lab-sender p {
+  margin: 0 0 0.3rem;
+  font-size: 0.8rem;
+  color: #334e56;
+}
+
+.lab-sender + .lab-sender {
+  margin-top: 0.65rem;
+}
+
+.lab-packets,
+.lab-events {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.lab-packets {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.35rem;
+}
+
+.lab-packets li,
+.lab-events li {
+  margin: 0;
+}
+
+.lab-packet {
+  display: grid;
+  padding: 0.3rem 0.45rem;
+  border: 1px solid #99b9af;
+  border-radius: 0.3rem;
+  background: #e4f3ee;
+  color: #18443b;
+  font-size: 0.74rem;
+  min-width: 4.6rem;
+}
+
+.lab-packet.late {
+  border-color: #cfac85;
+  background: #fcf0dd;
+  color: #704411;
+}
+
+.lab-packet.refused {
+  border-color: #c6cfd2;
+  background: #eef1f2;
+  color: #324850;
+}
+
+.lab-plot {
+  background: #fff;
+  border: 1px solid #d3dfdf;
+  border-radius: 0.3rem;
+}
+
+.lab-plot svg {
+  display: block;
+  width: 100%;
+  color: #314d58;
+  font-size: 17px;
+}
+
+.lab-plot text {
+  fill: currentColor;
+}
+
+.lab-plot .lab-axis-title {
+  font-weight: 700;
+}
+
+.lab-plot .lab-outage-label {
+  fill: #6c441b;
+}
+
+.lab-grid {
+  stroke: #c0cfd1;
+}
+
+.lab-outage {
+  fill: #fbefde;
+}
+
+.lab-threshold {
+  stroke: #567e89;
+  stroke-dasharray: 6 5;
+}
+
+.lab-trace {
+  fill: none;
+  stroke: #076764;
+  stroke-width: 3.5;
+  stroke-linejoin: round;
+}
+
+.lab-marker {
+  fill: #076764;
+  stroke: #fff;
+  stroke-width: 1.2;
+}
+
+.lab-plot .lab-marker-text {
+  fill: #fff;
+  font-size: 13px;
+  font-weight: 700;
+}
+
+.lab-result {
+  margin: 0.6rem 0;
+  font-weight: 700;
+}
+
+.lab-events {
+  display: flex;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+  font-size: 0.78rem;
+}
+
+.lab-events li {
+  flex: 1 1 9rem;
+  display: flex;
+  align-items: start;
+  gap: 0.4rem;
+  border: 1px solid #d3dfdf;
+  border-radius: 0.3rem;
+  background: #fff;
+  padding: 0.45rem;
+}
+
+.lab-marker-label {
+  min-width: 1.2rem;
+  height: 1.2rem;
+  border-radius: 50%;
+  background: #076764;
+  color: #fff;
+  font-weight: 700;
+  text-align: center;
+}
+
+@media print {
+  .chapter-lab {
+    display: none;
+  }
+
+  #playback-lab:not([hidden]) + p:has(> img:only-child) {
+    display: block;
+  }
+}
+
+.book-nav {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: .55rem 1.4rem;
+  margin-bottom: 1.6rem;
+  color: #37525a;
+  font: .85rem/1.5 system-ui, sans-serif;
+}
+
+.chapter-turn {
+  justify-content: space-between;
+  margin: 2.4rem 0 0;
+  padding-top: 1rem;
+  border-top: 1px solid #d3dfdf;
+}
+
+.book-contents ul {
+  list-style: none;
+  padding: 0;
+}
+
+@media print {
+  .book-nav { display: none; }
+}
+</style>
+</head>
+<body>
+  <main>
+    <nav class="book-nav" aria-label="Book location"><a href="index.html">Contents</a><span>Part VI — Networks in Practice</span></nav>
+    <article><h1>20. Content Delivery and the Edge</h1>
+<p>Think of the transit site&#39;s logo, which stayed the same all week while the departures changed each minute. Now give the data center something much larger that requests can share: the opening segment of a new show. A hundred viewers on one access network ask for exactly those bytes. Every response crosses the same long-haul link on its way to them. You have space for one segment at a server inside that access network. Or you could use the space for a lecture video somebody there might watch next month. When should you move either object, and how will a viewer find the copy?</p>
+<h2>How much of the trip can you buy once?</h2>
+<p>Give the opening segment a size of 8 MB. Count only payload crossing the upstream link. A hundred individual origin responses send 800 MB over it. Send one copy to the edge and let the edge serve all hundred viewers, and the upstream link carries 8 MB. The local network still carries a response to each viewer. The edge trades storage and local serving capacity for 792 MB less upstream traffic. For one request in that region, proactively copying the segment breaks even in upstream bytes and can help that first viewer. For zero requests, the copy uses both upstream traffic and storage without serving anyone.</p>
+<p>The byte count tells the access operator what it saves. To see what the viewer might save, compare the trip to the edge with the shortest possible trip to the origin. Over 2,000 km of fiber running at about 200,000 km/s, a bare round trip takes 20 ms. A real route may be longer and its packets may queue. A nearby copy can cut the waiting before the first byte, and serving many local viewers can keep the shared upstream link from becoming their throughput bottleneck. Ask where the slowest link lies. Moving the copy inside the provider helps that provider avoid carrying repeated data over a long interconnection route. It won&#39;t make a viewer&#39;s slow home Wi-Fi faster.</p>
+<p>A <strong>content delivery network</strong>, or CDN, operates serving sites near groups of users. Some distribute objects in advance, especially when demand is predictable. An <strong>on-demand cache</strong> can fetch after the first request and serve subsequent ones locally while the copy stays usable. For a video provider and an access network, putting equipment inside the access network can serve both interests. The provider can serve that audience with fewer long-haul transfers, and the access operator can bring the traffic in without repeatedly loading its external links. Someone still supplies rack space, power, connectivity and operations. Netflix&#39;s Open Connect appliances are an example of deployment inside partner ISP networks. <a href="https://openconnect.netflix.com/en/">Netflix Open Connect.</a></p>
+<p><img src="figures/20-content-delivery-and-the-edge/cache-path.svg" alt="A local edge answers with a hit. On a miss it asks a regional cache, which can in turn ask the origin. A second edge shares the same regional parent."></p>
+<p>Set up a regional cache above several small edges. A miss sends the edge to that cache, which can fetch from the origin if it also misses. A regional hit avoids an origin transfer but still pays for the trip between edge and region. A user redirected to a nearer site might therefore get a slower response if that edge sends the request across the network for a copy. If a hundred requests for the same cold object arrive together, let one upstream fetch do the work and have the others wait for its result. If the fetch fails, those requests still need an answer. What retry policy keeps the waiters from starting a hundred new fetches together?</p>
+<h2>What should occupy the next byte of cache?</h2>
+<p>Suppose your edge has 8 MB of space. A clip takes all 8 MB and has five likely requests here before this copy expires. An icon takes 1 MB and has twenty likely requests. Assume complete transfers, a reliable origin, one proactive fill per object, and the same upstream link for every transfer. If you store the clip, you avoid four upstream responses net of its fill, or 32 MB. If you store the icon, you avoid nineteen responses or 19 MB. How does the decision change if your first priority is the number of requests served locally? The two policies optimize different outcomes. A third policy might ask how much total traffic several small objects save when they fit where the big one would go.</p>
+<p>Now replace the forecasts with observations. One simple rule admits objects on a miss and evicts the <strong>least recently used</strong> when it needs room. That works when recent demand predicts future demand. Try a burst of one-off large downloads interspersed with requests for the site icon. A single admission can evict the icon. If visitors regularly ask for both, the cache can make a long trip for nearly every request. You could wait for a second request before admitting a large object, reserve some space for repeatedly used small objects, or choose an eviction policy based on anticipated savings. Measure both miss count and upstream bytes. A cache aimed at quick page starts may care whether the first object the browser needs is among those misses.</p>
+<p><strong>Predict–simulate–explain.</strong> In the <a href="../chapters/20-content-delivery-and-the-edge/edge-lab.html">edge cache lab</a>, give an 8 MB cache the trace <code>i a i b i c i</code>. Each <code>i</code> is a 1 MB icon and each of <code>a</code>, <code>b</code>, and <code>c</code> is a different 8 MB video segment. Predict the hits for admission on first and second request. Then use the same cache sizes on a trace where one segment suddenly becomes popular. Which assumption about reuse does each policy make? The <a href="../chapters/20-content-delivery-and-the-edge/lab.md">lab notes</a> show how to vary the trace and expiration.</p>
+<h2>How do you know a stored response still answers the question?</h2>
+<p>Now the producer replaces the opening segment, but the player still asks for the same URL. The edge has the old bytes. How long is it permitted to serve them? An HTTP response can give shared caches freshness instructions, such as a maximum age for reuse. Before an eligible response ages out, the cache can reuse it even if the origin has changed. This is a permission to use a previously stored response for an interval. A cache can revalidate a stale copy by sending the origin a conditional request, for example with <code>If-None-Match</code> and the saved entity tag. A suitable <code>304 Not Modified</code> response lets it keep the stored body. That saves a body transfer but still costs a request and a reply on the upstream path. An origin can require revalidation, disallow storage, or arrange to invalidate managed copies on a change. Which objects would you allow a cache to serve during loss of contact with the origin? <a href="https://www.rfc-editor.org/rfc/rfc9111.html#section-4">RFC 9111, §§4–5.</a> <a href="https://www.rfc-editor.org/rfc/rfc9110.html#section-13.1.2">RFC 9110, §§13.1.2 and 15.4.5.</a></p>
+<p>Alternatively, give each version a different URL. Have the current page or a manifest tell the player which version to request. Old cached bytes can remain usable for viewers who still want that version. The question of freshness moves to the manifest. Which user&#39;s display changes first after the origin publishes a new manifest, a user whose cache is still allowed to reuse the previous manifest or one who has to fetch it now?</p>
+<h3>Design this. Place the pieces of a social feed</h3>
+<p>The feed has a common logo and icons, recently viral videos, videos with several hundred views, and direct messages. Rank them by how easily a shared edge can deliver them. Then decide whether ranking by <em>bytes saved</em> would move any of them. What premise would make a video with a few hundred views particularly suitable for a single edge?</p>
+<p><em>Adapted from <a href="assets/quiz3-2025.pdf#page=7">Quiz 3 2025, Q7, p. 7</a>. The second metric and location question are new.</em></p>
+<details>
+<summary>Worked reasoning</summary>
+
+<p>Start with small public assets that nearly every visitor needs. Follow with viral media, other public media, and private messages. The assets and public media have reusable bytes. Viral videos can deliver much larger upstream-byte savings than icons because each avoided fetch is large. A less popular video whose viewers all attend the same school or live in the same neighborhood may be an excellent candidate for that one edge. A direct message needs requester authorization, has little reuse across unrelated viewers, and is tied to the application&#39;s update and delivery rules. Serving private data near a user can still be useful if you have a placement and access-control design for that job.</p>
+</details>
+
+<h2>How does the request find the copy?</h2>
+<p>One name now has several possible serving sites. Choose which site should receive a request. Is it near by measured round-trip time? Does it have the object, or enough space and network capacity to fetch it? Then choose how to get the user&#39;s packets to that site.</p>
+<table>
+<thead>
+<tr>
+<th>Where you choose</th>
+<th>What you change</th>
+<th>What the choice can see</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Application</td>
+<td>Return an HTTP redirect or put a regional hostname in the page or manifest.</td>
+<td>The object, request context, and whatever inventory or load the application knows. A redirect adds another exchange.</td>
+</tr>
+<tr>
+<td>DNS</td>
+<td>Answer a hostname lookup with an address appropriate to the requester or resolver.</td>
+<td>The name and hints about where the lookup comes from. Recursive caching can keep an answer in use even when the preferred server changes.</td>
+</tr>
+<tr>
+<td>Routing</td>
+<td>Advertise routes to the same service address from multiple sites, using <strong>anycast</strong>.</td>
+<td>Routes and routing policy. The selected path may reach a different geographic site than the one that would answer fastest.</td>
+</tr>
+</tbody></table>
+<p>In class, a demonstration from several VPN exits returned different DNS addresses for the same name at some services and the same answer at others. Changing the name resolution result is one way to change where users go. The same address can also route to multiple sites. If a trace contains only a destination address, what additional observation would establish which site handled the request? An identifier added by the serving edge, or operator-side request logs, could help. <a href="https://www.rfc-editor.org/rfc/rfc4786.html">RFC 4786, §§2 and 4.</a></p>
+<p>The class also got a poll about how to encode a regional choice. Suppose the choices are <code>west.media.example</code> and <code>east.media.example</code>, or a single hostname with paths beginning <code>/west/</code> and <code>/east/</code>. Which parts of the URL does the browser use for DNS before it connects? Different hostnames can steer the <em>initial</em> connection by DNS. Paths go to the already-selected HTTP server. That server can read them and act as a proxy or redirect the client. Those designs place the decision in different components.</p>
+<h2>When should the edge do the work itself?</h2>
+<p>A cloud game receives a player&#39;s input and returns rendered video. The important trip repeats each time the player acts. A nearby machine can reduce the travel time of both the input and the new frames, but it needs a GPU, the current game state and enough capacity to send video. A shared cache cannot guess the next frame for a player&#39;s specific input. A large model training job faces a different trip. Workers may repeatedly exchange updates with one another, so their distance to one another can matter more than their distance to the eventual users. Popular public video benefits from placing reusable bytes near large groups of viewers. For a lecture with very few viewers scattered around the world, start from a centrally stored copy and let demand determine whether a cache should retain it. <a href="assets/cs356-final-2024.pdf#page=1">Final 2024, Q1, p. 1.</a></p>
+<p><strong>What if?</strong> A low-Earth-orbit path to one central site is faster round trip than your alternatives but has much less available throughput. Assume 30 ms RTT and 5 Mbit/s on that path, and 50 ms RTT and 100 Mbit/s on a terrestrial path. Choose a path for game inputs that require a tiny reply and a deadline of 40 ms. Now choose for a 20 Mbit/s rendered-video stream. Assume the given rates are sustained and omit processing time. Which part of the reasoning changes for a game with a large startup download before its first input? <a href="assets/quiz3-2025.pdf#page=1">Adapted from Quiz 3 2025, Q1, p. 1.</a></p>
+<details>
+<summary>Worked reasoning</summary>
+
+<p>The tiny exchange can fit the 40 ms budget over the 30 ms path if serialization and other delays fit in the remaining time. A 20 Mbit/s rendered stream exceeds the 5 Mbit/s path&#39;s capacity even when round trips are short. The terrestrial path can carry the stream under the given throughput assumption. The user&#39;s action-to-frame deadline, if there is one, still has to be checked separately. A large startup download has a bulk transfer cost that the tiny-message calculation omitted. You can evaluate different paths for startup and for the interactive phase.</p>
+</details>
+
+<h2>What if you ask the network for the object itself?</h2>
+<p>Chapter 17&#39;s script had two names of a kind. The URL told the browser where and how to ask, and the digest told it which bytes to accept. Suppose you already know a trusted digest for the video segment. Ask any copy holder for the object with that digest. Rename the downloaded file and the digest stays the same. Change the bytes and you ordinarily get a new digest. A <strong>content address</strong> identifies a version without telling you where it is. The player still needs a trusted publisher&#39;s manifest to learn the digest of the version it wants now.</p>
+<p>For an overlay running on existing IP, you can distribute the lookup across participating machines. Turn digests into positions on a ring, assign a position to each participating node, and make the next node clockwise responsible for a key. That node could store a copy or store a pointer to one. Each node knows a successor, so a lookup can begin at a reachable node and walk the ring. Chord adds shortcuts and gets logarithmic lookup cost under its assumptions, instead of traversing each successor in turn. If a node disappears, someone has to repair the ring and recover any entries that were kept only there. Geographic proximity is a separate choice. The next node in key order could be on another continent. <a href="https://pdos.csail.mit.edu/archive/6.824-2007/papers/stoica-chord.pdf">Stoica et al., <em>Chord</em>, §4.</a></p>
+<p><img src="figures/20-content-delivery-and-the-edge/lookup-ring.svg" alt="On a logical ring with positions from 0 to 15, a key at 7 falls after node 5 and before node 11. Moving clockwise, node 11 is responsible for the key."></p>
+<p>Now move the naming operation into the forwarding layer. In <strong>Named Data Networking</strong> (NDN), a consumer can send an Interest for a name rather than a packet destined to an already chosen host. A forwarder can return matching cached Data, forward the Interest using a table of name prefixes, or combine it with a pending Interest for the same data. It records incoming interfaces so returned Data can go back to the consumers that asked. NDN supports hierarchical names and signed Data. A digest can identify a specific version, but name-based forwarding needn&#39;t use bare file hashes. The architecture lets a network answer from a suitable nearby copy and asks more of the network itself, including name forwarding, pending request state and decisions about caching. The overlay can instead keep those responsibilities entirely in the participating machines. <a href="https://named-data.net/wp-content/uploads/2014/04/tr-ndn-0019-ndn.pdf">Zhang et al., <em>Named Data Networking</em>, §§II–III.</a></p>
+<h2>Which replica is really independent?</h2>
+<p>You have several edges and a cache hierarchy. A user in one region can play the segments everybody watched yesterday but gets an error on a new upload. Users elsewhere can play the upload. Ask for one working and one failing request, the serving site each reached, and whether each site already held the object. A warm cache may still answer while the path it uses for new content is broken. Two sites with separate storage might share an upstream path, a DNS service or a regional cache. Which dependency could make both fail at the same time? In the next chapter the transit site&#39;s logo still loads while the departures panel stays empty. What would you compare first to tell a cache that is masking a failure from a backend that is simply running late?</p>
+</article>
+    <nav class="book-nav chapter-turn" aria-label="Chapter navigation"><a href="19-data-centers-and-cloud-networks.html">Previous · 19. Data Centers and Cloud Networks</a>
+<a href="index.html">Contents</a>
+<a href="21-when-networks-fail.html">Next · 21. When Networks Fail</a></nav>
+  </main>
+</body>
+</html>

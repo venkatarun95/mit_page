@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="650" height="308" viewBox="0 0 650 308" role="img" aria-labelledby="title desc">
+  <title id="title">Divide the through traffic to balance the bottlenecks</title>
+  <desc id="desc">Three link load curves are 8 minus x, x, and x plus 1. Capacity is five. With x at 3.5, the two highest curves intersect at 4.5 megabits per second.</desc>
+  <rect x="1" y="1" width="648" height="306" rx="16" fill="#f7faf8"/>
+  <rect x="273" y="126" width="62" height="110" fill="#e8f2ea"/>
+  <g stroke-width="2" fill="none"><path d="M86 61V236H586" stroke="#334f4c"/><path d="M86 126H586" stroke="#7b8583" stroke-dasharray="6 5"/><path d="M304 137V236M86 137H304" stroke="#315e55" stroke-dasharray="3 4"/></g>
+  <g fill="none" stroke-width="3"><path d="M86 60L583 236" stroke="#a14e2e"/><path d="M86 236L583 60" stroke="#49668a"/><path d="M86 214L583 38" stroke="#315e55"/></g>
+  <circle cx="304" cy="137" r="5.5" fill="#173c35"/>
+  <g fill="#163532" font-family="system-ui, sans-serif" font-size="16">
+    <text x="21" y="29">Link load (Mbit/s)</text>
+    <text x="68" y="131">5</text><text x="45" y="155">4.5</text><text x="68" y="241">0</text>
+    <text x="248" y="279">A-to-B traffic on detour (Mbit/s)</text>
+    <g text-anchor="middle"><text x="273" y="260">3</text><text x="304" y="260">3.5</text><text x="335" y="260">4</text></g>
+    <text x="509" y="149">Capacity</text><text x="138" y="64" fill="#a14e2e">A → B</text><text x="565" y="30" fill="#315e55">C → B</text><text x="584" y="82" fill="#49668a">A → C</text>
+  </g>
+</svg>

@@ -1,0 +1,42 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 224" role="img" aria-labelledby="title desc">
+  <title id="title">When does the short request start?</title>
+  <desc id="desc">The FIFO starts B1, B2, B3, B4 and then the request, at time 16 milliseconds. Flow round robin starts B1, the request, B2, B3 and B4, with the request starting at 4 milliseconds.</desc>
+  <style>text { font-family: system-ui,sans-serif; fill: #162436 }</style>
+  <rect x="8" y="8" width="704" height="208" rx="14" fill="#f7f9fb" stroke="#d0dbe5"/>
+  <polygon points="154.50,42.00 154.50,183.00 155.50,183.00 155.50,42.00" fill="#bcc9d5"/>
+  <text x="155" y="203" text-anchor="middle" font-size="14" font-weight="400">0 ms</text>
+  <polygon points="258.50,42.00 258.50,183.00 259.50,183.00 259.50,42.00" fill="#bcc9d5"/>
+  <text x="259" y="203" text-anchor="middle" font-size="14" font-weight="400">4 ms</text>
+  <polygon points="362.50,42.00 362.50,183.00 363.50,183.00 363.50,42.00" fill="#bcc9d5"/>
+  <text x="363" y="203" text-anchor="middle" font-size="14" font-weight="400">8 ms</text>
+  <polygon points="466.50,42.00 466.50,183.00 467.50,183.00 467.50,42.00" fill="#bcc9d5"/>
+  <text x="467" y="203" text-anchor="middle" font-size="14" font-weight="400">12 ms</text>
+  <polygon points="570.50,42.00 570.50,183.00 571.50,183.00 571.50,42.00" fill="#bcc9d5"/>
+  <text x="571" y="203" text-anchor="middle" font-size="14" font-weight="400">16 ms</text>
+  <polygon points="674.50,42.00 674.50,183.00 675.50,183.00 675.50,42.00" fill="#bcc9d5"/>
+  <text x="675" y="203" text-anchor="middle" font-size="14" font-weight="400">20 ms</text>
+  <text x="135" y="84" text-anchor="end" font-size="16" font-weight="650">FIFO</text>
+  <rect x="155" y="59" width="103" height="40" rx="3" fill="#d3e3ee" stroke="#a9bbc9"/>
+  <text x="206" y="84" text-anchor="middle" font-size="15" font-weight="600">B1</text>
+  <rect x="259" y="59" width="103" height="40" rx="3" fill="#d3e3ee" stroke="#a9bbc9"/>
+  <text x="310" y="84" text-anchor="middle" font-size="15" font-weight="600">B2</text>
+  <rect x="363" y="59" width="103" height="40" rx="3" fill="#d3e3ee" stroke="#a9bbc9"/>
+  <text x="414" y="84" text-anchor="middle" font-size="15" font-weight="600">B3</text>
+  <rect x="467" y="59" width="103" height="40" rx="3" fill="#d3e3ee" stroke="#a9bbc9"/>
+  <text x="518" y="84" text-anchor="middle" font-size="15" font-weight="600">B4</text>
+  <rect x="571" y="59" width="103" height="40" rx="3" fill="#b9e2d3" stroke="#a9bbc9"/>
+  <text x="622" y="84" text-anchor="middle" font-size="15" font-weight="600">Request</text>
+  <text x="135" y="147" text-anchor="end" font-size="16" font-weight="650">Per-flow RR</text>
+  <rect x="155" y="122" width="103" height="40" rx="3" fill="#d3e3ee" stroke="#a9bbc9"/>
+  <text x="206" y="147" text-anchor="middle" font-size="15" font-weight="600">B1</text>
+  <rect x="259" y="122" width="103" height="40" rx="3" fill="#b9e2d3" stroke="#a9bbc9"/>
+  <text x="310" y="147" text-anchor="middle" font-size="15" font-weight="600">Request</text>
+  <rect x="363" y="122" width="103" height="40" rx="3" fill="#d3e3ee" stroke="#a9bbc9"/>
+  <text x="414" y="147" text-anchor="middle" font-size="15" font-weight="600">B2</text>
+  <rect x="467" y="122" width="103" height="40" rx="3" fill="#d3e3ee" stroke="#a9bbc9"/>
+  <text x="518" y="147" text-anchor="middle" font-size="15" font-weight="600">B3</text>
+  <rect x="571" y="122" width="103" height="40" rx="3" fill="#d3e3ee" stroke="#a9bbc9"/>
+  <text x="622" y="147" text-anchor="middle" font-size="15" font-weight="600">B4</text>
+  <text x="178" y="35" text-anchor="start" font-size="15" font-weight="400">Request arrives at 1 ms</text>
+  <polygon points="179.50,42.00 179.50,55.00 182.50,55.00 182.50,42.00" fill="#187860"/>
+</svg>

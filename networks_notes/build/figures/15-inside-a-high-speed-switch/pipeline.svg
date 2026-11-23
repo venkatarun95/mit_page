@@ -1,0 +1,29 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 177" role="img" aria-labelledby="title desc">
+  <title id="title">Follow a packet through the switch</title>
+  <desc id="desc">Receive at input 1, parse and look up the packet destination, queue, wait for the fabric grant, and transmit at output A. A scheduler controls the fabric connection.</desc>
+  <style>text { font-family: system-ui,sans-serif; fill: #162436 }</style>
+  <rect x="8" y="8" width="704" height="161" rx="14" fill="#f7f9fb" stroke="#d0dbe5"/>
+  <rect x="24" y="68" width="130" height="64" rx="7" fill="#fff" stroke="#99b2c6"/>
+  <text x="88" y="94" text-anchor="middle" font-size="15" font-weight="650">Receive</text>
+  <text x="88" y="117" text-anchor="middle" font-size="14" font-weight="400">Input 1</text>
+  <rect x="156" y="68" width="130" height="64" rx="7" fill="#fff" stroke="#99b2c6"/>
+  <text x="220" y="94" text-anchor="middle" font-size="15" font-weight="650">Parse and look up</text>
+  <text x="220" y="117" text-anchor="middle" font-size="14" font-weight="400">Destination → A</text>
+  <rect x="293" y="68" width="130" height="64" rx="7" fill="#dcebf3" stroke="#99b2c6"/>
+  <text x="357" y="94" text-anchor="middle" font-size="15" font-weight="650">Queue</text>
+  <text x="357" y="117" text-anchor="middle" font-size="14" font-weight="400">Wait for grant</text>
+  <rect x="428" y="68" width="130" height="64" rx="7" fill="#dcebf3" stroke="#99b2c6"/>
+  <text x="492" y="94" text-anchor="middle" font-size="15" font-weight="650">Fabric</text>
+  <text x="492" y="117" text-anchor="middle" font-size="14" font-weight="400">Connect to A</text>
+  <rect x="565" y="68" width="130" height="64" rx="7" fill="#fff" stroke="#99b2c6"/>
+  <text x="629" y="94" text-anchor="middle" font-size="15" font-weight="650">Transmit</text>
+  <text x="629" y="117" text-anchor="middle" font-size="14" font-weight="400">Output A</text>
+  <polygon points="146,98 156,98 156,94 164,100 156,106 156,102 146,102" fill="#2c6a8c"/>
+  <polygon points="280,98 290,98 290,94 298,100 290,106 290,102 280,102" fill="#2c6a8c"/>
+  <polygon points="415,98 425,98 425,94 433,100 425,106 425,102 415,102" fill="#2c6a8c"/>
+  <polygon points="549,98 559,98 559,94 567,100 559,106 559,102 549,102" fill="#2c6a8c"/>
+  <rect x="324" y="22" width="204" height="28" rx="4" fill="#efe2c6" stroke="#d9be8b"/>
+  <text x="426" y="41" text-anchor="middle" font-size="14" font-weight="400">Scheduler grants the transfer</text>
+  <polygon points="490.00,50.00 490.00,67.00 492.00,67.00 492.00,50.00" fill="#a97437"/>
+  <text x="624" y="159" text-anchor="middle" font-size="13" font-weight="400">Egress may buffer first</text>
+</svg>

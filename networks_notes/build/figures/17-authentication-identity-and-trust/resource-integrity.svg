@@ -1,0 +1,21 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 215" role="img" aria-labelledby="title desc">
+  <title id="title">Pinning a CDN script to a page</title>
+  <desc id="desc">The browser obtains the expected digest from HTML and the bytes from a CDN. It hashes the bytes and permits execution only on a match.</desc>
+  <style>text { font-family: system-ui,sans-serif; fill: #162436 }</style>
+  <rect x="8" y="8" width="704" height="199" rx="14" fill="#f7f9fb" stroke="#d0dbe5"/>
+  <rect x="34" y="49" width="235" height="57" rx="7" fill="#fff" stroke="#a9becf"/>
+  <text x="151" y="73" text-anchor="middle" font-size="16" font-weight="650">HTML from the page origin</text>
+  <text x="151" y="94" text-anchor="middle" font-size="14" font-weight="400">Expected digest</text>
+  <rect x="34" y="131" width="235" height="57" rx="7" fill="#fff" stroke="#a9becf"/>
+  <text x="151" y="155" text-anchor="middle" font-size="16" font-weight="650">Script from the CDN</text>
+  <text x="151" y="176" text-anchor="middle" font-size="14" font-weight="400">Fetched bytes</text>
+  <rect x="314" y="47" width="366" height="144" rx="8" fill="#dcebf3" stroke="#a9becf"/>
+  <text x="497" y="74" text-anchor="middle" font-size="19" font-weight="650">Browser</text>
+  <text x="497" y="106" text-anchor="middle" font-size="15" font-weight="400">Read the expected digest</text>
+  <text x="497" y="135" text-anchor="middle" font-size="15" font-weight="400">Hash the fetched bytes</text>
+  <text x="497" y="166" text-anchor="middle" font-size="16" font-weight="650">Execute only if the digests match</text>
+  <polygon points="269.00,80.50 302.00,80.50 302.00,77.50 269.00,77.50" fill="#2c6a8c"/>
+  <polygon points="302,74 310,79 302,84" fill="#2c6a8c"/>
+  <polygon points="269.00,159.50 302.00,159.50 302.00,156.50 269.00,156.50" fill="#2c6a8c"/>
+  <polygon points="302,153 310,158 302,163" fill="#2c6a8c"/>
+</svg>

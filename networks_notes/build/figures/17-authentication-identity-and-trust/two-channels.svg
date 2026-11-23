@@ -1,0 +1,19 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 200" role="img" aria-labelledby="title desc">
+  <title id="title">Encrypted sessions with an intermediary</title>
+  <desc id="desc">You share an encrypted session with the intermediary, who shares a different encrypted session with Alice. The intermediary knows both secrets. An authenticated handshake ties the actual key exchange to the intended signer.</desc>
+  <style>text { font-family: system-ui,sans-serif; fill: #162436 }</style>
+  <rect x="8" y="8" width="704" height="184" rx="14" fill="#f7f9fb" stroke="#d0dbe5"/>
+  <text x="360" y="40" text-anchor="middle" font-size="20" font-weight="650">Two encrypted sessions with different endpoints</text>
+  <rect x="33" y="70" width="180" height="70" rx="8" fill="#dcebf3" stroke="#a9becf"/>
+  <text x="123" y="99" text-anchor="middle" font-size="17" font-weight="650">You</text>
+  <text x="123" y="122" text-anchor="middle" font-size="14" font-weight="400">Hold secret 1</text>
+  <rect x="270" y="70" width="180" height="70" rx="8" fill="#f3e5c7" stroke="#a9becf"/>
+  <text x="360" y="99" text-anchor="middle" font-size="17" font-weight="650">Intermediary</text>
+  <text x="360" y="122" text-anchor="middle" font-size="14" font-weight="400">Holds both secrets</text>
+  <rect x="507" y="70" width="180" height="70" rx="8" fill="#dcebf3" stroke="#a9becf"/>
+  <text x="597" y="99" text-anchor="middle" font-size="17" font-weight="650">Alice</text>
+  <text x="597" y="122" text-anchor="middle" font-size="14" font-weight="400">Holds secret 2</text>
+  <polygon points="213.00,107.00 270.00,107.00 270.00,103.00 213.00,103.00" fill="#267d71"/>
+  <polygon points="450.00,107.00 507.00,107.00 507.00,103.00 450.00,103.00" fill="#a87637"/>
+  <text x="360" y="177" text-anchor="middle" font-size="15" font-weight="400">A signature over the handshake ties the key shares to the signer.</text>
+</svg>

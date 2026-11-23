@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 760 332" role="img" aria-labelledby="title">
+  <title id="title">A gap and its later repair in a byte stream</title>
+  <rect x="1" y="1" width="758" height="330" rx="14" fill="#f6f8fb" stroke="#d6dfe8"/>
+  <g font-family="system-ui,sans-serif" fill="#1d2938" font-size="19">
+    <text x="40" y="42" font-size="22" font-weight="700">Receiver's byte offsets</text>
+    <g font-size="16" text-anchor="middle"><text x="214" y="85">0</text><text x="312" y="85">1000</text><text x="410" y="85">2000</text><text x="508" y="85">3000</text><text x="606" y="85">4000</text><text x="704" y="85">5000</text></g>
+    <text x="40" y="137">Before repair</text><text x="40" y="245">After repair</text>
+    <g stroke="#ffffff" stroke-width="2"><rect x="214" y="101" width="98" height="53" fill="#23677a"/><rect x="312" y="101" width="98" height="53" fill="#f9ddc3"/><rect x="410" y="101" width="294" height="53" fill="#b6d8e5"/><rect x="214" y="209" width="490" height="53" fill="#23677a"/></g>
+    <g text-anchor="middle" font-size="16"><text x="263" y="133" fill="#fff">In order</text><text x="361" y="133" fill="#7a391c">Missing</text><text x="557" y="133">Buffered beyond the gap</text><text x="459" y="241" fill="#fff">Whole stream can be read</text></g>
+    <text x="214" y="180" font-size="16">ACK 1000 · SACK [2000, 5000)</text><text x="214" y="287" font-size="16">ACK 5000</text>
+  </g>
+</svg>

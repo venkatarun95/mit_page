@@ -1,0 +1,29 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="760" height="351" viewBox="0 0 760 351" role="img" aria-labelledby="title desc">
+  <title id="title">Getting a DHCP lease</title>
+  <desc id="desc">A new laptop and a DHCP server exchange Discover, Offer, Request, and Ack messages.</desc>
+<rect x="0" y="0" width="760" height="351" rx="0" fill="#f7faf9" stroke="none"/>
+<rect x="13.5" y="20" width="207" height="58" rx="7" fill="#e2f2ed" stroke="none"/>
+<text x="117" y="44" text-anchor="middle" font-family="system-ui, sans-serif" font-size="17" font-weight="700" fill="#076764">Returno’s laptop</text>
+<text x="117" y="65" text-anchor="middle" font-family="system-ui, sans-serif" font-size="14" font-weight="400" fill="#405a62">Starts with a MAC address</text>
+<rect x="550.5" y="20" width="185" height="58" rx="7" fill="#e2f2ed" stroke="none"/>
+<text x="643" y="44" text-anchor="middle" font-family="system-ui, sans-serif" font-size="17" font-weight="700" fill="#076764">DHCP server</text>
+<text x="643" y="65" text-anchor="middle" font-family="system-ui, sans-serif" font-size="14" font-weight="400" fill="#405a62">Keeps the address pool</text>
+<line x1="117" y1="78" x2="117" y2="326" stroke="#a6bcbf" stroke-width="1.5" stroke-dasharray="5 5"/>
+<line x1="643" y1="78" x2="643" y2="326" stroke="#a6bcbf" stroke-width="1.5" stroke-dasharray="5 5"/>
+<line x1="117" y1="120" x2="641" y2="120" stroke="#076764" stroke-width="2"/>
+<path d="M 641 120 L 630 115 L 630 125 Z" fill="#076764"/>
+<text x="380" y="110" text-anchor="middle" font-family="system-ui, sans-serif" font-size="17" font-weight="700" fill="#076764">DHCPDISCOVER</text>
+<text x="380" y="140" text-anchor="middle" font-family="system-ui, sans-serif" font-size="15" font-weight="400" fill="#405a62">Broadcast: is there a DHCP server here?</text>
+<line x1="643" y1="186" x2="119" y2="186" stroke="#245b81" stroke-width="2"/>
+<path d="M 119 186 L 130 181 L 130 191 Z" fill="#245b81"/>
+<text x="380" y="176" text-anchor="middle" font-family="system-ui, sans-serif" font-size="17" font-weight="700" fill="#245b81">DHCPOFFER</text>
+<text x="380" y="206" text-anchor="middle" font-family="system-ui, sans-serif" font-size="15" font-weight="400" fill="#405a62">Offers 192.0.2.34</text>
+<line x1="117" y1="252" x2="641" y2="252" stroke="#076764" stroke-width="2"/>
+<path d="M 641 252 L 630 247 L 630 257 Z" fill="#076764"/>
+<text x="380" y="242" text-anchor="middle" font-family="system-ui, sans-serif" font-size="17" font-weight="700" fill="#076764">DHCPREQUEST</text>
+<text x="380" y="272" text-anchor="middle" font-family="system-ui, sans-serif" font-size="15" font-weight="400" fill="#405a62">Broadcast: selects that offer</text>
+<line x1="643" y1="318" x2="119" y2="318" stroke="#245b81" stroke-width="2"/>
+<path d="M 119 318 L 130 313 L 130 323 Z" fill="#245b81"/>
+<text x="380" y="308" text-anchor="middle" font-family="system-ui, sans-serif" font-size="17" font-weight="700" fill="#245b81">DHCPACK</text>
+<text x="380" y="338" text-anchor="middle" font-family="system-ui, sans-serif" font-size="15" font-weight="400" fill="#405a62">Confirms 192.0.2.34 and its configuration</text>
+</svg>

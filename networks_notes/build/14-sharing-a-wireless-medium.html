@@ -1,0 +1,620 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>14. Sharing a Wireless Medium</title>
+  <style>:root {
+  color-scheme: light;
+  background: #f3f6f5;
+  color: #182a30;
+  font: 18px/1.65 Georgia, serif;
+}
+
+body {
+  max-width: 48rem;
+  margin: 2.5rem auto;
+  padding: 2.25rem clamp(1rem, 5vw, 3.25rem);
+  background: #fff;
+  border-top: 0.3rem solid #076764;
+}
+
+h1,
+h2,
+h3 {
+  font-family: system-ui, sans-serif;
+  line-height: 1.2;
+  color: #152e37;
+}
+
+h1 {
+  margin: 0 0 1.4rem;
+  font-size: clamp(2rem, 5vw, 3rem);
+  letter-spacing: -0.035em;
+}
+
+h2 {
+  margin: 2.5rem 0 0.7rem;
+  font-size: clamp(1.4rem, 3vw, 1.75rem);
+}
+
+p {
+  margin: 0 0 1rem;
+}
+
+a {
+  color: #0a5b63;
+  overflow-wrap: anywhere;
+  text-underline-offset: 0.15em;
+}
+
+li + li {
+  margin-top: 0.7rem;
+}
+
+blockquote {
+  margin: 1.2rem 0;
+  padding: 0.65rem 1rem;
+  background: #edf6f4;
+  border-inline-start: 0.2rem solid #076764;
+}
+
+blockquote p {
+  margin: 0;
+}
+
+img {
+  display: block;
+  max-width: 100%;
+  height: auto;
+  outline: 1px solid #d3dfdf;
+}
+
+p:has(> img:only-child) {
+  margin: 1.5rem 0 0.5rem;
+}
+
+p:has(> img:only-child) + p:has(> em:only-child) {
+  color: #37525a;
+  font: 0.83rem/1.5 system-ui, sans-serif;
+  margin: 0 0 1.5rem;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 1.25rem 0;
+  font: 0.83rem/1.45 system-ui, sans-serif;
+  font-variant-numeric: tabular-nums;
+  overflow-wrap: anywhere;
+}
+
+th,
+td {
+  border: 1px solid #d3dfdf;
+  padding: 0.55rem;
+  vertical-align: top;
+}
+
+th {
+  background: #edf6f4;
+}
+
+@media (max-width: 34rem) {
+  body {
+    margin: 0;
+  }
+
+  table {
+    font-size: 0.7rem;
+  }
+
+  th,
+  td {
+    padding: 0.3rem;
+  }
+}
+
+@media print {
+  :root {
+    background: #fff;
+  }
+
+  body {
+    margin: 0;
+    padding: 0;
+    border: 0;
+  }
+
+  h2,
+  p:has(> img:only-child) {
+    break-after: avoid;
+  }
+
+  table,
+  img {
+    break-inside: avoid;
+  }
+}
+
+.chapter-lab {
+  margin: 1.5rem 0 0.65rem;
+  padding: clamp(0.75rem, 3vw, 1.25rem);
+  border: 1px solid #b7cdcd;
+  border-radius: 0.6rem;
+  background: #f7faf9;
+  font: 0.93rem/1.5 system-ui, sans-serif;
+}
+
+.chapter-lab h3 {
+  margin: 0 0 0.5rem;
+  font-size: 1.2rem;
+}
+
+.chapter-lab > p {
+  color: #334e56;
+}
+
+.chapter-lab + p:has(> em:only-child) {
+  color: #37525a;
+  font: 0.83rem/1.5 system-ui, sans-serif;
+  margin-bottom: 1.5rem;
+}
+
+#playback-lab:not([hidden]) + p:has(> img:only-child) {
+  display: none;
+}
+
+.lab-controls {
+  display: flex;
+  gap: 0.75rem;
+  align-items: end;
+  flex-wrap: wrap;
+  margin-bottom: 1rem;
+}
+
+.lab-controls label {
+  display: grid;
+  gap: 0.3rem;
+  font-weight: 700;
+  font-size: 0.8rem;
+}
+
+.lab-controls select,
+.lab-controls button {
+  min-height: 2.2rem;
+  border: 1px solid #9bb2b8;
+  border-radius: 0.3rem;
+  background: #fff;
+  color: #163440;
+  padding: 0.25rem 0.5rem;
+  font: inherit;
+}
+
+.lab-controls button {
+  font-size: 0.8rem;
+  cursor: pointer;
+}
+
+.lab-controls :focus-visible {
+  outline: 2px solid #076764;
+  outline-offset: 2px;
+}
+
+#link-race .race-timeline {
+  display: grid;
+  gap: 0.25rem;
+  margin-bottom: 0.85rem;
+}
+
+#link-race .race-timeline label,
+#link-race .race-endpoints {
+  display: flex;
+  justify-content: space-between;
+  gap: 0.35rem;
+}
+
+#link-race .race-timeline label {
+  font-size: 0.8rem;
+  font-weight: 700;
+  font-variant-numeric: tabular-nums;
+}
+
+#link-race .race-timeline input {
+  width: 100%;
+  margin: 0;
+  accent-color: #076764;
+}
+
+#link-race .race-timeline input:focus-visible {
+  outline: 2px solid #076764;
+  outline-offset: 2px;
+}
+
+#link-race [aria-disabled="true"] {
+  color: #55676e;
+  background: #edf2f1;
+  cursor: default;
+}
+
+#link-race .race-lane {
+  --race-color: #25618b;
+  --race-wire: #dce9f1;
+  padding: 0.75rem 0;
+  border-top: 1px solid #b7cdcd;
+}
+
+#link-race .race-lane[data-link="B"] {
+  --race-color: #076764;
+  --race-wire: #dbede9;
+}
+
+#link-race h4 {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 0.15rem 0.6rem;
+  margin: 0 0 0.4rem;
+  color: var(--race-color);
+  font-size: 1rem;
+}
+
+#link-race h4 span,
+#link-race .race-endpoints,
+#link-race .race-timeline p,
+#link-race .race-key {
+  color: #405961;
+  font-size: 0.8rem;
+  font-weight: 400;
+}
+
+#link-race h4 strong {
+  padding: 0.05rem 0.4rem;
+  border-radius: 0.2rem;
+  background: var(--race-wire);
+  font-size: 0.76rem;
+}
+
+#link-race .race-path {
+  margin-inline: 0.3rem;
+}
+
+#link-race [data-link="B"] .race-path {
+  width: 48%;
+}
+
+#link-race .race-track {
+  position: relative;
+  height: 0.85rem;
+  margin: 0.2rem 0 0.4rem;
+  border-radius: 1rem;
+  background: var(--race-wire);
+}
+
+#link-race .race-track::before,
+#link-race .race-track::after,
+#link-race .race-track span {
+  position: absolute;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  background: var(--race-color);
+}
+
+#link-race .race-track::before,
+#link-race .race-track::after {
+  content: "";
+  left: 0;
+  width: 0.14rem;
+  height: 100%;
+  border-radius: 1rem;
+}
+
+#link-race .race-track::after {
+  left: 100%;
+}
+
+#link-race .race-track span {
+  width: clamp(0.17rem, 0.55vw, 0.36rem);
+  aspect-ratio: 1;
+  border-radius: 50%;
+}
+
+#link-race .race-timeline p,
+#link-race .race-meter p,
+#link-race .race-finish {
+  margin: 0;
+}
+
+#link-race .race-totals {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 0.75rem;
+  margin-top: 0.6rem;
+}
+
+#link-race .race-meter p {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: 0 0.35rem;
+  font-size: 0.8rem;
+  font-variant-numeric: tabular-nums;
+}
+
+#link-race .race-meter progress {
+  display: block;
+  width: 100%;
+  height: 0.55rem;
+  margin: 0.2rem 0 0;
+  accent-color: var(--race-color);
+}
+
+#link-race .race-finish {
+  margin-top: 0.4rem;
+  font-size: 0.85rem;
+  font-variant-numeric: tabular-nums;
+}
+
+#link-race .race-announcement {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  clip-path: inset(50%);
+  overflow: hidden;
+}
+
+#link-race figcaption {
+  border-top: 1px solid #b7cdcd;
+  padding-top: 0.65rem;
+  color: #173840;
+  font-weight: 600;
+}
+
+.lab-link-policy {
+  padding-top: 0.65rem;
+  border-top: 1px solid #b7cdcd;
+}
+
+.lab-link-policy + .lab-link-policy {
+  margin-top: 0.9rem;
+}
+
+.lab-link-policy h4 {
+  margin: 0 0 0.6rem;
+  color: #173840;
+  font-size: 0.98rem;
+}
+
+.lab-sender p {
+  margin: 0 0 0.3rem;
+  font-size: 0.8rem;
+  color: #334e56;
+}
+
+.lab-sender + .lab-sender {
+  margin-top: 0.65rem;
+}
+
+.lab-packets,
+.lab-events {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.lab-packets {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.35rem;
+}
+
+.lab-packets li,
+.lab-events li {
+  margin: 0;
+}
+
+.lab-packet {
+  display: grid;
+  padding: 0.3rem 0.45rem;
+  border: 1px solid #99b9af;
+  border-radius: 0.3rem;
+  background: #e4f3ee;
+  color: #18443b;
+  font-size: 0.74rem;
+  min-width: 4.6rem;
+}
+
+.lab-packet.late {
+  border-color: #cfac85;
+  background: #fcf0dd;
+  color: #704411;
+}
+
+.lab-packet.refused {
+  border-color: #c6cfd2;
+  background: #eef1f2;
+  color: #324850;
+}
+
+.lab-plot {
+  background: #fff;
+  border: 1px solid #d3dfdf;
+  border-radius: 0.3rem;
+}
+
+.lab-plot svg {
+  display: block;
+  width: 100%;
+  color: #314d58;
+  font-size: 17px;
+}
+
+.lab-plot text {
+  fill: currentColor;
+}
+
+.lab-plot .lab-axis-title {
+  font-weight: 700;
+}
+
+.lab-plot .lab-outage-label {
+  fill: #6c441b;
+}
+
+.lab-grid {
+  stroke: #c0cfd1;
+}
+
+.lab-outage {
+  fill: #fbefde;
+}
+
+.lab-threshold {
+  stroke: #567e89;
+  stroke-dasharray: 6 5;
+}
+
+.lab-trace {
+  fill: none;
+  stroke: #076764;
+  stroke-width: 3.5;
+  stroke-linejoin: round;
+}
+
+.lab-marker {
+  fill: #076764;
+  stroke: #fff;
+  stroke-width: 1.2;
+}
+
+.lab-plot .lab-marker-text {
+  fill: #fff;
+  font-size: 13px;
+  font-weight: 700;
+}
+
+.lab-result {
+  margin: 0.6rem 0;
+  font-weight: 700;
+}
+
+.lab-events {
+  display: flex;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+  font-size: 0.78rem;
+}
+
+.lab-events li {
+  flex: 1 1 9rem;
+  display: flex;
+  align-items: start;
+  gap: 0.4rem;
+  border: 1px solid #d3dfdf;
+  border-radius: 0.3rem;
+  background: #fff;
+  padding: 0.45rem;
+}
+
+.lab-marker-label {
+  min-width: 1.2rem;
+  height: 1.2rem;
+  border-radius: 50%;
+  background: #076764;
+  color: #fff;
+  font-weight: 700;
+  text-align: center;
+}
+
+@media print {
+  .chapter-lab {
+    display: none;
+  }
+
+  #playback-lab:not([hidden]) + p:has(> img:only-child) {
+    display: block;
+  }
+}
+
+.book-nav {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: .55rem 1.4rem;
+  margin-bottom: 1.6rem;
+  color: #37525a;
+  font: .85rem/1.5 system-ui, sans-serif;
+}
+
+.chapter-turn {
+  justify-content: space-between;
+  margin: 2.4rem 0 0;
+  padding-top: 1rem;
+  border-top: 1px solid #d3dfdf;
+}
+
+.book-contents ul {
+  list-style: none;
+  padding: 0;
+}
+
+@media print {
+  .book-nav { display: none; }
+}
+</style>
+</head>
+<body>
+  <main>
+    <nav class="book-nav" aria-label="Book location"><a href="index.html">Contents</a><span>Part IV — The Physical Network</span></nav>
+    <article><h1>14. Sharing a Wireless Medium</h1>
+<p>Put a radio halfway down a corridor. One phone at each end can reach it. The first phone is sending a packet when the second phone gets a packet to send. The second phone listens and hears silence. What would you tell it to do?</p>
+<p>The first phone wants its packet decoded in the middle of the corridor. The second phone is making its decision at the far end. It only needs to detect that somebody occupies the channel, which can require less power than decoding the packet. Even so, if the phones are far enough apart or there is enough attenuation between them, each can miss the other&#39;s signal. The middle radio hears both. Recall Chapter 13&#39;s receiver. A signal that is easy to decode in isolation can become difficult to distinguish when a second signal arrives in the same band. The two phones can obey exactly the same listening rule and still ruin each other&#39;s transmissions. A student in class described almost this exact corridor.</p>
+<p><img src="figures/14-sharing-a-wireless-medium/sensing-and-reception.svg" alt="In the corridor, both phones A and C reach B but cannot sense one another. In a four-radio row, transmitters B and C can hear each other even when their receivers A and D can decode simultaneous transmissions."></p>
+<p>The corridor has <strong>hidden terminals</strong>. Each sender lacks information about interference at the intended receiver. Now draw A, B, C, and D in a row, with B sending to A and C wanting to send to D. Suppose B and C can hear each other but each signal is too weak at the other&#39;s receiver to interfere. C may hear B and give up a transmission that would have worked. That is the <strong>exposed terminal</strong> problem. Whether two transmissions can coexist depends on the desired signal and total interference at <em>each receiver</em>. Whether two transmitters hear each other is a different measurement. If you make carrier sensing more sensitive, which mistake can you reduce, and which can you make more common?</p>
+<p>The phones need a rule for sharing the air, a job called <strong>medium access control</strong> (MAC). If listening in the corridor supplies too little information, perhaps we can arrange things so that neither phone ever has to listen before sending.</p>
+<h2>Could you divide up the band once?</h2>
+<p>A student suggested assigning each device a frequency when it joins. A practical link needs a range of frequencies around a carrier. Given a one-GHz block to divide and 20 MHz per assignment, there is room for 50 assignments before guard bands and other overhead. Which band does the 51st device get? What if 49 devices are silent most of the day? A device that has data could use more of the band if you were willing to take assignments back. The question then becomes how to ask for spectrum and how quickly you can reassign it. In class, someone also asked how a new device would know where to make its first request. A permanent time slot instead of a frequency band has similar trouble when device activity changes. A dynamic scheduler can redistribute idle slots, as long as it learns who is waiting in time to use them.</p>
+<p><strong>Design this.</strong> The 50 radios get a common control channel for requests. Just after a power outage, all of them come back and ask for a slot. Can the controller use the schedule it has yet to make to separate those requests? Give new arrivals a way to get their requests through. Estimate how the time to accommodate the first request and the last request would change if twice as many radios woke up together. In class this was the problem of raising hands. Everyone can raise a hand in a classroom without drowning out another student. Two radios using the same request slot can collide.</p>
+<h2>Who goes first after it gets quiet?</h2>
+<p>Listen before speaking. If the channel sounds busy, wait. When it becomes quiet, send. This is <strong>carrier sensing</strong>. The instruction is fine when only one radio is waiting. Now let two radios both have packets ready at the instant the channel clears. If they both follow the same timing rule, they can step on each other and try again together. In class, two people meeting in a hallway illustrated the symmetry. Both step the same way to get out of each other&#39;s path, then both reverse and meet again. What independent decision could let one go first?</p>
+<p>Try a slotted rule. Each waiting transmitter independently attempts with probability <em>p</em> in each slot. In this model one attempt succeeds and multiple attempts collide. With two waiting radios, the chance of success in a slot is 2<em>p</em>(1 − <em>p</em>). At <em>p</em> = 1/3 it is 4/9. Both can draw the same decision many times, so a positive probability of success per slot gives no fixed deadline. The chance of no successful transmission in <em>k</em> independent slots is (5/9)<sup><em>k</em></sup>. A symmetric rule gives both radios the same chance of getting through next and still allows either to wait a long time. The lecture made the same distinction with a lottery.</p>
+<p>With <em>n</em> backlogged radios, exactly one will attempt with probability <em>np</em>(1 − <em>p</em>)<sup><em>n</em>−1</sup>. At <em>p</em> = 1/2, ten contenders succeed in only about one slot in a hundred. Try <em>p</em> = 1/10 instead. For these ten radios, about 39 percent of slots succeed, about 35 percent are idle, and the rest collide. For fixed <em>n</em>, you can maximize the success probability by choosing <em>p</em> = 1/<em>n</em>. What should you do when a radio has no idea how many others are waiting? Shrink the attempt probability after repeated collisions, as Chapter 11&#39;s sender reduced how much it was willing to have in flight after signs of overload. A poor choice in either direction wastes airtime. <a href="assets/cs356-quiz2-2024.pdf#page=8">Quiz 2, 2024, Q8, p. 8.</a></p>
+<p>A radio may have trouble hearing a collision while it is transmitting. Its own signal can swamp the weaker incoming signal. Wait for an acknowledgment from the receiver, then consider trying again if none arrives. Interference, link errors, and a lost acknowledgment can all give the transmitter the same observation. In the basic 802.11 contention algorithm, a station chooses a random backoff from a window that grows after failures, and it pauses the countdown while it senses a busy medium. This mechanism is called <strong>carrier sense multiple access with collision avoidance</strong> (CSMA/CA). Our fixed-probability slots isolate the effect of contenders choosing independently. The practical backoff has memory. <a href="https://ieeexplore.ieee.org/document/840210/">Bianchi, IEEE 802.11 distributed coordination function, §II.</a></p>
+<p><strong>Predict–simulate–explain.</strong> In the <a href="../chapters/14-sharing-a-wireless-medium/contention-lab.html">contention lab</a>, run 1,000 slots with ten saturated radios at <em>p</em> = 1/2 and then at <em>p</em> = 1/10. Predict which produces the most idle slots and which produces the most collisions. Search over <em>p</em> to find the busiest useful schedule in this model. Now change the number of radios but keep the old <em>p</em>. Which cost grows? If you change the lab to charge several times as much airtime for a collision as an idle slot, see whether your best <em>p</em> changes.</p>
+<h2>Can the middle radio settle it?</h2>
+<p>Give the intended receiver a voice. In the corridor, phone A sends a short <strong>request to send</strong> (RTS). B responds with <strong>clear to send</strong> (CTS). Phone C may have missed A&#39;s request, but it can hear B&#39;s response. If it hears the reservation, it waits through the announced duration while A sends the data. Two requests can still collide at B. With this exchange a collision may waste just a request instead of a large data frame. Every successful reservation also costs control airtime and waiting intervals. Which sizes of data packets and which kinds of interference make that worth paying for? Test a no-handshake policy with small packets, then a policy with a handshake on long frames. <a href="https://ieeexplore.ieee.org/document/840210/">Bianchi, §II.</a></p>
+<p><strong>Network detective.</strong> B records a burst of undecodable receptions while A and C each record several missing ACKs. Neither station records a busy channel before sending. What timestamps would you align to test the corridor explanation? What would you expect an observer near B to see that an observer near A misses? Propose a second hypothesis, such as a change in the background interference, and a measurement that distinguishes it from A and C overlapping.</p>
+<p>Now imagine a controller that can tell every radio which frequency range to use in each time slot. An access point can do this for the data it has in its own outgoing queues. To schedule incoming data it needs an indication of which devices have packets and their deadlines or backlog. For spatial reuse it also needs a model or measurements of which simultaneous transmissions the receivers can decode. And it needs the radios to hear and obey the assignment. A student brought up turning on a phone hotspot in the same band. The original access point&#39;s schedule tells the hotspot nothing about what to do. One approach combines coordination inside the group with contention or shared rules for gaining access to the band. An operator coordinating a set of neighboring cellular sites can plan reuse across its cells, perhaps assigning different resources where transmissions would otherwise interfere and using the same resources again at a safe distance.</p>
+<h3>Design this. Write tomorrow&#39;s schedule today</h3>
+<p>A controller sends everyone a schedule for the next <em>T</em> seconds. It grants both times and bands. Assume the instructions reach every device and clocks are aligned. Construct one workload on which advance scheduling beats local contention in both throughput and delay, and one on which it wastes time or makes packets wait. Say which information the controller needs to obtain before the schedule starts. What happens if you cut <em>T</em> in half and have to broadcast twice as often?</p>
+<p><em>Adapted from <a href="assets/quiz2-2025.pdf#page=1">Quiz 2, 2025, Q1, p. 1</a>. The comparison between two values of T is new.</em></p>
+<details>
+<summary>Worked reasoning</summary>
+
+<p>Regular, predictable traffic that fills its slots can avoid collisions without reserving much idle time. Put each slot shortly after the matching data becomes ready and the sender avoids waiting through contention. Sporadic traffic arriving just after the schedule is written may have to wait for the next schedule, while reservations for silent radios go unused. Shorter horizons can use fresher demand measurements, but they also leave less airtime between control exchanges. Count both request airtime and schedule airtime in your design.</p>
+</details>
+
+<h2>When can two transmissions use the same air?</h2>
+<p>Stand two communicating pairs on opposite sides of a wall. Each desired signal has power 1,000 times the noise at its receiver. The undesired signal from across the wall has power equal to the noise. You can give each pair its own time, split the frequency band, or allow both to use the full band at once. Decide what you would try first. <a href="assets/cs356-quiz2-2024.pdf#page=2">Quiz 2, 2024, scenario 1 and Q2, pp. 2–4.</a></p>
+<p>For simultaneous transmissions the signal-to-interference-plus-noise ratio is 1,000/(1 + 1) = 500 at both receivers. Using Chapter 13&#39;s capacity model, each simultaneous pair can sustain roughly <em>B</em> log₂(501). Compare that with <em>B</em> log₂(1001) for one pair getting the entire band. If the two pairs alternate in time, only one of them gets that capacity at any instant. The concurrent links each give up some rate and together deliver more than the alternating links. That gain is <strong>spatial reuse</strong>. Now change the senders and receivers so that both wanted transmissions go through the wall and are directed to a single receiver. Estimate how the signal strengths compare there. If you assume a receiver that decodes just one same-band packet and treats the other as interference, do you still expect reuse to help? Can you give both senders opportunities by separating them in time or frequency? <a href="assets/cs356-quiz2-2024.pdf#page=5">Quiz 2, 2024, Q3, p. 5.</a></p>
+<p>A graph can capture the simple version of the problem. Make a vertex for each possible transmission. Connect vertices for pairs that cannot work together. A set with no edges inside it is a candidate for reuse. Before making this your scheduler, try three transmitters. Suppose at one receiver either of the two unwanted signals alone is weak enough to tolerate, but their sum is too strong. The graph can mark every pair compatible and still schedule a failed triple. A network built around measured interference should test whole sets where this approximation breaks. A directional beam can shift the answer by increasing desired power and reducing energy sent toward other receivers. Movement, reflections, and imperfect aiming can shift it again.</p>
+<h2>What should the access point charge for a packet?</h2>
+<p>Chapter 12 asked you to give Alice and Bob equal service. At their access point, Alice can receive data at 60 Mbit/s and Bob at 6 Mbit/s. A packet of 1,500 bytes takes 0.2 ms to send to Alice and 2 ms to send to Bob, before counting overhead. Suppose every packet has that size and the access point alternates one packet each. It gives Bob ten times as much airtime as Alice. If we alternate equal stretches of airtime instead, we give Alice ten times the throughput. Choose which quantity to charge to each queue.</p>
+<p>In Chapter 12, deficit round robin charged each queue for the bytes it sent. Suppose we kept the accounting in microseconds instead. Credit each backlogged phone with an equal airtime allowance per round, carry unused credit forward, and deduct the estimated transmit time of each packet. That gives Bob a larger charge per equal-sized packet, so his next packet waits while Alice can send more than one. When packets have different rates or sizes, use the time estimate for each packet. If a frame has to be retried, decide whether that repeated airtime is charged to its owner. Think through what your decision means for another station that can use the time productively. In a real system, account for the portions of the overhead included in your definition of service and update the estimates as rates change.</p>
+<h3>What if? Give Bob a minimum</h3>
+<p>Both have data ready and the access point serves one phone at a time. Bob needs at least 4 Mbit/s to play a video. With rates of 60 and 6 Mbit/s, how much airtime should you give him if you also want the largest aggregate throughput? If Bob moves closer and his rate rises to 12 Mbit/s, how much can Alice gain under that policy? What would Alice gain instead under equal airtime?</p>
+<p><em>The two rates and the mobility question come from <a href="assets/quiz2-2026.pdf#page=2">Quiz 2, 2026, Q2, pp. 2–3</a>. The four-Mbit/s minimum is new.</em></p>
+<details>
+<summary>Worked reasoning</summary>
+
+<p>At 6 Mbit/s, give Bob 2/3 of the time for his minimum. The rest gets Alice 20 Mbit/s. Giving Bob more time would reduce the total because Alice makes more use of each unit of airtime. At 12 Mbit/s Bob only needs 1/3 of the time, so Alice reaches 40 Mbit/s. If both always get equal airtime, Alice stays at 30 Mbit/s in both cases. The change in Bob&#39;s rate matters to Alice only through the allocation rule or other effects on the shared channel that were excluded from this model.</p>
+</details>
+
+<p>We decided which pairs of radios could use the air at the same time, then found rules for choosing among them. Now bring the problem inside a switch. Instead of interference in a shared band, suppose two inputs contend for the same output, and others can use separate outputs simultaneously. What information would let the switch arrange the most transfers in the next slot?</p>
+</article>
+    <nav class="book-nav chapter-turn" aria-label="Chapter navigation"><a href="13-from-bits-to-physical-signals.html">Previous · 13. From Bits to Physical Signals</a>
+<a href="index.html">Contents</a>
+<a href="15-inside-a-high-speed-switch.html">Next · 15. Inside a High-Speed Switch</a></nav>
+  </main>
+</body>
+</html>

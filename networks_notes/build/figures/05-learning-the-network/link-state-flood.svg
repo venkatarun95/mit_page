@@ -1,0 +1,25 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 680 220" role="img">
+  <title>B accepts the first copy of X's version 7 from C, then ignores the duplicate from A</title>
+  <defs>
+    <marker id="arrow" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto"><path d="M0 0L8 4L0 8z" fill="#147c70"/></marker>
+    <marker id="later" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto"><path d="M0 0L8 4L0 8z" fill="#8e432e"/></marker>
+  </defs>
+  <rect width="680" height="220" rx="10" fill="#f1f6f5"/>
+  <g font-family="system-ui,sans-serif" text-anchor="middle" fill="#143437" font-size="16">
+    <g fill="none" stroke="#147c70" stroke-width="3" marker-end="url(#arrow)">
+      <path d="M101 101L248 55"/><path d="M101 119L248 165"/>
+      <path d="M281 165L439 118"/><path d="M472 110H592"/>
+    </g>
+    <path d="M281 55L439 102" fill="none" stroke="#8e432e" stroke-width="3" stroke-dasharray="6 6" marker-end="url(#later)"/>
+    <g fill="#fff" stroke="#516d6b" stroke-width="2">
+      <circle cx="84" cy="110" r="18"/><circle cx="265" cy="50" r="18"/><circle cx="265" cy="170" r="18"/>
+      <circle cx="455" cy="110" r="18"/><circle cx="610" cy="110" r="18"/>
+    </g>
+    <text x="84" y="116">X</text><text x="265" y="56">A</text><text x="265" y="176">C</text>
+    <text x="455" y="116">B</text><text x="610" y="116">D</text>
+    <text x="346" y="59" fill="#8e432e">later copy</text>
+    <text x="350" y="169">first copy</text>
+    <text x="532" y="94">forwards once</text>
+    <text x="84" y="148" font-size="13">origin X, version 7</text>
+  </g>
+</svg>

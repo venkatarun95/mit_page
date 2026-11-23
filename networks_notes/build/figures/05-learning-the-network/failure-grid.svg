@@ -1,0 +1,22 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 680 300" role="img">
+<title>Quiz 1 grid with failed link S0 to S2</title>
+<rect width="680" height="300" rx="10" fill="#f1f6f5"/>
+<path d="M80 140H590M80 230H590M250 50H590M80 50V230M250 50V230M420 50V230M590 50V230" fill="none" stroke="#6b8784" stroke-width="3"/>
+<path d="M80 50H250" stroke="#a35640" stroke-width="3" stroke-dasharray="7 7"/>
+<g fill="#143437" stroke-width="2" text-anchor="middle" font-family="system-ui,sans-serif" font-size="17">
+<circle cx="80" cy="50" r="24" fill="#fff" stroke="#516d6b"/><text x="80" y="56">S2</text>
+<circle cx="250" cy="50" r="24" fill="#fff" stroke="#516d6b"/><text x="250" y="56">S0</text>
+<circle cx="420" cy="50" r="24" fill="#fff" stroke="#516d6b"/><text x="420" y="56">S5</text>
+<circle cx="590" cy="50" r="24" fill="#fff" stroke="#516d6b"/><text x="590" y="56">S7</text>
+<circle cx="80" cy="140" r="24" fill="#fff" stroke="#516d6b"/><text x="80" y="146">S6</text>
+<circle cx="250" cy="140" r="24" fill="#fff" stroke="#516d6b"/><text x="250" y="146">S3</text>
+<circle cx="420" cy="140" r="24" fill="#fff" stroke="#516d6b"/><text x="420" y="146">S10</text>
+<circle cx="590" cy="140" r="24" fill="#fff" stroke="#516d6b"/><text x="590" y="146">S1</text>
+<circle cx="80" cy="230" r="24" fill="#fff" stroke="#516d6b"/><text x="80" y="236">S4</text>
+<circle cx="250" cy="230" r="24" fill="#fff" stroke="#516d6b"/><text x="250" y="236">S8</text>
+<circle cx="420" cy="230" r="24" fill="#fff" stroke="#516d6b"/><text x="420" y="236">S9</text>
+<circle cx="590" cy="230" r="24" fill="#fff" stroke="#516d6b"/><text x="590" y="236">S11</text>
+<text x="165" y="36" fill="#8e432e" font-size="14">link fails</text>
+<text x="113" y="87" text-anchor="start" font-size="13">destination</text><text x="420" y="269" font-size="13">source</text>
+</g>
+</svg>

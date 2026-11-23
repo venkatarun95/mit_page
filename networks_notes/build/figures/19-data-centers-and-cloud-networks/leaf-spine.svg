@@ -1,0 +1,27 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="720" height="311" viewBox="0 0 720 311" role="img" aria-labelledby="ttl ds">
+  <title id="ttl">A small leaf–spine fabric</title>
+  <desc id="ds">Each of two leaf switches connects to all three spine switches as well as the two servers in its rack. A green path from one server in rack A to one in rack B passes through spine 2.</desc>
+  <rect x="1" y="1" width="718" height="309" rx="16" fill="#f7faf8"/>
+  <rect x="82" y="139" width="216" height="144" rx="13" fill="#e8f0ed"/>
+  <rect x="422" y="139" width="216" height="144" rx="13" fill="#e8f0ed"/>
+  <g fill="none" stroke="#849993" stroke-width="2.5">
+    <path d="M180 72L190 178M180 72L530 178M540 72L190 178M540 72L530 178"/>
+    <path d="M190 178L138 242M530 178L582 242"/>
+  </g>
+  <path d="M242 242L190 178L360 72L530 178L478 242" fill="none" stroke="#217561" stroke-width="5" stroke-linejoin="round"/>
+  <g stroke="#58756f" stroke-width="1.6" fill="white">
+    <rect x="129" y="40" width="102" height="43" rx="8"/><rect x="489" y="40" width="102" height="43" rx="8"/>
+    <rect x="104" y="219" width="68" height="41" rx="6"/><rect x="548" y="219" width="68" height="41" rx="6"/>
+  </g>
+  <g stroke="#217561" stroke-width="2" fill="#f6fffb">
+    <rect x="309" y="40" width="102" height="43" rx="8"/>
+    <rect x="139" y="155" width="102" height="43" rx="8"/><rect x="479" y="155" width="102" height="43" rx="8"/>
+    <rect x="208" y="219" width="68" height="41" rx="6"/><rect x="444" y="219" width="68" height="41" rx="6"/>
+  </g>
+  <g fill="#183c36" font-family="system-ui, sans-serif" font-size="16" font-weight="600" text-anchor="middle">
+    <text x="180" y="67">Spine 1</text><text x="360" y="67">Spine 2</text><text x="540" y="67">Spine 3</text>
+    <text x="190" y="181">Leaf A</text><text x="530" y="181">Leaf B</text>
+    <text x="138" y="245">A1</text><text x="242" y="245">A2</text><text x="478" y="245">B1</text><text x="582" y="245">B2</text>
+    <text x="190" y="278" font-size="14">Rack A</text><text x="530" y="278" font-size="14">Rack B</text>
+  </g>
+</svg>

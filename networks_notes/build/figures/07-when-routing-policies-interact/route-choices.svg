@@ -1,0 +1,63 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 441" role="img" aria-labelledby="title desc">
+  <title id="title">Three routing preferences that keep each other changing</title>
+  <desc id="desc">AS1, AS2, and AS3 can reach AS0 directly. Each prefers the exact two-hop path through the next AS in the cycle 1 to 2 to 3 to 1. A trace of seven snapshots shows the same selected routes and next activation at steps 2 and 8.</desc>
+  <rect width="720" height="441" rx="10" fill="#f1f6f5"/>
+  <g font-family="system-ui,sans-serif" fill="#143437">
+    <g fill="#78928e">
+      <rect x="145" y="64" width="2" height="61"/>
+      <rect x="58" y="173" width="176" height="2"/>
+      <rect y="-1" width="141" height="2" transform="translate(146 64) rotate(51.34)"/>
+      <rect y="-1" width="141" height="2" transform="translate(146 64) rotate(128.66)"/>
+      <rect y="-1" width="101" height="2" transform="translate(146 125) rotate(29.11)"/>
+      <rect y="-1" width="101" height="2" transform="translate(146 125) rotate(150.89)"/>
+    </g>
+    <g fill="#147c70">
+      <path d="M0-1.25H104V-6L113 0L104 6V1.25H0Z" transform="translate(173 55) rotate(51.10)"/>
+      <path d="M0-1.25H109V-6L118 0L109 6V1.25H0Z" transform="translate(205 194) rotate(180)"/>
+      <path d="M0-1.25H108V-6L117 0L108 6V1.25H0Z" transform="translate(51 145) rotate(-50.87)"/>
+    </g>
+    <g fill="#516d6b">
+      <circle cx="146" cy="64" r="22"/><circle cx="234" cy="174" r="22"/>
+      <circle cx="58" cy="174" r="22"/><circle cx="146" cy="125" r="22"/>
+    </g>
+    <g fill="#fff">
+      <circle cx="146" cy="64" r="20"/><circle cx="234" cy="174" r="20"/>
+      <circle cx="58" cy="174" r="20"/><circle cx="146" cy="125" r="20"/>
+    </g>
+    <g font-size="15" font-weight="700" text-anchor="middle">
+      <text x="146" y="69">AS1</text><text x="234" y="179">AS2</text>
+      <text x="58" y="179">AS3</text><text x="146" y="130">AS0</text>
+    </g>
+    <g font-size="17">
+      <text x="301" y="50" font-weight="700">Path rankings to AS0</text>
+      <text x="301" y="79">AS1 prefers 1→2→0 over 1→0</text>
+      <text x="301" y="106">AS2 prefers 2→3→0 over 2→0</text>
+      <text x="301" y="133">AS3 prefers 3→1→0 over 3→0</text>
+      <text x="301" y="168" font-size="14" fill="#12675f">Each arrow points from an AS to the neighbor</text>
+      <text x="301" y="188" font-size="14" fill="#12675f">whose direct route enables its preferred path.</text>
+    </g>
+    <text x="24" y="234" font-size="18" font-weight="700">Selected routes after each activation</text>
+    <rect x="22" y="249" width="676" height="142" rx="6" fill="#fff" stroke="#c8d9d5"/>
+    <path d="M130 249h80v142h-80zM612 249h80v142h-80z" fill="#e4eeeb"/>
+    <path d="M211 305h79v27h-79zM291 278h79v27h-79zM371 332h79v27h-79zM451 305h79v27h-79zM531 278h79v27h-79zM612 332h79v27h-79z" fill="#bce3d8"/>
+    <path d="M22 277h676v1H22zM22 304h676v1H22zM22 331h676v1H22zM22 358h676v1H22z" fill="#d0dfdb"/>
+    <g font-size="14" font-weight="650">
+      <text x="35" y="268">Step</text><text x="35" y="295">AS1</text>
+      <text x="35" y="322">AS2</text><text x="35" y="349">AS3</text>
+      <text x="35" y="377">Next to update</text>
+    </g>
+    <g font-size="15" text-anchor="middle">
+      <text x="170" y="268">2</text><text x="250" y="268">3</text><text x="330" y="268">4</text>
+      <text x="410" y="268">5</text><text x="490" y="268">6</text><text x="570" y="268">7</text><text x="652" y="268">8</text>
+      <text x="170" y="295">1→2→0</text><text x="250" y="295">1→2→0</text><text x="330" y="295">1→0</text>
+      <text x="410" y="295">1→0</text><text x="490" y="295">1→0</text><text x="570" y="295">1→2→0</text><text x="652" y="295">1→2→0</text>
+      <text x="170" y="322">2→0</text><text x="250" y="322">2→3→0</text><text x="330" y="322">2→3→0</text>
+      <text x="410" y="322">2→3→0</text><text x="490" y="322">2→0</text><text x="570" y="322">2→0</text><text x="652" y="322">2→0</text>
+      <text x="170" y="349">3→0</text><text x="250" y="349">3→0</text><text x="330" y="349">3→0</text>
+      <text x="410" y="349">3→1→0</text><text x="490" y="349">3→1→0</text><text x="570" y="349">3→1→0</text><text x="652" y="349">3→0</text>
+      <text x="170" y="378">AS2</text><text x="250" y="378">AS1</text><text x="330" y="378">AS3</text>
+      <text x="410" y="378">AS2</text><text x="490" y="378">AS1</text><text x="570" y="378">AS3</text><text x="652" y="378">AS2</text>
+    </g>
+    <text x="24" y="418" font-size="14">Green cells mark route changes. Step 8 returns to the state at step 2.</text>
+  </g>
+</svg>

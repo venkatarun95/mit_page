@@ -1,0 +1,20 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 252" role="img" aria-labelledby="title desc">
+  <title id="title">Divide the same second two ways</title>
+  <desc id="desc">For equal throughput, Alice uses one eleventh of the time and Bob ten elevenths. For equal airtime, each uses half. Instantaneous rates are 60 and 6 megabits per second.</desc>
+  <style>text { font-family: system-ui,sans-serif; fill: #162436 }</style>
+  <rect x="8" y="8" width="704" height="236" rx="14" fill="#f7f9fb" stroke="#d0dbe5"/>
+  <text x="38" y="48" text-anchor="start" font-size="17" font-weight="650">Equal throughput</text>
+  <rect x="38" y="60" width="58.54545454545455" height="31" rx="1" fill="#bfdbed" stroke="#96b5cb"/>
+  <rect x="96.54545454545455" y="60" width="585.4545454545454" height="31" rx="1" fill="#efdbb6" stroke="#d0bb94"/>
+  <text x="67.27272727272728" y="81" text-anchor="middle" font-size="14" font-weight="600">1/11</text>
+  <text x="389.27272727272725" y="81" text-anchor="middle" font-size="14" font-weight="600">10/11</text>
+  <text x="38" y="116" text-anchor="start" font-size="15" font-weight="400">Alice · 5.45 Mbit/s</text>
+  <text x="682" y="116" text-anchor="end" font-size="15" font-weight="400">Bob · 5.45 Mbit/s</text>
+  <text x="38" y="160" text-anchor="start" font-size="17" font-weight="650">Equal airtime</text>
+  <rect x="38" y="172" width="322.0" height="31" rx="1" fill="#bfdbed" stroke="#96b5cb"/>
+  <rect x="360.0" y="172" width="322.0" height="31" rx="1" fill="#efdbb6" stroke="#d0bb94"/>
+  <text x="199.0" y="193" text-anchor="middle" font-size="14" font-weight="600">1/2</text>
+  <text x="521.0" y="193" text-anchor="middle" font-size="14" font-weight="600">1/2</text>
+  <text x="38" y="228" text-anchor="start" font-size="15" font-weight="400">Alice · 30 Mbit/s</text>
+  <text x="682" y="228" text-anchor="end" font-size="15" font-weight="400">Bob · 3 Mbit/s</text>
+</svg>

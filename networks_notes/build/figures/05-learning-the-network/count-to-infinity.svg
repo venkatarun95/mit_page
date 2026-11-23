@@ -1,0 +1,25 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 680 166" role="img">
+  <title>Forwarding toward E before and after the A to E failure</title>
+  <defs>
+    <marker id="arrow" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto"><path d="M0 0L8 4L0 8z" fill="#147c70"/></marker>
+  </defs>
+  <rect width="680" height="166" rx="10" fill="#f1f6f5"/>
+  <g font-family="system-ui,sans-serif" text-anchor="middle" fill="#143437" font-size="16">
+    <text x="170" y="33" font-weight="650">Before the break</text>
+    <text x="510" y="33" font-weight="650">After A hears C’s old estimate</text>
+    <g fill="none" stroke="#147c70" stroke-width="3" marker-end="url(#arrow)">
+      <path d="M86 92H151"/><path d="M186 92H251"/>
+      <path d="M425 85H492"/><path d="M495 99H428"/>
+    </g>
+    <path d="M527 92H593" stroke="#a35640" stroke-width="3" stroke-dasharray="6 6"/>
+    <path d="M556 84l10 16m0-16l-10 16" stroke="#a35640" stroke-width="2.5"/>
+    <g fill="#fff" stroke="#516d6b" stroke-width="2">
+      <circle cx="70" cy="92" r="16"/><circle cx="170" cy="92" r="16"/><circle cx="270" cy="92" r="16"/>
+      <circle cx="410" cy="92" r="16"/><circle cx="510" cy="92" r="16"/><circle cx="610" cy="92" r="16"/>
+    </g>
+    <text x="70" y="98">C</text><text x="170" y="98">A</text><text x="270" y="98">E</text>
+    <text x="410" y="98">C</text><text x="510" y="98">A</text><text x="610" y="98">E</text>
+    <text x="70" y="134" font-size="13">cost 2</text><text x="170" y="134" font-size="13">cost 1</text>
+    <text x="410" y="134" font-size="13">cost 2</text><text x="510" y="134" font-size="13">cost 3</text>
+  </g>
+</svg>

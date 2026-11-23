@@ -1,0 +1,31 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 244" role="img" aria-labelledby="title desc">
+  <title id="title">Three customers share one exit</title>
+  <desc id="desc">Steam, Jane Street and Netflix enter switch S3. Port 4 sends their traffic on a 2 Mbit/s link to S4, where it diverges to each receiver.</desc>
+  <style>text { font-family: system-ui,sans-serif; fill: #162436 }</style>
+  <rect x="8" y="8" width="704" height="228" rx="14" fill="#f7f9fb" stroke="#d0dbe5"/>
+  <polygon points="169.46,57.84 269.46,122.84 270.54,121.16 170.54,56.16" fill="#51718d"/>
+  <polygon points="448.54,122.84 550.54,57.84 549.46,56.16 447.46,121.16" fill="#51718d"/>
+  <rect x="25" y="38" width="145" height="38" rx="7" fill="#fff" stroke="#a8bacb"/>
+  <rect x="550" y="38" width="145" height="38" rx="7" fill="#fff" stroke="#a8bacb"/>
+  <text x="97" y="62" text-anchor="middle" font-size="16" font-weight="400">Steam</text>
+  <text x="622" y="62" text-anchor="middle" font-size="15" font-weight="400">Steam receiver</text>
+  <polygon points="170.00,123.00 270.00,123.00 270.00,121.00 170.00,121.00" fill="#51718d"/>
+  <polygon points="448.00,123.00 550.00,123.00 550.00,121.00 448.00,121.00" fill="#51718d"/>
+  <rect x="25" y="103" width="145" height="38" rx="7" fill="#fff" stroke="#a8bacb"/>
+  <rect x="550" y="103" width="145" height="38" rx="7" fill="#fff" stroke="#a8bacb"/>
+  <text x="97" y="127" text-anchor="middle" font-size="16" font-weight="400">Jane Street</text>
+  <text x="622" y="127" text-anchor="middle" font-size="15" font-weight="400">Jane Street receiver</text>
+  <polygon points="170.54,187.84 270.54,122.84 269.46,121.16 169.46,186.16" fill="#51718d"/>
+  <polygon points="447.46,122.84 549.46,187.84 550.54,186.16 448.54,121.16" fill="#51718d"/>
+  <rect x="25" y="168" width="145" height="38" rx="7" fill="#fff" stroke="#a8bacb"/>
+  <rect x="550" y="168" width="145" height="38" rx="7" fill="#fff" stroke="#a8bacb"/>
+  <text x="97" y="192" text-anchor="middle" font-size="16" font-weight="400">Netflix</text>
+  <text x="622" y="192" text-anchor="middle" font-size="15" font-weight="400">Netflix receiver</text>
+  <polygon points="270.00,125.00 448.00,125.00 448.00,119.00 270.00,119.00" fill="#965627"/>
+  <circle cx="270" cy="122" r="24" fill="#dae7ef" stroke="#7e9bb1"/>
+  <text x="270" y="128" text-anchor="middle" font-size="16" font-weight="650">S3</text>
+  <circle cx="448" cy="122" r="24" fill="#dae7ef" stroke="#7e9bb1"/>
+  <text x="448" y="128" text-anchor="middle" font-size="16" font-weight="650">S4</text>
+  <text x="359" y="102" text-anchor="middle" font-size="17" font-weight="650">2 Mbit/s</text>
+  <text x="310" y="151" text-anchor="middle" font-size="14" font-weight="400">Port 4</text>
+</svg>

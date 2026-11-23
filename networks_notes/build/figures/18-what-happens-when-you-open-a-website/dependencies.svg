@@ -1,0 +1,19 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 760 286" role="img" aria-labelledby="title">
+ <title id="title">The departures request depends on HTML and JavaScript</title>
+ <rect x="1" y="1" width="758" height="284" rx="14" fill="#f6f8fb" stroke="#d6dfe8"/>
+ <defs><marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0 0L10 5L0 10Z" fill="#35617c"/></marker></defs>
+ <g stroke="#35617c" stroke-width="2" fill="none" marker-end="url(#arrow)">
+  <path d="M162 139H191V67H230"/><path d="M162 139H230"/><path d="M162 139H191V216H230"/>
+  <path d="M373 139H423"/><path d="M372 67H601V114"/><path d="M561 139H585"/>
+ </g>
+ <g fill="#e3edf4" stroke="#b5c8d8">
+  <rect x="34" y="114" width="128" height="50" rx="8"/><rect x="230" y="42" width="142" height="50" rx="8"/>
+  <rect x="230" y="114" width="142" height="50" rx="8"/><rect x="230" y="191" width="142" height="50" rx="8"/>
+  <rect x="423" y="114" width="138" height="50" rx="8"/><rect x="585" y="114" width="142" height="50" rx="8" fill="#c6e2df"/>
+ </g>
+ <g font-family="system-ui,sans-serif" font-size="17" fill="#1d2938" text-anchor="middle">
+  <text x="98" y="145">HTML</text><text x="301" y="73">Stylesheet</text><text x="301" y="145">Run script</text>
+  <text x="301" y="222">Logo</text><text x="492" y="145">API response</text><text x="656" y="145">Styled list</text>
+  <text x="380" y="267" font-size="15">An arrow means the next step needs the result of the previous one.</text>
+ </g>
+</svg>

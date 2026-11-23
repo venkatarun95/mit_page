@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 760 280" role="img" aria-labelledby="title">
+ <title id="title">A route event starts a self-sustaining cycle of retry work</title>
+ <rect x="1" y="1" width="758" height="278" rx="14" fill="#f6f8fb" stroke="#d6dfe8"/>
+ <defs><marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0 0L10 5L0 10Z" fill="#35617c"/></marker></defs>
+ <g font-family="system-ui,sans-serif" fill="#1d2938" text-anchor="middle">
+  <g stroke="#35617c" stroke-width="2" fill="none" marker-end="url(#arrow)"><path d="M210 96H276"/><path d="M476 96H539"/><path d="M630 129V177H382V129"/></g>
+  <g stroke="#b5c8d8" fill="#e3edf4"><rect x="39" y="62" width="171" height="67" rx="8"/><rect x="276" y="62" width="200" height="67" rx="8"/><rect x="539" y="62" width="181" height="67" rx="8"/></g>
+  <g font-size="17" font-weight="650"><text x="124" y="92">Route changes</text><text x="376" y="92">Fresh deadlines missed</text><text x="629" y="92">Clients retry</text></g>
+  <g font-size="15"><text x="124" y="113">Capacity drops briefly</text><text x="376" y="113">Useful responses fall</text><text x="629" y="113">Extra work arrives</text>
+  <text x="506" y="204">Retries consume capacity needed by new requests</text>
+  <text x="380" y="244">Restoring the route removes the trigger. Limiting retries can break the cycle.</text></g>
+ </g>
+</svg>
