@@ -1,0 +1,123 @@
+# Congestion control and the meaning of life
+
+I have spent over ten years thinking about congestion control. At least a part of the motivation is that I believe figuring out the perfect CCA may put us one step closer to mathematically deriving the meaning of life.
+
+TL;DR Humans can be seen as social robots. Our instincts 
+
+# Congestion Control and the Meaning of Life
+
+I have spent over ten years thinking about congestion control. At least a part of the motivation is that I believe figuring out the perfect CCA will put us one step closer to mathematically deriving the meaning of life.
+
+Let me explain.
+
+## Evolution is a funny thing
+
+Evolution is a funny thing. It optimizes for reproductive success, yet often produces behaviors that seem to work against the interests of individuals. This is easiest to see in social species such as humans.
+
+We do not maximize the number of babies we have. We limit ourselves to the number we think we can effectively care for. For some, that number is zero. Even more convincingly, some of us sacrifice our lives for others, while others decide to go celibate.
+
+Is this a failure of evolution? Has evolution made us so clever that we have outgrown it and hacked our way out of its pressures?
+
+Well... we are the dominant large animal on Earth. Some 30% of all biomass of land mammals is humans and almost all of the rest is animals humans raise for milk, meat etc. [Confirm.]
+
+As far as evolution is concerned, humanity is doing pretty well for its niche of large mammals.
+
+So what gives?
+
+## Selfishness and altruism
+
+Survival of a species is not the same as survival of individuals. Consider altruism.
+
+If I'm selfish in an altruistic world, I can do pretty well for myself. I may have many kids. They in turn will also do very well and have many more kids. But once they reach a critical mass, a society of selfish people cannot function and may be overtaken by a neighboring tribe that is more cohesive.
+
+Many simulations and analyses show how cooperation can emerge and persist under such conditions. They're quite popular and you may already have come across them. Here's an interactive example: [The Evolution of Trust](https://ncase.me/trust/).
+
+Of course, these models are extraordinarily simplified. One may be tempted to think there is a "selfishness" gene, and evolution merely determines the right fraction of selfish and altruistic individuals. But that would be an oversimplification for two reasons.
+
+First, it need not all be genetic. The environment may contribute. In fact, that may be better, allowing us to calibrate our altruism for the conditions in which we live.
+
+Second, altruism is not a single-dimensional object. I may be generous with money, but stingy with my time. I may love freely at home, but may have learned to keep my guard up at work (or vice versa). And my tendencies change throughout my life, based on my learnings, mood, fears and location.
+
+An evolved organism is a complex intricate machine. We should not expect simple descriptions and models to fit it any more than they fit our artificial neural networks. Yes, evolution is "just" natural selection and large language models are "just" stochastic gradient descent. But their emergent behavior is much richer than the simple processes that generate them.
+
+The altruism models we just discussed are an existence proof that natural selection can, under the right conditions, favor traits that benefit groups even when they are costly to individuals. That is it. They do not demonstrate anything more. They do not show exactly how altruism works in organisms, let alone explain human psychology.
+
+A more sophisticated example may help.
+
+## Anger: an individually irrational emotion?
+
+Let us look at a few emotions, starting with one that doesn't feel particularly social: anger.
+
+Often, I may cause myself more damage when exacting vengeance than is "worth it."
+
+Suppose I use your furniture as firewood.
+
+Penalizing me will not bring your furniture back. Your acting against me may be individually irrational. Yet I know you will be angry. You may act against me, tell everyone not to trust me, and refuse future cooperation with me even if it would be win-win and would not require trust.
+
+Knowing all this, I will not do the bad action in the first place.
+
+Thus anger, for all its destructive qualities, makes society function. This deterrence would not work in quite the same way if everyone simply maximized their individual payoff in each isolated interaction.
+
+Of course, all of this is conjecture and reverse-engineering. Victims do not always think through the deterrence benefits of taking action. They just feel wronged and angry. Not everyone acts out of a noble impulse to maintain social harmony.
+
+Similarly, people do not coldly calculate the social backlash to bad actions. We experience this as morals and a conscience.
+
+Evolution does not have to bother "telling" us why we do what we do. It may not even have a "why". It just produces instincts that let us survive. Fortunately, it has given us an intellect that may let us reverse-engineer its machinations.
+
+And I am proposing a purely mathematical approach to doing so.
+
+## Congestion control: a simpler version of the same problem
+
+This brings us to congestion control.
+
+It has the same basic structure. For multiple users to coexist on the same network, we must discover behaviors that, if followed by everyone, lead to good global functioning.
+
+A sender can often improve its own performance by being more aggressive. But if everyone is aggressive, the network may function poorly. We need algorithms that let each sender act on limited, local information while producing good collective outcomes.
+
+Even though congestion control is a much simpler setting than human life, discovering these behaviors has been a hard problem.
+
+We have many good congestion control algorithms, but no universally satisfactory one. Even if we had the ability to get everyone to agree to use a prescribed algorithm, we do not know of an algorithm that works well across all environments and competing objectives.
+
+And the problem becomes harder when agents do not necessarily follow the same algorithm, or when some can benefit by deviating from the prescribed behavior.
+
+Distributed algorithms are hard!
+
+Congestion control is not rich enough to represent all of life. But the fact that we struggle to design algorithms for even such a simple setting is indicative of a broader problem.
+
+How do we design agents that pursue their own objectives, operate with limited information, and interact with other agents, while producing good global outcomes?
+
+## Designing intelligent agents, and understanding ourselves
+
+This is a problem we will increasingly face as we build a world populated by intelligent artificial agents. We will need to decide what objectives to give them, how they should behave toward one another, and how to make sure that individually sensible behaviors do not produce collectively disastrous results.
+
+And it is a problem evolution has already spent billions of years working on.
+
+I am proposing that we try to find the set of objective functions and strategies we can engineer into social agents that will let them thrive in diverse, open-ended worlds.
+
+Assuming evolution found a good solution, which it seems to have given how well we are doing, human emotions will likely be inside this set.
+
+How uniquely can this set determine our emotions? I don't know. It certainly filters out many possible strategies, since designing social robots has been extraordinarily difficult.
+
+The human design is certainly impressive. It has worked from ice ages to now, spanning every manner of hunter-gatherer, agrarian and techno-urban society despite us being genetically essentially the same the whole time. Put differently, its out-of-distribution performance is exemplary.
+
+It seems to work via a rich collection of highly situational instincts that we coarsely categorize as love, anger, jealousy, creative joy, anxiety, compassion, etc.
+
+Yet all these must arise from relatively compact generative rules, since our entire genome fits in about 3 GB of data. Of course, development and learning contribute enormously to the resulting complexity.
+
+My gut says there cannot be too many ways of doing that.
+
+Of course, my gut may be wrong.
+
+But if we could characterize the space of strategies that allow distributed agents to cooperate and thrive across a wide range of environments, perhaps we could discover generative laws about our own psychology.
+
+And perhaps these laws would point to formulations of the meaning of life that many humans may find satisfying.
+
+## Is it worth a shot?
+
+I do not claim that this research program is guaranteed to produce these results. There are many failure modes. I will discuss some of them.
+
+However, it seems worth a shot, and will certainly yield some useful results, the least of which will be good CCAs and other distributed algorithms.
+
+The point of working on congestion control, then, is not just to make networks faster. It is to understand how to design distributed agents that can coexist and cooperate. That understanding may help us build a future world of intelligent agents, and perhaps also understand ourselves.
+
+And if that brings us a step closer to mathematically deriving the meaning of life, all the better.
